@@ -1,7 +1,7 @@
 # GenomicProcess
 tools for genomic data analysis (process)
 
-1. ncbi_gff3_to_ensembl_gtf.py
+**ncbi_gff3_to_ensembl_gtf.py**
 
   Convert ncbi gff3 format to ensembl gtf. Usage:
 
