@@ -5,7 +5,7 @@ tools for genomic data analysis (process)
 
   Convert ncbi gff3 format to ensembl gtf, usage:
 
-    python3 ncbi_gff3_to_ensembl_gtf.py <gff3> <gtf>
+    python3 ncbi_gff3_to_ensembl_gtf.py <input.gff3> <output.gtf>
 
   Note: transcription mapping file "genomic.transcription.tsv" will be created.
 
