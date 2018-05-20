@@ -3,7 +3,7 @@ tools for genomic data analysis (process)
 
 **[ncbi_gff3_to_ensembl_gtf.py]**
 
-  Convert ncbi gff3 format to ensembl gtf. Usage:
+  Convert ncbi gff3 format to ensembl gtf, usage:
 
     python3 ncbi_gff3_to_ensembl_gtf.py <gff3> <gtf>
 
@@ -12,6 +12,7 @@ tools for genomic data analysis (process)
 <br></br>
 
 **[gff3infor]**
+
 Gff3 file statistic and information extraction, usage:
 
     sh  gff3infor  <input.gff3>  [feature-type]  [attributions]
