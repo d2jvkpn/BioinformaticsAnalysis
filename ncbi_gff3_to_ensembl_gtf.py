@@ -109,8 +109,8 @@ def eF9(d):
 
     attr = 'transcript_id "' + Parent + '"; '
 
-    if Parent.startswith('gene') == '':
-        attr = 'gene_id "' + Parent + '"; '
+    if Parent.startswith('gene'):
+        attr += 'gene_id "' + Parent + '"; '
     elif tp[tp[Parent]] != '':
         attr += 'gene_id "' + tp[tp[Parent]] + '"; '
         attr += 'primary_transcript "' + tp[Parent] + '"; '
