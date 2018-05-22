@@ -60,7 +60,11 @@ tsv = open('genomic.transcription.tsv', 'w')
 tsv.write('id\tfeature\tgbkey\tparent\tname\tgene_biotype\n')
 
 for _ in GFF3:
-    fd = _.decode("utf8").replace('\n', '').split('\t')
+    if gff3.endswith('gz'):
+        fd = _.decode("utf8").replace('\n', '').split('\t')
+    else:
+        fd = _.replace('\n', '').split('\t')
+
     if fd[0].startswith('#') or len(fd)!=9: continue
 
     f9=fd[8].split(';')
@@ -87,7 +91,11 @@ GFF3 = gzip.open(gff3, 'r') if gff3.endswith('gz') else open(gff3, 'r')
 GTF = open(gtf, 'w')
 
 for _ in GFF3:
-    fd = _.decode("utf8").replace('\n', '').split('\t')
+    if gff3.endswith('gz'):
+        fd = _.decode("utf8").replace('\n', '').split('\t')
+    else:
+        fd = _.replace('\n', '').split('\t')
+
     if fd[0].startswith('#') or len(fd)!=9: continue
 
     f9=fd[8].split(';')
