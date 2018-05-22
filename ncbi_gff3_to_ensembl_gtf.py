@@ -12,8 +12,8 @@ import pandas as pd
 
 if len(os.sys.argv) != 3 or os.sys.argv[1] in ['-h', '--help']: 
     print ('Convert ncbi gff3 format to ensembl gtf. Usage:')
-    print ('   python3 ncbi_gff3_to_ensembl_gtf.py <input.gff3.gz> <output.gtf>')
-    print ('\nNote: file "genomic.transcription.tsv" will be created.')
+    print ('   python3 ncbi_gff3_to_ensembl_gtf.py <input.gff3> <output.gtf>')
+    print ('\nNote: file "genomic.transcription.tsv" will be created, "pandas" is required.')
 
     _ = '\nauthor: {}\nversion: {}\nrelease: {}\nproject: {}\nlisence: {}\n'
     __ = [__author__,  __version__, __release__, __project__, __lisence__]
@@ -55,7 +55,7 @@ def Mapper(d, M, t):
 
 ####
 
-GFF3 = gzip.open(gff3, 'r')
+GFF3 = gzip.open(gff3, 'r') if gff3.endswith('gz') else open(gff3, 'r')
 tsv = open('genomic.transcription.tsv', 'w')
 tsv.write('id\tfeature\tgbkey\tparent\tname\tgene_biotype\n')
 
@@ -83,7 +83,7 @@ GFF3.close()
 M = pd.read_csv('genomic.transcription.tsv', sep='\t', index_col=0)
 M.fillna ('', inplace=True)
 
-GFF3 = gzip.open(gff3, 'r')
+GFF3 = gzip.open(gff3, 'r') if gff3.endswith('gz') else open(gff3, 'r')
 GTF = open(gtf, 'w')
 
 for _ in GFF3:
