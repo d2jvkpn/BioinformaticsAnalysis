@@ -11,10 +11,19 @@ tools for genomic data analysis (process)
 
 <br></br>
 
-**[gff3infor]**
+**[gff3infor.sh]**
 
 Gff3 file statistic and information extraction, usage:
 
     sh  gff3infor  <input.gff3>  [feature-type]  [attributions]
 
 Note: gawk4.0 or higher is required to support urldecode
+
+<br></br>
+
+**[gtfinfor.py]**
+Extract attribution(s) of feature(s) from gtf, usage:
+
+   python3 gtfinfor.py <input.gtf> <feature1,feature2...> <attribution1,attribution2...>
+   
+   
