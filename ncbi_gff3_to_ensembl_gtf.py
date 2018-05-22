@@ -12,8 +12,8 @@ import pandas as pd
 
 if len(os.sys.argv) != 3 or os.sys.argv[1] in ['-h', '--help']: 
     print ('Convert ncbi gff3 format to ensembl gtf. Usage:')
-    print ('   python3 ncbi_gff3_to_ensembl_gtf.py <input.gff3> <output.gtf>')
-    print ('\nNote: transcription mapping file "genomic.transcription.tsv" will be created.')
+    print ('   python3 ncbi_gff3_to_ensembl_gtf.py <input.gff3.gz> <output.gtf>')
+    print ('\nNote: file "genomic.transcription.tsv" will be created.')
 
     _ = '\nauthor: {}\nversion: {}\nrelease: {}\nproject: {}\nlisence: {}\n'
     __ = [__author__,  __version__, __release__, __project__, __lisence__]
