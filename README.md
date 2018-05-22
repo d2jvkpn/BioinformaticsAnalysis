@@ -24,6 +24,6 @@ Note: gawk4.0 or higher is required to support urldecode
 **[gtfinfor.py]**
 Extract attribution(s) of feature(s) from gtf, usage:
 
-   python3 gtfinfor.py <input.gtf> <feature1,feature2...> <attribution1,attribution2...>
+    python3 gtfinfor.py <input.gtf> <feature1,feature2...> <attribution1,attribution2...>
    
    
