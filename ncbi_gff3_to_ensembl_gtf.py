@@ -12,7 +12,7 @@ import pandas as pd
 
 if len(os.sys.argv) != 3 or os.sys.argv[1] in ['-h', '--help']: 
     print ('Convert ncbi gff3 format to ensembl gtf. Usage:')
-    print ('   python3 ncbi_gff3_to_ensembl_gtf.py <input.gff3> <output.gtf>')
+    print ('    python3  ncbi_gff3_to_ensembl_gtf.py  <input.gff3>  <output.gtf>')
     print ('\nNote: file "genomic.transcription.tsv" will be created, "pandas" is required.')
 
     _ = '\nauthor: {}\nversion: {}\nrelease: {}\nproject: {}\nlisence: {}\n'
@@ -47,6 +47,10 @@ def Mapper(d, M, t):
 
     if _ == 2: d['parent'] = M.ix[d['transcript_id'], 'parent']
 
+    if  'transcript_name' not in d:
+        _ = M.ix[d['transcript_id'], 'name']
+        if _ != '': d['transcript_name'] = _
+ 
     if 'gene_id' not in d: d['gene_id'] = d['transcript_id']
     d['gene_biotype'] = M.ix[Q, 'gene_biotype']
 
