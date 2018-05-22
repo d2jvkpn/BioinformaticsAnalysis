@@ -1,14 +1,14 @@
 #! /usr/bin/env python3
 
 __author__ = 'd2jvkpn'
-__version__ = '0.3'
+__version__ = '0.4'
 __release__ = '2018-05-20'
 __project__ = 'https://github.com/d2jvkpn/GenomicProcess'
 __lisence__ = 'GPLv3 (https://www.gnu.org/licenses/gpl-3.0.en.html)'
 
-
-from collections import defaultdict
 import os, gzip
+from collections import defaultdict
+import pandas as pd
 
 if len(os.sys.argv) != 3 or os.sys.argv[1] in ['-h', '--help']: 
     print ('Convert ncbi gff3 format to ensembl gtf. Usage:')
@@ -23,147 +23,98 @@ if len(os.sys.argv) != 3 or os.sys.argv[1] in ['-h', '--help']:
 gff3 = os.sys.argv[1]
 gtf = os.sys.argv[2]
 
+####
+def toGtf(d):
+    c9 = 'gene_id \"' + d['gene_id'] + '";'
+    if 'transcript_id' in d:
+       c9 += ' transcript_id "' + d['transcript_id'] + '";'
+
+    for k in d:
+        if k in ['gene_id', 'transcript_id']: continue
+        c9 += ' %s "%s";' % (k, d[k])
+
+    return (c9)
+
+def Mapper(d, M, t):
+    Q = (d['ID'] if t == 'transcript' else d['Parent'])
+    d['transcript_id'] = Q
+
+    for _ in [1,2,3]:
+        if not d['transcript_id'].startswith('rna'): d['transcript_id'] =  Q
+        Q = M.ix[Q, 'parent']
+        if Q == '': Q = d['transcript_id']; break
+        if M.ix[Q, 'gbkey'] == 'Gene': d['gene_id'] = Q; break
+
+    if _ == 2: d['parent'] = M.ix[d['transcript_id'], 'parent']
+
+    if 'gene_id' not in d: d['gene_id'] = d['transcript_id']
+    d['gene_biotype'] = M.ix[Q, 'gene_biotype']
+
+    del(d['ID']); del(d['Parent'])
+
+
+####
+
+GFF3 = gzip.open(gff3, 'r')
 tsv = open('genomic.transcription.tsv', 'w')
+tsv.write('id\tfeature\tgbkey\tparent\tname\tgene_biotype\n')
 
-f1 = gzip.open(gff3, 'r') if gff3.endswith('gz') else open(gff3, 'r')
+for _ in GFF3:
+    fd = _.decode("utf8").replace('\n', '').split('\t')
+    if fd[0].startswith('#') or len(fd)!=9: continue
 
-tsv.write('Feature\tID\tParent\tName\tType\n')
-
-for _ in f1:
-    try:
-       line = _.decode("utf8").strip()
-    except:
-       line = _.strip()
-
-    if line.startswith('#'): continue
-    fd=line.split('\t')
-    if int(fd[3]) >= int(fd[4]):
-        print('\nError: start position is greater than or equal to end position at:')
-        print('%s' % line)
     f9=fd[8].split(';')
     d = defaultdict(str)
-    for i in f9:
-        ii=i.split('=', 1)
-        d[ii[0]] = ii[1]
 
-    if d['gbkey'].count('RNA') > 0 and fd[2] != 'exon':
-        tsv.write('\t'.join([fd[2], d['ID'], d['Parent'], \
-        d['transcript_id'], d['gbkey']]) + '\n')
-        continue
+    for i in f9: ii = i.split('=', 1); d[ii[0]] = ii[1]
 
-    if d['gbkey'] == 'Gene':
-        tsv.write('\t'.join(['Gene', d['ID'], '', d['Name'], d['gene_biotype']]) + '\n')
+    if fd[2] in ['CDS', 'exon'] or int(fd[3]) >= int(fd[4]): continue
+
+    if 'Parent' in d or d['gbkey'] == 'Gene':    
+        tsv.write ('\t'.join([d['ID'], fd[2], d['gbkey'], d['Parent'], \
+        d['Name'], d['gene_biotype']]) + '\n')
 
 
 tsv.close()
-f1.close()
-
-tp=defaultdict(str)
-nm=defaultdict(str)
-
-with open('genomic.transcription.tsv', 'r') as _:
-    for line in _:
-        fd = line.replace('\n', '').split('\t')
-#        if fd[0] in ['CDS', 'exon']: tl[fd[1]] = fd[2]
-        if fd[0] != 'Gene':
-            tp[fd[1]] = fd[1] if fd[2] == '' else fd[2]
-            nm[fd[1]] = fd[3]
-        if fd[0] == 'Gene': nm[fd[1]] = fd[3]
+GFF3.close()
 
 
-def gF9(d):
-    ID = d['ID']
-    attr = 'gene_id "' + ID + '"; '
-    if nm[ID] != '' : attr += 'gene_name "' + nm[ID] +'"; ' 
-    attr += 'gene_biotype "' + d['gene_biotype']  + '"; '
+####
+M = pd.read_csv('genomic.transcription.tsv', sep='\t', index_col=0)
+M.fillna ('', inplace=True)
 
-    if d['description'] != '':
-        attr += 'description "' + d['description']  + '"; '
+GFF3 = gzip.open(gff3, 'r')
+GTF = open(gtf, 'w')
 
-    if d['Dbxref'] != '':
-        attr += 'Dbxref "' + d['Dbxref']  + '"; '
-
-    return (attr)
-
-def rF9(d):
-    ID = d['ID']
-    Parent = d['Parent']
-    attr = 'transcript_id "' + ID + '"; '
-    if Parent.startswith('rna'):
-        attr += 'gene_id "' + tp[Parent] + '"; '
-    else:
-        attr += 'gene_id "' + Parent + '"; '
-
-    if d['transcript_id'] != '' :
-        attr += 'transcript_name "' + d['transcript_id'] + '"; '
-    if nm[tp[Parent]] != '':
-        attr += 'gene_name "' + nm[tp[d['ID']]] + '"; '
-    if d['product'] != '':
-        attr += 'product "' + d['product'] +'"; '
-
-    return (attr)
-
-
-def eF9(d):
-    Parent = d['Parent']
-
-    attr = 'transcript_id "' + Parent + '"; '
-
-    if Parent.startswith('gene'):
-        attr += 'gene_id "' + Parent + '"; '
-    elif tp[tp[Parent]] != '':
-        attr += 'gene_id "' + tp[tp[Parent]] + '"; '
-        attr += 'primary_transcript "' + tp[Parent] + '"; '
-    else:
-        attr += 'gene_id "' + tp[Parent] + '"; '
-
-    if d['transcript_id'] != '' :
-        attr += 'transcript_name "' + d['transcript_id'] + '"; '
-
-    if d['gene'] != '' :
-        attr += 'gene_name "' + d['gene'] + '"; '
-
-    return(attr)
-
-
-f1 = gzip.open(gff3, 'r') if gff3.endswith('gz') else open(gff3, 'r')
-f2 = open(gtf, 'w')
-
-for _ in f1:
-    try:
-       line = _.decode("utf8").strip()
-    except:
-       line = _.strip()
-
-    if line.startswith('#'): continue
-    fd=line.replace('\n', '').split('\t')
-
-    if int(fd[3]) >= int(fd[4]): continue
+for _ in GFF3:
+    fd = _.decode("utf8").replace('\n', '').split('\t')
+    if fd[0].startswith('#') or len(fd)!=9: continue
 
     f9=fd[8].split(';')
-    d = defaultdict(str)
-    for i in f9: ii=i.split('=', 1); d[ii[0]] = ii[1]
+    d = {}
+    for i in f9: ii = i.split('=', 1); d[ii[0]] = ii[1]
 
-    if d['gbkey'] not in ['CDS', 'exon', 'Gene'] and \
-    d['gbkey'].count('RNA') == 0: continue
-
-    if d['gbkey'].count('RNA') > 0 and fd[2] != 'exon': fd[2] = 'transcript'
-
-    fd[8] = 'gbkey "'+ d['gbkey']+ '";'
-
-    if d['gbkey'] == 'Gene':
-        fd[8] = gF9(d) + fd[8]
-        f2.write('\t'.join(fd) + '\n')
-        continue
+    if int(fd[3]) >= int(fd[4]) or 'gbkey' not in d: continue
+    if 'Parent' not in d and d['gbkey'] != 'Gene': continue
 
     if d['gbkey'].count('RNA') > 0 and fd[2] != 'exon':
-        fd[8] = rF9(d) + fd[8]
-        f2.write('\t'.join(fd) + '\n')
-        continue
+        d['feature'] = fd[2]; fd[2] = 'transcript'
 
-    if d['gbkey'] == 'CDS' or fd[2] == 'exon':
-        fd[8] = eF9(d) + fd[8]
-        f2.write('\t'.join(fd) + '\n')
+    if d['gbkey'] == 'Gene':
+        fd[2] = 'gene'; d['gene_id'] = d['ID']; del(d['ID'])
 
-f1.close
-f2.close()
+    if fd[2] not in ['CDS', 'exon', 'transcript', 'gene']: continue
+
+    if 'gene' in d: d['gene_name'] = d['gene']; del(d['gene'])
+
+    if 'transcript_id' in d:
+        d['transcript_name'] = d['transcript_id']; del(d['transcript_id'])
+
+    if fd[2] != 'gene': Mapper(d, M, fd[2])
+
+    fd[8] = toGtf (d)
+
+    GTF.write ('\t'.join(fd) + '\n')
+
+GFF3.close()
+GTF.close()
