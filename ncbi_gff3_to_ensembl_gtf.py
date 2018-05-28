@@ -1,7 +1,7 @@
 #! /usr/bin/env python3
 
 __author__ = 'd2jvkpn'
-__version__ = '0.8'
+__version__ = '0.9'
 __release__ = '2018-05-27'
 __project__ = 'https://github.com/d2jvkpn/GenomicProcess'
 __lisence__ = 'GPLv3 (https://www.gnu.org/licenses/gpl-3.0.en.html)'
