@@ -1,8 +1,8 @@
 #! /usr/bin/env python3
 
 __author__ = 'd2jvkpn'
-__version__ = '0.2'
-__release__ = '2018-05-20'
+__version__ = '0.4'
+__release__ = '2018-05-27'
 __project__ = 'https://github.com/d2jvkpn/GenomicProcess'
 __lisence__ = 'GPLv3 (https://www.gnu.org/licenses/gpl-3.0.en.html)'
 
@@ -27,9 +27,10 @@ att = os.sys.argv[3].split(',')
 # fea = ['transcript', 'CDS']
 # att = ['transcript_id', 'transcript_name', 'gene_id', 'gene_name', 'product']
 
-GTF = gzip.open(gtf, 'r') if gtf.endswith('gz') else open(gtf, 'r')
+GTF = gzip.open(gtf, 'rb') if gtf.endswith('gz') else open(gtf, 'r')
 
-print ('\t'.join(att + ['feature', 'position']))
+# print ('\t'.join(['position', 'feature'] + att))
+print ('\t'.join(att))
 
 for _ in GTF:
     if gtf.endswith('gz'):
@@ -48,9 +49,9 @@ for _ in GTF:
 
     for i in __: d[i[0]] = i[1].strip('"')
 
-    __ = ':'.join([fd[0], fd[3], fd[4], fd[6]])
-
-    print ('\t'.join ([d[i] for i in att] + [fd[2], __]))
+#    __ = ':'.join([fd[0], fd[3], fd[4], fd[6]])
+#    print ('\t'.join ([ __, fd[2]] + [d[i] for i in att] ))
+    print ('\t'.join ([d[i] for i in att] ))
 
 
 GTF.close()
