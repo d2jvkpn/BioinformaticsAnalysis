@@ -5,16 +5,16 @@ Tools for Genomic Data Analysis
 
 **[ncbi_gff3_to_ensembl_gtf.py]**
 
-  Convert ncbi gff3 format to ensembl gtf (be compatible with softwares like stringtie), usage:
+  Convert ncbi gff3 (gzipped) format to ensembl gzipped gtf (be compatible with softwares like stringtie), usage:
 
-    python3  ncbi_gff3_to_ensembl_gtf.py  <input.gff3>  <outputPrefix>
+    python3  ncbi_gff3_to_ensembl_gtf.py  <input.gff3.gz>  <outputPrefix>
 
 
 <br></br>
 
 **[gffinfor.py]**
 
-Extract attribution(s) of feature(s) from gtf or gff3, usage:
+Extract attribution(s) of feature(s) from gtf or gff3 (gzipped file is supported), usage:
 
     python3  gtfinfor.py  <input.gtf/input.gff3>  <feature1,feature2...>  <attribution1,attribution2...>
 
