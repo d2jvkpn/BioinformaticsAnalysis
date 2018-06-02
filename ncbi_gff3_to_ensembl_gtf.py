@@ -1,14 +1,15 @@
 #! /usr/bin/env python3
 
 __author__ = 'd2jvkpn'
-__version__ = '0.9'
-__release__ = '2018-05-27'
+__version__ = '1.0'
+__release__ = '2018-06-02'
 __project__ = 'https://github.com/d2jvkpn/GenomicProcess'
 __lisence__ = 'GPLv3 (https://www.gnu.org/licenses/gpl-3.0.en.html)'
 
-import os, gzip
+import os, gzip, gc
 from collections import defaultdict
 import pandas as pd
+
 
 if len(os.sys.argv) != 3 or os.sys.argv[1] in ['-h', '--help']: 
     print ('Convert ncbi gff3 format to ensembl gtf. Usage:')
@@ -20,8 +21,7 @@ if len(os.sys.argv) != 3 or os.sys.argv[1] in ['-h', '--help']:
     os.sys.exit(0)
 
 gff3 = os.sys.argv[1]
-tsv = os.sys.argv[2] + '.tsv'
-gtf = os.sys.argv[2] + '.gtf.gz'
+prefix = os.sys.argv[2]
 
 ####
 def toGtf(d):
@@ -38,11 +38,7 @@ def toGtf(d):
 
 ####
 GFF3 = gzip.open(gff3, 'rb')
-
-TSV = open(tsv, 'w')
-
-TSV.write('\t'.join(['id', 'feature','gbkey','parent','name','gene_biotype', \
-'description', 'product']) + '\n')
+records = []; p = defaultdict (str)
 
 for _ in GFF3:
     fd = _.decode('utf8').strip().split('\t')
@@ -54,6 +50,9 @@ for _ in GFF3:
 
     for i in f9: ii = i.split('=', 1); d[ii[0]] = ii[1]
 
+    if fd[2] == 'CDS' and (d['Parent'] not in p) and ('protein_id' in d):
+        p[d['Parent']] = d['protein_id']
+
     if fd[2] in ['CDS', 'exon'] or int(fd[3]) >= int(fd[4]): continue
     if 'Parent' not in d and d['gbkey'] != 'Gene': continue
 
@@ -62,27 +61,36 @@ for _ in GFF3:
     else:
         _ = d['Name'] if d['Name'] != '' else d['gene']
 
-    TSV.write('\t'.join([d['ID'], fd[2], d['gbkey'], d['Parent'], _, \
-    d['gene_biotype'], d['description'], d['product']]) + '\n')
+    records.append ([d['ID'], fd[2], d['gbkey'], d['Parent'], _, \
+    d['gene_biotype'], d['description'], d['product']])
 
 GFF3.close()
-TSV.close()
 
 ####
-M = pd.read_csv(tsv, sep='\t', index_col=0, usecols=[0,3,4,5])
+M = pd.DataFrame.from_records (records, columns = ['id', 'feature', 'gbkey', \
+'parent', 'name', 'gene_biotype', 'gene_description', 'transcript_product'])
+
+M['protein_id'] = [ p[i] for i in  M.iloc[:, 0]]
+
+M.iloc[:, list(range(5)) + [8, 5, 6, 7]].to_csv (prefix + '.tsv.gz', 
+sep='\t', encoding='utf-8', index=False, compression='gzip')
+
+del (GFF3, records, p, d, M); gc.collect()
+
+M = pd.read_csv(prefix + '.tsv.gz', sep='\t', index_col=0, usecols=[0, 3, 4, 5, 6])
 M = M[[not i for i in M.index.duplicated()]]
 M.fillna ('', inplace=True)
 
-GFF3 = gzip.open(gff3, 'rb')
-GTF = gzip.open(gtf, 'wb')
+####
+GFF3 = gzip.open (gff3, 'rb')
+GTF = gzip.open (prefix + '.gtf.gz', 'wb')
 
-Attributions = ['ID', 'Parent', 'protein_id', 'gbkey', 'gene_biotype',
-'description', 'product']
+Attributions = ['ID', 'Parent', 'gbkey', 'gene_biotype', 'description', 'product']
 
 for _ in GFF3:
     fd = _.decode('utf8').strip().split('\t')
 
-    if fd[0].startswith('#') or len(fd)!=9: continue
+    if fd[0].startswith('#') or len(fd) != 9: continue
 
     f9=fd[8].split(';')
     d = {}
@@ -118,6 +126,7 @@ for _ in GFF3:
             d['gene_id'] = M.loc[d['gene_id'], 'parent']
 
         d['gene_name'] = M.loc[d['gene_id'], 'name']
+        d['protein_id'] = M.loc[d['transcript_id'], 'protein_id']
     else:
         d['transcript_id'] = d['Parent']
 
@@ -140,11 +149,11 @@ for _ in GFF3:
 
         d['transcript_name'] = M.loc[d['transcript_id'], 'name']
 
-        if 'product' in d: del(d['product'])
+        if 'product' in d: del (d['product'])
 
 
-    del(d['ID'])
-    if 'Parent' in d: del(d['Parent'])
+    del (d['ID'])
+    if 'Parent' in d: del (d['Parent'])
 
     for i in list(d.keys()):
         if d[i] == '': del(d[i])
