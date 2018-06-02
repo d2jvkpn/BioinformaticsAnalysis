@@ -1,7 +1,6 @@
 # GenomicProcess
 Tools for Genomic Data Analysis
 
-<br></br>
 
 **[ncbi_gff3_to_ensembl_gtf.py]**
 
@@ -9,8 +8,6 @@ Tools for Genomic Data Analysis
 
     python3  ncbi_gff3_to_ensembl_gtf.py  <input.gff3.gz>  <outputPrefix>
 
-
-<br></br>
 
 **[gffinfor.py]**
 
@@ -21,7 +18,6 @@ Extract attribution(s) of feature(s) from gtf or gff3 (gzipped file is supported
 Output: stdout, tsv format.
 
 
-<br></br>
 
 **[gff3infor.sh]**
 
