@@ -3,7 +3,7 @@
 # author: d2jvkpn
 # date: 2017-08-11
 # version: 1.6.6
-# project: https://github.com/d2jvkpn/GenomicProcess
+# project: https://github.com/d2jvkpn/BioinformaticsAnalysis
 # description: extract information from gff3 file , gawk 4.0 or higher is
 #+ required to support urldecode.
 
