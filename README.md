@@ -38,3 +38,6 @@ extact SRX and SRR data from ncbi bioproject webpage.
 
 **[SRR_download]**
 download sequecing fastq file by read tsv creatd by SRR_ncbi_bioproject.py.
+
+**[KEGG_pathway_download.py]**
+download KEGG pathway (.keg) by input organism code(hsa, ath).
