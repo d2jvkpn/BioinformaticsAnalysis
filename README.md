@@ -1,6 +1,6 @@
-# GenomicProcess
-Tools for Genomic Data Analysis
+## parse_and_converter
 
+Tools for Genomic Data Analysis
 
 **[ncbi_gff3_to_ensembl_gtf.py]**
 
@@ -26,3 +26,15 @@ Gff3 file statistic and information extraction, usage:
     sh  gff3infor.sh  <input.gff3>  [feature-type]  [attribution1,attribution2...]
 
 Note: gawk4.0 or higher is required to support urldecode
+
+***
+## webcrawler
+
+**[ncbi_genome_links.py]**
+extract organism information and download links (fna, faa, gff, gbff) from genome webpage.
+
+**[SRR_ncbi_bioproject.py]**
+extact SRX and SRR data from ncbi bioproject webpage.
+
+**[SRR_download]**
+download sequecing fastq file by read tsv creatd by SRR_ncbi_bioproject.py.
