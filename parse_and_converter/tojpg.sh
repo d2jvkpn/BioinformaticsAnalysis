@@ -1,10 +1,6 @@
 #! /bin/bash
 
-# author: d2jvkpn
-# version: 0.2
 # project: https://github.com/d2jvkpn/BioinformaticsAnalysis
-# date: 2017-07-20
-# description: convert image to jpg format.
 
 if [ -z $(which convert) ]; then
    echo "Can't use command \"convert\", please install imagemagick."
