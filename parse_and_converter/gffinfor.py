@@ -12,7 +12,7 @@ from collections import defaultdict
 if len(os.sys.argv) != 4 or os.sys.argv[1] in ['-h', '--help']: 
     print ('Extract attribution(s) of feature(s) from gtf or gff3, usage:')
     _ = '<feature1,feature2...>  <attribution1,attribution2...>'
-    print ('    python3 gffinfor.py  <input.gtf/input.gff3>' + _  )
+    print ('    python3 gffinfor.py  <input.gtf/input.gff3> ' + _  )
     print('\nOutput: stdout, tsv format.')
 
     _ = '\nauthor: {}\nversion: {}\nrelease: {}\nproject: {}\nlisence: {}\n'
