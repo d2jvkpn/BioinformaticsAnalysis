@@ -1,8 +1,8 @@
 #! /usr/bin/env python3
 
 __author__ = 'd2jvkpn'
-__version__ = '1.2'
-__release__ = '2018-06-20'
+__version__ = '1.3'
+__release__ = '2018-07-09'
 __project__ = 'https://github.com/d2jvkpn/BioinformaticsAnalysis'
 __lisence__ = 'GPLv3 (https://www.gnu.org/licenses/gpl-3.0.en.html)'
 
@@ -64,24 +64,24 @@ for _ in GFF3:
         _ = d['Name'] if d['Name'] != '' else d['gene']
 
     records.append ([d['ID'], fd[2], d['gbkey'], d['Parent'], _, \
-    d['gene_biotype'], d['description']])
+    d['gene_biotype'], d['description'], d['Dbxref']])
 
 GFF3.close()
 
 ####
 M = pd.DataFrame.from_records (records, columns = ['id', 'feature', 'gbkey', \
-'parent', 'name', 'gene_biotype', 'gene_description'])
+'parent', 'name', 'gene_biotype', 'gene_description', 'Dbxref'])
 
 M['product'] = [ product[i] for i in  M.iloc[:, 0]]
 M['protein_id'] = [ protein[i] for i in  M.iloc[:, 0]]
 
-M.iloc[:, list(range(5)) + [8, 5, 6, 7]].to_csv (prefix + '.tsv.gz', 
-sep='\t', encoding='utf-8', index=False, compression='gzip')
+M.to_csv (prefix + '.tsv.gz', sep='\t', encoding='utf-8', 
+index=False, compression='gzip')
 
 del (GFF3, records, protein, product, d, M); gc.collect()
 
 M = pd.read_csv(prefix + '.tsv.gz', sep='\t', index_col=0, 
-usecols=[0, 3, 4, 5, 6, 8])
+usecols=[0, 3, 4, 5, 6, 8, 9])
 
 M = M[[not i for i in M.index.duplicated()]]
 M.fillna ('', inplace=True)
