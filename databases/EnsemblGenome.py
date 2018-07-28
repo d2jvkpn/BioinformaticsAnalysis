@@ -176,6 +176,8 @@ def biomart_anno(url, loca):
     gene2go.drop_duplicates(inplace=True)
     gene2go.to_csv(loca + '/gene2go.tsv', sep='\t', index=False)
 
+    print('Saved gene2go.tsv to %s' % loca)
+
     ####
     s2 = ds.search({'attributes': ['ensembl_gene_id', 'entrezgene']})
     
@@ -187,6 +189,8 @@ def biomart_anno(url, loca):
     gene2entrez.drop_duplicates(inplace=True)
     gene2entrez.to_csv(loca + '/gene2entrez.tsv', sep='\t', index=False)
 
+    print('Saved gene2entrez.tsv to %s' % loca)
+
     ####
     s3 = ds.search({'attributes': ['ensembl_gene_id', 'kegg_enzyme']})
     
@@ -196,6 +200,8 @@ def biomart_anno(url, loca):
     
     gene2kegg = gene2kegg.loc[gene2kegg['kegg_enzyme'] != '', :]
     gene2kegg.to_csv(loca + '/gene2kegg.tsv', sep='\t', index=False)
+
+    print('Saved gene2kegg.tsv to %s' % loca)
 
     ####
     s4 = ds.search({'attributes': ['ensembl_gene_id', 'gene_biotype', \
@@ -216,7 +222,7 @@ def biomart_anno(url, loca):
     
     gene_infor.to_csv(loca + '/gene.infor.tsv', sep='\t', index=False)
 
-    print('Sucessed to achieve gene annotation of "%s" from Ensembl biomart.' % _)
+    print('Saved gene.infor.tsv to %s' % loca)
 
 
 def search (name):
