@@ -3,7 +3,7 @@
 __author__ = 'd2jvkpn'
 __version__ = '0.4'
 __release__ = '2018-07-28'
-__project__ = 'https://github.com/d2jvkpn/DataAnalysis'
+__project__ = 'https://github.com/d2jvkpn/BioinformaticsAnalysis'
 __license__ = 'GPLv3 (https://www.gnu.org/licenses/gpl-3.0.en.html)'
 
 import os, requests, time, string
