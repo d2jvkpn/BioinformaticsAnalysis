@@ -105,6 +105,9 @@ def getftp(url):
     
     print(loca)
 
+# arg1 = Glycine_max
+# arg1 = "Glycine max"
+# arg1 = 'https://www.ncbi.nlm.nih.gov/genome/?term=Glycine+max%5Borgn%5D'
 
 cmd, arg1 = os.sys.argv[1:3]
 
