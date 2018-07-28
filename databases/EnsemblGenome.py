@@ -92,7 +92,7 @@ def query(url):
     return(netloc, path, loca)
 
 
-def getftp(netloc, path, loca, at):
+def getftp(netloc, path, loca, url):
     at = time.strftime('%Y-%m-%d %H:%M:%S %z')
 
     ensembl, ScentificName, version = loca.split('__')
@@ -145,7 +145,7 @@ def getftp(netloc, path, loca, at):
         f.write(wget.format('genomic.gtf.gz', gtf, 5))
         f.write('wait $p1 $p2 $p3 $p4 $p5\n')
 
-    print('Successed to achive genome information to "%s"' % loca)
+    print(loca)
 
 
 def biomart_anno(url, loca):
@@ -216,8 +216,7 @@ def biomart_anno(url, loca):
     
     gene_infor.to_csv(loca + '/gene.infor.tsv', sep='\t', index=False)
 
-    _ = loca.split('__')[1]
-    print('Achiving "%s" gene annotation from Ensembl biomart is done.' % _)
+    print('Sucessed to achieve gene annotation of "%s" from Ensembl biomart.' % _)
 
 
 def search (name):
@@ -250,7 +249,7 @@ if cmd == 'search':
     os.sys.exit( search (formatSpeciesName (arg1)))
 elif cmd == 'getftp':
     netloc, path, loca = query(arg1)
-    getftp (netloc, path, loca)
+    getftp (netloc, path, loca, arg1)
 elif cmd == 'biomart':
     netloc, path, loca = query(arg1)
     biomart_anno(arg1, loca)
