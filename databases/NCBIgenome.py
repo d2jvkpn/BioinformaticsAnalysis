@@ -73,7 +73,7 @@ def getftp(url):
 
     os.system('mkdir -p ' + loca)
     F = open(loca + '/genome.infor.txt', 'w')
-    SH = open(loca + '/genome.download.sh', 'w')
+    SH = open(loca + '/download.sh', 'w')
     
     F.write('URL: %s\n' % url)
     F.write('Access time: %s\n' % at)
