@@ -1,18 +1,17 @@
 #! /bin/env python3
 
-import os, requests, time, string
-from urllib.parse import urlparse
-from ftplib import FTP
-
-import pandas as pd
-from bs4 import BeautifulSoup
-from biomart import BiomartServer
-
 __author__ = 'd2jvkpn'
 __version__ = '0.4'
 __release__ = '2018-07-28'
 __project__ = 'https://github.com/d2jvkpn/DataAnalysis'
 __license__ = 'GPLv3 (https://www.gnu.org/licenses/gpl-3.0.en.html)'
+
+import os, requests, time, string
+from urllib.parse import urlparse
+from ftplib import FTP
+import pandas as pd
+from bs4 import BeautifulSoup
+from biomart import BiomartServer
 
 '''
 http://asia.ensembl.org/index.html
@@ -94,6 +93,8 @@ def query(url):
 
 
 def getftp(netloc, path, loca, at):
+    at = time.strftime('%Y-%m-%d %H:%M:%S %z')
+
     ensembl, ScentificName, version = loca.split('__')
 
     ftp = FTP(netloc)
@@ -244,13 +245,12 @@ def search (name):
 # arg1 = 'http://plants.ensembl.org/Glycine_max/Info/Index'
 # arg1 = 'http://asia.ensembl.org/Mus_musculus/Info/Index'
 cmd, arg1 = os.sys.argv[1:3]
-at = time.strftime('%Y-%m-%d %H:%M:%S %z')
 
 if cmd == 'search':
     os.sys.exit( search (formatSpeciesName (arg1)))
 elif cmd == 'getftp':
     netloc, path, loca = query(arg1)
-    getftp (netloc, path, loca, at)
+    getftp (netloc, path, loca)
 elif cmd == 'biomart':
     netloc, path, loca = query(arg1)
     biomart_anno(arg1, loca)
