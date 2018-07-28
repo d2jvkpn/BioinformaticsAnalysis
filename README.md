@@ -28,20 +28,14 @@ Gff3 file statistic and information extraction, usage:
 Note: gawk4.0 or higher is required to support urldecode
 
 ***
-## webcrawler
+## databases
 
-**[ncbi_genome_links.py]**
+**[EnsemblGenome.py]**
 
-extract organism information and download links (fna, faa, gff, gbff) from genome webpage.
+search organism genome in Ensembl, scrap genome ftp links and archive gene annotation using biomart.
 
-**[SRR_ncbi_bioproject.py]**
+**[NCBIgenome]**
 
-extact SRX and SRR data from ncbi bioproject webpage.
+search organism genome in NCBI and scrap genome ftp links.
 
-**[SRR_download]**
-
-download sequecing fastq file by read tsv creatd by SRR_ncbi_bioproject.py.
-
-**[KEGG_pathway_download.py]**
-
-download KEGG pathway (.keg) by input organism code(hsa, ath).
+**[]**
