@@ -1,8 +1,8 @@
 #! /usr/bin/env python3
 
 __author__ = 'd2jvkpn'
-__version__ = '1.3'
-__release__ = '2018-07-09'
+__version__ = '1.4'
+__release__ = '2018-08-06'
 __project__ = 'https://github.com/d2jvkpn/BioinformaticsAnalysis'
 __lisence__ = 'GPLv3 (https://www.gnu.org/licenses/gpl-3.0.en.html)'
 
@@ -25,15 +25,20 @@ prefix = os.sys.argv[2]
 
 ####
 def toGtf(d):
-    c9 = 'gene_id \"' + d['gene_id'] + '";'
+    kv = []
+
+    if 'gene_id' in d:
+        kv.append('gene_id \"' + d['gene_id'] + '";')
+
     if 'transcript_id' in d:
-       c9 += ' transcript_id "' + d['transcript_id'] + '";'
+        kv.append('transcript_id "' + d['transcript_id'] + '";')
 
     for k in d:
         if k in ['gene_id', 'transcript_id']: continue
-        c9 += ' %s "%s";' % (k, d[k])
+        kv.append('%s "%s";' % (k, d[k]))
 
-    return (c9)
+    return (' '.join(kv))
+
 
 ####
 GFF3 = gzip.open(gff3, 'rb')
@@ -55,8 +60,10 @@ for _ in GFF3:
     if fd[2] in  ['exon', 'CDS'] and 'product' in d:
         product[d['Parent']] = d['product']
 
-    if fd[2] in ['CDS', 'exon'] or int(fd[3]) >= int(fd[4]): continue
-    if 'Parent' not in d and d['gbkey'] != 'Gene': continue
+    if int(fd[3]) == int(fd[4]) or fd[2] in ['exon', 'CDS']: continue
+    if int(fd[3]) > int(fd[4]): fd[3], fd[4] = fd[4], fd[3]
+
+    if d['gbkey'] != 'Gene' and d['gbkey'].count('RNA') == 0: continue
 
     if 'Parent' in d:
         _ = d['Name'] if d['Name'] != '' else d['transcript_id'] 
@@ -132,11 +139,6 @@ def Parser (d):
         if 'product' in d: del (d['product'])
         if 'Dbxref' in d: del (d['Dbxref'])
 
-    del (d['ID'])
-    if 'Parent' in d: del (d['Parent'])
-
-    for i in list(d.keys()):
-        if d[i] == '': del(d[i])
 
 GFF3 = gzip.open (gff3, 'rb')
 GTF = gzip.open (prefix + '.gtf.gz', 'wb')
@@ -147,7 +149,7 @@ Attributions = ['ID', 'Parent', 'gbkey', 'gene_biotype', 'description', \
 for _ in GFF3:
     fd = _.decode('utf8').strip().split('\t')
 
-    if fd[0].startswith('#') or len(fd) != 9: continue
+    if fd[0].startswith('#') or len(fd) != 9: print; continue
 
     f9=fd[8].split(';')
     d = {}
@@ -170,8 +172,17 @@ for _ in GFF3:
     try:
         Parser(d)
     except:
-        print('Warning: can\'t parse "%s".' % d['ID'])
-        continue
+        if fd[3] == "exon":
+            print('Warning: "%s" missing attribution(s).' % d['ID'])
+            d['transcript_id'] = d['Parent']
+        else:
+            d['transcript_id'] = d['ID']
+
+    del (d['ID'])
+    if 'Parent' in d: del (d['Parent'])
+
+    for i in list(d.keys()):
+        if d[i] == '': del(d[i])
 
     fd[8] = toGtf (d)
     GTF.write (bytes ('\t'.join(fd) + '\n', 'utf8'))
