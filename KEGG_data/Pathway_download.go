@@ -27,8 +27,8 @@ func main () {
 
     var wg sync.WaitGroup
 
-    log.Printf ("%s  organism codes: %s\n", 
-    time.Now ().Format ("-0700"), strings.Join (os.Args[1:], " "))
+    log.Printf ("%s  organism codes: %s\n", time.Now ().Format ("-0700"),
+    strings.Join (os.Args[1:], " "))
 
     for _, v := range (os.Args[1:]) {
         ch <- true
