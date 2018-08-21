@@ -1,8 +1,8 @@
 #! python3
 
 __author__ = 'd2jvkpn'
-__version__ = '1.3'
-__release__ = '2018-07-09'
+__version__ = '1.5'
+__release__ = '2018-08-21'
 __project__ = 'https://github.com/d2jvkpn/BioinformaticsAnalysis'
 __lisence__ = 'GPLv3 (https://www.gnu.org/licenses/gpl-3.0.en.html)'
 
