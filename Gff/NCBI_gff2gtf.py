@@ -1,8 +1,8 @@
-#! /usr/bin/env python3
+#! python3
 
 __author__ = 'd2jvkpn'
-__version__ = '1.4'
-__release__ = '2018-08-06'
+__version__ = '1.3'
+__release__ = '2018-07-09'
 __project__ = 'https://github.com/d2jvkpn/BioinformaticsAnalysis'
 __lisence__ = 'GPLv3 (https://www.gnu.org/licenses/gpl-3.0.en.html)'
 
@@ -39,13 +39,13 @@ def toGtf(d):
 
     return (' '.join(kv))
 
-
 ####
 GFF3 = gzip.open(gff3, 'rb')
 records = []; protein = defaultdict (str); product = defaultdict (str)
 
-for _ in GFF3:
-    fd = _.decode('utf8').strip().split('\t')
+for line in GFF3:
+    line = line.decode('utf8').strip()
+    fd = line.split('\t')
 
     if fd[0].startswith('#') or len(fd)!=9: continue
 
@@ -60,10 +60,13 @@ for _ in GFF3:
     if fd[2] in  ['exon', 'CDS'] and 'product' in d:
         product[d['Parent']] = d['product']
 
-    if int(fd[3]) == int(fd[4]) or fd[2] in ['exon', 'CDS']: continue
-    if int(fd[3]) > int(fd[4]): fd[3], fd[4] = fd[4], fd[3]
+    if fd[2] in ['CDS', 'exon'] or int(fd[3]) >= int(fd[4]): continue
 
-    if d['gbkey'] != 'Gene' and d['gbkey'].count('RNA') == 0: continue
+    if 'Parent' not in d and d['gbkey'].count('RNA') > 0:
+        print('Error: invalid transcript record "%s"' % line)
+        continue
+
+    if 'Parent' not in d and d['gbkey'] != 'Gene': continue
 
     if 'Parent' in d:
         _ = d['Name'] if d['Name'] != '' else d['transcript_id'] 
@@ -139,7 +142,6 @@ def Parser (d):
         if 'product' in d: del (d['product'])
         if 'Dbxref' in d: del (d['Dbxref'])
 
-
 GFF3 = gzip.open (gff3, 'rb')
 GTF = gzip.open (prefix + '.gtf.gz', 'wb')
 
@@ -149,7 +151,7 @@ Attributions = ['ID', 'Parent', 'gbkey', 'gene_biotype', 'description', \
 for _ in GFF3:
     fd = _.decode('utf8').strip().split('\t')
 
-    if fd[0].startswith('#') or len(fd) != 9: print; continue
+    if fd[0].startswith('#') or len(fd) != 9: continue
 
     f9=fd[8].split(';')
     d = {}
@@ -162,21 +164,17 @@ for _ in GFF3:
 
     if d['gbkey'] == 'Gene': fd[2] = 'gene'
 
-    if d['gbkey'].count('RNA') > 0 and fd[2] != 'exon':
-        d['transcript_type'] = fd[2]
+    if d['gbkey'].count('RNA') > 0:
+        if fd[2] != 'exon': d['transcript_type'] = fd[2]; fd[2] = 'transcript'
         d['transcript_biotype'] = d['gbkey']
-        fd[2] = 'transcript'
 
     if fd[2] not in ['CDS', 'exon', 'transcript', 'gene']: continue
 
     try:
         Parser(d)
     except:
-        if fd[3] == "exon":
-            print('Warning: "%s" missing attribution(s).' % d['ID'])
-            d['transcript_id'] = d['Parent']
-        else:
-            d['transcript_id'] = d['ID']
+        print('Warning: "%s" missing attribution(s)' % d['ID'])
+        d['transcript_id'] = d['Parent'] if fd[2] == "exon" else d['ID']
 
     del (d['ID'])
     if 'Parent' in d: del (d['Parent'])
@@ -187,5 +185,4 @@ for _ in GFF3:
     fd[8] = toGtf (d)
     GTF.write (bytes ('\t'.join(fd) + '\n', 'utf8'))
 
-GFF3.close()
-GTF.close()
+GFF3.close(); GTF.close()
