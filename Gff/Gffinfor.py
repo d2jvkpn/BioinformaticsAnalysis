@@ -1,245 +1,188 @@
-#! /usr/bin/env python3
+#! python3
 
 __author__ = 'd2jvkpn'
-__version__ = '2.1.2'
-__release__ = '2018-07-24'
-__project__ = 'https://github.com/d2jvkpn/dksh'
-__license__ = 'GPLv3 (https://www.gnu.org/licenses/gpl-3.0.en.html)'
+__version__ = '1.3'
+__release__ = '2018-07-09'
+__project__ = 'https://github.com/d2jvkpn/BioinformaticsAnalysis'
+__lisence__ = 'GPLv3 (https://www.gnu.org/licenses/gpl-3.0.en.html)'
 
-import argparse, os, getpass, time, string, subprocess
-parser = argparse.ArgumentParser()
+import os, gzip, gc
+from collections import defaultdict
+import pandas as pd
 
-parser.add_argument('ImagePlus', nargs = '+', help='set local docker image ' + \
-  ' to creat container, you have three work modes to choose, ' + \
-  'mode1: by explicitly set user as empty (-u "") to create container and ' + \
-    'enter shell environment (to explory and maintance image); ' + \
-  'mode2: excute a command in conatainer ' + \
-    '(mount host work directory in container); ' + \
-  'mode3: run a script in container enviroment, a log file will be created ' + \
-    'to save parameters, stdout, stderr, exit status, etc.')
 
-parser.add_argument('-A', dest='A', default='', help='quoted string, ' + \
-  'addition argument for docker run, except -w , --rm and --name.')
+if len(os.sys.argv) != 3 or os.sys.argv[1] in ['-h', '--help']: 
+    print ('Convert ncbi gff3 format to ensembl gtf. Usage:')
+    print ('python3 ncbi_gff3_to_ensembl_gtf.py <input.gff.gz> <outputPrefix>')
 
-parser.add_argument('--mount', dest='mount', nargs='*', default=[], 
-  help='path mount to container, e.g. /home/user/download /opt:/mnt/opt ../::wr' )
-
-parser.add_argument('-w', dest='w', default=os.getcwd(),
-  help='set work path of hostmachine, default: $PWD.')
-
-parser.add_argument('-u', dest='u', default=getpass.getuser(),
-  help='set login user in container, default: $USER.')
-
-parser.add_argument('-n', dest='n', default=None, 
-  help='set container name.')
-
-parser.add_argument('-p', dest='p', type=int, default=None,
-  help='maximum number of processes container can use.')
-
-parser.add_argument('-m', dest='m', default=None, help='amount of ' +  \
-  'memory(GB) container can use, followed by a suffix of b, k, m, g.')
-
-parser.add_argument('-cpu_period', dest='cpu_period', type=int, default=100000, 
-  help='set cpu_period, default: %(default)s.')
-
-parser.add_argument('-shell', dest='shell', default='/bin/bash', 
-  help='set container shell, default: %(default)s.')
-
-if len(os.sys.argv) == 1 or os.sys.argv[1] in ['-h', '--help']:
-    parser.print_help()
-
-    print('\nNote: stop running script by kill container is recommanded.')
-
-    _ = '\nauthor: {}\nversion: {}\nrelease: {}\nproject: {}\nlicense: {}\n'
-    __ = [__author__,  __version__, __release__, __project__, __license__]
+    _ = '\nauthor: {}\nversion: {}\nrelease: {}\nproject: {}\nlisence: {}\n'
+    __ = [__author__,  __version__, __release__, __project__, __lisence__]
     print (_.format (*__))
-
     os.sys.exit(0)
 
-args = parser.parse_args()
-
-##
-def validName (k):
-    _ = list (string.ascii_letters + string.digits + '.-_')
-    return(False not in [ i in _ for i in k ] )
-
-def pathMount(path):
-    sp = path.split(':')
-    sp[0] = os.path.realpath(sp[0])
-
-    _  = 'Error: mount path "{}" is not exist.'.format(sp[0])
-    if not os.path.isdir(sp[0]): os.sys.exit(_)
-    if path == '': print('Error: empty string for "--mount".')
-    if len(sp) > 3: os.sys.exit('Error: wrong arugment "%s" for --mount' % path)
-
-    if len(sp) == 2: sp.append('ro')
-    if len(sp) == 1: sp += [os.path.abspath(sp[0]), 'ro']
-    if sp[1] == '': sp[1] = os.path.abspath(sp[0])
-    if sp[2] == '': sp[2] = 'ro'
-
-    return('-v ' + ':'.join(sp))
-
+gff3 = os.sys.argv[1]
+prefix = os.sys.argv[2]
 
 ####
-_ = 'Error: only one or two position argument allowed.'
-if len(args.ImagePlus) not in [1,2]: os.sys.exit(_)
+def toGtf(d):
+    kv = []
 
-image = args.ImagePlus[0]
+    if 'gene_id' in d:
+        kv.append('gene_id \"' + d['gene_id'] + '";')
 
-####
-err, output = subprocess.getstatusoutput('''docker images | wc -l''')
+    if 'transcript_id' in d:
+        kv.append('transcript_id "' + d['transcript_id'] + '";')
 
-if err != 0: os.sys.exit('Error: failed to run docker command.')
-if output == '1':
-   print("Error: no docker image available.")
-   os.sys.exit(1)
+    for k in d:
+        if k in ['gene_id', 'transcript_id']: continue
+        kv.append('%s "%s";' % (k, d[k]))
 
-err, output = subprocess.getstatusoutput('''docker images |
-awk -v OFS="\t" \'NR>1{if(NF==8) {s=$7" "$8} else {s=$8}; \
-print $1":"$2, $3, s"\t"$4" "$5" "$6}\'''')
-
-imageName = {}; imageID = {}; ilist = []
-
-for i in output.split('\n'):
-   ii = i.split('\t', 2)
-   ilist.append(ii[0])
-   imageName[ii[0]], imageID[ii[1]] = [ii[1], ii[2]], [ii[0], ii[2]]
-
-if image in imageName:
-    Image = image + ', ' + imageName[image][0]
-elif image + ':latest' in imageName:
-    Image = image + ':latest, ' + imageName[image + ':latest'][0]
-elif image in imageID:
-    Image = imageID[image][0] + ', ' + image
-else:
-    print('Cant\'t find "%s", available local image(s):' % image)
-    _ = ['    ' + k + '\t' + '\t'.join(imageName[k]) for k in ilist]
-    os.system("echo '%s' | column -t -s $'\t'" % '\n'.join(_) )
-    os.sys.exit(1)
-
+    return (' '.join(kv))
 
 ####
-t0 = time.time()
-t1 = time.strftime('%Y %m %d %H %M %S %s %z').split()
-StartAt = '-'.join(t1[0:3]) + ' ' + ':'.join(t1[3:6]) + ' ' + t1[7]
+GFF3 = gzip.open(gff3, 'rb')
+records = []; protein = defaultdict (str); product = defaultdict (str)
 
-if args.n == None:
-    args.n =  hex(int(''.join(t1[:-1]).replace('.', ''))).replace('0x', '')
+for line in GFF3:
+    line = line.decode('utf8').strip()
+    fd = line.split('\t')
 
-_ = 'Error: invalid container name "%s"'
-if not validName (args.n): os.sys.exit(_ % args.n)
+    if fd[0].startswith('#') or len(fd)!=9: continue
 
-if args.u == "":
-    print('Creating container "%s" from "%s"...' % (args.n, image))
+    f9=fd[8].split(';')
+    d = defaultdict(str)
 
-    _ = 'docker run --name=%s -e PoweredBy=dksh --rm -it %s %s'
-    os.system (_ % (args.n, image, args.shell))
-    os.sys.exit(0)
+    for i in f9: ii = i.split('=', 1); d[ii[0]] = ii[1]
 
-##
-mountPath = ' '.join ([pathMount(i) for i in args.mount])
-HostID = subprocess.getoutput("hostid")
-HostPID = os.getpid()
+    if fd[2] == 'CDS' and 'protein_id' in d:
+        protein[d['Parent']] = d['protein_id']
 
-_  = 'Error: work path "%s" is not exist.' % args.w
-if not os.path.isdir(args.w): os.sys.exit(_)
+    if fd[2] in  ['exon', 'CDS'] and 'product' in d:
+        product[d['Parent']] = d['product']
 
-setWorkpath = '-v {0}:{1}'.format (os.path.realpath (args.w), '/mnt/HostPath')
+    if fd[2] in ['CDS', 'exon'] or int(fd[3]) >= int(fd[4]): continue
 
-_ = '--cpu-period %s --cpu-quota {}' % args.cpu_period
-setCPU = '' if args.p == None else _ .format(args.cpu_period * args.p)
+    if 'Parent' not in d and d['gbkey'].count('RNA') > 0:
+        print('Error: invalid transcript record "%s"' % line)
+        continue
 
-setMemory = '' if args.m == None else '-m %s' % args.m
+    if 'Parent' not in d and d['gbkey'] != 'Gene': continue
 
-##
-cmd1 = ' '.join(['docker run %s --rm' % args.A, setWorkpath, 
-    '-e DockerImage="%s"' % Image,
-    '-e StartAt="%s"' % StartAt,
-    '-e HostUser="%s" -e HostPath="%s"' % (args.u, os.path.abspath(args.w)), 
-    '-e HostID="%s" -e HostPID=%s -e PoweredBy=dksh' % (HostID, HostPID),
-    '-e Container=%s' % args.n, mountPath, setCPU, setMemory])
-
-cmd2 = '{} {} -c "useradd {} &> /dev/null'.format (image, args.shell, args.u)
-
-####
-if len(args.ImagePlus) == 2:
-    isScript = args.ImagePlus[1].endswith('.sh') and ' ' not in args.ImagePlus[1]
-else:
-    isScript = False
-
-if not isScript:
-    if len(args.ImagePlus) == 1:
-        cmd2 += '; cd /mnt/HostPath; su %s -s %s"' % (args.u, args.shell)
+    if 'Parent' in d:
+        _ = d['Name'] if d['Name'] != '' else d['transcript_id'] 
     else:
-        _ = '; su -l %s -c \'cd /mnt/HostPath && %s\'"'
-        cmd2 += _ % (args.u, args.ImagePlus[1])
+        _ = d['Name'] if d['Name'] != '' else d['gene']
 
-    _ = ' '.join ([cmd1, '--name=%s -it' % args.n, cmd2])
+    records.append ([d['ID'], fd[2], d['gbkey'], d['Parent'], _, \
+    d['gene_biotype'], d['description'], d['Dbxref']])
 
-    print('Creating container "%s" from "%s"...' % (args.n, image))
+GFF3.close()
 
-    os.system (' '.join ([cmd1, '--name=%s -it' % args.n, cmd2]))
-    os.sys.exit (0)
+####
+M = pd.DataFrame.from_records (records, columns = ['id', 'feature', 'gbkey', \
+'parent', 'name', 'gene_biotype', 'gene_description', 'Dbxref'])
 
-s = args.ImagePlus[1]
+M['product'] = [ product[i] for i in  M.iloc[:, 0]]
+M['protein_id'] = [ protein[i] for i in  M.iloc[:, 0]]
 
-if not os.path.isfile (s): os.sys.exit ('Error: can\'t find script "%s".' % s)
+M.to_csv (prefix + '.tsv.gz', sep='\t', encoding='utf-8', 
+index=False, compression='gzip')
 
-if os.path.islink(s):
-    cmd1 += ' ' + pathMount (os.path.dirname (os.path.realpath(s)))
+del (GFF3, records, protein, product, d, M); gc.collect()
 
-script = os.path.abspath (os.path.dirname (s)) + '/' + os.path.basename(s)
-cmd1 += ' ' + pathMount (os.path.dirname (script))
+M = pd.read_csv(prefix + '.tsv.gz', sep='\t', index_col=0, 
+usecols=[0, 3, 4, 5, 6, 8, 9])
 
-prefix = args.w + '/log/' + ''.join(t1[0:-2]) + '_' + args.n
+M = M[[not i for i in M.index.duplicated()]]
+M.fillna ('', inplace=True)
 
-os.system('mkdir -p %s/log' % args.w)
+####
+def Parser (d):
+    del(d['gbkey'])
 
-with open(prefix + '.logging', 'w') as f:
-    f.write('\n## '.join(['## StartAt: %s' % StartAt,
-    'HostUser: %s' % args.u,
-    'HostPath: %s' % os.path.abspath (args.w),
-    'HostID: %s' % HostID,
-    'HostPID: %s' % HostPID,
-    'Script: %s' % script,
-    'DockerImage: %s' % Image,
-    'Container: %s' % args.n,
-    'PoweredBy: %s' % __project__,
-    'CPU: %s' % ('' if args.p == None else args.p),
-    'Memory: %s' % ('' if args.m == None else args.m),
-    'DockerArgs: %s' % args.A,
-    'Mount: %s\n' % '\n##   '.join(args.mount)]))
+    if fd[2] == 'gene':
+        d['gene_id'] = d['ID']
+        d['gene_name'] = M.loc[d['gene_id'], 'name']
+        d['protein_id'] = M.loc[d['gene_id'], 'protein_id']
+        d['product'] = M.loc[d['gene_id'], 'product']
+    elif fd[2] == 'transcript':
+        d['transcript_id'] = d['ID']
+        d['transcript_name'] = M.loc[d['ID'], 'name']
+        d['gene_id'] = d['Parent']
 
-    f.write('\n\n')
+        if not d['gene_id'].startswith('gene'):
+        # primary transcript
+            d['parent'] = d['Parent']
+            d['gene_id'] = M.loc[d['gene_id'], 'parent']
 
-_ = '; su -l %s -c \'cd /mnt/HostPath && %s %s\'" &>> %s.logging'
-cmd2 += _ % (args.u, args.shell, script, prefix)
-command = ' '.join([cmd1, '--name=%s' % args.n, cmd2])
+        d['gene_name'] = M.loc[d['gene_id'], 'name']
+        d['protein_id'] = M.loc[d['transcript_id'], 'protein_id']
+    else:
+        d['transcript_id'] = d['Parent']
 
-_ = '\n## Running "%s" in "%s" ("%s")\n   WorkPath: %s' % \
-(args.ImagePlus[1], args.n, image, args.w)
+        if d['transcript_id'].startswith('gene'):
+        # not transcribed pseudogene
+            d['gene_id'] = d['transcript_id'] 
+        else:
+            d['gene_id'] = M.loc[d['transcript_id'], 'parent']
 
-print (_ + '\n   SatrtAt: %s\n   PID: %s' % (StartAt, HostPID), \
-file = open('run.log', 'a'))
+        if not d['gene_id'].startswith('gene'):
+        # primary transcript, V_gene_segment, C_gene_segment, J_gene_segment...
+            d['parent'] = d['Parent']
+            d['gene_id'] = M.loc[d['gene_id'], 'parent']
 
-try:    
-    exitcode, _ = subprocess.getstatusoutput (command)
-except KeyboardInterrupt:
-    exitcode = 'interrupted'
+        d['gene_name'] = M.loc[d['gene_id'], 'name']
 
-_, __ = divmod (time.time () - t0, 3600)
-elapsed = "%dd %dh %dm %.3fs" % (*divmod (_, 24), *divmod (__, 60))
+        if not d['transcript_id'].startswith('rna'):
+        # V_gene_segment, C_gene_segment, J_gene_segment
+            d['transcript_id'] = d['gene_id']
 
-with open (prefix + '.logging', 'a') as f:
-    f.write ('\n## '.join (['\n', 
-      'ExitCode: %s' % exitcode,
-      'Elapsed: %s' % elapsed,
-      'EndAt: %s\n' % time.strftime('%Y-%m-%d %H:%M:%S %z')])
-    )
+        d['transcript_name'] = M.loc[d['transcript_id'], 'name']
 
-if isinstance (exitcode, int):
-    suffix = 'log' if exitcode == 0 else 'failed'
-else:
-    suffix = 'interrupted'
+        if 'product' in d: del (d['product'])
+        if 'Dbxref' in d: del (d['Dbxref'])
 
-os.system ('mv {0}.logging {0}.{1}'.format(prefix, suffix))
+GFF3 = gzip.open (gff3, 'rb')
+GTF = gzip.open (prefix + '.gtf.gz', 'wb')
+
+Attributions = ['ID', 'Parent', 'gbkey', 'gene_biotype', 'description', \
+'product', 'protein_id', 'Dbxref']
+
+for _ in GFF3:
+    fd = _.decode('utf8').strip().split('\t')
+
+    if fd[0].startswith('#') or len(fd) != 9: continue
+
+    f9=fd[8].split(';')
+    d = {}
+
+    for _ in f9:
+        i = _.split('=', 1)
+        if i[0] in Attributions: d[i[0]] = i[1]
+
+    if int(fd[3]) >= int(fd[4]) or 'gbkey' not in d: continue
+
+    if d['gbkey'] == 'Gene': fd[2] = 'gene'
+
+    if d['gbkey'].count('RNA') > 0:
+        if fd[2] != 'exon': d['transcript_type'] = fd[2]; fd[2] = 'transcript'
+        d['transcript_biotype'] = d['gbkey']
+
+    if fd[2] not in ['CDS', 'exon', 'transcript', 'gene']: continue
+
+    try:
+        Parser(d)
+    except:
+        print('Warning: "%s" missing attribution(s)' % d['ID'])
+        d['transcript_id'] = d['Parent'] if fd[2] == "exon" else d['ID']
+
+    del (d['ID'])
+    if 'Parent' in d: del (d['Parent'])
+
+    for i in list(d.keys()):
+        if d[i] == '': del(d[i])
+
+    fd[8] = toGtf (d)
+    GTF.write (bytes ('\t'.join(fd) + '\n', 'utf8'))
+
+GFF3.close(); GTF.close()
