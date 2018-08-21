@@ -1,7 +1,7 @@
 #! python3
 
 __author__ = 'd2jvkpn'
-__version__ = '1.5'
+__version__ = '1.6'
 __release__ = '2018-08-21'
 __project__ = 'https://github.com/d2jvkpn/BioinformaticsAnalysis'
 __lisence__ = 'GPLv3 (https://www.gnu.org/licenses/gpl-3.0.en.html)'
@@ -10,18 +10,18 @@ import os, gzip, gc
 from collections import defaultdict
 import pandas as pd
 
+HELP = '''Convert ncbi gff3 format to ensembl gtf. Usage:
+python3 ncbi_gff3_to_ensembl_gtf.py <input.gff.gz> <outputPrefix>'''
 
 if len(os.sys.argv) != 3 or os.sys.argv[1] in ['-h', '--help']: 
-    print ('Convert ncbi gff3 format to ensembl gtf. Usage:')
-    print ('python3 ncbi_gff3_to_ensembl_gtf.py <input.gff.gz> <outputPrefix>')
+    print (HELP)
 
     _ = '\nauthor: {}\nversion: {}\nrelease: {}\nproject: {}\nlisence: {}\n'
     __ = [__author__,  __version__, __release__, __project__, __lisence__]
     print (_.format (*__))
     os.sys.exit(0)
 
-gff3 = os.sys.argv[1]
-prefix = os.sys.argv[2]
+gff3, prefix = os.sys.argv[1:3]
 
 ####
 def toGtf(d):
@@ -41,7 +41,7 @@ def toGtf(d):
 
 ####
 GFF3 = gzip.open(gff3, 'rb')
-records = []; protein = defaultdict (str); product = defaultdict (str)
+records, protein, product  = [], defaultdict (str), defaultdict (str)
 
 for line in GFF3:
     line = line.decode('utf8').strip()
@@ -49,8 +49,7 @@ for line in GFF3:
 
     if fd[0].startswith('#') or len(fd)!=9: continue
 
-    f9=fd[8].split(';')
-    d = defaultdict(str)
+    f9, d = fd[8].split(';'), defaultdict(str)
 
     for i in f9: ii = i.split('=', 1); d[ii[0]] = ii[1]
 
@@ -139,7 +138,6 @@ def Parser (d):
 
         d['transcript_name'] = M.loc[d['transcript_id'], 'name']
 
-        if 'product' in d: del (d['product'])
         if 'Dbxref' in d: del (d['Dbxref'])
 
 GFF3 = gzip.open (gff3, 'rb')
@@ -150,23 +148,20 @@ Attributions = ['ID', 'Parent', 'gbkey', 'gene_biotype', 'description', \
 
 for _ in GFF3:
     fd = _.decode('utf8').strip().split('\t')
-
     if fd[0].startswith('#') or len(fd) != 9: continue
 
-    f9=fd[8].split(';')
-    d = {}
+    f9, d = fd[8].split(';'), defaultdict(str)
 
     for _ in f9:
         i = _.split('=', 1)
         if i[0] in Attributions: d[i[0]] = i[1]
 
     if int(fd[3]) >= int(fd[4]) or 'gbkey' not in d: continue
-
     if d['gbkey'] == 'Gene': fd[2] = 'gene'
 
     if d['gbkey'].count('RNA') > 0:
-        if fd[2] != 'exon': d['transcript_type'] = fd[2]; fd[2] = 'transcript'
         d['transcript_biotype'] = d['gbkey']
+        if fd[2] != 'exon': d['transcript_type'], fd[2] = fd[2], 'transcript'
 
     if fd[2] not in ['CDS', 'exon', 'transcript', 'gene']: continue
 
