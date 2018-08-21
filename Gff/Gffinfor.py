@@ -1,188 +1,104 @@
-#! python3
+#! /usr/bin/python3
 
 __author__ = 'd2jvkpn'
-__version__ = '1.3'
-__release__ = '2018-07-09'
+__version__ = '0.6'
+__release__ = '2018-08-20'
 __project__ = 'https://github.com/d2jvkpn/BioinformaticsAnalysis'
 __lisence__ = 'GPLv3 (https://www.gnu.org/licenses/gpl-3.0.en.html)'
 
-import os, gzip, gc
+import os, gzip
 from collections import defaultdict
-import pandas as pd
 
+if len (os.sys.argv) == 1 or os.sys.argv [1] in ['-h', '--help']:
+    print ("Summary sequences, sources, types of gff/gtf(.gz):\n    " + \
+    "gffinfor.py  <gff>\n")
 
-if len(os.sys.argv) != 3 or os.sys.argv[1] in ['-h', '--help']: 
-    print ('Convert ncbi gff3 format to ensembl gtf. Usage:')
-    print ('python3 ncbi_gff3_to_ensembl_gtf.py <input.gff.gz> <outputPrefix>')
+    print ("Summary types' attributions gff/gtf:\n    " + \
+    "gffinfor.py  <gff>  <type1,type2...>\n")
 
-    _ = '\nauthor: {}\nversion: {}\nrelease: {}\nproject: {}\nlisence: {}\n'
+    print ("Extract attributions and Dbxref (tsv format) from gff/gtf:" + \
+    '\n("type" can be set as "")\n    gffinfor.py  <gff>  <type1,type2...>  ' + \
+    '<attr1,attr2,attr3>  [dbxref1,dbxref2...]\n')
+
+    _ = 'author: {}\nversion: {}\nrelease: {}\nproject: {}\nlisence: {}'
     __ = [__author__,  __version__, __release__, __project__, __lisence__]
     print (_.format (*__))
-    os.sys.exit(0)
 
-gff3 = os.sys.argv[1]
-prefix = os.sys.argv[2]
+    os.sys.exit (0)
 
-####
-def toGtf(d):
-    kv = []
+gtf = os.sys.argv [1]
 
-    if 'gene_id' in d:
-        kv.append('gene_id \"' + d['gene_id'] + '";')
+CountC = defaultdict (int)
+CountS = defaultdict (int)
+CountT = defaultdict (int)
+TypeA = defaultdict (int)
+TypeV = defaultdict (set)
 
-    if 'transcript_id' in d:
-        kv.append('transcript_id "' + d['transcript_id'] + '";')
+if len (os.sys.argv) >= 3: Type = os.sys.argv [2].split (',')
+if len (os.sys.argv) >= 4: Attr = os.sys.argv [3].split (',')
+if len (os.sys.argv) == 4: print (*Attr, sep="\t")
 
-    for k in d:
-        if k in ['gene_id', 'transcript_id']: continue
-        kv.append('%s "%s";' % (k, d[k]))
+if len (os.sys.argv) >= 5:
+    Dbxref = os.sys.argv [4].split (',')
+    print (*(Attr + Dbxref), sep="\t")
 
-    return (' '.join(kv))
+GTF = gzip.open (gtf, 'rb') if gtf.endswith ('gz') else open (gtf, 'r')
 
-####
-GFF3 = gzip.open(gff3, 'rb')
-records = []; protein = defaultdict (str); product = defaultdict (str)
+for _ in GTF:
+    if gtf.endswith ('gz'):
+        fd = _.decode ('utf8').strip ('\n').strip (';').split ('\t')
+    else:
+        fd = _.strip ('\n').strip (';').split ('\t')
 
-for line in GFF3:
-    line = line.decode('utf8').strip()
-    fd = line.split('\t')
+    if fd [0].startswith ('#') or len (fd) != 9: continue
 
-    if fd[0].startswith('#') or len(fd)!=9: continue
-
-    f9=fd[8].split(';')
-    d = defaultdict(str)
-
-    for i in f9: ii = i.split('=', 1); d[ii[0]] = ii[1]
-
-    if fd[2] == 'CDS' and 'protein_id' in d:
-        protein[d['Parent']] = d['protein_id']
-
-    if fd[2] in  ['exon', 'CDS'] and 'product' in d:
-        product[d['Parent']] = d['product']
-
-    if fd[2] in ['CDS', 'exon'] or int(fd[3]) >= int(fd[4]): continue
-
-    if 'Parent' not in d and d['gbkey'].count('RNA') > 0:
-        print('Error: invalid transcript record "%s"' % line)
+    if len (os.sys.argv) == 2:
+        CountC [fd [0]] += 1
+        CountS  ["source " + fd [1]] += 1
+        CountT["type " + fd [2]] += 1
         continue
 
-    if 'Parent' not in d and d['gbkey'] != 'Gene': continue
+    d = defaultdict (str)
+    delimiter, sep = (' ', '; ')  if fd [8].count ('; ') > 0 else ('=', ';')
+    for _ in fd [8].split (sep):
+        i = _.split (delimiter, 1); d [i [0]] = i [1].strip ('"')
 
-    if 'Parent' in d:
-        _ = d['Name'] if d['Name'] != '' else d['transcript_id'] 
-    else:
-        _ = d['Name'] if d['Name'] != '' else d['gene']
+    if len (Type) > 0 and fd [2] not in Type: continue
 
-    records.append ([d['ID'], fd[2], d['gbkey'], d['Parent'], _, \
-    d['gene_biotype'], d['description'], d['Dbxref']])
+    if len (os.sys.argv) == 3:
+        for i in d: k = fd [2] + "\t" + i; TypeA [k] += 1; TypeV [k].add (d [i])
+        continue
 
-GFF3.close()
+    if len (os.sys.argv) == 4:
+        print (*[d [i] for i in Attr], sep='\t')
+        continue
 
-####
-M = pd.DataFrame.from_records (records, columns = ['id', 'feature', 'gbkey', \
-'parent', 'name', 'gene_biotype', 'gene_description', 'Dbxref'])
+    dbref = defaultdict (str)
 
-M['product'] = [ product[i] for i in  M.iloc[:, 0]]
-M['protein_id'] = [ protein[i] for i in  M.iloc[:, 0]]
+    if d ['Dbxref'] != "":
+        for i in d ['Dbxref'].split (','):
+            ii = i.split (':', 1); dbref [ii [0]] = ii [1]
 
-M.to_csv (prefix + '.tsv.gz', sep='\t', encoding='utf-8', 
-index=False, compression='gzip')
+    print (* ([d [i] for i in Attr] + [dbref [i] for i in Dbxref]), sep='\t')
 
-del (GFF3, records, protein, product, d, M); gc.collect()
+GTF.close ()
 
-M = pd.read_csv(prefix + '.tsv.gz', sep='\t', index_col=0, 
-usecols=[0, 3, 4, 5, 6, 8, 9])
 
-M = M[[not i for i in M.index.duplicated()]]
-M.fillna ('', inplace=True)
+FMT = "echo '%s' | column -t -s $'\t' | awk 'NR==1{print \"0    \"$0; print 1} \
+NR>1{print \"2    \"$0}' | sort | cut --complement -c 1"
 
-####
-def Parser (d):
-    del(d['gbkey'])
+if len (os.sys.argv) == 2:
+    sl = ["NAME\tCOUNT", "Seqences\t" + str (len (CountC))]
+    for i in CountS: sl.append (i + "\t" + str (CountS [i]))
+    for i in CountT: sl.append (i + "\t" + str (CountT [i]))
 
-    if fd[2] == 'gene':
-        d['gene_id'] = d['ID']
-        d['gene_name'] = M.loc[d['gene_id'], 'name']
-        d['protein_id'] = M.loc[d['gene_id'], 'protein_id']
-        d['product'] = M.loc[d['gene_id'], 'product']
-    elif fd[2] == 'transcript':
-        d['transcript_id'] = d['ID']
-        d['transcript_name'] = M.loc[d['ID'], 'name']
-        d['gene_id'] = d['Parent']
+    os.system (FMT % '\n'.join (sl))
+elif len (os.sys.argv) == 3:
+    sl = ['TYPE\tATTRIBUTION\tTOTAL\tUNIQUE']
 
-        if not d['gene_id'].startswith('gene'):
-        # primary transcript
-            d['parent'] = d['Parent']
-            d['gene_id'] = M.loc[d['gene_id'], 'parent']
+    for i in TypeA:
+        sl.append (i + "\t" + str( TypeA [i]) + "\t" + str (len (TypeV [i])))
 
-        d['gene_name'] = M.loc[d['gene_id'], 'name']
-        d['protein_id'] = M.loc[d['transcript_id'], 'protein_id']
-    else:
-        d['transcript_id'] = d['Parent']
-
-        if d['transcript_id'].startswith('gene'):
-        # not transcribed pseudogene
-            d['gene_id'] = d['transcript_id'] 
-        else:
-            d['gene_id'] = M.loc[d['transcript_id'], 'parent']
-
-        if not d['gene_id'].startswith('gene'):
-        # primary transcript, V_gene_segment, C_gene_segment, J_gene_segment...
-            d['parent'] = d['Parent']
-            d['gene_id'] = M.loc[d['gene_id'], 'parent']
-
-        d['gene_name'] = M.loc[d['gene_id'], 'name']
-
-        if not d['transcript_id'].startswith('rna'):
-        # V_gene_segment, C_gene_segment, J_gene_segment
-            d['transcript_id'] = d['gene_id']
-
-        d['transcript_name'] = M.loc[d['transcript_id'], 'name']
-
-        if 'product' in d: del (d['product'])
-        if 'Dbxref' in d: del (d['Dbxref'])
-
-GFF3 = gzip.open (gff3, 'rb')
-GTF = gzip.open (prefix + '.gtf.gz', 'wb')
-
-Attributions = ['ID', 'Parent', 'gbkey', 'gene_biotype', 'description', \
-'product', 'protein_id', 'Dbxref']
-
-for _ in GFF3:
-    fd = _.decode('utf8').strip().split('\t')
-
-    if fd[0].startswith('#') or len(fd) != 9: continue
-
-    f9=fd[8].split(';')
-    d = {}
-
-    for _ in f9:
-        i = _.split('=', 1)
-        if i[0] in Attributions: d[i[0]] = i[1]
-
-    if int(fd[3]) >= int(fd[4]) or 'gbkey' not in d: continue
-
-    if d['gbkey'] == 'Gene': fd[2] = 'gene'
-
-    if d['gbkey'].count('RNA') > 0:
-        if fd[2] != 'exon': d['transcript_type'] = fd[2]; fd[2] = 'transcript'
-        d['transcript_biotype'] = d['gbkey']
-
-    if fd[2] not in ['CDS', 'exon', 'transcript', 'gene']: continue
-
-    try:
-        Parser(d)
-    except:
-        print('Warning: "%s" missing attribution(s)' % d['ID'])
-        d['transcript_id'] = d['Parent'] if fd[2] == "exon" else d['ID']
-
-    del (d['ID'])
-    if 'Parent' in d: del (d['Parent'])
-
-    for i in list(d.keys()):
-        if d[i] == '': del(d[i])
-
-    fd[8] = toGtf (d)
-    GTF.write (bytes ('\t'.join(fd) + '\n', 'utf8'))
-
-GFF3.close(); GTF.close()
+    os.system (FMT % '\n'.join (sl))
+else:
+    pass
