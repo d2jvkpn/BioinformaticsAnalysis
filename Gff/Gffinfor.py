@@ -1,4 +1,4 @@
-#! /usr/bin/python3
+#! python3
 
 __author__ = 'd2jvkpn'
 __version__ = '0.6'
@@ -9,16 +9,20 @@ __lisence__ = 'GPLv3 (https://www.gnu.org/licenses/gpl-3.0.en.html)'
 import os, gzip
 from collections import defaultdict
 
+HELP = '''
+Summary sequences, sources, types of gff/gtf(.gz):
+    python3 gffinfor.py  <gff>
+
+Summary types' attributions gff/gtf:
+    python3 Gffinfor.py  <gff>  <type1,type2...>
+
+Extract attributions and Dbxref (tsv format) from gff/gtf:
+("type" can be set as "")
+    gffinfor.py  <gff>  <type1,type2...> <attr1,attr2,attr3>  [dbxref1,dbxref2...]
+'''
+
 if len (os.sys.argv) == 1 or os.sys.argv [1] in ['-h', '--help']:
-    print ("Summary sequences, sources, types of gff/gtf(.gz):\n    " + \
-    "gffinfor.py  <gff>\n")
-
-    print ("Summary types' attributions gff/gtf:\n    " + \
-    "gffinfor.py  <gff>  <type1,type2...>\n")
-
-    print ("Extract attributions and Dbxref (tsv format) from gff/gtf:" + \
-    '\n("type" can be set as "")\n    gffinfor.py  <gff>  <type1,type2...>  ' + \
-    '<attr1,attr2,attr3>  [dbxref1,dbxref2...]\n')
+    print (HELP)
 
     _ = 'author: {}\nversion: {}\nrelease: {}\nproject: {}\nlisence: {}'
     __ = [__author__,  __version__, __release__, __project__, __lisence__]
@@ -28,11 +32,8 @@ if len (os.sys.argv) == 1 or os.sys.argv [1] in ['-h', '--help']:
 
 gtf = os.sys.argv [1]
 
-CountC = defaultdict (int)
-CountS = defaultdict (int)
-CountT = defaultdict (int)
-TypeA = defaultdict (int)
-TypeV = defaultdict (set)
+CountC, CountS, CountT = defaultdict (int), defaultdict (int), defaultdict (int)
+TypeA, TypeV = defaultdict (int), defaultdict (set)
 
 if len (os.sys.argv) >= 3: Type = os.sys.argv [2].split (',')
 if len (os.sys.argv) >= 4: Attr = os.sys.argv [3].split (',')
