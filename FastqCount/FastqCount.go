@@ -1,8 +1,15 @@
 package main
 
-import ( "bufio"; "fmt"; "os"; "strings"; "strconv")
-// import "compress/gzip"
-import gzip "github.com/klauspost/pgzip"
+import (
+    "bufio"
+    "fmt"
+    "os"
+    "log"
+    "strings"
+    "strconv"
+    // import "compress/gzip"
+    gzip "github.com/klauspost/pgzip"
+)
 
 
 func Exit () {
@@ -12,8 +19,8 @@ func Exit () {
     fmt.Println ("  Note: \"pigz -dc *.fastq.gz | FastqCount -\" is recommended for gzipped file(s).")
     fmt.Println ()
     fmt.Println ("author: d2jvkpn")
-    fmt.Println ("version: 0.5")
-    fmt.Println ("release: 2018-01-09")
+    fmt.Println ("version: 0.6")
+    fmt.Println ("release: 2018-08-21")
     fmt.Println ("project: https://github.com/d2jvkpn/BioinformaticsAnalysis")
     fmt.Println ("lisence: GPLv3 (https://www.gnu.org/licenses/gpl-3.0.en.html)")
     os.Exit (0)
@@ -25,13 +32,10 @@ func main() {
         Exit ()
     }
 
-    var scanner *bufio.Scanner
     var fname string = os.Args[1]
-    var phred int
-
-    if len(os.Args) == 3 {
-        phred, _ = strconv.Atoi (os.Args[2])
-    } else { phred = 33 }
+    var phred int = 33
+    if len(os.Args) == 3 { phred, _ = strconv.Atoi (os.Args[2]) }
+    var scanner *bufio.Scanner
 
     if fname == "-" {
         scanner = bufio.NewScanner (os.Stdin)
@@ -43,7 +47,8 @@ func main() {
             scanner = bufio.NewScanner (gz)
         } else { scanner = bufio.NewScanner (file) }
 
-        if err != nil { os.Exit (1) } else { defer file.Close () }
+        if err != nil { log.Fatal (err) }
+        defer file.Close ()
     }
 
     var i, bases, q20, q30, gc, Nc int = 0, 0, 0, 0, 0, 0
@@ -63,9 +68,9 @@ func main() {
         }
     }
 
-    fmt.Println ("Total Reads\tTotal Bases\tN Bases\tQ20\tQ30\tGC")
+    fmt.Println ("Total reads\tTotal bases\tN bases\tQ20\tQ30\tGC")
 
-    fmt.Printf ("%d (%.2f M)\t%d (%.2f G)\t%.2f%%\t%.2f%%\t%.2f%%\t%.2f%%\n", 
+    fmt.Printf ("%d (%.2fM)\t%d (%.2fG)\t%.2f%%\t%.2f%%\t%.2f%%\t%.2f%%\n", 
         i/4, float32 (i) / 4E+6,
         bases, float32 (bases) / 1E+9,
         float32 (Nc*100 / bases),
