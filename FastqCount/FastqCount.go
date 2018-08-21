@@ -12,24 +12,21 @@ import (
 )
 
 
-func Exit () {
-    fmt.Println ("Usage: FastqCount  <input.fastq>  [phred]")
-    fmt.Println ("  Phred default: 33;")
-    fmt.Println ("  Output (tsv): Total Reads  Total Bases  N Bases  Q20  Q30  GC;") 
-    fmt.Println ("  Note: \"pigz -dc *.fastq.gz | FastqCount -\" is recommended for gzipped file(s).")
-    fmt.Println ()
-    fmt.Println ("author: d2jvkpn")
-    fmt.Println ("version: 0.6")
-    fmt.Println ("release: 2018-08-21")
-    fmt.Println ("project: https://github.com/d2jvkpn/BioinformaticsAnalysis")
-    fmt.Println ("lisence: GPLv3 (https://www.gnu.org/licenses/gpl-3.0.en.html)")
-    os.Exit (0)
-}
+var USAGE string = `Usage: FastqCount  <input.fastq>  [phred]
+    Phred default: 33
+    Output (tsv): Total Reads  Total Bases  N Bases  Q20  Q30  GC
+    Note: "pigz -dc *.fastq.gz | FastqCount -" is recommended for gzipped file(s).
 
+    author: d2jvkpn
+    version: 0.6
+    release: 2018-08-21
+    project: https://github.com/d2jvkpn/BioinformaticsAnalysis
+    lisence: GPLv3 (https://www.gnu.org/licenses/gpl-3.0.en.html)
+`
 
 func main() {
     if len(os.Args) == 1 || os.Args[1] == "-h" || os.Args[1] == "--help" {
-        Exit ()
+        fmt.Println (USAGE); return
     }
 
     var fname string = os.Args[1]
