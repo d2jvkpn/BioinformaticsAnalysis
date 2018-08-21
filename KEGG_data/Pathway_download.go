@@ -66,4 +66,5 @@ func Querykeg (p string, ch <- chan bool, wg *sync.WaitGroup) {
     gw.Close ()
 
     log.Printf ("%s  Saved %s...\n", time.Now ().Format ("-0700"), p)
+    return
 }
