@@ -1,0 +1,41 @@
+pathway_L2	pathway_L1	pathway_count	gene_count	KO_count	EC_count
+Carbohydrate metabolism	Metabolism	14	355	230	190
+Energy metabolism	Metabolism	3	159	123	21
+Lipid metabolism	Metabolism	15	391	273	200
+Nucleotide metabolism	Metabolism	2	199	151	77
+Amino acid metabolism	Metabolism	13	289	230	187
+Metabolism of other amino acids	Metabolism	7	118	72	68
+Glycan biosynthesis and metabolism	Metabolism	13	249	201	122
+Metabolism of cofactors and vitamins	Metabolism	12	218	156	127
+Metabolism of terpenoids and polyketides	Metabolism	1	22	19	17
+Biosynthesis of other secondary metabolites	Metabolism	2	10	6	6
+Xenobiotics biodegradation and metabolism	Metabolism	3	124	60	44
+Transcription	Genetic Information Processing	3	210	177	6
+Translation	Genetic Information Processing	5	510	389	49
+Folding, sorting and degradation	Genetic Information Processing	7	468	390	51
+Replication and repair	Genetic Information Processing	7	169	156	31
+Membrane transport	Environmental Information Processing	1	44	44	2
+Signal transduction	Environmental Information Processing	26	1717	1335	139
+Signaling molecules and interaction	Environmental Information Processing	4	803	675	9
+Transport and catabolism	Cellular Processes	7	722	533	129
+Cell growth and death	Cellular Processes	8	596	431	81
+Cellular community - eukaryotes	Cellular Processes	5	562	408	31
+Cell motility	Cellular Processes	1	213	160	13
+Immune system	Organismal Systems	20	1022	834	97
+Endocrine system	Organismal Systems	21	918	697	142
+Circulatory system	Organismal Systems	3	268	188	19
+Digestive system	Organismal Systems	10	425	323	80
+Excretory system	Organismal Systems	5	149	106	23
+Nervous system	Organismal Systems	10	531	396	57
+Sensory system	Organismal Systems	4	591	132	22
+Development	Organismal Systems	2	286	212	22
+Aging	Organismal Systems	2	102	74	12
+Environmental adaptation	Organismal Systems	3	328	265	32
+Cancers	Human Diseases	25	1276	946	114
+Immune diseases	Human Diseases	8	317	192	23
+Neurodegenerative diseases	Human Diseases	5	355	289	53
+Substance dependence	Human Diseases	5	282	154	21
+Cardiovascular diseases	Human Diseases	5	289	218	27
+Endocrine and metabolic diseases	Human Diseases	7	495	383	63
+Infectious diseases	Human Diseases	26	1273	972	85
+Drug resistance	Human Diseases	4	222	172	37
