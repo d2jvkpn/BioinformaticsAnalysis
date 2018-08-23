@@ -1,5 +1,5 @@
 
-mkdir example
+mkdir -p example
 
 code=hsa
 
