@@ -2,13 +2,15 @@
 
 import os, re, gzip
 
-if len(os.sys.argv) != 3 or os.sys.argv[1] in ['-h', '--help']:
-   print('''Convert KEGG pathway keg file to tsv format, usage:
+HELP = '''
+Convert KEGG pathway keg file to tsv format, usage:
     python3 keg2tsv.py  <.keg(.gz)>  <outputPrefix>
 
 project: https://github.com/d2jvkpn/BioinformaticsAnalysis
-''')
-   os.sys.exit(0)
+'''
+
+if len(os.sys.argv) != 3 or os.sys.argv[1] in ['-h', '--help']:
+   print(HELP); os.sys.exit(0)
 
 keg, prefix = os.sys.argv[1:3]
 
@@ -48,7 +50,6 @@ for line in kegtext:
         'No.' + l2, '-', ko, ec]) + '\n')
 
 TSV.close()
-
 
 CMD = '''
 awk 'BEGIN{FS=OFS="\t"} $2~"^PATH:"{ a[$1] = $2"\t"$3"\t"$8"\t"$10 }
