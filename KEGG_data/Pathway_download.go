@@ -16,7 +16,7 @@ const url = "http://www.kegg.jp/kegg-bin/download_htext?htext=%s&format=htext&fi
 
 func main () {
     if len (os.Args) == 1 || os.Args[1] == "-h" || os.Args[1] == "--help" {
-        fmt.Println ("Get KEGG pathway keg file by provide organism code(s), e.g. hsa mmu.")
+        fmt.Println ("Archive KEGG pathway keg file by provide organism code(s), e.g. hsa mmu.")
         fmt.Println ("\nproject: https://github.com/d2jvkpn/BioinformaticsAnalysis")
         return
     }
@@ -27,7 +27,7 @@ func main () {
 
     var wg sync.WaitGroup
 
-    log.Printf ("%s  organism codes: %s\n", time.Now ().Format ("-0700"),
+    log.Printf ("%s  request organism code(s): %s\n", time.Now ().Format ("-0700"),
     strings.Join (os.Args[1:], " "))
 
     for _, v := range (os.Args[1:]) {
