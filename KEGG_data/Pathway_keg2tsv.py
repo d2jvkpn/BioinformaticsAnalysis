@@ -60,7 +60,7 @@ if(++x[$1"\t"$6]==1) k[$1]++; if($7!="" && ++x[$1"\t"$7]==1) e[$1]++}
 END{for(i in a) {if (e[i]=="") e[i]=0; print i,a[i], g[i], k[i], e[i]} }' |
 sort | awk 'BEGIN{FS=OFS="\t"; 
 print "pathway", "pathway_name", "L1", "L2", "gene_count", "KO_count", "EC_count"}
-{print}' > $prefix.pathway_summary.tsv
+{print}' > $prefix.summary.tsv
 
 awk 'BEGIN{FS=OFS="\t"} $2~"^PATH:"{ a[$1] = $2"\t"$3"\t"$8"\t"$10 }
 a[$1] && $2!~"^PATH:"{split($11,x," "); KO=x[1];
@@ -73,7 +73,7 @@ if(++x[$4"\t"$6]==1) k[$4]++; if($7!="" && ++x[$4"\t"$7]==1) e[$4]++}
 END{for(i in a) {if (e[i]=="") e[i]=0; print idx[i],i, a[i], p[i], g[i], k[i], e[i]} }' |
 sort -n | awk 'BEGIN{FS=OFS="\t"; 
 print "pathway_L2", "pathway_L1", "pathway_count", "gene_count", "KO_count", "EC_count"}
-{print $2,$3,$4,$5,$6,$7}' > $prefix.pathway_classfication.tsv
+{print $2,$3,$4,$5,$6,$7}' > $prefix.classfication.tsv
 '''
 
 os.system ('prefix=%s\n' % prefix + CMD)
