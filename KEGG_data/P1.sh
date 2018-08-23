@@ -40,7 +40,7 @@ mkdir -p data
 
 wait
 
-python3 Species_txid.py
+python3 species_txid.py
 
 awk 'BEGIN{FS=OFS="\t"} {split($3,x,"[()]"); gsub(";", "; ", $4);
 sub(" $", "", x[1]); print $1,$2,x[1],x[2],$4}' data/meta_organism.tsv |
