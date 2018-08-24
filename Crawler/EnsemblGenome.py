@@ -141,8 +141,8 @@ def getftp(netloc, path, loca, url):
         f.write('## Acess time: %s\n\n' % at)
         k+=1; f.write(wget.format('genomic.fa.gz', dna, 1))
         k+=1; f.write(wget.format('cdna.fa.gz', cdna, 2))
-        # k+=1; f.write(wget.format('ncrna.fa.gz', ncrna, 3))
-        # k+=1; f.write(wget.format('pep.fa.gz', pep, 4))
+        k+=1; f.write(wget.format('ncrna.fa.gz', ncrna, 3))
+        k+=1; f.write(wget.format('pep.fa.gz', pep, 4))
         k+=1; f.write(wget.format('genomic.gtf.gz', gtf, 5))
         f.write('wait ' + ' '.join(['$p' + str(i+1) for i in range(k)]) + '\n')
 
