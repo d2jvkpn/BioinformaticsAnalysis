@@ -91,7 +91,7 @@ def getftp(url):
     SH.write('## Species: %s\n## Access time: %s\n\n' % (ln[-1], at))
     SH.write('prefix=%s\n\n' % prefix)
     k=0
-    wget = 'wget -c -O $(dirname $0)/{0} -c $prefix/{1} -o {0}.download.log &\n'
+    wget = 'wget -c -O $(dirname $0)/{0} -c $prefix/{1} -o $(dirname $0)/{0}.download.log &\n'
     
     for i in ftp:
         k += 1
