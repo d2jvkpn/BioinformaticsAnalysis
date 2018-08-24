@@ -1,8 +1,8 @@
 #! /usr/bin/python3
 
 __author__ = 'd2jvkpn'
-__version__ = '0.4'
-__release__ = '2018-07-28'
+__version__ = '0.5'
+__release__ = '2018-08-24'
 __project__ = 'https://github.com/d2jvkpn/BioinformaticsAnalysis'
 __license__ = 'GPLv3 (https://www.gnu.org/licenses/gpl-3.0.en.html)'
 
@@ -133,17 +133,18 @@ def getftp(netloc, path, loca, url):
         f.write('annotation gtf:\n    %s\n' % gtf)
     
     wget = 'wget -c -O $(dirname $0)/{0} {1} -o $(dirname $0)/{0}.download.log &\np{2}=$!\n\n'
-    
+    k = 0
+
     with open (loca + '/download.sh', 'w') as f:
         f.write('#! /bin/bash\n\n## URL: %s\n' % url)
         f.write('## Species: %s\n' % ScentificName.replace('_', ' '))
         f.write('## Acess time: %s\n\n' % at)
-        f.write(wget.format('genomic.fa.gz', dna, 1))
-        f.write(wget.format('cdna.fa.gz', cdna, 2))
-        f.write(wget.format('ncrna.fa.gz', ncrna, 3))
-        f.write(wget.format('pep.fa.gz', pep, 4))
-        f.write(wget.format('genomic.gtf.gz', gtf, 5))
-        f.write('wait $p1 $p2 $p3 $p4 $p5\n')
+        k+=1; f.write(wget.format('genomic.fa.gz', dna, 1))
+        k+=1; f.write(wget.format('cdna.fa.gz', cdna, 2))
+        # k+=1; f.write(wget.format('ncrna.fa.gz', ncrna, 3))
+        # k+=1; f.write(wget.format('pep.fa.gz', pep, 4))
+        k+=1; f.write(wget.format('genomic.gtf.gz', gtf, 5))
+        f.write('wait ' + ' '.join(['$p' + str(i+1) for i in range(k)]) + '\n')
 
     print(loca)
 
