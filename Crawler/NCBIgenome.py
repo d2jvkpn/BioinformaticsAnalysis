@@ -1,8 +1,8 @@
 #! /usr/bin/python3
 
 __author__ = 'd2jvkpn'
-__version__ = '0.2'
-__release__ = '2018-07-28'
+__version__ = '0.3'
+__release__ = '2018-08-24'
 __project__ = 'https://github.com/d2jvkpn/BioinformaticsAnalysis'
 __license__ = 'GPLv3 (https://www.gnu.org/licenses/gpl-3.0.en.html)'
 
@@ -94,6 +94,7 @@ def getftp(url):
     wget = 'wget -c -O $(dirname $0)/{0} -c $prefix/{1} -o $(dirname $0)/{0}.download.log &\n'
     
     for i in ftp:
+        # if i == 'GenBank': continue
         k += 1
         F.write('%s:\n    %s\n\n' % (i, ftp[i]))
         _ = ftp[i].replace(prefix + '/', '')
