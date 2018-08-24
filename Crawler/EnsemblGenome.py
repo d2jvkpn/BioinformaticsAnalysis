@@ -132,7 +132,7 @@ def getftp(netloc, path, loca, url):
         f.write('pep fasta:\n    %s\n\n' % pep)
         f.write('annotation gtf:\n    %s\n' % gtf)
     
-    wget = 'wget -c -O $(dirname $0)/{0} {1} -o {0}.download.log &\np{2}=$!\n\n'
+    wget = 'wget -c -O $(dirname $0)/{0} {1} -o $(dirname $0)/{0}.download.log &\np{2}=$!\n\n'
     
     with open (loca + '/download.sh', 'w') as f:
         f.write('#! /bin/bash\n\n## URL: %s\n' % url)
