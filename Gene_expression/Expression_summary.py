@@ -4,7 +4,7 @@ import os
 import pandas as pd
 import numpy as np
 
-tsv, prefix, threshold = os.sys.args[1], os.sys.args[3], float(os.sys.args[3])
+tsv, prefix, threshold = os.sys.args[1], os.sys.args[2], float(os.sys.args[3])
 
 
 expr = pd.read_csv(tsv, sep='\t', index_col=0)
