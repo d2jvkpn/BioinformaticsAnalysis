@@ -1,17 +1,14 @@
 #! /usr/bin/python3
 
 __author__ = 'd2jvkpn'
-__version__ = '0.5'
-__release__ = '2018-08-24'
+__version__ = '0.6'
+__release__ = '2018-08-25'
 __project__ = 'https://github.com/d2jvkpn/BioinformaticsAnalysis'
 __license__ = 'GPLv3 (https://www.gnu.org/licenses/gpl-3.0.en.html)'
 
-import os, requests, time, string
+import os
+import requests
 from urllib.parse import urlparse
-from ftplib import FTP
-import pandas as pd
-from bs4 import BeautifulSoup
-from biomart import BiomartServer
 
 '''
 http://asia.ensembl.org/index.html
@@ -55,6 +52,8 @@ Note:
 
 ####
 def formatSpeciesName(s):
+    import string
+
     wds = s.replace('_', ' ').split()
 
     for i in range(len(wds)):
@@ -66,7 +65,9 @@ def formatSpeciesName(s):
     return(' '.join(wds))
 
 
-def query(url):  
+def query(url):
+    from bs4 import BeautifulSoup
+
     query = requests.get(url)
     if not query.ok: os.sys.exit('Failed to request "%s"' % url)
     bs = BeautifulSoup(query.text, 'html.parser')
@@ -93,6 +94,9 @@ def query(url):
 
 
 def getftp(netloc, path, loca, url):
+    import time
+    from ftplib import FTP
+
     at = time.strftime('%Y-%m-%d %H:%M:%S %z')
 
     ensembl, ScentificName, version = loca.split('__')
@@ -150,6 +154,9 @@ def getftp(netloc, path, loca, url):
 
 
 def biomart_anno(url, loca):
+    import pandas as pd
+    from biomart import BiomartServer
+
     urlp = urlparse(url)
     
     species = urlp.path.split('/')[1]
