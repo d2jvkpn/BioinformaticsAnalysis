@@ -14,11 +14,13 @@ import (
 
 const url = "http://www.kegg.jp/kegg-bin/download_htext?htext=%s&format=htext&filedir="
 
+const HELP = `
+Archive KEGG pathway keg file by provide organism code(s), e.g. hsa mmu.
+project: https://github.com/d2jvkpn/BioinformaticsAnalysis`
+
 func main () {
     if len (os.Args) == 1 || os.Args[1] == "-h" || os.Args[1] == "--help" {
-        fmt.Println ("Archive KEGG pathway keg file by provide organism code(s), e.g. hsa mmu.")
-        fmt.Println ("\nproject: https://github.com/d2jvkpn/BioinformaticsAnalysis")
-        return
+        fmt.Println (HELP); return
     }
 
     num := 10
@@ -27,8 +29,8 @@ func main () {
 
     var wg sync.WaitGroup
 
-    log.Printf ("%s  request organism code(s): %s\n", time.Now ().Format ("-0700"),
-    strings.Join (os.Args[1:], " "))
+    log.Printf ("%s  request organism code(s): %s\n", 
+    time.Now ().Format ("-0700"), strings.Join (os.Args[1:], " "))
 
     for _, v := range (os.Args[1:]) {
         ch <- true
@@ -42,7 +44,7 @@ func main () {
 func Querykeg (p string, ch <- chan bool, wg *sync.WaitGroup) {
     defer func () { <- ch }()
     defer wg.Done ()
-    log.Printf ("%s  Quering %s...\n", time.Now ().Format ("-0700"), p)
+    log.Printf ("%s  Querying %s...\n", time.Now ().Format ("-0700"), p)
 
     resp, err := http.Get (fmt.Sprintf (url, p))
     if err != nil { log.Println (err); return }
