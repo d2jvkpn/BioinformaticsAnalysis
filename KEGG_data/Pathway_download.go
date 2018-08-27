@@ -14,8 +14,7 @@ import (
 
 const URL = "http://www.kegg.jp/kegg-bin/download_htext?htext=%s&format=htext&filedir="
 
-const HELP = `
-Archive KEGG pathway keg file by provide organism code(s), e.g. hsa mmu.
+const HELP = `Archive KEGG pathway keg file by provide organism code(s), e.g. hsa mmu.
 project: https://github.com/d2jvkpn/BioinformaticsAnalysis`
 
 func main () {
@@ -44,6 +43,7 @@ func main () {
 func Querykeg (p string, ch <- chan bool, wg *sync.WaitGroup) {
     defer func () { <- ch }()
     defer wg.Done ()
+
     log.Printf ("%s  Querying %s...\n", time.Now ().Format ("-0700"), p)
 
     resp, err := http.Get (fmt.Sprintf (URL, p))
