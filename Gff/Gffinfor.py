@@ -45,6 +45,11 @@ if len (os.sys.argv) >= 5:
 
 GTF = gzip.open (gtf, 'rb') if gtf.endswith ('gz') else open (gtf, 'r')
 
+if gtf.endswith('.gtf') or gtf.endswith('.gtf.gz'):
+    delimiter, sep = ' ', '; '
+else:
+    delimiter, sep = '=', ';'
+
 for _ in GTF:
     if gtf.endswith ('gz'):
         fd = _.decode ('utf8').strip ('\n').strip (';').split ('\t')
@@ -60,7 +65,6 @@ for _ in GTF:
         continue
 
     d = defaultdict (str)
-    delimiter, sep = (' ', '; ')  if fd [8].count ('; ') > 0 else ('=', ';')
     for _ in fd [8].split (sep):
         i = _.split (delimiter, 1); d [i [0]] = i [1].strip ('"')
 
@@ -83,7 +87,6 @@ for _ in GTF:
     print (* ([d [i] for i in Attr] + [dbref [i] for i in Dbxref]), sep='\t')
 
 GTF.close ()
-
 
 FMT = "echo '%s' | column -t -s $'\t' | awk 'NR==1{print \"0    \"$0; print 1} \
 NR>1{print \"2    \"$0}' | sort | cut --complement -c 1"
