@@ -1,12 +1,12 @@
 #! python3
 
 __author__ = 'd2jvkpn'
-__version__ = '1.6'
-__release__ = '2018-08-21'
+__version__ = '1.7'
+__release__ = '2018-08-27'
 __project__ = 'https://github.com/d2jvkpn/BioinformaticsAnalysis'
 __lisence__ = 'GPLv3 (https://www.gnu.org/licenses/gpl-3.0.en.html)'
 
-import os, gzip, gc
+import os, gzip, sys
 from collections import defaultdict
 import pandas as pd
 
@@ -22,22 +22,6 @@ if len(os.sys.argv) != 3 or os.sys.argv[1] in ['-h', '--help']:
     os.sys.exit(0)
 
 gff3, prefix = os.sys.argv[1:3]
-
-####
-def toGtf(d):
-    kv = []
-
-    if 'gene_id' in d:
-        kv.append('gene_id \"' + d['gene_id'] + '";')
-
-    if 'transcript_id' in d:
-        kv.append('transcript_id "' + d['transcript_id'] + '";')
-
-    for k in d:
-        if k in ['gene_id', 'transcript_id']: continue
-        kv.append('%s "%s";' % (k, d[k]))
-
-    return (' '.join(kv))
 
 ####
 GFF3 = gzip.open(gff3, 'rb')
@@ -62,7 +46,7 @@ for line in GFF3:
     if fd[2] in ['CDS', 'exon'] or int(fd[3]) >= int(fd[4]): continue
 
     if 'Parent' not in d and d['gbkey'].count('RNA') > 0:
-        print('Error: invalid transcript record "%s"' % line)
+        print ('Warning: invalid transcript record\t%s' % line, file=sys.stderr)
         continue
 
     if 'Parent' not in d and d['gbkey'] != 'Gene': continue
@@ -84,16 +68,31 @@ M = pd.DataFrame.from_records (records, columns = ['id', 'feature', 'gbkey', \
 M['product'] = [ product[i] for i in  M.iloc[:, 0]]
 M['protein_id'] = [ protein[i] for i in  M.iloc[:, 0]]
 
-M.to_csv (prefix + '.tsv.gz', sep='\t', encoding='utf-8', 
+M.to_csv (prefix + '.genes.tsv.gz', sep='\t', encoding='utf-8', 
 index=False, compression='gzip')
 
-del (GFF3, records, protein, product, d, M); gc.collect()
+# del (GFF3, records, protein, product, d, M); gc.collect()
 
-M = pd.read_csv(prefix + '.tsv.gz', sep='\t', index_col=0, 
+M = pd.read_csv(prefix + '.genes.tsv.gz', sep='\t', index_col=0, 
 usecols=[0, 3, 4, 5, 6, 8, 9])
 
 M = M[[not i for i in M.index.duplicated()]]
 M.fillna ('', inplace=True)
+
+####
+def toGtf(d):
+    kv = []
+
+    if 'gene_id' in d: kv.append('gene_id \"' + d['gene_id'] + '";')
+
+    if 'transcript_id' in d:
+        kv.append('transcript_id "' + d['transcript_id'] + '";')
+
+    for k in d:
+        if k in ['gene_id', 'transcript_id']: continue
+        kv.append('%s "%s";' % (k, d[k]))
+
+    return (' '.join(kv))
 
 ####
 def Parser (d):
@@ -102,8 +101,6 @@ def Parser (d):
     if fd[2] == 'gene':
         d['gene_id'] = d['ID']
         d['gene_name'] = M.loc[d['gene_id'], 'name']
-        d['protein_id'] = M.loc[d['gene_id'], 'protein_id']
-        d['product'] = M.loc[d['gene_id'], 'product']
     elif fd[2] == 'transcript':
         d['transcript_id'] = d['ID']
         d['transcript_name'] = M.loc[d['ID'], 'name']
@@ -146,9 +143,15 @@ GTF = gzip.open (prefix + '.gtf.gz', 'wb')
 Attributions = ['ID', 'Parent', 'gbkey', 'gene_biotype', 'description', \
 'product', 'protein_id', 'Dbxref']
 
-for _ in GFF3:
-    fd = _.decode('utf8').strip().split('\t')
-    if fd[0].startswith('#') or len(fd) != 9: continue
+for line in GFF3:
+    fd = line.decode('utf8').strip().split('\t')
+    if fd[0].startswith('#'): GTF.write (line); continue
+
+    if len(fd) != 9:
+        print ('Warning: invalid record\t%s' % line.decode('utf8').strip(), file=sys.stderr)
+        continue
+
+    if int(fd[3]) > int(fd[4]): fd[3], fd[4] = fd[4], fd[3]
 
     f9, d = fd[8].split(';'), defaultdict(str)
 
@@ -156,7 +159,13 @@ for _ in GFF3:
         i = _.split('=', 1)
         if i[0] in Attributions: d[i[0]] = i[1]
 
-    if int(fd[3]) >= int(fd[4]) or 'gbkey' not in d: continue
+    if 'gbkey' not in d:
+        kv = []
+        for k in d: kv.append('%s "%s";' % (k, d[k]))
+        fd[8] = ' '.join(kv)
+        GTF.write (bytes ('\t'.join(fd) + '\n', 'utf8'))
+        continue
+
     if d['gbkey'] == 'Gene': fd[2] = 'gene'
 
     if d['gbkey'].count('RNA') > 0:
@@ -168,7 +177,7 @@ for _ in GFF3:
     try:
         Parser(d)
     except:
-        print('Warning: "%s" missing attribution(s)' % d['ID'])
+        print('Warning: "%s" missing attribution(s)' % d['ID'], file=sys.stderr)
         d['transcript_id'] = d['Parent'] if fd[2] == "exon" else d['ID']
 
     del (d['ID'])
