@@ -18,7 +18,7 @@ Summary types' attributions gff/gtf:
 
 Extract attributions and Dbxref (tsv format) from gff/gtf:
 ("type" can be set as "")
-    python3 Gffinfor.py  <gff>  <type1,type2...> <attr1,attr2,attr3>  [dbxref1,dbxref2...]
+    python3 Gffinfor.py  <gff>  <type1,type2...> <attr1,attr2,attr3...>  [dbxref1,dbxref2...]
 '''
 
 if len (os.sys.argv) == 1 or os.sys.argv [1] in ['-h', '--help']:
