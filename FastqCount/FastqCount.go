@@ -16,11 +16,11 @@ var USAGE string = `Usage: FastqCount  <input.fastq>  [phred]
     Output (tsv): Total reads  Total bases  N bases  Q20  Q30  GC
     Note: "pigz -dc *.fastq.gz | FastqCount -" is recommended for gzipped file(s).
 
-    author: d2jvkpn
-    version: 0.7
-    release: 2018-08-28
-    project: https://github.com/d2jvkpn/BioinformaticsAnalysis
-    lisense: GPLv3 (https://www.gnu.org/licenses/gpl-3.0.en.html)
+author: d2jvkpn
+version: 0.7
+release: 2018-08-28
+project: https://github.com/d2jvkpn/BioinformaticsAnalysis
+lisense: GPLv3 (https://www.gnu.org/licenses/gpl-3.0.en.html)
 `
 
 func main () {
