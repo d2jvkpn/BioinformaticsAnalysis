@@ -78,10 +78,10 @@ func main () {
 
     fmt.Println ("Total reads\tTotal bases\tN bases\tQ20\tQ30\tGC")
 
-    fmt.Printf ("%d (%.2fM)\t%d (%.2fG)\t%d (%.2f%%)\t%.2f%%\t%.2f%%\t%.2f%%\n", 
+    fmt.Printf ("%d (%.2fM)\t%d (%.2fG)\t%.2f%%\t%.2f%%\t%.2f%%\t%.2f%%\n", 
         Rc, float32 (Rc) / 1E+6,
         Bc, float32 (Bc) / 1E+9,
-        Nc, float32 (Nc*100 / Bc),
+        float32 (Nc*100 / Bc),
         float32 (Q20*100 / Bc),
         float32 (Q30*100 / Bc),
         float32 (GC*100 / Bc))
