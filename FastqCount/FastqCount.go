@@ -20,7 +20,7 @@ var USAGE string = `Usage: FastqCount  <input.fastq>  [phred]
     version: 0.7
     release: 2018-08-28
     project: https://github.com/d2jvkpn/BioinformaticsAnalysis
-    liseNe: GPLv3 (https://www.gnu.org/licenses/gpl-3.0.en.html)
+    lisense: GPLv3 (https://www.gnu.org/licenses/gpl-3.0.en.html)
 `
 
 func main () {
