@@ -51,7 +51,6 @@ func main () {
             scanner = bufio.NewScanner (gz)
         } else { scanner = bufio.NewScanner (file) }
 
-        if err != nil { log.Fatal (err) }
         defer file.Close ()
     }
 
