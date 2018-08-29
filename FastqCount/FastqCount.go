@@ -11,10 +11,11 @@ import (
 )
 
 
-var USAGE string = `Usage: FastqCount  <input.fastq>  [phred]
-    Phred default: 33
-    Output (tsv): Total reads  Total bases  N bases  Q20  Q30  GC
-    Note: "pigz -dc *.fastq.gz | FastqCount -" is recommended for gzipped file(s).
+var USAGE string = `
+Usage: FastqCount  <input.fastq>  [phred]
+    output (tsv): Total reads  Total bases  N bases  Q20  Q30  GC
+    phred default: 33
+    note: "pigz -dc *.fastq.gz | FastqCount -" is recommended for gzipped file(s).
 
 author: d2jvkpn
 version: 0.7
