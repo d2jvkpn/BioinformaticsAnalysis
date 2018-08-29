@@ -1,1 +1,6 @@
-import "template/html"
+package main
+
+import (
+    "template/html"
+    "strings"
+)
