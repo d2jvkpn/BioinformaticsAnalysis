@@ -31,16 +31,24 @@ func main () {
 
     var fname string = os.Args[1]
     var phred int = 33
-    if len (os.Args) == 3 { phred, _ = strconv.Atoi (os.Args[2]) }
+    var err error
+
+    if len (os.Args) == 3 {
+        phred, err = strconv.Atoi (os.Args[2])
+        if err != nil { log.Fatal (err)}
+    }
+
     var scanner *bufio.Scanner
 
     if fname == "-" {
         scanner = bufio.NewScanner (os.Stdin)
     } else {
         file, err := os.Open (fname)
+        if err != nil { log.Fatal (err) }
 
         if strings.HasSuffix (fname, ".gz") {
-            gz, _ := gzip.NewReader (file)
+            gz, err := gzip.NewReader (file)
+            if err != nil { log.Fatal (err) }
             scanner = bufio.NewScanner (gz)
         } else { scanner = bufio.NewScanner (file) }
 
@@ -61,20 +69,20 @@ func main () {
         Rc ++
         Bc += len(sequence)
         Nc += strings.Count (sequence, "N")
-        GC += strings.Count (sequence, "G") + strings.Count (sequence, "C")
+        GC += (strings.Count (sequence, "G") + strings.Count (sequence, "C"))
 
         for _, c := range qual {
-            if int (c) - phred >= 20 { Q20 += 1 } else { continue }
-            if int (c) - phred >= 30 { Q30 += 1 }
+            if int (c) - phred >= 20 { Q20 ++ } else { continue }
+            if int (c) - phred >= 30 { Q30 ++ }
         }
     }
 
     fmt.Println ("Total reads\tTotal bases\tN bases\tQ20\tQ30\tGC")
 
-    fmt.Printf ("%d (%.2fM)\t%d (%.2fG)\t%.2f%%\t%.2f%%\t%.2f%%\t%.2f%%\n", 
+    fmt.Printf ("%d (%.2fM)\t%d (%.2fG)\t%d (%.2f%%)\t%.2f%%\t%.2f%%\t%.2f%%\n", 
         Rc, float32 (Rc) / 1E+6,
         Bc, float32 (Bc) / 1E+9,
-        float32 (Nc*100 / Bc),
+        Nc, float32 (Nc*100 / Bc),
         float32 (Q20*100 / Bc),
         float32 (Q30*100 / Bc),
         float32 (GC*100 / Bc))
