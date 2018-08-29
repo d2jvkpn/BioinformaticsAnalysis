@@ -7,8 +7,7 @@ import (
     "log"
     "strings"
     "strconv"
-    // import "compress/gzip"
-    gzip "github.com/klauspost/pgzip"
+    gzip "github.com/klauspost/pgzip" // "compress/gzip"
 )
 
 
