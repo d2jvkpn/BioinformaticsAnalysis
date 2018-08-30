@@ -7,7 +7,8 @@ import (
     "log"
     "strings"
     "strconv"
-    gzip "github.com/klauspost/pgzip" // "compress/gzip"
+    "runtime"
+    gzip "github.com/klauspost/pgzip" //"compress/gzip"
 )
 
 
@@ -18,8 +19,8 @@ Usage: FastqCount  <input.fastq>  [phred]
     note: "pigz -dc *.fastq.gz | FastqCount -" is recommended for gzipped file(s).
 
 author: d2jvkpn
-version: 0.7
-release: 2018-08-28
+version: 0.8
+release: 2018-08-30
 project: https://github.com/d2jvkpn/BioinformaticsAnalysis
 lisense: GPLv3 (https://www.gnu.org/licenses/gpl-3.0.en.html)
 `
@@ -56,21 +57,30 @@ func main () {
     }
 
     var Rc, Bc, Q20, Q30, GC, Nc int = 0, 0, 0, 0, 0, 0
-    var sequence, qual string
+    ch :=  make (chan [2]string, 1000)
+    runtime.GOMAXPROCS (2)
 
-    for {
-        scanner.Scan(); scanner.Scan()
-        sequence = scanner.Text ()
-        scanner.Scan()
-        if ! scanner.Scan() { break }
-        qual = scanner.Text ()
+    go func() {
+        for {
+            var blk [2]string // !
+            scanner.Scan(); scanner.Scan()
+            blk[0] = scanner.Text ()
+            scanner.Scan()
+            if ! scanner.Scan() { break }
+            blk[1] = scanner.Text ()
+            ch <- blk
+        }
 
+        close (ch)
+    } ()
+
+    for k := range ch {
         Rc ++
-        Bc += len(sequence)
-        Nc += strings.Count (sequence, "N")
-        GC += (strings.Count (sequence, "G") + strings.Count (sequence, "C"))
+        Bc += len (k[0])
+        Nc += strings.Count (k[0], "N")
+        GC += (strings.Count (k[0], "G") + strings.Count (k[0], "C"))
 
-        for _, c := range qual {
+        for _, c := range k[1] {
             if int (c) - phred >= 20 { Q20 ++ } else { continue }
             if int (c) - phred >= 30 { Q30 ++ }
         }
@@ -78,11 +88,13 @@ func main () {
 
     fmt.Println ("Total reads\tTotal bases\tN bases\tQ20\tQ30\tGC")
 
-    fmt.Printf ("%d (%.2fM)\t%d (%.2fG)\t%.2f%%\t%.2f%%\t%.2f%%\t%.2f%%\n", 
-        Rc, float32 (Rc) / float32 (1E+6),
-        Bc, float32 (Bc) / float32 (1E+9),
-        float32 (Nc*100) / float32 (Bc),
-        float32 (Q20*100) / float32 (Bc),
-        float32 (Q30*100) / float32 (Bc),
-        float32 (GC*100) / float32 (Bc))
+    fmt.Printf ("%.2fM\t%.2fG\t%.2f%%\t%.2f%%\t%.2f%%\t%.2f%%\n", 
+        float64 (Rc) / float64 (1E+6),
+        float64 (Bc) / float64 (1E+9),
+        float64 (Nc*100) / float64 (Bc),
+        float64 (Q20*100) / float64 (Bc),
+        float64 (Q30*100) / float64 (Bc),
+        float64 (GC*100) / float64 (Bc))
+
+    fmt.Printf ("%d\t%d\t%d\t%d\t%d\t%d\n", Rc, Bc, Nc, Q20, Q30, GC)
 }
