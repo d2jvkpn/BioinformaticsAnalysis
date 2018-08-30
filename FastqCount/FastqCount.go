@@ -57,16 +57,16 @@ func main () {
     }
 
     var Rc, Bc, Q20, Q30, GC, Nc int = 0, 0, 0, 0, 0, 0
-    ch :=  make (chan [2]string, 1000)
+    ch := make (chan [2]string, 1000)
     runtime.GOMAXPROCS (2)
 
-    go func() {
+    go func () {
         for {
-            var blk [2]string // !
-            scanner.Scan(); scanner.Scan()
+            var blk [2]string
+            scanner.Scan (); scanner.Scan ()
             blk[0] = scanner.Text ()
-            scanner.Scan()
-            if ! scanner.Scan() { break }
+            scanner.Scan ()
+            if ! scanner.Scan () { break }
             blk[1] = scanner.Text ()
             ch <- blk
         }
@@ -80,9 +80,9 @@ func main () {
         Nc += strings.Count (k[0], "N")
         GC += strings.Count (k[0], "GC")
 
-        for _, c := range k[1] {
-            if int (c) - phred >= 20 { Q20 ++ } else { continue }
-            if int (c) - phred >= 30 { Q30 ++ }
+        for _, q := range k[1] {
+            if int (q) - phred >= 20 { Q20 ++ } else { continue }
+            if int (q) - phred >= 30 { Q30 ++ }
         }
     }
 
