@@ -35,7 +35,7 @@ func main () {
 
     if len (os.Args) == 3 {
         phred, err = strconv.Atoi (os.Args[2])
-        if err != nil { log.Fatal (err)}
+        if err != nil { log.Fatal (err) }
     }
 
     var scanner *bufio.Scanner
@@ -79,10 +79,10 @@ func main () {
     fmt.Println ("Total reads\tTotal bases\tN bases\tQ20\tQ30\tGC")
 
     fmt.Printf ("%d (%.2fM)\t%d (%.2fG)\t%.2f%%\t%.2f%%\t%.2f%%\t%.2f%%\n", 
-        Rc, float32 (Rc) / 1E+6,
-        Bc, float32 (Bc) / 1E+9,
-        float32 (Nc*100 / Bc),
-        float32 (Q20*100 / Bc),
-        float32 (Q30*100 / Bc),
-        float32 (GC*100 / Bc))
+        Rc, float32 (Rc) / float32 (1E+6),
+        Bc, float32 (Bc) / float32 (1E+9),
+        float32 (Nc*100) / float32 (Bc),
+        float32 (Q20*100) / float32 (Bc),
+        float32 (Q30*100) / float32 (Bc),
+        float32 (GC*100) / float32 (Bc))
 }
