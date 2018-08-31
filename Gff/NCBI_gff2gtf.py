@@ -145,6 +145,7 @@ Attributions = ['ID', 'Parent', 'gbkey', 'gene_biotype', 'description', \
 
 for line in GFF3:
     fd = line.decode('utf8').strip().split('\t')
+    if fd[0].startswith("#"): continue
 
     if len(fd) != 9:
         print ('Warning: invalid record\t%s' % line.decode('utf8').strip(), file=sys.stderr)
