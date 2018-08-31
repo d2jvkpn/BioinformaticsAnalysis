@@ -25,7 +25,6 @@ for line in fr:
 
     if 'transcript_name' in d:
         d['transcript_id'] = d['transcript_name']
-        d.pop('transcript_name')
 
     a = 'gene_id' in d and 'transcript_id' in d
 
@@ -44,5 +43,6 @@ for line in fr:
 
     fd[8] = ' '.join(kv)
     print('\t'.join(fd))
+
 
 fr.close()
