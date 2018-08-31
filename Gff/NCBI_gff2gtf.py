@@ -145,7 +145,6 @@ Attributions = ['ID', 'Parent', 'gbkey', 'gene_biotype', 'description', \
 
 for line in GFF3:
     fd = line.decode('utf8').strip().split('\t')
-    if fd[0].startswith('#'): GTF.write (line); continue
 
     if len(fd) != 9:
         print ('Warning: invalid record\t%s' % line.decode('utf8').strip(), file=sys.stderr)
@@ -158,13 +157,6 @@ for line in GFF3:
     for _ in f9:
         i = _.split('=', 1)
         if i[0] in Attributions: d[i[0]] = i[1]
-
-    if 'gbkey' not in d:
-        kv = []
-        for k in d: kv.append('%s "%s";' % (k, d[k]))
-        fd[8] = ' '.join(kv)
-        GTF.write (bytes ('\t'.join(fd) + '\n', 'utf8'))
-        continue
 
     if d['gbkey'] == 'Gene': fd[2] = 'gene'
 
