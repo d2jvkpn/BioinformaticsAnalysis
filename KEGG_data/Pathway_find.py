@@ -15,6 +15,7 @@ def formatSpeciesName (s):
     wds[0] = wds[0].capitalize()
     return(' '.join (wds))
 
+
 species = formatSpeciesName (os.sys.argv[1])
 tsv = os.path.dirname (__file__) + '/data/KEGG_organism.tsv'
 TSV = open (tsv, 'r')
@@ -24,9 +25,11 @@ print ()
 
 for line in TSV:
     fds = line.strip ().split("\t")
-    if fds[2] == species:        
-        for i in range (len (ks)): print (ks[i] + ": " + fds[i])
-        Found = True; break
+    if fds[2] != species: continue
+
+    for i in range (len (ks)): print (ks[i] + ": " + fds[i])
+    Found = True
+    break
 
 TSV.close ()
 if not Found: print ("Not found")
