@@ -35,7 +35,7 @@ var parseAttr func (string, map[string]string)
 
 func main () {
     if len(os.Args) == 1 || HasElem ([]string {"-h", "--help"}, os.Args[1]) {
-        fmt.Println (HELP); os.Exit(0)
+        fmt.Println (HELP); return
      }
 
     if strings.HasSuffix (os.Args[1], ".gtf") ||
