@@ -198,7 +198,7 @@ func P2 (scanner *bufio.Scanner, types []string) {
     }
 
     var array [][]string
-    array = append (array, [] string {"TYPE\tATTRIBUTION", "TOTAL", "COUNT"})
+    array = append (array, [] string {"TYPE\tATTRIBUTION", "TOTAL", "UNIQUE"})
     var keys []string
     for k, _ := range TypeAttrs { keys = append (keys, k) }
 
@@ -251,6 +251,7 @@ func P4 (scanner *bufio.Scanner, types []string, attrs []string, dbx []string) {
         kv := make (map[string]string)
         parseAttr (fds[8], kv)
         dkv := make (map[string]string)
+
         for _, d := range strings.Split (kv["Dbxref"], ",") {
             x := strings.SplitN (d, ":", 2)
             dkv[x[0]] = x[1]
