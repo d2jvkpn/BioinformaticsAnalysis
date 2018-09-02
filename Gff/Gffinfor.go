@@ -28,7 +28,7 @@ author: d2jvkpn
 version: 0.2
 release: 2018-09-02
 project: https://github.com/d2jvkpn/BioinformaticsAnalysis
-lisence: GPLv3 (https://www.gnu.org/licenses/gpl-3.0.en.html)
+lisense: GPLv3 (https://www.gnu.org/licenses/gpl-3.0.en.html)
 `
 
 var parseAttr func (string, map[string]string)
