@@ -4,7 +4,7 @@ __author__ = 'd2jvkpn'
 __version__ = '0.6'
 __release__ = '2018-08-20'
 __project__ = 'https://github.com/d2jvkpn/BioinformaticsAnalysis'
-__lisence__ = 'GPLv3 (https://www.gnu.org/licenses/gpl-3.0.en.html)'
+__lisense__ = 'GPLv3 (https://www.gnu.org/licenses/gpl-3.0.en.html)'
 
 import os, gzip
 from collections import defaultdict
@@ -18,14 +18,14 @@ Summary types' attributions gff/gtf:
 
 Extract attributions and Dbxref (tsv format) from gff/gtf:
 ("type" can be set as "")
-    python3 Gffinfor.py  <gff>  <type1,type2...> <attr1,attr2,attr3...>  [dbxref1,dbxref2...]
+    python3 Gffinfor.py  <gff>  <type1,type2...>  <attr1,attr2,attr3...>  [dbxref1,dbxref2...]
 '''
 
 if len (os.sys.argv) == 1 or os.sys.argv [1] in ['-h', '--help']:
     print (HELP)
 
     _ = 'author: {}\nversion: {}\nrelease: {}\nproject: {}\nlisence: {}'
-    __ = [__author__,  __version__, __release__, __project__, __lisence__]
+    __ = [__author__,  __version__, __release__, __project__, __lisense__]
     print (_.format (*__))
 
     os.sys.exit (0)
