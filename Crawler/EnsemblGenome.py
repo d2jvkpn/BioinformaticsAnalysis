@@ -54,7 +54,7 @@ Note:
 def formatSpeciesName(s):
     import string
 
-    wds = s.replace('_', ' ').split()
+    wds = s.split()
 
     for i in range(len(wds)):
         a = False not in [i in string.ascii_letters for i in wds[i]]
@@ -254,9 +254,7 @@ def search (name):
 
     return(1 if msg == 'NotFound' else 0)
 
-
-# arg1 = _Glycine_max
-# arg1 = "Glycine_max"
+# arg1 = "Glycine max"
 # arg1 = 'http://plants.ensembl.org/Glycine_max/Info/Index'
 # arg1 = 'http://asia.ensembl.org/Mus_musculus/Info/Index'
 cmd, arg1 = os.sys.argv[1:3]
