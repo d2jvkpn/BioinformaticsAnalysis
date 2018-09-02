@@ -34,7 +34,9 @@ lisence: GPLv3 (https://www.gnu.org/licenses/gpl-3.0.en.html)
 var parseAttr func (string, map[string]string)
 
 func main () {
-    if HasElem ([]string {"-h", "--help"}, os.Args[1]) { fmt.Println (HELP) }
+    if len(os.Args) == 1 || HasElem ([]string {"-h", "--help"}, os.Args[1]) {
+        fmt.Println (HELP); os.Exit(0)
+     }
 
     if strings.HasSuffix (os.Args[1], ".gtf") ||
         strings.HasSuffix (os.Args[1], ".gtf.gz") {
@@ -144,6 +146,7 @@ func P1 (scanner *bufio.Scanner) {
 
     var sKeys []string
     for k, _ := range Sources {	sKeys = append (sKeys, k) }
+
     // sort.Strings (sKeys)
     sort.Slice (sKeys, 
         func(i, j int) bool {
@@ -186,12 +189,11 @@ func P2 (scanner *bufio.Scanner, types []string) {
         parseAttr (fds[8], kv)
 
         for k, v := range kv {
-           if _, ok := TypeAttrs [fds[2] + "\t" + k]; !ok {
-                m := make(map[string] int)
-                TypeAttrs [fds[2] + "\t" + k] = m
-           }
+           nk := fds[2] + "\t" + k
 
-           TypeAttrs [fds[2] + "\t" + k] [v] ++
+           if _, ok := TypeAttrs [nk]; !ok {
+               TypeAttrs [nk] = make(map[string] int)
+           } else { TypeAttrs [nk] [v] ++ }
         }
     }
 
