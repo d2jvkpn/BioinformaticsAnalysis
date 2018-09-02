@@ -1,0 +1,21 @@
+pathway_L2	pathway_L1	pathway_count	gene_count	KO_count	EC_count
+Carbohydrate metabolism	Metabolism	15	742	222	195
+Energy metabolism	Metabolism	6	398	201	58
+Lipid metabolism	Metabolism	14	361	144	126
+Nucleotide metabolism	Metabolism	2	202	112	68
+Amino acid metabolism	Metabolism	14	463	212	187
+Metabolism of other amino acids	Metabolism	6	231	58	52
+Glycan biosynthesis and metabolism	Metabolism	8	107	70	44
+Metabolism of cofactors and vitamins	Metabolism	11	245	145	138
+Metabolism of terpenoids and polyketides	Metabolism	7	170	92	83
+Biosynthesis of other secondary metabolites	Metabolism	12	272	77	68
+Transcription	Genetic Information Processing	3	292	162	6
+Translation	Genetic Information Processing	5	817	358	43
+Folding, sorting and degradation	Genetic Information Processing	7	582	255	45
+Replication and repair	Genetic Information Processing	6	172	106	26
+Membrane transport	Environmental Information Processing	1	26	4	1
+Signal transduction	Environmental Information Processing	3	413	104	39
+Transport and catabolism	Cellular Processes	4	347	137	31
+Environmental adaptation	Organismal Systems	2	206	70	13
+Endocrine and metabolic diseases	Human Diseases	1	20	3	2
+Drug resistance	Human Diseases	1	1	1	1

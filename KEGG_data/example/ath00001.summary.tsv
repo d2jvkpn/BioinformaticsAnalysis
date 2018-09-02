@@ -1,0 +1,129 @@
+pathway	pathway_name	L1	L2	gene_count	KO_count	EC_count
+PATH:ath00010	Glycolysis / Gluconeogenesis	Metabolism	Carbohydrate metabolism	116	33	29
+PATH:ath00020	Citrate cycle (TCA cycle)	Metabolism	Carbohydrate metabolism	63	20	15
+PATH:ath00030	Pentose phosphate pathway	Metabolism	Carbohydrate metabolism	58	17	17
+PATH:ath00040	Pentose and glucuronate interconversions	Metabolism	Carbohydrate metabolism	76	12	12
+PATH:ath00051	Fructose and mannose metabolism	Metabolism	Carbohydrate metabolism	64	19	19
+PATH:ath00052	Galactose metabolism	Metabolism	Carbohydrate metabolism	56	16	15
+PATH:ath00053	Ascorbate and aldarate metabolism	Metabolism	Carbohydrate metabolism	46	16	16
+PATH:ath00061	Fatty acid biosynthesis	Metabolism	Lipid metabolism	41	15	12
+PATH:ath00062	Fatty acid elongation	Metabolism	Lipid metabolism	45	8	7
+PATH:ath00071	Fatty acid degradation	Metabolism	Lipid metabolism	46	15	12
+PATH:ath00072	Synthesis and degradation of ketone bodies	Metabolism	Lipid metabolism	4	3	3
+PATH:ath00073	Cutin, suberine and wax biosynthesis	Metabolism	Lipid metabolism	29	12	8
+PATH:ath00100	Steroid biosynthesis	Metabolism	Lipid metabolism	34	18	16
+PATH:ath00130	Ubiquinone and other terpenoid-quinone biosynthesis	Metabolism	Metabolism of cofactors and vitamins	35	20	20
+PATH:ath00190	Oxidative phosphorylation	Metabolism	Energy metabolism	161	91	9
+PATH:ath00195	Photosynthesis	Metabolism	Energy metabolism	77	55	4
+PATH:ath00196	Photosynthesis - antenna proteins	Metabolism	Energy metabolism	22	12	0
+PATH:ath00220	Arginine biosynthesis	Metabolism	Amino acid metabolism	36	21	19
+PATH:ath00230	Purine metabolism	Metabolism	Nucleotide metabolism	161	90	47
+PATH:ath00232	Caffeine metabolism	Metabolism	Biosynthesis of other secondary metabolites	3	2	2
+PATH:ath00240	Pyrimidine metabolism	Metabolism	Nucleotide metabolism	118	72	29
+PATH:ath00250	Alanine, aspartate and glutamate metabolism	Metabolism	Amino acid metabolism	49	27	24
+PATH:ath00260	Glycine, serine and threonine metabolism	Metabolism	Amino acid metabolism	70	33	27
+PATH:ath00261	Monobactam biosynthesis	Metabolism	Biosynthesis of other secondary metabolites	14	6	6
+PATH:ath00270	Cysteine and methionine metabolism	Metabolism	Amino acid metabolism	115	41	36
+PATH:ath00280	Valine, leucine and isoleucine degradation	Metabolism	Amino acid metabolism	47	21	19
+PATH:ath00290	Valine, leucine and isoleucine biosynthesis	Metabolism	Amino acid metabolism	22	12	10
+PATH:ath00300	Lysine biosynthesis	Metabolism	Amino acid metabolism	15	8	8
+PATH:ath00310	Lysine degradation	Metabolism	Amino acid metabolism	31	13	9
+PATH:ath00330	Arginine and proline metabolism	Metabolism	Amino acid metabolism	54	24	20
+PATH:ath00340	Histidine metabolism	Metabolism	Amino acid metabolism	18	11	11
+PATH:ath00350	Tyrosine metabolism	Metabolism	Amino acid metabolism	40	17	14
+PATH:ath00360	Phenylalanine metabolism	Metabolism	Amino acid metabolism	43	15	13
+PATH:ath00380	Tryptophan metabolism	Metabolism	Amino acid metabolism	54	22	21
+PATH:ath00400	Phenylalanine, tyrosine and tryptophan biosynthesis	Metabolism	Amino acid metabolism	56	23	18
+PATH:ath00410	beta-Alanine metabolism	Metabolism	Metabolism of other amino acids	40	16	14
+PATH:ath00430	Taurine and hypotaurine metabolism	Metabolism	Metabolism of other amino acids	14	3	3
+PATH:ath00440	Phosphonate and phosphinate metabolism	Metabolism	Metabolism of other amino acids	6	4	4
+PATH:ath00450	Selenocompound metabolism	Metabolism	Metabolism of other amino acids	18	9	9
+PATH:ath00460	Cyanoamino acid metabolism	Metabolism	Metabolism of other amino acids	67	12	9
+PATH:ath00480	Glutathione metabolism	Metabolism	Metabolism of other amino acids	102	18	17
+PATH:ath00500	Starch and sucrose metabolism	Metabolism	Carbohydrate metabolism	149	30	26
+PATH:ath00510	N-Glycan biosynthesis	Metabolism	Glycan biosynthesis and metabolism	44	31	23
+PATH:ath00511	Other glycan degradation	Metabolism	Glycan biosynthesis and metabolism	19	9	7
+PATH:ath00514	Other types of O-glycan biosynthesis	Metabolism	Glycan biosynthesis and metabolism	13	6	5
+PATH:ath00520	Amino sugar and nucleotide sugar metabolism	Metabolism	Carbohydrate metabolism	131	40	38
+PATH:ath00531	Glycosaminoglycan degradation	Metabolism	Glycan biosynthesis and metabolism	7	4	4
+PATH:ath00561	Glycerolipid metabolism	Metabolism	Lipid metabolism	59	27	23
+PATH:ath00562	Inositol phosphate metabolism	Metabolism	Carbohydrate metabolism	73	25	24
+PATH:ath00563	Glycosylphosphatidylinositol(GPI)-anchor biosynthesis	Metabolism	Glycan biosynthesis and metabolism	24	21	6
+PATH:ath00564	Glycerophospholipid metabolism	Metabolism	Lipid metabolism	93	37	33
+PATH:ath00565	Ether lipid metabolism	Metabolism	Lipid metabolism	27	7	7
+PATH:ath00590	Arachidonic acid metabolism	Metabolism	Lipid metabolism	17	6	6
+PATH:ath00591	Linoleic acid metabolism	Metabolism	Lipid metabolism	9	4	4
+PATH:ath00592	alpha-Linolenic acid metabolism	Metabolism	Lipid metabolism	42	17	16
+PATH:ath00600	Sphingolipid metabolism	Metabolism	Lipid metabolism	27	13	12
+PATH:ath00601	Glycosphingolipid biosynthesis - lacto and neolacto series	Metabolism	Glycan biosynthesis and metabolism	3	1	1
+PATH:ath00603	Glycosphingolipid biosynthesis - globo and isoglobo series	Metabolism	Glycan biosynthesis and metabolism	9	3	3
+PATH:ath00604	Glycosphingolipid biosynthesis - ganglio series	Metabolism	Glycan biosynthesis and metabolism	5	2	2
+PATH:ath00620	Pyruvate metabolism	Metabolism	Carbohydrate metabolism	86	32	26
+PATH:ath00630	Glyoxylate and dicarboxylate metabolism	Metabolism	Carbohydrate metabolism	78	31	25
+PATH:ath00640	Propanoate metabolism	Metabolism	Carbohydrate metabolism	33	18	13
+PATH:ath00650	Butanoate metabolism	Metabolism	Carbohydrate metabolism	17	10	9
+PATH:ath00660	C5-Branched dibasic acid metabolism	Metabolism	Carbohydrate metabolism	7	5	3
+PATH:ath00670	One carbon pool by folate	Metabolism	Metabolism of cofactors and vitamins	20	10	10
+PATH:ath00710	Carbon fixation in photosynthetic organisms	Metabolism	Energy metabolism	69	25	22
+PATH:ath00730	Thiamine metabolism	Metabolism	Metabolism of cofactors and vitamins	21	12	11
+PATH:ath00740	Riboflavin metabolism	Metabolism	Metabolism of cofactors and vitamins	16	9	9
+PATH:ath00750	Vitamin B6 metabolism	Metabolism	Metabolism of cofactors and vitamins	15	8	7
+PATH:ath00760	Nicotinate and nicotinamide metabolism	Metabolism	Metabolism of cofactors and vitamins	16	12	11
+PATH:ath00770	Pantothenate and CoA biosynthesis	Metabolism	Metabolism of cofactors and vitamins	28	16	15
+PATH:ath00780	Biotin metabolism	Metabolism	Metabolism of cofactors and vitamins	16	8	8
+PATH:ath00785	Lipoic acid metabolism	Metabolism	Metabolism of cofactors and vitamins	5	2	2
+PATH:ath00790	Folate biosynthesis	Metabolism	Metabolism of cofactors and vitamins	26	16	16
+PATH:ath00860	Porphyrin and chlorophyll metabolism	Metabolism	Metabolism of cofactors and vitamins	52	34	31
+PATH:ath00900	Terpenoid backbone biosynthesis	Metabolism	Metabolism of terpenoids and polyketides	59	29	29
+PATH:ath00901	Indole alkaloid biosynthesis	Metabolism	Biosynthesis of other secondary metabolites	7	3	3
+PATH:ath00902	Monoterpenoid biosynthesis	Metabolism	Metabolism of terpenoids and polyketides	7	4	4
+PATH:ath00904	Diterpenoid biosynthesis	Metabolism	Metabolism of terpenoids and polyketides	22	9	9
+PATH:ath00905	Brassinosteroid biosynthesis	Metabolism	Metabolism of terpenoids and polyketides	8	8	4
+PATH:ath00906	Carotenoid biosynthesis	Metabolism	Metabolism of terpenoids and polyketides	29	20	20
+PATH:ath00908	Zeatin biosynthesis	Metabolism	Metabolism of terpenoids and polyketides	23	7	4
+PATH:ath00909	Sesquiterpenoid and triterpenoid biosynthesis	Metabolism	Metabolism of terpenoids and polyketides	23	16	15
+PATH:ath00910	Nitrogen metabolism	Metabolism	Energy metabolism	43	13	11
+PATH:ath00920	Sulfur metabolism	Metabolism	Energy metabolism	38	13	13
+PATH:ath00940	Phenylpropanoid biosynthesis	Metabolism	Biosynthesis of other secondary metabolites	168	25	22
+PATH:ath00941	Flavonoid biosynthesis	Metabolism	Biosynthesis of other secondary metabolites	22	12	12
+PATH:ath00942	Anthocyanin biosynthesis	Metabolism	Biosynthesis of other secondary metabolites	2	2	2
+PATH:ath00944	Flavone and flavonol biosynthesis	Metabolism	Biosynthesis of other secondary metabolites	4	4	3
+PATH:ath00945	Stilbenoid, diarylheptanoid and gingerol biosynthesis	Metabolism	Biosynthesis of other secondary metabolites	7	4	4
+PATH:ath00950	Isoquinoline alkaloid biosynthesis	Metabolism	Biosynthesis of other secondary metabolites	22	8	6
+PATH:ath00960	Tropane, piperidine and pyridine alkaloid biosynthesis	Metabolism	Biosynthesis of other secondary metabolites	35	8	6
+PATH:ath00965	Betalain biosynthesis	Metabolism	Biosynthesis of other secondary metabolites	2	2	2
+PATH:ath00966	Glucosinolate biosynthesis	Metabolism	Biosynthesis of other secondary metabolites	23	18	15
+PATH:ath00970	Aminoacyl-tRNA biosynthesis	Genetic Information Processing	Translation	115	47	22
+PATH:ath01040	Biosynthesis of unsaturated fatty acids	Metabolism	Lipid metabolism	29	9	9
+PATH:ath01502	Vancomycin resistance	Human Diseases	Drug resistance	1	1	1
+PATH:ath02010	ABC transporters	Environmental Information Processing	Membrane transport	26	4	1
+PATH:ath03008	Ribosome biogenesis in eukaryotes	Genetic Information Processing	Translation	101	59	11
+PATH:ath03010	Ribosome	Genetic Information Processing	Translation	364	136	0
+PATH:ath03013	RNA transport	Genetic Information Processing	Translation	171	95	6
+PATH:ath03015	mRNA surveillance pathway	Genetic Information Processing	Translation	115	48	8
+PATH:ath03018	RNA degradation	Genetic Information Processing	Folding, sorting and degradation	113	49	11
+PATH:ath03020	RNA polymerase	Genetic Information Processing	Transcription	45	30	1
+PATH:ath03022	Basal transcription factors	Genetic Information Processing	Transcription	55	30	2
+PATH:ath03030	DNA replication	Genetic Information Processing	Replication and repair	50	32	6
+PATH:ath03040	Spliceosome	Genetic Information Processing	Transcription	192	102	3
+PATH:ath03050	Proteasome	Genetic Information Processing	Folding, sorting and degradation	60	36	1
+PATH:ath03060	Protein export	Genetic Information Processing	Folding, sorting and degradation	54	26	4
+PATH:ath03410	Base excision repair	Genetic Information Processing	Replication and repair	43	27	13
+PATH:ath03420	Nucleotide excision repair	Genetic Information Processing	Replication and repair	69	37	6
+PATH:ath03430	Mismatch repair	Genetic Information Processing	Replication and repair	39	21	3
+PATH:ath03440	Homologous recombination	Genetic Information Processing	Replication and repair	67	34	8
+PATH:ath03450	Non-homologous end-joining	Genetic Information Processing	Replication and repair	8	8	4
+PATH:ath04016	MAPK signaling pathway - plant	Environmental Information Processing	Signal transduction	131	54	16
+PATH:ath04070	Phosphatidylinositol signaling system	Environmental Information Processing	Signal transduction	76	21	19
+PATH:ath04075	Plant hormone signal transduction	Environmental Information Processing	Signal transduction	273	44	10
+PATH:ath04120	Ubiquitin mediated proteolysis	Genetic Information Processing	Folding, sorting and degradation	143	58	8
+PATH:ath04122	Sulfur relay system	Genetic Information Processing	Folding, sorting and degradation	13	10	7
+PATH:ath04130	SNARE interactions in vesicular transport	Genetic Information Processing	Folding, sorting and degradation	44	16	0
+PATH:ath04136	Autophagy - other eukaryotes	Cellular Processes	Transport and catabolism	40	23	4
+PATH:ath04141	Protein processing in endoplasmic reticulum	Genetic Information Processing	Folding, sorting and degradation	211	76	18
+PATH:ath04144	Endocytosis	Cellular Processes	Transport and catabolism	144	54	5
+PATH:ath04145	Phagosome	Cellular Processes	Transport and catabolism	82	26	3
+PATH:ath04146	Peroxisome	Cellular Processes	Transport and catabolism	87	36	20
+PATH:ath04626	Plant-pathogen interaction	Organismal Systems	Environmental adaptation	170	43	11
+PATH:ath04712	Circadian rhythm - plant	Organismal Systems	Environmental adaptation	36	27	3
+PATH:ath04933	AGE-RAGE signaling pathway in diabetic complications	Human Diseases	Endocrine and metabolic diseases	20	3	2
