@@ -63,7 +63,6 @@ func main () {
 
 }
 
-
 //
 func ReadInput (I string) (scanner *bufio.Scanner, F *os.File, err error) {
     if I == "-" {
@@ -79,13 +78,10 @@ func ReadInput (I string) (scanner *bufio.Scanner, F *os.File, err error) {
         if err != nil { return scanner, F, err }
 
         scanner = bufio.NewScanner (gz)
-    } else {
-        scanner = bufio.NewScanner (F)
-    }
+    } else { scanner = bufio.NewScanner (F) }
 
     return scanner, F, err
 }
-
 
 //
 func TabPrint (array [][]string, head string) { 
@@ -94,7 +90,6 @@ func TabPrint (array [][]string, head string) {
     for _, r := range array[1:] { fmt.Fprintln (w, head + strings.Join (r, "\t")) }
     w.Flush ()
 }
-
 
 func HasElem (s interface{}, elem interface{}) bool {
     arrV := reflect.ValueOf(s)
@@ -162,7 +157,7 @@ func P1 (scanner *bufio.Scanner) {
 
     var tKeys []string
     for k, _ := range Types {tKeys = append (tKeys, k) }
-    //sort.Strings (tKeys)
+
     sort.Slice (tKeys,
         func(i, j int) bool {
             return strings.ToLower (tKeys[i]) < strings.ToLower(tKeys[j])
@@ -178,11 +173,8 @@ func P1 (scanner *bufio.Scanner) {
 
 //
 func P2 (scanner *bufio.Scanner, types []string) {
-
     TypeAttrs := make (map [string] map [string] int)
     var fds []string
-    var array [][]string
-    array = append (array, [] string {"TYPE\tATTRIBUTION", "TOTAL", "COUNT"})
 
     for scanner.Scan() {
         line := scanner.Text ()
@@ -203,6 +195,8 @@ func P2 (scanner *bufio.Scanner, types []string) {
         }
     }
 
+    var array [][]string
+    array = append (array, [] string {"TYPE\tATTRIBUTION", "TOTAL", "COUNT"})
     var keys []string
     for k, _ := range TypeAttrs { keys = append (keys, k) }
 
@@ -235,17 +229,14 @@ func P3 (scanner *bufio.Scanner, types []string, attrs []string) {
 
         kv := make (map[string]string)
         parseAttr (fds[8], kv)
-
         values := []string {}
         for _, k := range attrs { values = append (values, kv[k]) }
-
         fmt.Println (strings.Join (values, "\t"))
     }
 }
 
 //
 func P4 (scanner *bufio.Scanner, types []string, attrs []string, dbx []string) {
-
     var fds []string
     fmt.Println (strings.Join (attrs, "\t") + "\t" + strings.Join (dbx, "\t") )
 
@@ -257,7 +248,6 @@ func P4 (scanner *bufio.Scanner, types []string, attrs []string, dbx []string) {
 
         kv := make (map[string]string)
         parseAttr (fds[8], kv)
-
         dkv := make (map[string]string)
         for _, d := range strings.Split (kv["Dbxref"], ",") {
             x := strings.SplitN (d, ":", 2)
@@ -267,7 +257,6 @@ func P4 (scanner *bufio.Scanner, types []string, attrs []string, dbx []string) {
         values := []string {}
         for _, k := range attrs { values = append (values, kv[k]) }
         for _, k := range dbx { values = append (values, dkv[k]) }
-
         fmt.Println (strings.Join (values, "\t"))
     }
 }
