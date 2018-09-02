@@ -86,10 +86,13 @@ func ReadInput (I string) (scanner *bufio.Scanner, F *os.File, err error) {
 }
 
 //
-func TabPrint (array [][]string, head string) { 
+func TabPrint (array [][]string, leading string) { 
     w := tabwriter.NewWriter (os.Stdout, 2, 0, 4, ' ', tabwriter.StripEscape)
-    fmt.Fprintln (w, head + strings.Join (array[0], "\t"))
-    for _, r := range array[1:] { fmt.Fprintln (w, head + strings.Join (r, "\t")) }
+
+    for _, r := range array {
+        fmt.Fprintln (w, leading + strings.Join (r, "\t"))
+    }
+
     w.Flush ()
 }
 
