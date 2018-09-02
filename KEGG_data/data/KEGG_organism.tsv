@@ -1,4 +1,4 @@
-Entry	code	Scientific_name	txid	Common_name	 Taxonomic_classification
+Entry	code	Scientific_name	txid	Common_name	Taxonomic_classification
 T01001	hsa	Homo sapiens	9606	human	Eukaryotes; Animals; Vertebrates; Mammals
 T01005	ptr	Pan troglodytes	9598	chimpanzee	Eukaryotes; Animals; Vertebrates; Mammals
 T02283	pps	Pan paniscus	9597	bonobo	Eukaryotes; Animals; Vertebrates; Mammals
