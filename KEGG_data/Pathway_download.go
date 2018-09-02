@@ -14,8 +14,16 @@ import (
 
 const URL = "http://www.kegg.jp/kegg-bin/download_htext?htext=%s&format=htext&filedir="
 
-const HELP = `Archive KEGG pathway keg file by provide organism code(s), e.g. hsa mmu.
-project: https://github.com/d2jvkpn/BioinformaticsAnalysis`
+const HELP = `
+Download KEGG pathway keg file by provide organism code(s), e.g. hsa mmu.
+$ Pathway_download hsa mmu ath
+
+author: d2jvkpn
+version: 0.5
+release: 2018-09-02
+project: https://github.com/d2jvkpn/BioinformaticsAnalysis
+lisense: GPLv3 (https://www.gnu.org/licenses/gpl-3.0.en.html)
+`
 
 func main () {
     if len (os.Args) == 1 || os.Args[1] == "-h" || os.Args[1] == "--help" {
