@@ -24,7 +24,7 @@ func main () {
 
     num := 10
     if num > len (os.Args) - 1 { num = len (os.Args) - 1 }
-    ch := make (chan bool, num)
+    ch := make (chan struct{}, num)
 
     var wg sync.WaitGroup
 
@@ -32,7 +32,7 @@ func main () {
     time.Now ().Format ("-0700"), strings.Join (os.Args[1:], " "))
 
     for _, v := range (os.Args[1:]) {
-        ch <- true
+        ch <- struct{}{}
         wg.Add (1)
         go Querykeg (v + "00001.keg", ch, &wg)
     }
@@ -40,7 +40,7 @@ func main () {
     wg.Wait ()
 }
 
-func Querykeg (p string, ch <- chan bool, wg *sync.WaitGroup) {
+func Querykeg (p string, ch <- chan struct{}, wg *sync.WaitGroup) {
     defer func () { <- ch }()
     defer wg.Done ()
 
