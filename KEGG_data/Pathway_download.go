@@ -63,7 +63,7 @@ func Querykeg (p string, ch <- chan struct{}, wg *sync.WaitGroup) {
 
     lines := strings.Split (string (body), "\n")
     if ! strings.HasPrefix (lines[len (lines)-2], "#Last updated:") {
-        log.Printf ("%s  Failed to get %s\n", time.Now ().Format ("-0700"), p)
+        log.Printf ("Failed to get %s\n", p)
         return
     }
 
