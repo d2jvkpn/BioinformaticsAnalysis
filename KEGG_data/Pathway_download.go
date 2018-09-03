@@ -36,7 +36,7 @@ func main () {
 
     var wg sync.WaitGroup
 
-    log.Printf ("%s  request organism code(s): %s\n", 
+    log.Printf ("%s Request organism code(s):\n    %s\n", 
     time.Now ().Format ("-0700"), strings.Join (os.Args[1:], " "))
 
     for _, v := range (os.Args[1:]) {
@@ -52,7 +52,7 @@ func Querykeg (p string, ch <- chan struct{}, wg *sync.WaitGroup) {
     defer func () { <- ch }()
     defer wg.Done ()
 
-    log.Printf ("%s  Querying %s...\n", time.Now ().Format ("-0700"), p)
+    log.Printf ("Querying %s...\n", p)
 
     resp, err := http.Get (fmt.Sprintf (URL, p))
     if err != nil { log.Println (err); return }
@@ -75,6 +75,6 @@ func Querykeg (p string, ch <- chan struct{}, wg *sync.WaitGroup) {
     gw.Write (body)
     gw.Close ()
 
-    log.Printf ("%s  Saved %s...\n", time.Now ().Format ("-0700"), p)
+    log.Printf ("Saved %s...\n", p)
     return
 }
