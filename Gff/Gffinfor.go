@@ -113,6 +113,7 @@ func HasElem (s interface{}, elem interface{}) bool {
 //
 func gtfattr (s string, kv map[string]string) {
 	for _, i := range strings.Split (strings.TrimRight (s, ";"), "; ") {
+	if i == "" { continue }
 		ii := strings.SplitN (i, " ", 2)
 		kv [ii [0]] = strings.Trim (ii[1], "\"")
 	}
@@ -120,6 +121,7 @@ func gtfattr (s string, kv map[string]string) {
 
 func gffattr (s string, kv map[string]string) {
 	for _, i := range strings.Split (s, ";") {
+		if i == "" { continue }
 		ii := strings.SplitN (i, "=", 2)
 		kv [ii [0]] = ii[1]
 	}
