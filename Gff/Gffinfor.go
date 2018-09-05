@@ -15,14 +15,14 @@ import (
 
 const HELP = `
 Summary gff/gtf (.gz) and extract attributions, usage: 
-	summary sequences, sources, types
-	$ Gffinfor  <gff>
+    summary sequences, sources, types
+    $ Gffinfor  <gff>
 
-	summary types' attributions
-	$ Gffinfor  <gff>  <type1,type2...>
+    summary types' attributions
+    $ Gffinfor  <gff>  <type1,type2...>
 
-	extract attributions and "Dbxref" (tsv format)
-	$ Gffinfor  <gff>  <type1,type2...>  <attr1,attr2...>  [dbxref1,dbxref2...]
+    extract attributions and "Dbxref" (tsv format)
+    $ Gffinfor  <gff>  <type1,type2...>  <attr1,attr2...>  [dbxref1,dbxref2...]
 
 author: d2jvkpn
 version: 0.3
