@@ -25,8 +25,8 @@ Summary gff/gtf (.gz) and extract attributions, usage:
 	$ Gffinfor  <gff>  <type1,type2...>  <attr1,attr2...>  [dbxref1,dbxref2...]
 
 author: d2jvkpn
-version: 0.2
-release: 2018-09-02
+version: 0.3
+release: 2018-09-05
 project: https://github.com/d2jvkpn/BioinformaticsAnalysis
 lisense: GPLv3 (https://www.gnu.org/licenses/gpl-3.0.en.html)
 `
@@ -43,9 +43,9 @@ func main () {
 		parseAttr = gtfattr
 	} else { parseAttr = gffattr }
 
-	scanner, F, err := ReadInput (os.Args [1])
+	scanner, file, err := ReadInput (os.Args [1])
 	if err != nil { log.Fatal (err) }
-	if F != nil { defer F.Close () }
+	defer file.Close ()
 
 	switch len (os.Args) - 1 {
 	case 1:
@@ -66,23 +66,26 @@ func main () {
 }
 
 //
-func ReadInput (I string) (scanner *bufio.Scanner, F *os.File, err error) {
-	if I == "-" {
+func ReadInput (s string) (scanner *bufio.Scanner, file *os.File, err error) {
+	if s == "-" {
 		scanner = bufio.NewScanner (os.Stdin)
-		return scanner, F, err
+		return
 	}
 
-	F, err = os.Open (I)
-	if err != nil { return scanner, nil, err } 
+	file, err = os.Open (s)
+	if err != nil { return } 
 
-	if strings.HasSuffix (I, ".gz") {
-		gz, err := gzip.NewReader (F)
-		if err != nil { return scanner, F, err }
+	if strings.HasSuffix (s, ".gz") {
+		var gz *gzip.Reader
+		gz, err = gzip.NewReader (file)
+		if err != nil { return }
 
 		scanner = bufio.NewScanner (gz)
-	} else { scanner = bufio.NewScanner (F) }
+	} else {
+		scanner = bufio.NewScanner (file)
+	}
 
-	return scanner, F, err
+	return
 }
 
 //
@@ -265,6 +268,7 @@ func P4 (scanner *bufio.Scanner, types []string, attrs []string, dbx []string) {
 		values := []string {}
 		for _, k := range attrs { values = append (values, kv[k]) }
 		for _, k := range dbx { values = append (values, dkv[k]) }
+
 		fmt.Println (strings.Join (values, "\t"))
 	}
 }
