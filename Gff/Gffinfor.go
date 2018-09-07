@@ -25,8 +25,8 @@ Summary gff/gtf (.gz) and extract attributions, usage:
     $ Gffinfor  <gff>  <type1,type2...>  <attr1,attr2...>  [dbxref1,dbxref2...]
 
 author: d2jvkpn
-version: 0.3
-release: 2018-09-05
+version: 0.4
+release: 2018-09-06
 project: https://github.com/d2jvkpn/BioinformaticsAnalysis
 lisense: GPLv3 (https://www.gnu.org/licenses/gpl-3.0.en.html)
 `
@@ -43,9 +43,9 @@ func main () {
 		parseAttr = gtfattr
 	} else { parseAttr = gffattr }
 
-	scanner, file, err := ReadInput (os.Args [1])
+	scanner, frd, err := ReadInput (os.Args [1])
 	if err != nil { log.Fatal (err) }
-	defer file.Close ()
+	defer frd.Close ()
 
 	switch len (os.Args) - 1 {
 	case 1:
@@ -155,11 +155,7 @@ func P1 (scanner *bufio.Scanner) {
 	var sKeys []string
 	for k, _ := range Sources {	sKeys = append (sKeys, k) }
 
-	// sort.Strings (sKeys)
-	sort.Slice (sKeys, 
-		func(i, j int) bool {
-			return strings.ToLower (sKeys[i]) < strings.ToLower(sKeys[j]) 
-		})
+	SortStringSlice (sKeys)
 
 	for _, k:= range sKeys {
 		x := []string {"source: " + k, strconv.Itoa (Sources[k])}
@@ -168,11 +164,7 @@ func P1 (scanner *bufio.Scanner) {
 
 	var tKeys []string
 	for k, _ := range Types {tKeys = append (tKeys, k) }
-
-	sort.Slice (tKeys,
-		func(i, j int) bool {
-			return strings.ToLower (tKeys[i]) < strings.ToLower(tKeys[j])
-		})
+	SortStringSlice (tKeys)
 
 	for _, k:= range tKeys {
 		x := []string {"type: " + k, strconv.Itoa (Types[k])}
@@ -207,13 +199,10 @@ func P2 (scanner *bufio.Scanner, types []string) {
 
 	var array [][]string
 	array = append (array, [] string {"TYPE\tATTRIBUTION", "TOTAL", "UNIQUE"})
+
 	var keys []string
 	for k, _ := range TypeAttrs { keys = append (keys, k) }
-
-	sort.Slice (keys,
-		func(i, j int) bool {
-			return strings.ToLower (keys[i]) < strings.ToLower(keys[j])
-		})
+	SortStringSlice (keys)
 
 	for _, v := range keys {
 		u := 0
@@ -253,6 +242,7 @@ func P4 (scanner *bufio.Scanner, types []string, attrs []string, dbx []string) {
 	for scanner.Scan() {
 		line := scanner.Text ()
 		if strings.HasPrefix (line, "#") { continue }
+
 		fds = strings.SplitN (line, "\t", 9)
 		if types[0] != "" && ! HasElem (types, fds[2]) { continue }
 
@@ -261,6 +251,7 @@ func P4 (scanner *bufio.Scanner, types []string, attrs []string, dbx []string) {
 		dkv := make (map[string]string)
 
 		for _, d := range strings.Split (kv["Dbxref"], ",") {
+			if d == "" { continue }
 			x := strings.SplitN (d, ":", 2)
 			dkv[x[0]] = x[1]
 		}
@@ -271,4 +262,12 @@ func P4 (scanner *bufio.Scanner, types []string, attrs []string, dbx []string) {
 
 		fmt.Println (strings.Join (values, "\t"))
 	}
+}
+
+//
+func SortStringSlice (s []string) {
+	sort.Slice (s, 
+		func(i, j int) bool {
+			return strings.ToLower (s[i]) < strings.ToLower(s[j]) 
+	})
 }
