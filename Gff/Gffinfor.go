@@ -61,6 +61,7 @@ func main () {
 		strings.SplitN (os.Args[4], ",", -1) )
 	default:
 		fmt.Println (HELP)
+		return
 	}
 
 }
@@ -216,7 +217,7 @@ func P2 (scanner *bufio.Scanner, types []string) {
 }
 
 //
-func P3 (scanner *bufio.Scanner, types []string, attrs []string) {
+func P3 (scanner *bufio.Scanner, types, attrs []string) {
 	var fds []string
 	fmt.Println ( strings.Join (attrs, "\t") )
 
@@ -235,14 +236,13 @@ func P3 (scanner *bufio.Scanner, types []string, attrs []string) {
 }
 
 //
-func P4 (scanner *bufio.Scanner, types []string, attrs []string, dbx []string) {
+func P4 (scanner *bufio.Scanner, types, attrs, dbx []string) {
 	var fds []string
 	fmt.Println (strings.Join (attrs, "\t") + "\t" + strings.Join (dbx, "\t") )
 
 	for scanner.Scan() {
 		line := scanner.Text ()
 		if strings.HasPrefix (line, "#") { continue }
-
 		fds = strings.SplitN (line, "\t", 9)
 		if types[0] != "" && ! HasElem (types, fds[2]) { continue }
 
@@ -266,8 +266,7 @@ func P4 (scanner *bufio.Scanner, types []string, attrs []string, dbx []string) {
 
 //
 func SortStringSlice (s []string) {
-	sort.Slice (s, 
-		func(i, j int) bool {
-			return strings.ToLower (s[i]) < strings.ToLower(s[j]) 
+	sort.Slice (s, func(i, j int) bool {
+		return strings.ToLower (s[i]) < strings.ToLower(s[j]) 
 	})
 }
