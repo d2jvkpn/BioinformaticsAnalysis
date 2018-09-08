@@ -16,21 +16,21 @@ import (
 
 const HELP = `
 Update local data table for command "match":
-    $ PathwayTK  update
+  $ PathwayTK  update
 
 Find match species in local data table:
-    $ PathwayTK  match  "Rhinopithecus roxellana"
-    $ PathwayTK  match  Rhinopithecus+roxellana
+  $ PathwayTK  match  "Rhinopithecus roxellana"
+  $ PathwayTK  match  Rhinopithecus+roxellana
 
 Get organisms keg file:
-    $ PathwayTK  get  hsa mmu ath
+  $ PathwayTK  get  hsa mmu ath
 
 Convert keg format to tsv:
-    $ PathwayTK  totsv  hsa00001.keg.gz  hsa00001.keg.tsv
-    $ PathwayTK  totsv  hsa00001.keg  hsa00001.keg.tsv
+  $ PathwayTK  totsv  hsa00001.keg.gz  hsa00001.keg.tsv
+  $ PathwayTK  totsv  hsa00001.keg  hsa00001.keg.tsv
 
 Get species keg and convert to tsv:
-    $ PathwayTK  species  Rhinopithecus+roxellana
+  $ PathwayTK  species  Rhinopithecus+roxellana
 
 author: d2jvkpn
 version: 0.2
@@ -49,19 +49,20 @@ func main () {
 	}
 
 	cmd := os.Args[1]
+	datatsv := filepath.Dir (os.Args[0]) + "/KEGG_data/KEGG_organism.tsv"
 
 	switch {
 	case nargs == 1 && cmd == "update":
-		Update (filepath.Dir (os.Args[0]) + "/data/KEGG_organism.tsv")
+		Update (datatsv)
 
-	case nargs > 2 && cmd == "get":
+	case nargs > 1 && cmd == "get":
 		Get (os.Args[2:])
 
 	case nargs == 2 && cmd == "match":
-		record, found := Match (formatSpeciesName (os.Args[2]))
+		record, found := Match (formatSpeciesName (os.Args[2]), datatsv)
 
 		if found {
-			fmt.Printf ("Entry: %s\nCode: %s\nSpecies: %s\nLineage: %s\n",
+			fmt.Printf ("Entry: %s\nCode: %s\nSpecies: %s\nLineage: %s\n\n",
 			record[0], record[1], record[2], record[3])
 		} else {
 			fmt.Println ("NotFound")
@@ -71,10 +72,10 @@ func main () {
 		ToTSV (os.Args[2], os.Args[3])
 
 	case nargs == 2 && cmd == "species":
-		record, found := Match (formatSpeciesName (os.Args[2]))
+		record, found := Match (formatSpeciesName (os.Args[2]), datatsv)
 
 		if found {
-			Get ([]string {record[1]})
+			Get ( []string {record[1]} )
 			ToTSV (record[1] + "00001.keg.gz", record[1] + "00001.keg.tsv")
 		} else {
 			log.Fatal ("NotFound")
@@ -85,7 +86,7 @@ func main () {
 	}
 }
 
-//
+
 func formatSpeciesName (name string) string {
 	wds := strings.Fields (strings.Replace (name, "+", " ", -1))
 	re := regexp.MustCompile("[A-Za-z][a-z]+")
@@ -98,7 +99,7 @@ func formatSpeciesName (name string) string {
 	return (strings.Join (wds, " "))
 }
 
-//
+
 func ToTSV (keg string, tsv string) {
 	scanner, frd, err := ReadInput (keg)
 	if err != nil { log.Fatal (err) }
@@ -126,11 +127,11 @@ func ToTSV (keg string, tsv string) {
 			copy (fds[7:9], strings.SplitN (strings.TrimLeft (line, "B  "),
 			" ", 2) )
 
-			fds[7] = "No." + fds[7]
+			fds[7] = "B" + fds[7]
 
 	    case 'C':
 			tmp := strings.SplitN (strings.TrimLeft (line, "C    "), " ", 2)
-			fds[0], fds[1] = "No." + tmp[0], ""
+			fds[0], fds[1] = "C" + tmp[0], ""
 			fds[2] = strings.TrimRight (tmp[1], "]") 
 
 			if strings.Contains (fds[2], " [") {
@@ -146,7 +147,10 @@ func ToTSV (keg string, tsv string) {
 			fds[1], fds[2] = "-", "-"
 			fds[5], fds[6], fds[7], fds[8] = "-", "-", "-", "-"
 			tmp := strings.SplitN (strings.TrimLeft (line, "D      "), "\t", 2)
+			if len(tmp) != 2 { continue }
+
 			copy (fds[3:5], strings.SplitN (tmp[0], " ", 2))
+			if len(strings.SplitN (tmp[1], " ", 2)) != 2 {fmt.Println (line)}
 			copy (fds[9:11], strings.SplitN (tmp[1], " ", 2))
 
 			TSV.Write ([]byte (strings.Join (fds[0:], "\t") + "\n"))
@@ -158,9 +162,9 @@ func ToTSV (keg string, tsv string) {
 	}
 }
 
-//
-func Match (name string) (record []string, ok bool) {
-	file, err := os.Open (filepath.Dir (os.Args[0]) + "/data/KEGG_organism.tsv")
+
+func Match (name, datatsv string) (record []string, ok bool) {
+	file, err := os.Open (datatsv)
 	if err != nil { log.Fatal(err) }
 	defer file.Close()
 
@@ -174,6 +178,7 @@ func Match (name string) (record []string, ok bool) {
 
 	return
 }
+
 
 func Update (saveto string) {
 	resp, err := http.Get ("http://rest.kegg.jp/list/organism")
@@ -194,6 +199,7 @@ func Update (saveto string) {
 	fwt.Write(body)
 }
 
+
 func Get (codes []string) {
 	ch := make (chan struct {}, 10)
 	var wg sync.WaitGroup
@@ -208,6 +214,7 @@ func Get (codes []string) {
 
 	wg.Wait ()
 } 
+
 
 func getkeg (p string, ch <- chan struct{}, wg *sync.WaitGroup) {
 	defer func () { <- ch }()
@@ -239,7 +246,7 @@ func getkeg (p string, ch <- chan struct{}, wg *sync.WaitGroup) {
 	log.Printf ("Saved %s...\n", p)
 }
 
-//
+
 func ReadInput (s string) (scanner *bufio.Scanner, file *os.File, err error) {
 	file, err = os.Open (s)
 	if err != nil { return } 
@@ -247,7 +254,7 @@ func ReadInput (s string) (scanner *bufio.Scanner, file *os.File, err error) {
 	if strings.HasSuffix (s, ".gz") {
 		var gz *gzip.Reader
 		gz, err = gzip.NewReader (file)
-		if err != nil { return } 
+		if err != nil { return }
 		scanner = bufio.NewScanner (gz)
 	} else {
 		scanner = bufio.NewScanner (file)
