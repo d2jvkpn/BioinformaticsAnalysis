@@ -49,7 +49,7 @@ func main () {
 	}
 
 	cmd := os.Args[1]
-	datatsv := filepath.Dir (os.Args[0]) + "/KEGG_data/KEGG_organism.tsv"
+	datatsv := filepath.Dir (os.Args[0]) + "/data/KEGG_organism.tsv"
 
 	switch {
 	case nargs == 1 && cmd == "update":
@@ -82,7 +82,7 @@ func main () {
 		}
 
 	default:
-		fmt.Println (HELP)
+		log.Fatal (HELP)
 	}
 }
 
@@ -100,7 +100,7 @@ func formatSpeciesName (name string) string {
 }
 
 
-func ToTSV (keg string, tsv string) {
+func ToTSV (keg, tsv string) {
 	scanner, frd, err := ReadInput (keg)
 	if err != nil { log.Fatal (err) }
 	defer frd.Close()
@@ -144,16 +144,14 @@ func ToTSV (keg string, tsv string) {
 			TSV.Write ([]byte (strings.Join (fds[0:], "\t") + "\n"))
 
 	    case 'D':
-			fds[1], fds[2] = "-", "-"
-			fds[5], fds[6], fds[7], fds[8] = "-", "-", "-", "-"
 			tmp := strings.SplitN (strings.TrimLeft (line, "D      "), "\t", 2)
 			if len(tmp) != 2 { continue }
 
 			copy (fds[3:5], strings.SplitN (tmp[0], " ", 2))
-			if len(strings.SplitN (tmp[1], " ", 2)) != 2 {fmt.Println (line)}
 			copy (fds[9:11], strings.SplitN (tmp[1], " ", 2))
 
-			TSV.Write ([]byte (strings.Join (fds[0:], "\t") + "\n"))
+			TSV.Write ([]byte (strings.Join ( []string {fds[0], "-", "-", 
+			fds[3], fds[4], "-", "-", "-", "-", fds[9], fds[10] }, "\t") + "\n"))
 
 		default:
 			continue
@@ -169,10 +167,11 @@ func Match (name, datatsv string) (record []string, ok bool) {
 	defer file.Close()
 
 	scanner := bufio.NewScanner (file)
+	scanner.Scan () // skip header
 
 	for scanner.Scan () {
 		record = strings.Split (scanner.Text(), "\t")
-		ok = name == strings.Split (record[2], " (")[0]
+		ok = (name == strings.Split (record[2], " (")[0])
 		if ok { return }
 	}
 
@@ -196,7 +195,7 @@ func Update (saveto string) {
 	defer fwt.Close ()
 
 	fwt.Write ([]byte ("Entry\tCode\tSpecies\tLineage\n"))
-	fwt.Write(body)
+	fwt.Write (body)
 }
 
 
@@ -204,7 +203,8 @@ func Get (codes []string) {
 	ch := make (chan struct {}, 10)
 	var wg sync.WaitGroup
 
-	log.Printf ("Request organism code(s):\n    %s\n", strings.Join (codes, " "))
+	log.Printf ("Request organism code(s):\n    %s\n", 
+	strings.Join (codes, " "))
 
 	for _, v := range codes {
 		ch <- struct{}{}
@@ -243,6 +243,7 @@ func getkeg (p string, ch <- chan struct{}, wg *sync.WaitGroup) {
 	gw := gzip.NewWriter (file)
 	gw.Write (body)
 	gw.Close ()
+
 	log.Printf ("Saved %s...\n", p)
 }
 
@@ -255,6 +256,7 @@ func ReadInput (s string) (scanner *bufio.Scanner, file *os.File, err error) {
 		var gz *gzip.Reader
 		gz, err = gzip.NewReader (file)
 		if err != nil { return }
+
 		scanner = bufio.NewScanner (gz)
 	} else {
 		scanner = bufio.NewScanner (file)
