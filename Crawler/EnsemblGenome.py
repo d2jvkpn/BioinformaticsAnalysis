@@ -54,7 +54,7 @@ Note:
 def formatSpeciesName(s):
     import string
 
-    wds = s.split()
+    wds = s.replace ("+", " ").split ()
 
     for i in range(len(wds)):
         a = False not in [i in string.ascii_letters for i in wds[i]]
