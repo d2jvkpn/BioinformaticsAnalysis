@@ -58,8 +58,8 @@ top10 <- t (apply(d, 2, function(x) sort(x, decreasing=TRUE)[1:10]))
 n <- apply(d, 2, function(x) order(x, decreasing=TRUE)[1:10])
 top10gene <- t (apply (n, 2, function(x) rownames(d)[x]))
 
-colnames (top10gene) <- c("top10", "top9", "top8", "top7", "top6", "top5", 
-"top4", "top3", "top2", "top1")
+colnames (top10gene) <- c("top1", "top2", "top3", "top4", "top5", "top6", 
+"top7", "top8", "top9", "top10")
 
 for (i in 1:nrow(top10gene) ) {
 	for (j in 1:ncol(top10gene) ) {
