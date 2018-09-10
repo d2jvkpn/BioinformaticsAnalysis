@@ -235,20 +235,20 @@ CorScatter <- function(d, p, threshold, title) {
 	kendall <- round (cor(d1[,1], d1[,2],  method = "kendall"), 3)
 	spearman <- round (cor(d1[,1], d1[,2],  method = "spearman"), 3)
 
-    ann <- paste (paste0('pearson = ', pearson),
+	ann <- paste (paste0('pearson = ', pearson),
 	paste0('kendall = ', kendall),
 	paste0('spearman = ', spearman), sep='\n')
 
 	pl <- ggplot (d1, aes (a, b)) + 
-    geom_point (colour="blue", alpha=0.2, size=0.5) +
+	geom_point (colour="blue", alpha=0.2, size=0.5) +
 	ggtitle(paste(p[2],"~", p[1], "scatterplot" )) +
-    xlab (bquote('log' [10] ~ .(title) ~ ", " ~ .(p[1]))) + 
-    ylab (bquote('log' [10] ~ .(title) ~ ", " ~ .(p[2]))) +
-    # annotate ("text", -Inf, Inf, label = ann, hjust = 0, vjust = 1) +
+	xlab (bquote('log' [10] ~ .(title) ~ ", " ~ .(p[1]))) + 
+	ylab (bquote('log' [10] ~ .(title) ~ ", " ~ .(p[2]))) +
+	# annotate ("text", -Inf, Inf, label = ann, hjust = 0, vjust = 1) +
 	annotate ("text", min(d1[,1]), max(d1[,2]), 
 	label = ann, hjust = 0, vjust = 1) +
 	theme_bw() +
-    theme (aspect.ratio=1, plot.title = element_text(hjust = 0.5))
+	theme (aspect.ratio=1, plot.title = element_text(hjust = 0.5))
 
 	return (pl)
 }
