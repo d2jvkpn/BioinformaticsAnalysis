@@ -16,25 +16,29 @@ import (
 
 const HELP = `
 Update local data table for command "match":
-  $ Pathway  update
+    $ Pathway  update
 
 Find match species in local data table:
-  $ Pathway  match  "Rhinopithecus roxellana"
-  $ Pathway  match  Rhinopithecus+roxellana
+    $ Pathway  match  "Rhinopithecus roxellana"
+    $ Pathway  match  Rhinopithecus+roxellana
 
 Get organisms keg file:
-  $ Pathway  get  hsa mmu ath
+    $ Pathway  get  hsa mmu ath
 
 Convert keg format to tsv:
-  $ Pathway  totsv  hsa00001.keg.gz  hsa00001.keg.tsv
-  $ Pathway  totsv  hsa00001.keg  hsa00001.keg.tsv
+    $ Pathway  totsv  hsa00001.keg.gz  hsa00001.keg.tsv
+    $ Pathway  totsv  hsa00001.keg  hsa00001.keg.tsv
+
+    tsv header:
+    C_id C_entry C_name gene_id gene A_id A_name B_id B_name KO KO_name EC
 
 Get species keg and convert to tsv:
-  $ Pathway  species  Rhinopithecus+roxellana
+    $ Pathway  species  Rhinopithecus+roxellana
+    output files: rro00001.keg.gz rro00001.keg.tsv
 
 author: d2jvkpn
-version: 0.2
-release: 2018-09-08
+version: 0.3
+release: 2018-09-10
 project: https://github.com/d2jvkpn/BioinformaticsAnalysis
 lisense: GPLv3 (https://www.gnu.org/licenses/gpl-3.0.en.html)
 `
@@ -110,26 +114,26 @@ func ToTSV (keg, tsv string) {
 	defer TSV.Close()
 
 	var line string
-	var fds [11]string
+	var fds [12]string
 
 	TSV.Write ([] byte ("C_id\tC_entry\tC_name\tgene_id\tgene\t" + 
-	"A_id\tA_name\tB_id\tB_name\tKO\tEC\n"))
+	"A_id\tA_name\tB_id\tB_name\tKO\tKO_name\tEC\n"))
 
 	for scanner.Scan () {
 		line = scanner.Text()
-	    if len (line) < 2 { continue }
+		if len (line) < 2 { continue }
 
 		switch line[0] {
 		case 'A':
-	    	copy (fds[5:7], strings.SplitN (line, " ", 2))
+			copy (fds[5:7], strings.SplitN (line, " ", 2))
 
-	    case 'B':
+		case 'B':
 			copy (fds[7:9], strings.SplitN (strings.TrimLeft (line, "B  "),
 			" ", 2) )
 
 			fds[7] = "B" + fds[7]
 
-	    case 'C':
+		case 'C':
 			tmp := strings.SplitN (strings.TrimLeft (line, "C    "), " ", 2)
 			fds[0], fds[1] = "C" + tmp[0], ""
 			fds[2] = strings.TrimRight (tmp[1], "]") 
@@ -139,19 +143,24 @@ func ToTSV (keg, tsv string) {
 				fds[1], fds[2] = fds[2], fds[1]
 			}
 
-			fds[3], fds[4], fds[9], fds[10] = "", "", "", ""
-
+			fds[3], fds[4], fds[9], fds[10], fds[11] = "", "", "", "", ""
 			TSV.Write ([]byte (strings.Join (fds[0:], "\t") + "\n"))
 
-	    case 'D':
-			tmp := strings.SplitN (strings.TrimLeft (line, "D      "), "\t", 2)
+		case 'D':
+			tmp := strings.SplitN (strings.TrimLeft (line, "D	  "), "\t", 2)
 			if len(tmp) != 2 { continue }
 
 			copy (fds[3:5], strings.SplitN (tmp[0], " ", 2))
 			copy (fds[9:11], strings.SplitN (tmp[1], " ", 2))
 
-			TSV.Write ([]byte (strings.Join ( []string {fds[0], "-", "-", 
-			fds[3], fds[4], "-", "-", "-", "-", fds[9], fds[10] }, "\t") + "\n"))
+			if strings.Contains (fds[10], " [EC:") {
+				copy (fds[10:12], strings.SplitN (
+				strings.Replace (fds[10], " [EC:", "\t[EC:", 1), "\t", 2) )
+			} else { fds[11] = "" }
+
+			TSV.Write ([]byte (strings.Join ( []string {
+			fds[0], "-", "-", fds[3], fds[4], "-", "-", "-", "-", 
+			fds[9], fds[10], fds[11]}, "\t") + "\n"))
 
 		default:
 			continue
@@ -203,8 +212,7 @@ func Get (codes []string) {
 	ch := make (chan struct {}, 10)
 	var wg sync.WaitGroup
 
-	log.Printf ("Request organism code(s):\n    %s\n", 
-	strings.Join (codes, " "))
+	log.Printf ("Request organism code(s): %s\n", strings.Join (codes, " "))
 
 	for _, v := range codes {
 		ch <- struct{}{}
@@ -219,7 +227,6 @@ func Get (codes []string) {
 func getkeg (p string, ch <- chan struct{}, wg *sync.WaitGroup) {
 	defer func () { <- ch }()
 	defer wg.Done ()
-
 	// log.Printf ("Querying %s...\n", p)
 
 	resp, err := http.Get (fmt.Sprintf (URL, p))
@@ -250,7 +257,7 @@ func getkeg (p string, ch <- chan struct{}, wg *sync.WaitGroup) {
 
 func ReadInput (s string) (scanner *bufio.Scanner, file *os.File, err error) {
 	file, err = os.Open (s)
-	if err != nil { return } 
+	if err != nil { return }
 
 	if strings.HasSuffix (s, ".gz") {
 		var gz *gzip.Reader
