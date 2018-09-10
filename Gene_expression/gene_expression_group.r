@@ -3,7 +3,7 @@ Args <- commandArgs(T)
 if (length(Args) == 0 || Args[1] == "-h" || Args[1] == "--help") {
 	print("Arguments:  <expression.tsv>  <outputPrefix>  <threshold>  <title>  <group.tsv>")
 	print("author: d2jvkpn")
-	print("version: 0.2")
+	print("version: 0.3")
 	print("release: 2018-09-10")
 	print("project: https://github.com/d2jvkpn/BioinformaticsAnalysis")
 	print("lisense: GPLv3 (https://www.gnu.org/licenses/gpl-3.0.en.html")
