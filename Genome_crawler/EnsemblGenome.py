@@ -1,8 +1,8 @@
 #! /usr/bin/python3
 
 __author__ = 'd2jvkpn'
-__version__ = '0.7'
-__release__ = '2018-09-02'
+__version__ = '0.8'
+__release__ = '2018-09-11'
 __project__ = 'https://github.com/d2jvkpn/BioinformaticsAnalysis'
 __license__ = 'GPLv3 (https://www.gnu.org/licenses/gpl-3.0.en.html)'
 
@@ -200,16 +200,20 @@ def biomart_anno(url, loca):
     print('Saved gene2entrez.tsv to %s/' % loca)
 
     ####
-    s3 = ds.search({'attributes': ['ensembl_gene_id', 'kegg_enzyme']})
-    
-    gene2kegg = pd.DataFrame.from_records(
-      [str(i, encoding = 'utf-8').split('\t') for i in s3.iter_lines()], 
-      columns = ['gene', 'kegg_enzyme'])
-    
-    gene2kegg = gene2kegg.loc[gene2kegg['kegg_enzyme'] != '', :]
-    gene2kegg.to_csv(loca + '/gene2kegg.tsv', sep='\t', index=False)
+    try:
+        s3 = ds.search({'attributes': ['ensembl_gene_id', 'kegg_enzyme']})
 
-    print('Saved gene2kegg.tsv to %s/' % loca)
+        gene2kegg = pd.DataFrame.from_records(
+        [str(i, encoding = 'utf-8').split('\t') for i in s3.iter_lines()], 
+        columns = ['gene', 'kegg_enzyme'])
+
+        gene2kegg = gene2kegg.loc[gene2kegg['kegg_enzyme'] != '', :]
+        gene2kegg.to_csv(loca + '/gene2kegg.tsv', sep='\t', index=False)
+
+        print('Saved gene2kegg.tsv to %s/' % loca)
+    except:
+        gene2kegg = None
+        print ("kegg_enzyme is not available")
 
     ####
     s4 = ds.search({'attributes': ['ensembl_gene_id', 'gene_biotype', \
@@ -221,13 +225,15 @@ def biomart_anno(url, loca):
 
     ####
     g = gene2go.groupby('gene')['GO_id'].apply(lambda x: ', '.join(x))
-    k = gene2kegg.groupby('gene')['kegg_enzyme'].apply(lambda x: ', '.join(x))
-    e = gene2entrez.groupby('gene')['entrez'].apply(lambda x: ', '.join(x))
-    
     gene_infor['GO_id'] = [ g[i] if i in g else '' for i in gene_infor['gene']]
-    gene_infor['kegg_enzyme'] = [ k[i] if i in k else '' for i in gene_infor['gene']]
+
+    if gene2kegg != None:
+        k = gene2kegg.groupby('gene')['kegg_enzyme'].apply(lambda x: ', '.join(x))
+        gene_infor['kegg_enzyme'] = [ k[i] if i in k else '' for i in gene_infor['gene']]
+
+    e = gene2entrez.groupby('gene')['entrez'].apply(lambda x: ', '.join(x))
     gene_infor['entrez'] = [ e[i] if i in e else '' for i in gene_infor['gene']]
-    
+
     gene_infor.to_csv(loca + '/gene.infor.tsv', sep='\t', index=False)
 
     print('Saved gene.infor.tsv to %s/' % loca)
