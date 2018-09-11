@@ -27,7 +27,6 @@ if (FALSE %in% c(sort(colnames(d)) == sort(rownames(gp))) ) {
 library(ggplot2)
 library(reshape2)
 library (pheatmap)
-library (gridExtra)
 
 m <- 1:length(unique (gp[,1]))
 names(m) <- unique (gp[,1])
@@ -94,7 +93,6 @@ L1 <- c("[100, Inf)", "[20, 100)", "[10, 20)", "[1, 10)", "[0.1, 1)",
 md[, "interval"] <- factor (md[, "interval"], levels=L1)
 
 md1 <- md[which(md$log10title >= log(threshold, 10)), ]
-md1$sample <- as.character(md1$sample)
 md1$group <- gp[md1$sample, 1]
 
 
