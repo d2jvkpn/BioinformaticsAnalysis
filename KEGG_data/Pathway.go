@@ -31,7 +31,7 @@ Convert keg format to tsv:
     hsa00001.keg.tsv tsv header:
     C_id C_entry C_name gene_id gene A_id A_name B_id B_name KO KO_name EC
 
-    other output files: gene2pathway.tsv pathway.infor.tsv
+    other output files: gene_id2pathway.tsv pathway.infor.tsv
 
 Get species keg and convert to tsv:
     $ Pathway  species  Rhinopithecus+roxellana
@@ -106,6 +106,8 @@ func formatSpeciesName (name string) string {
 
 
 func ToTSV (keg, tsv string) {
+	log.Printf ("Convert %s to tsv\n", keg)
+
 	scanner, frd, err := ReadInput (keg)
 	if err != nil { log.Fatal (err) }
 	defer frd.Close()
@@ -117,7 +119,7 @@ func ToTSV (keg, tsv string) {
 	if err != nil { log.Fatal (err) }
 	defer TSV.Close()
 
-	G2P, err := os.Create (filepath.Dir (tsv) + "/gene2pathway.tsv")
+	G2P, err := os.Create (filepath.Dir (tsv) + "/gene_id2pathway.tsv")
 	if err != nil { log.Fatal (err) }
 	defer G2P.Close()
 
@@ -132,7 +134,7 @@ func ToTSV (keg, tsv string) {
 	TSV.Write ([] byte ("C_id\tC_entry\tC_name\tgene_id\tgene\t" + 
 	"A_id\tA_name\tB_id\tB_name\tKO\tKO_name\tEC\n"))
 
-	G2P.Write ([]byte ("gene\tpathway\n"))
+	G2P.Write ([]byte ("gene_id\tpathway\n"))
 	Pinfor.Write ([]byte ("pathway\tpathway_name\tA\tB\n"))
 
 	for scanner.Scan () {
