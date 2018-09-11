@@ -3,252 +3,77 @@ package main
 import (
 	"os"
 	"fmt"
-	"log"
-	"io/ioutil"
 	"strings"
-	"sync"
+	"strconv"
 	"bufio"
-	"compress/gzip"
-	"net/http"
-	"path/filepath"
-	"regexp"
+	"sort"
+	"log"
+	"text/tabwriter"
+	"reflect"
+	"net/url"
+	gzip "github.com/klauspost/pgzip"
 )
 
 const HELP = `
-Update local data table for command "match":
-    $ Pathway  update
+Summary gff/gtf (.gz) and extract attributions, usage: 
+    summary sequences, sources, types
+    $ Gffinfor  <gff>
 
-Find match species in local data table:
-    $ Pathway  match  "Rhinopithecus roxellana"
-    $ Pathway  match  Rhinopithecus+roxellana
+    summary types' attributions
+    $ Gffinfor  <gff>  <type1,type2...>
 
-Get organisms keg file:
-    $ Pathway  get  hsa mmu ath
-
-Convert keg format to tsv:
-    $ Pathway  totsv  hsa00001.keg.gz  hsa00001.keg.tsv
-    $ Pathway  totsv  hsa00001.keg  hsa00001.keg.tsv
-
-Get species keg and convert to tsv:
-    $ Pathway  species  Rhinopithecus+roxellana
+    extract attributions and "Dbxref" (tsv format)
+    $ Gffinfor  <gff>  <type1,type2...>  <attr1,attr2...>  [dbxref1,dbxref2...]
 
 author: d2jvkpn
-version: 0.2
-release: 2018-09-08
+version: 0.5
+release: 2018-09-11
 project: https://github.com/d2jvkpn/BioinformaticsAnalysis
 lisense: GPLv3 (https://www.gnu.org/licenses/gpl-3.0.en.html)
 `
 
-const URL = "http://www.kegg.jp/kegg-bin/download_htext?htext=%s&format=htext&filedir="
+var parseAttr func (string, map[string]string)
 
 func main () {
-	nargs := len (os.Args) - 1
-
-	if nargs == 0 || os.Args[1] == "-h" ||  os.Args[1] == "--help" {
+	if len(os.Args) == 1 || HasElem ([]string {"-h", "--help"}, os.Args[1]) {
 		fmt.Println (HELP); return
-	}
+	 }
 
-	cmd := os.Args[1]
-	datatsv := filepath.Dir (os.Args[0]) + "/data/KEGG_organism.tsv"
+	if strings.HasSuffix (os.Args[1], ".gtf") ||
+		strings.HasSuffix (os.Args[1], ".gtf.gz") {
+		parseAttr = gtfattr
+	} else { parseAttr = gffattr }
 
-	switch {
-	case nargs == 1 && cmd == "update":
-		Update (datatsv)
+	scanner, frd, err := ReadInput (os.Args [1])
+	if err != nil { log.Fatal (err) }
+	defer frd.Close ()
 
-	case nargs > 1 && cmd == "get":
-		Get (os.Args[2:])
-
-	case nargs == 2 && cmd == "match":
-		record, found := Match (formatSpeciesName (os.Args[2]), datatsv)
-
-		if found {
-			fmt.Printf ("Entry: %s\nCode: %s\nSpecies: %s\nLineage: %s\n\n",
-			record[0], record[1], record[2], record[3])
-		} else {
-			fmt.Println ("NotFound")
-		}
-
-	case nargs == 3 && cmd == "totsv":
-		ToTSV (os.Args[2], os.Args[3])
-
-	case nargs == 2 && cmd == "species":
-		record, found := Match (formatSpeciesName (os.Args[2]), datatsv)
-
-		if found {
-			Get ( []string {record[1]} )
-			ToTSV (record[1] + "00001.keg.gz", record[1] + "00001.keg.tsv")
-		} else {
-			log.Fatal ("NotFound")
-		}
-
+	switch len (os.Args) - 1 {
+	case 1:
+		P1 (scanner)
+	case 2:
+		P2 (scanner, strings.SplitN (os.Args[2], ",", -1) )
+	case 3:
+		P3 (scanner, strings.SplitN (os.Args[2], ",", -1), 
+		strings.SplitN (os.Args[3], ",", -1) )
+	case 4:
+		P4 (scanner, strings.SplitN (os.Args[2], ",", -1), 
+		strings.SplitN (os.Args[3], ",", -1),
+		strings.SplitN (os.Args[4], ",", -1) )
 	default:
-		log.Fatal (HELP)
-	}
-}
-
-
-func formatSpeciesName (name string) string {
-	wds := strings.Fields (strings.Replace (name, "+", " ", -1))
-	re := regexp.MustCompile("[A-Za-z][a-z]+")
-
-	for i, _ := range wds {
-		if re.Match ([]byte(wds[i])) { wds[i] = strings.ToLower(wds[i]) }
-	}
-	
-	wds[0] = strings.Title (wds[0])
-	return (strings.Join (wds, " "))
-}
-
-
-func ToTSV (keg, tsv string) {
-	scanner, frd, err := ReadInput (keg)
-	if err != nil { log.Fatal (err) }
-	defer frd.Close()
-
-	TSV, err := os.Create (tsv)
-	if err != nil { log.Fatal (err) }
-	defer TSV.Close()
-
-	var line string
-	var fds [11]string
-
-	TSV.Write ([] byte ("C_id\tC_entry\tC_name\tgene_id\tgene\t" + 
-	"A_id\tA_name\tB_id\tB_name\tKO\tEC\n"))
-
-	for scanner.Scan () {
-		line = scanner.Text()
-		if len (line) < 2 { continue }
-
-		switch line[0] {
-		case 'A':
-			copy (fds[5:7], strings.SplitN (line, " ", 2))
-
-		case 'B':
-			copy (fds[7:9], strings.SplitN (strings.TrimLeft (line, "B  "),
-			" ", 2) )
-
-			fds[7] = "B" + fds[7]
-
-		case 'C':
-			tmp := strings.SplitN (strings.TrimLeft (line, "C	"), " ", 2)
-			fds[0], fds[1] = "C" + tmp[0], ""
-			fds[2] = strings.TrimRight (tmp[1], "]") 
-
-			if strings.Contains (fds[2], " [") {
-				copy (fds[1:3], strings.SplitN (fds[2], " [", 2))
-				fds[1], fds[2] = fds[2], fds[1]
-			}
-
-			fds[3], fds[4], fds[9], fds[10] = "", "", "", ""
-
-			TSV.Write ([]byte (strings.Join (fds[0:], "\t") + "\n"))
-
-		case 'D':
-			tmp := strings.SplitN (strings.TrimLeft (line, "D	  "), "\t", 2)
-			if len(tmp) != 2 { continue }
-
-			copy (fds[3:5], strings.SplitN (tmp[0], " ", 2))
-			copy (fds[9:11], strings.SplitN (tmp[1], " ", 2))
-
-			TSV.Write ([]byte (strings.Join ( []string {fds[0], "-", "-", 
-			fds[3], fds[4], "-", "-", "-", "-", fds[9], fds[10] }, "\t") + "\n"))
-
-		default:
-			continue
-
-		}
-	}
-}
-
-
-func Match (name, datatsv string) (record []string, ok bool) {
-	file, err := os.Open (datatsv)
-	if err != nil { log.Fatal(err) }
-	defer file.Close()
-
-	scanner := bufio.NewScanner (file)
-	scanner.Scan () // skip header
-
-	for scanner.Scan () {
-		record = strings.Split (scanner.Text(), "\t")
-		ok = (name == strings.Split (record[2], " (")[0])
-		if ok { return }
-	}
-
-	return
-}
-
-
-func Update (saveto string) {
-	resp, err := http.Get ("http://rest.kegg.jp/list/organism")
-	if err != nil { log.Println (err); return }
-	defer resp.Body.Close ()
-
-	body, err := ioutil.ReadAll (resp.Body)
-	if err != nil { log.Println (err); return }
-
-	err = os.MkdirAll (filepath.Dir (saveto), 0755)
-	if err != nil { log.Fatal (err)}
-
-	fwt, err := os.Create (saveto)
-	if err != nil { log.Println (err); return }
-	defer fwt.Close ()
-
-	fwt.Write ([]byte ("Entry\tCode\tSpecies\tLineage\n"))
-	fwt.Write (body)
-}
-
-
-func Get (codes []string) {
-	ch := make (chan struct {}, 10)
-	var wg sync.WaitGroup
-
-	log.Printf ("Request organism code(s):\n	%s\n", 
-	strings.Join (codes, " "))
-
-	for _, v := range codes {
-		ch <- struct{}{}
-		wg.Add (1)
-		go getkeg (v + "00001.keg", ch, &wg)
-	}
-
-	wg.Wait ()
-} 
-
-
-func getkeg (p string, ch <- chan struct{}, wg *sync.WaitGroup) {
-	defer func () { <- ch }()
-	defer wg.Done ()
-
-	// log.Printf ("Querying %s...\n", p)
-
-	resp, err := http.Get (fmt.Sprintf (URL, p))
-	if err != nil { log.Println (err); return }
-	defer resp.Body.Close ()
-
-	body, err := ioutil.ReadAll (resp.Body)
-	if err != nil { log.Println (err); return }
-
-	lines := strings.Split (string (body), "\n")
-
-	if ! strings.HasPrefix (lines[len (lines)-2], "#Last updated:") {
-		log.Printf ("Failed to get %s\n", p)
+		fmt.Println (HELP)
 		return
 	}
 
-	file, err := os.Create (p + ".gz")
-	if err != nil { log.Println (err); return }
-	defer file.Close ()
-
-	gw := gzip.NewWriter (file)
-	gw.Write (body)
-	gw.Close ()
-
-	log.Printf ("Saved %s...\n", p)
 }
 
-
+//
 func ReadInput (s string) (scanner *bufio.Scanner, file *os.File, err error) {
+	if s == "-" {
+		scanner = bufio.NewScanner (os.Stdin)
+		return
+	}
+
 	file, err = os.Open (s)
 	if err != nil { return } 
 
@@ -261,6 +86,190 @@ func ReadInput (s string) (scanner *bufio.Scanner, file *os.File, err error) {
 	} else {
 		scanner = bufio.NewScanner (file)
 	}
- 
+
 	return
+}
+
+//
+func TabPrint (array [][]string, leading string) { 
+	w := tabwriter.NewWriter (os.Stdout, 2, 0, 4, ' ', tabwriter.StripEscape)
+
+	for _, r := range array {
+		fmt.Fprintln (w, leading + strings.Join (r, "\t"))
+	}
+
+	w.Flush ()
+}
+
+func HasElem (s interface{}, elem interface{}) bool {
+	arrV := reflect.ValueOf(s)
+
+	if arrV.Kind() == reflect.Slice {
+		for i := 0; i < arrV.Len(); i++ {
+			// XXX - panics if slice element points to an unexported struct field
+			// see https://golang.org/pkg/reflect/#Value.Interface
+			if arrV.Index(i).Interface() == elem { return true }
+		}
+	}
+
+	return false
+}
+
+//
+func gtfattr (s string, kv map[string]string) {
+	for _, i := range strings.Split (strings.TrimRight (s, ";"), "; ") {
+	if i == "" { continue }
+		ii := strings.SplitN (i, " ", 2)
+		ii[1], _ = url.QueryUnescape (ii[1])
+		kv [ii [0]] = strings.Trim (ii[1], "\"")
+	}
+}
+
+func gffattr (s string, kv map[string]string) {
+	for _, i := range strings.Split (s, ";") {
+		if i == "" { continue }
+		ii := strings.SplitN (i, "=", 2)
+		ii[1], _ = url.QueryUnescape (ii[1])
+		kv [ii [0]] = ii[1]
+	}
+}
+
+//
+func P1 (scanner *bufio.Scanner) {
+	Sequences := make (map [string] int)
+	Sources := make (map [string] int)
+	Types := make (map [string] int)
+	var fds []string
+
+	for scanner.Scan() {
+		line := scanner.Text ()
+		if strings.HasPrefix (line, "#") { continue }
+		fds = strings.SplitN (line, "\t", 9)
+		Sequences[fds[0]] ++ 
+		Sources[fds[1]] ++
+		Types[fds[2]] ++
+	}
+
+	var array [][]string
+	array = append (array, []string {"NAME", "COUNT"})
+
+	array = append (array,
+	[]string {"Sequences", strconv.Itoa (len(Sequences))})
+
+	var sKeys []string
+	for k, _ := range Sources {	sKeys = append (sKeys, k) }
+
+	SortStringSlice (sKeys)
+
+	for _, k:= range sKeys {
+		x := []string {"source: " + k, strconv.Itoa (Sources[k])}
+		array = append (array, x)
+	}
+
+	var tKeys []string
+	for k, _ := range Types {tKeys = append (tKeys, k) }
+	SortStringSlice (tKeys)
+
+	for _, k:= range tKeys {
+		x := []string {"type: " + k, strconv.Itoa (Types[k])}
+		array = append (array, x)
+	}
+
+	TabPrint (array, "	")
+}
+
+//
+func P2 (scanner *bufio.Scanner, types []string) {
+	TypeAttrs := make (map [string] map [string] int)
+	var fds []string
+
+	for scanner.Scan() {
+		line := scanner.Text ()
+		if strings.HasPrefix (line, "#") { continue }
+		fds = strings.SplitN (line, "\t", 9)
+		if types[0] != "" && ! HasElem (types, fds[2]) { continue }
+
+		kv := make (map[string]string)
+		parseAttr (fds[8], kv)
+
+		for k, v := range kv {
+		   nk := fds[2] + "\t" + k
+
+		   if _, ok := TypeAttrs [nk]; !ok {
+			   TypeAttrs [nk] = make(map[string] int)
+		   } else { TypeAttrs [nk] [v] ++ }
+		}
+	}
+
+	var array [][]string
+	array = append (array, [] string {"TYPE\tATTRIBUTION", "TOTAL", "UNIQUE"})
+
+	var keys []string
+	for k, _ := range TypeAttrs { keys = append (keys, k) }
+	SortStringSlice (keys)
+
+	for _, v := range keys {
+		u := 0
+		for _, c := range TypeAttrs[v] { u += c }
+
+		array = append (array, 
+		[]string {v, strconv.Itoa (u), strconv.Itoa (len (TypeAttrs[v]))} )
+	}
+
+	TabPrint (array, "	")
+}
+
+//
+func P3 (scanner *bufio.Scanner, types, attrs []string) {
+	var fds []string
+	fmt.Println ( strings.Join (attrs, "\t") )
+
+	for scanner.Scan() {
+		line := scanner.Text ()
+		if strings.HasPrefix (line, "#") { continue }
+		fds = strings.SplitN (line, "\t", 9)
+		if types[0] != "" && ! HasElem (types, fds[2]) { continue }
+
+		kv := make (map[string]string)
+		parseAttr (fds[8], kv)
+		values := []string {}
+		for _, k := range attrs { values = append (values, kv[k]) }
+		fmt.Println (strings.Join (values, "\t"))
+	}
+}
+
+//
+func P4 (scanner *bufio.Scanner, types, attrs, dbx []string) {
+	var fds []string
+	fmt.Println (strings.Join (attrs, "\t") + "\t" + strings.Join (dbx, "\t") )
+
+	for scanner.Scan() {
+		line := scanner.Text ()
+		if strings.HasPrefix (line, "#") { continue }
+		fds = strings.SplitN (line, "\t", 9)
+		if types[0] != "" && ! HasElem (types, fds[2]) { continue }
+
+		kv := make (map[string]string)
+		parseAttr (fds[8], kv)
+		dkv := make (map[string]string)
+
+		for _, d := range strings.Split (kv["Dbxref"], ",") {
+			if d == "" { continue }
+			x := strings.SplitN (d, ":", 2)
+			dkv[x[0]] = x[1]
+		}
+
+		values := []string {}
+		for _, k := range attrs { values = append (values, kv[k]) }
+		for _, k := range dbx { values = append (values, dkv[k]) }
+
+		fmt.Println (strings.Join (values, "\t"))
+	}
+}
+
+//
+func SortStringSlice (s []string) {
+	sort.Slice (s, func(i, j int) bool {
+		return strings.ToLower (s[i]) < strings.ToLower(s[j]) 
+	})
 }
