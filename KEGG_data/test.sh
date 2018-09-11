@@ -14,5 +14,3 @@ PathwayTK  totsv  hsa00001.keg  hsa00001.keg.tsv
 
 # Get species keg and convert to tsv:
 PathwayTK  species  Rhinopithecus+roxellana
-
-sh gene2pathway.sh hsa00001.keg.tsv
