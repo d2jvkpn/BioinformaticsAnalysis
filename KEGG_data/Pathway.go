@@ -27,17 +27,18 @@ Get organisms keg file:
 
 Convert keg format to tsv:
     $ Pathway  totsv  hsa00001.keg.gz  hsa00001.keg.tsv
-    $ Pathway  totsv  hsa00001.keg  hsa00001.keg.tsv
 
-    tsv header:
+    hsa00001.keg.tsv tsv header:
     C_id C_entry C_name gene_id gene A_id A_name B_id B_name KO KO_name EC
+
+    other output files: gene2pathway.tsv pathway.infor.tsv
 
 Get species keg and convert to tsv:
     $ Pathway  species  Rhinopithecus+roxellana
     output files: rro00001.keg.gz rro00001.keg.tsv
 
 author: d2jvkpn
-version: 0.3
+version: 0.4
 release: 2018-09-10
 project: https://github.com/d2jvkpn/BioinformaticsAnalysis
 lisense: GPLv3 (https://www.gnu.org/licenses/gpl-3.0.en.html)
@@ -109,15 +110,30 @@ func ToTSV (keg, tsv string) {
 	if err != nil { log.Fatal (err) }
 	defer frd.Close()
 
+	err = os.MkdirAll (filepath.Dir (tsv), 0755)
+	if err != nil { log.Fatal (err)}
+
 	TSV, err := os.Create (tsv)
 	if err != nil { log.Fatal (err) }
 	defer TSV.Close()
 
+	G2P, err := os.Create (filepath.Dir (tsv) + "/gene2pathway.tsv")
+	if err != nil { log.Fatal (err) }
+	defer G2P.Close()
+
+	Pinfor, err := os.Create (filepath.Dir (tsv) + "/pathway.infor.tsv")
+	if err != nil { log.Fatal (err) }
+	defer Pinfor.Close()
+
 	var line string
 	var fds [12]string
+	var isPathway bool
 
 	TSV.Write ([] byte ("C_id\tC_entry\tC_name\tgene_id\tgene\t" + 
 	"A_id\tA_name\tB_id\tB_name\tKO\tKO_name\tEC\n"))
+
+	G2P.Write ([]byte ("gene\tpathway\n"))
+	Pinfor.Write ([]byte ("pathway\tpathway_name\tA\tB\n"))
 
 	for scanner.Scan () {
 		line = scanner.Text()
@@ -145,6 +161,12 @@ func ToTSV (keg, tsv string) {
 
 			fds[3], fds[4], fds[9], fds[10], fds[11] = "", "", "", "", ""
 			TSV.Write ([]byte (strings.Join (fds[0:], "\t") + "\n"))
+			isPathway = strings.HasPrefix (fds[1], "PATH:")
+
+			if isPathway {
+				Pinfor.Write ([]byte ( strings.TrimLeft (fds[1], "PATH:") +
+				"\t" + fds[2] + "\t" + fds[6] + "\t" + fds[8] + "\n"))
+			}
 
 		case 'D':
 			tmp := strings.SplitN (strings.TrimLeft (line, "D	  "), "\t", 2)
@@ -161,6 +183,12 @@ func ToTSV (keg, tsv string) {
 			TSV.Write ([]byte (strings.Join ( []string {
 			fds[0], "-", "-", fds[3], fds[4], "-", "-", "-", "-", 
 			fds[9], fds[10], fds[11]}, "\t") + "\n"))
+
+			if isPathway {
+				G2P.Write ([]byte (fds[3] + "\t" + 
+				strings.TrimLeft (fds[1], "PATH:") + "+" + fds[9] + "+" + 
+				fds[11] + "\n"))
+			}
 
 		default:
 			continue
@@ -250,7 +278,6 @@ func getkeg (p string, ch <- chan struct{}, wg *sync.WaitGroup) {
 	gw := gzip.NewWriter (file)
 	gw.Write (body)
 	gw.Close ()
-
 	log.Printf ("Saved %s...\n", p)
 }
 
