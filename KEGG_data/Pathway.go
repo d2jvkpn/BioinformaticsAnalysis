@@ -43,7 +43,7 @@ Get species keg (from local) and convert to tsv:
     output files: rro00001.keg.gz rro00001.keg.tsv
 
 author: d2jvkpn
-version: 0.5
+version: 0.6
 release: 2018-09-11
 project: https://github.com/d2jvkpn/BioinformaticsAnalysis
 lisense: GPLv3 (https://www.gnu.org/licenses/gpl-3.0.en.html)
