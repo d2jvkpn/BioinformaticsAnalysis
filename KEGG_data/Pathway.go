@@ -24,8 +24,11 @@ Find match species name or code in local data table:
     $ Pathway  match  Rhinopithecus+roxellana
     $ Pathway  match  rro
 
-Get organisms keg file:
-    $ Pathway  get  hsa mmu ath
+Get organisms a single keg file from local:
+    $ Pathway  get  hsa 
+
+Get organisms keg file(s) by download:
+    $ Pathway  Get  hsa mmu ath
 
 Convert keg format to tsv:
     $ Pathway  totsv  hsa00001.keg.gz  hsa00001.keg.tsv
@@ -35,7 +38,7 @@ Convert keg format to tsv:
 
     other output files: gene_id2pathway.tsv pathway.infor.tsv
 
-Get species keg and convert to tsv:
+Get species keg (from local) and convert to tsv:
     $ Pathway  species  Rhinopithecus+roxellana
     output files: rro00001.keg.gz rro00001.keg.tsv
 
@@ -64,6 +67,10 @@ func main () {
 		Update (datatsv)
 
 	case nargs > 1 && cmd == "get":
+		ok := Get_local (os.Args[2], filepath.Dir (ep) + "/KEGG_data/Pathway_kegs")
+		if !ok { os.Exit(1) }
+
+	case nargs > 1 && cmd == "Get":
 		Get (os.Args[2:])
 
 	case nargs == 2 && cmd == "match":
@@ -83,7 +90,13 @@ func main () {
 		record, found := Match (formatSpeciesName (os.Args[2]), datatsv)
 
 		if found {
-			Get ( []string {record[1]} )
+			fmt.Printf ("Entry: %s\nCode: %s\nSpecies: %s\nLineage: %s\n\n",
+			record[0], record[1], record[2], record[3])
+
+			ok := Get_local (record[1], 
+			filepath.Dir (ep) + "/KEGG_data/Pathway_kegs")
+
+			if !ok { os.Exit(1) }
 			ToTSV (record[1] + "00001.keg.gz", record[1] + "00001.keg.tsv")
 		} else {
 			log.Fatal ("NotFound")
@@ -137,7 +150,7 @@ func ToTSV (keg, tsv string) {
 	TSV.Write ([] byte ("C_id\tC_entry\tC_name\tgene_id\tgene\t" + 
 	"A_id\tA_name\tB_id\tB_name\tKO\tKO_name\tEC\n"))
 
-	G2P.Write ([]byte ("gene_id\tpathway\tgene_name\n"))
+	G2P.Write ([]byte ("gene_id\tpathway\tEC\tgene_name\n"))
 	Pinfor.Write ([]byte ("pathway\tpathway_name\tA\tB\n"))
 
 	for scanner.Scan () {
@@ -197,7 +210,7 @@ func ToTSV (keg, tsv string) {
 				}
 
 				G2P.Write ([]byte (fds[3] + "\t" + 
-				strings.TrimLeft (fds[1], "PATH:") + "+" + fds[9] + "+" + 
+				strings.TrimLeft (fds[1], "PATH:") + "+" + fds[9] + "\t" + 
 				strings.TrimLeft (strings.TrimRight (fds[11], "]"), "[EC:") + 
 				"\t" + g + "\n") )
 			}
@@ -216,14 +229,15 @@ func Match (name, datatsv string) (record []string, ok bool) {
 	defer file.Close()
 
 	species := formatSpeciesName (name)
-
 	scanner := bufio.NewScanner (file)
 	scanner.Scan () // skip header
 
 	for scanner.Scan () {
 		record = strings.Split (scanner.Text(), "\t")
 
-		ok = (name == record[1] || species == strings.Split (record[2], " (")[0])
+		ok = (name == record[1] ||
+		species == strings.Split (record[2], " (")[0])
+
 		if ok { return }
 	}
 
@@ -252,6 +266,17 @@ func Update (saveto string) {
 	fwt.Write (body)
 }
 
+
+func Get_local (code, path string) (ok bool) {
+	Cmd := exec.Command ("cp", path + "/" + code + "00001.keg.gz", "./")
+	err := Cmd.Run()
+
+	if err != nil {
+		log.Printf ("Failed to get %s from %s\n", code, path)
+	} else { ok = true}
+
+	return ok
+}
 
 func Get (codes []string) {
 	ch := make (chan struct {}, 10)
@@ -295,7 +320,7 @@ func getkeg (p string, ch <- chan struct{}, wg *sync.WaitGroup) {
 	gw := gzip.NewWriter (file)
 	gw.Write (body)
 	gw.Close ()
-	log.Printf ("Saved %s\n", p)
+	log.Printf ("Saved %s.gz\n", p)
 }
 
 
