@@ -17,18 +17,18 @@ import (
 
 const HELP = `
 Update local data table for command "match":
-    $ Pathway  update
+    $ Pathway  Update
 
 Find match species name or code in local data table:
     $ Pathway  match  "Rhinopithecus roxellana"
     $ Pathway  match  Rhinopithecus+roxellana
     $ Pathway  match  rro
 
-Get organisms a single keg file from local:
-    $ Pathway  get  hsa 
-
 Get organisms keg file(s) by download:
     $ Pathway  Get  hsa mmu ath
+
+Get organisms a single keg file from local:
+    $ Pathway  get  hsa
 
 Convert keg format to tsv:
     $ Pathway  totsv  hsa00001.keg.gz  hsa00001.keg.tsv
@@ -63,15 +63,15 @@ func main () {
 	datatsv := filepath.Dir (ep) + "/KEGG_data/KEGG_organism.tsv"
 
 	switch {
-	case nargs == 1 && cmd == "update":
+	case nargs == 1 && cmd == "Update":
 		Update (datatsv)
+
+	case nargs > 1 && cmd == "Get":
+		Get (os.Args[2:])
 
 	case nargs > 1 && cmd == "get":
 		ok := Get_local (os.Args[2], filepath.Dir (ep) + "/KEGG_data/Pathway_kegs")
 		if !ok { os.Exit(1) }
-
-	case nargs > 1 && cmd == "Get":
-		Get (os.Args[2:])
 
 	case nargs == 2 && cmd == "match":
 		record, found := Match (os.Args[2], datatsv)
@@ -99,7 +99,7 @@ func main () {
 			if !ok { os.Exit(1) }
 			ToTSV (record[1] + "00001.keg.gz", record[1] + "00001.keg.tsv")
 		} else {
-			log.Fatal ("NotFound")
+			fmt.Println ("NotFound")
 		}
 
 	default:
