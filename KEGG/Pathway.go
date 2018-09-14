@@ -44,7 +44,7 @@ KEGG pathway process, usage:
 
     other output files: gene_id2pathway.tsv pathway.infor.tsv
 
-6. get species keg (from local), convert to tsv and download html files:
+7. get species keg (from local), convert to tsv and download html files:
     $ Pathway  species  Rhinopithecus+roxellana
     output files: rro00001.keg.gz rro00001.keg.tsv
 
