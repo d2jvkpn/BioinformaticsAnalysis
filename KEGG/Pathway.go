@@ -16,21 +16,27 @@ import (
 )
 
 const HELP = `
-Update local data table for command "match":
+KEGG pathway process, usage:
+
+1. update local data table for command "match":
     $ Pathway  Update
 
-Find match species name or code in local data table:
+2. find match species name or code in local data table:
     $ Pathway  match  "Rhinopithecus roxellana"
     $ Pathway  match  Rhinopithecus+roxellana
     $ Pathway  match  rro
 
-Get organisms keg file(s) by download:
+3. get organisms keg file(s) by download:
     $ Pathway  Get  hsa mmu ath
 
-Get organisms a single keg file from local:
+4. download pathway html:
+    $ Pathway  HTML  hsa00001.keg.gz  ./hsa00001
+    Note: existing html files will not be overwritten
+
+5. get organisms a single keg file from local:
     $ Pathway  get  hsa
 
-Convert keg format to tsv:
+6. convert keg format to tsv:
     $ Pathway  totsv  hsa00001.keg.gz  hsa00001.keg.tsv
 
     hsa00001.keg.tsv tsv header:
@@ -38,18 +44,16 @@ Convert keg format to tsv:
 
     other output files: gene_id2pathway.tsv pathway.infor.tsv
 
-Get species keg (from local) and convert to tsv:
+6. get species keg (from local), convert to tsv and download html files:
     $ Pathway  species  Rhinopithecus+roxellana
     output files: rro00001.keg.gz rro00001.keg.tsv
 
 author: d2jvkpn
-version: 0.6
-release: 2018-09-11
+version: 0.8
+release: 2018-09-14
 project: https://github.com/d2jvkpn/BioinformaticsAnalysis
 lisense: GPLv3 (https://www.gnu.org/licenses/gpl-3.0.en.html)
 `
-
-const URL = "http://www.kegg.jp/kegg-bin/download_htext?htext=%s&format=htext&filedir="
 
 func main () {
 	nargs := len (os.Args) - 1
@@ -69,9 +73,12 @@ func main () {
 	case nargs > 1 && cmd == "Get":
 		Get (os.Args[2:])
 
-	case nargs > 1 && cmd == "get":
+	case nargs == 2 && cmd == "get":
 		ok := Get_local (os.Args[2], filepath.Dir (ep) + "/KEGG_data/Pathway_kegs")
 		if !ok { os.Exit(1) }
+
+	case nargs == 3 && cmd == "HTML":
+		DownloadHTML (os.Args[2], os.Args[3])
 
 	case nargs == 2 && cmd == "match":
 		record, found := Match (os.Args[2], datatsv)
@@ -95,9 +102,11 @@ func main () {
 
 			ok := Get_local (record[1], 
 			filepath.Dir (ep) + "/KEGG_data/Pathway_kegs")
-
 			if !ok { os.Exit(1) }
+
 			ToTSV (record[1] + "00001.keg.gz", record[1] + "00001.keg.tsv")
+
+			DownloadHTML (record[1] + "00001.keg.gz", record[1] + "00001")
 		} else {
 			fmt.Println ("NotFound")
 		}
@@ -118,6 +127,105 @@ func formatSpeciesName (name string) string {
 	
 	wds[0] = strings.Title (wds[0])
 	return (strings.Join (wds, " "))
+}
+
+
+func DownloadHTML (keg, outdir string) {
+    var bts []byte
+    var err error
+
+    frd, err := os.Open (keg)
+	if err != nil { log.Fatal (err) }
+	defer frd.Close()
+
+	err = os.MkdirAll (outdir, 0755)
+	if err != nil { log.Fatal (err)}
+
+	log.Printf ("Save html files to %s\n", outdir)
+
+	if strings.HasSuffix (keg, ".gz") {
+		var gz *gzip.Reader
+		gz, err = gzip.NewReader (frd)
+		if err != nil { return }
+
+		bts, err = ioutil.ReadAll (gz)
+	} else {
+		bts, err = ioutil.ReadAll (frd)
+	}
+
+    re := regexp.MustCompile ("PATH:[a-z]+[0-9]+")
+    PATHs := re.FindAllString (string (bts), -1)
+
+	for i, _ := range (PATHs) { PATHs[i] = strings.TrimLeft (PATHs[i], "PATH:") }
+
+    var wg sync.WaitGroup
+	ch := make (chan struct {}, 10)
+
+	for _, p := range PATHs {
+		ch <- struct{}{}
+		wg.Add (1)
+		go gethtml (p, outdir, ch, &wg)
+	}
+    wg.Wait()
+}
+
+
+func gethtml (p, outdir string, ch <- chan struct{}, wg *sync.WaitGroup) {
+	defer func () { <- ch }()
+	defer wg.Done ()
+
+	html := outdir + "/" + p + ".html"
+	png := outdir + "/" + p + ".png"
+	url := "http://www.genome.jp/kegg"
+	code := p[:(len(p)-5)]
+
+	if _, err := os.Stat (html); err == nil { return }
+
+	htmlurl := fmt.Sprintf (url + "-bin/show_pathway?%s", p)
+	pngurl := fmt.Sprintf (url + "/pathway/%s/%s.png", code, p)
+
+	htmlresp, err := http.Get (htmlurl)
+	if err != nil { log.Println (err); return }
+	defer htmlresp.Body.Close ()
+
+	htmlbody, err := ioutil.ReadAll (htmlresp.Body)
+	if err != nil { log.Println (err); return }
+
+	text := string (htmlbody)
+	if ! strings.HasSuffix (text, "</html>\n") { return }
+
+	re, _ := regexp.Compile("\\[[\\S\\s]+?\\]")  
+	text = re.ReplaceAllString (text, "")
+
+	re, _ = regexp.Compile("\\<script[\\S\\s]+?\\</script\\>")  
+	text = re.ReplaceAllString (text, "")
+
+	re, _ = regexp.Compile("\\<style[\\S\\s]+?\\</style\\>")  
+	text = re.ReplaceAllString (text, "")
+
+	re, _ = regexp.Compile("\\<link[\\S\\s]+?\\</link\\>")  
+	text = re.ReplaceAllString (text, "")
+
+	re, _ = regexp.Compile("\\<table[\\S\\s]+?\\</table\\>")  
+	text = re.ReplaceAllString (text, "")
+
+	text = strings.Replace (text, fmt.Sprintf("/kegg/pathway/%s/", code), "", 1)
+
+	text = strings.Replace (text, "/dbget-bin/www_bget?", 
+	"https://www.genome.jp/dbget-bin/www_bget?", -1)
+
+	pngresp, err := http.Get (pngurl)
+	if err != nil { log.Println (err); return }
+	defer pngresp.Body.Close ()
+
+	pngbody, err := ioutil.ReadAll (pngresp.Body)
+	if err != nil { log.Println (err); return }
+
+	err = ioutil.WriteFile (png, pngbody, 0664)
+	if err != nil {log.Println (err); return}
+
+	err = ioutil.WriteFile (html, []byte (text), 0664)
+	if err != nil {log.Println (err); return}
 }
 
 
@@ -144,13 +252,13 @@ func ToTSV (keg, tsv string) {
 	defer Pinfor.Close()
 
 	var line string
-	var fds [12]string
+	var fds [11]string
 	var isPathway bool
 
 	TSV.Write ([] byte ("C_id\tC_entry\tC_name\tgene_id\tgene\t" + 
-	"A_id\tA_name\tB_id\tB_name\tKO\tKO_name\tEC\n"))
+	"A_id\tA_name\tB_id\tB_name\tKO\tEC\n"))
 
-	G2P.Write ([]byte ("gene_id\tpathway\tEC\tgene_name\n"))
+	G2P.Write ([]byte ("gene_id\tpathway\tKO\tEC\tgene_name\n"))
 	Pinfor.Write ([]byte ("pathway\tpathway_name\tA\tB\n"))
 
 	for scanner.Scan () {
@@ -177,8 +285,8 @@ func ToTSV (keg, tsv string) {
 				fds[1], fds[2] = fds[2], fds[1]
 			}
 
-			fds[3], fds[4], fds[9], fds[10], fds[11] = "", "", "", "", ""
-			TSV.Write ([]byte (strings.Join (fds[0:], "\t") + "\n"))
+			fds[3], fds[4], fds[9], fds[10]= "", "", "", ""
+			TSV.Write ([]byte (strings.Join (fds[0:], "\t")  + "\n"))
 			isPathway = strings.HasPrefix (fds[1], "PATH:")
 
 			if isPathway {
@@ -191,27 +299,27 @@ func ToTSV (keg, tsv string) {
 			if len(tmp) != 2 { continue }
 
 			copy (fds[3:5], strings.SplitN (tmp[0], " ", 2))
-			copy (fds[9:11], strings.SplitN (tmp[1], " ", 2))
 
-			if strings.Contains (fds[10], " [EC:") {
-				copy (fds[10:12], strings.SplitN (
-				strings.Replace (fds[10], " [EC:", "\t[EC:", 1), "\t", 2) )
-			} else { fds[11] = "" }
+			if strings.Contains (tmp[1], " [EC:") {
+				copy (fds[9:11], strings.SplitN (
+				strings.Replace (tmp[1], " [EC:", "\t[EC:", 1), "\t", 2) )
+			} else { fds[10] = "" }
 
 			TSV.Write ([]byte (strings.Join ( []string {
 			fds[0], "-", "-", fds[3], fds[4], "-", "-", "-", "-", 
-			fds[9], fds[10], fds[11]}, "\t") + "\n"))
+			fds[9], fds[10]}, "\t") + "\n"))
 
 			if isPathway {
 				g := ""
+				KO := strings.Split (fds[9], " ")[0]
 
 				if strings.Contains (fds[4], "; ") {
 					g = strings.Split (fds[4], "; ")[0]
 				}
 
 				G2P.Write ([]byte (fds[3] + "\t" + 
-				strings.TrimLeft (fds[1], "PATH:") + "+" + fds[9] + "\t" + 
-				strings.TrimLeft (strings.TrimRight (fds[11], "]"), "[EC:") + 
+				strings.TrimLeft (fds[1], "PATH:") + "\t" + KO + "\t" + 
+				strings.TrimLeft (strings.TrimRight (fds[10], "]"), "[EC:") + 
 				"\t" + g + "\n") )
 			}
 
@@ -246,7 +354,7 @@ func Match (name, datatsv string) (record []string, ok bool) {
 
 
 func Update (saveto string) {
-	log.Printf ("Update %s...\n", saveto)
+	log.Printf ("Update %s\n", saveto)
 
 	resp, err := http.Get ("http://rest.kegg.jp/list/organism")
 	if err != nil { log.Println (err); return }
@@ -299,7 +407,9 @@ func getkeg (p string, ch <- chan struct{}, wg *sync.WaitGroup) {
 	defer wg.Done ()
 	// log.Printf ("Querying %s...\n", p)
 
-	resp, err := http.Get (fmt.Sprintf (URL, p))
+	resp, err := http.Get (fmt.Sprintf ("http://www.kegg.jp/kegg-bin" + 
+	"/download_htext?htext=%s&format=htext&filedir=", p))
+
 	if err != nil { log.Println (err); return }
 	defer resp.Body.Close ()
 
