@@ -22,7 +22,7 @@ Query specices taxonomy ID, usage:
     Mus musculus: 10090
 
 author: d2jvkpn
-version: 0.0.03
+version: 0.0.3
 release: 2018-09-16
 project: https://github.com/d2jvkpn/BioinformaticsAnalysis
 lisense: GPLv3 (https://www.gnu.org/licenses/gpl-3.0.en.html)
