@@ -40,15 +40,15 @@ KEGG pathway process, usage:
     $ Pathway  totsv  hsa00001.keg.gz  hsa00001.keg.tsv
 
     hsa00001.keg.tsv tsv header:
-    C_id C_entry C_name gene_id gene A_id A_name B_id B_name KO EC
+    C_id C_entry C_name id gene A_id A_name B_id B_name KO EC
 
 7. download species keg, convert to tsv and download html files:
     $ Pathway  species  Rhinopithecus+roxellana
     Note: existing html files will be overwritten
 
 author: d2jvkpn
-version: 0.8.2
-release: 2018-09-15
+version: 0.8.3
+release: 2018-09-18
 project: https://github.com/d2jvkpn/BioinformaticsAnalysis
 lisense: GPLv3 (https://www.gnu.org/licenses/gpl-3.0.en.html)
 `
@@ -192,7 +192,7 @@ func gethtml(p, outdir string, overwrite bool, ch <-chan struct{},
 	url := "http://www.genome.jp/kegg"
 	code := p[:(len(p) - 5)]
 
-	if _, err := os.Stat(html); err == nil && ! overwrite {
+	if _, err := os.Stat(html); err == nil && !overwrite {
 		return
 	}
 
@@ -284,7 +284,7 @@ func ToTSV(keg, tsv string) {
 	var line string
 	var fds [11]string
 
-	TSV.Write([]byte("C_id\tC_entry\tC_name\tgene_id\tgene\t" +
+	TSV.Write([]byte("C_id\tC_entry\tC_name\tid\tgene\t" +
 		"A_id\tA_name\tB_id\tB_name\tKO\tEC\n"))
 
 	for scanner.Scan() {
@@ -317,18 +317,30 @@ func ToTSV(keg, tsv string) {
 			TSV.Write([]byte(strings.Join(fds[0:], "\t") + "\n"))
 
 		case 'D':
-			tmp := strings.SplitN(strings.TrimLeft(line, "D	  "), "\t", 2)
+			sep := "\t"
+
+			if !strings.Contains(line, "\t") {
+				sep = "; " // for KAAS output keg
+			}
+
+			tmp := strings.SplitN(strings.TrimLeft(line, "D   	  "), sep, 2)
 			if len(tmp) != 2 {
 				continue
 			}
 
-			copy(fds[3:5], strings.SplitN(tmp[0], " ", 2))
+			if strings.Contains(tmp[0], " ") {
+				copy(fds[3:5], strings.SplitN(tmp[0], " ", 2))
+			} else {
+				fds[3], fds[4] = tmp[0], "" // for KAAS output keg
+			}
+
+			tmp[1] = strings.Replace(tmp[1], "  ", " ", 1) // for KAAS output keg
 
 			if strings.Contains(tmp[1], " [EC:") {
 				copy(fds[9:11], strings.SplitN(
 					strings.Replace(tmp[1], " [EC:", "\t[EC:", 1), "\t", 2))
 			} else {
-				fds[10] = ""
+				fds[9], fds[10] = tmp[1], ""
 			}
 
 			TSV.Write([]byte(strings.Join([]string{
