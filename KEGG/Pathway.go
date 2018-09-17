@@ -41,6 +41,7 @@ KEGG pathway process, usage:
 
     hsa00001.keg.tsv tsv header:
     C_id C_entry C_name id gene A_id A_name B_id B_name KO EC
+    Note: support KAAS output keg (q00001.keg).
 
 7. download species keg, convert to tsv and download html files:
     $ Pathway  species  Rhinopithecus+roxellana
