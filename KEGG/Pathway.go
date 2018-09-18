@@ -18,16 +18,16 @@ import (
 const HELP = `
 KEGG pathway process, usage:
 
-1. update local data table for command "match":
+1. update local data table ($EXECUTINGPATH/KEGG_data/KEGG_organism.tsv):
     $ Pathway  Update
 
 2. download organisms keg file(s):
     $ Pathway  Get  hsa mmu ath
 
-3. get organisms a single keg file from local:
+3. get keg file of an organism from local:
     $ Pathway  get  hsa
-    Note: make sure you have download all availiable organisms keg files to 
-    $EXECUTINGPATH/KEGG_data/Pathway_kegs
+    Note: make sure you have download organisms' keg files to 
+    $EXECUTINGPATH/KEGG_data/Pathway_keg
 
 4. find match species name or code in local data table:
     $ Pathway  match  "Rhinopithecus roxellana"
@@ -38,10 +38,10 @@ KEGG pathway process, usage:
     $ Pathway  HTML  hsa00001.keg.gz  ./hsa00001
     Note: existing html files will not be overwritten
 
-6. convert keg format to tsv:
+6. convert keg format to tsv (file or stdout):
     $ Pathway  tsv  hsa00001.keg.gz  hsa00001.keg.tsv
 
-    hsa00001.keg.tsv tsv header:
+    output tsv header:
     C_id C_entry C_name id gene A_id A_name B_id B_name KO EC
 
 7. download species keg, convert to tsv and download html files:
@@ -49,7 +49,7 @@ KEGG pathway process, usage:
     Note: existing html files will be overwritten
 
 author: d2jvkpn
-version: 0.8.3
+version: 0.8.4
 release: 2018-09-18
 project: https://github.com/d2jvkpn/BioinformaticsAnalysis
 lisense: GPLv3 (https://www.gnu.org/licenses/gpl-3.0.en.html)
@@ -68,22 +68,22 @@ func main() {
 	datatsv := filepath.Dir(ep) + "/KEGG_data/KEGG_organism.tsv"
 
 	switch {
-	case nargs == 1 && cmd == "Update":
+	case cmd == "Update" && nargs == 1:
 		Update(datatsv)
 
-	case nargs > 1 && cmd == "Get":
+	case cmd == "Get" && nargs > 1:
 		Get(os.Args[2:])
 
-	case nargs == 2 && cmd == "get":
-		ok := Get_local(os.Args[2], filepath.Dir(ep)+"/KEGG_data/Pathway_kegs")
+	case cmd == "get" && nargs == 2:
+		ok := Get_local(os.Args[2], filepath.Dir(ep)+"/KEGG_data/Pathway_keg")
 		if !ok {
 			os.Exit(1)
 		}
 
-	case nargs == 3 && cmd == "HTML":
+	case cmd == "HTML" && nargs == 3:
 		DownloadHTML(os.Args[2], os.Args[3], false)
 
-	case nargs == 2 && cmd == "match":
+	case cmd == "match" && nargs == 2:
 		record, found := Match(os.Args[2], datatsv)
 
 		if found {
@@ -93,10 +93,14 @@ func main() {
 			fmt.Println("NotFound")
 		}
 
-	case nargs == 3 && cmd == "tsv":
-		ToTSV(os.Args[2], os.Args[3])
+	case cmd == "tsv" && (nargs == 3 || nargs == 2):
+		if nargs == 3 {
+			ToTSV(os.Args[2], os.Args[3])
+		} else {
+			ToTSV(os.Args[2], "")
+		}
 
-	case nargs == 2 && cmd == "species":
+	case cmd == "species" && nargs == 2:
 		record, found := Match(formatSpeciesName(os.Args[2]), datatsv)
 
 		if found {
@@ -272,16 +276,28 @@ func ToTSV(keg, tsv string) {
 	}
 	defer frd.Close()
 
-	err = os.MkdirAll(filepath.Dir(tsv), 0755)
-	if err != nil {
-		log.Fatal(err)
+	type Write interface {
+		Write(p []byte) (n int, err error)
 	}
 
-	TSV, err := os.Create(tsv)
-	if err != nil {
-		log.Fatal(err)
+	var TSV Write
+
+	if tsv != "" {
+		err = os.MkdirAll(filepath.Dir(tsv), 0755)
+		if err != nil {
+			log.Fatal(err)
+		}
+
+		fwt, err := os.Create(tsv)
+		if err != nil {
+			log.Fatal(err)
+		}
+
+		defer fwt.Close()
+		TSV = fwt
+	} else {
+		TSV = os.Stdout
 	}
-	defer TSV.Close()
 
 	var line string
 	var fds [11]string
@@ -325,7 +341,7 @@ func ToTSV(keg, tsv string) {
 				sep = "; " // for KAAS output keg
 			}
 
-			tmp := strings.SplitN(strings.TrimLeft(line, "D   	  "), sep, 2)
+			tmp := strings.SplitN(strings.TrimLeft(line, "D      "), sep, 2)
 			if len(tmp) != 2 {
 				continue
 			}
@@ -355,7 +371,9 @@ func ToTSV(keg, tsv string) {
 		}
 	}
 
-	log.Printf("Converted %s to %s\n", keg, tsv)
+	if tsv != "" {
+		log.Printf("Converted %s to %s\n", keg, tsv)
+	}
 }
 
 func Match(name, datatsv string) (record []string, ok bool) {
