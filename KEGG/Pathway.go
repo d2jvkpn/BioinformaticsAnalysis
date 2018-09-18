@@ -93,7 +93,7 @@ func main() {
 			fmt.Println("NotFound")
 		}
 
-	case nargs == 3 && cmd == "totsv":
+	case nargs == 3 && cmd == "tsv":
 		ToTSV(os.Args[2], os.Args[3])
 
 	case nargs == 2 && cmd == "species":
