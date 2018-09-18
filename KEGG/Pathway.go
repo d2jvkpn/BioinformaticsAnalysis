@@ -21,27 +21,28 @@ KEGG pathway process, usage:
 1. update local data table for command "match":
     $ Pathway  Update
 
-2. find match species name or code in local data table:
+2. download organisms keg file(s):
+    $ Pathway  Get  hsa mmu ath
+
+3. get organisms a single keg file from local:
+    $ Pathway  get  hsa
+    Note: make sure you have download all availiable organisms keg files to 
+    $EXECUTINGPATH/KEGG_data/Pathway_kegs
+
+4. find match species name or code in local data table:
     $ Pathway  match  "Rhinopithecus roxellana"
     $ Pathway  match  Rhinopithecus+roxellana
     $ Pathway  match  rro
 
-3. download organisms keg file(s):
-    $ Pathway  Get  hsa mmu ath
-
-4. download pathway html:
+5. download pathway html:
     $ Pathway  HTML  hsa00001.keg.gz  ./hsa00001
     Note: existing html files will not be overwritten
 
-5. get organisms a single keg file from local:
-    $ Pathway  get  hsa
-
 6. convert keg format to tsv:
-    $ Pathway  totsv  hsa00001.keg.gz  hsa00001.keg.tsv
+    $ Pathway  tsv  hsa00001.keg.gz  hsa00001.keg.tsv
 
     hsa00001.keg.tsv tsv header:
     C_id C_entry C_name id gene A_id A_name B_id B_name KO EC
-    Note: support KAAS output keg (q00001.keg).
 
 7. download species keg, convert to tsv and download html files:
     $ Pathway  species  Rhinopithecus+roxellana
