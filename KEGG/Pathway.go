@@ -42,7 +42,7 @@ KEGG pathway process, usage:
     $ Pathway  tsv  hsa00001.keg.gz  hsa00001.keg.tsv
 
     output tsv header:
-    C_id C_entry C_name id gene A_id A_name B_id B_name KO EC
+    C_id  id  gene  KO  EC
 
 7. download species keg, convert to tsv and download html files:
     $ Pathway  species  Rhinopithecus+roxellana
@@ -300,10 +300,9 @@ func ToTSV(keg, tsv string) {
 	}
 
 	var line string
-	var fds [11]string
+	var fds [5]string
 
-	TSV.Write([]byte("C_id\tC_entry\tC_name\tid\tgene\t" +
-		"A_id\tA_name\tB_id\tB_name\tKO\tEC\n"))
+	TSV.Write([]byte("C_id\tid\tgene\tKO\tEC\n"))
 
 	for scanner.Scan() {
 		line = scanner.Text()
@@ -313,26 +312,23 @@ func ToTSV(keg, tsv string) {
 
 		switch line[0] {
 		case 'A':
-			copy(fds[5:7], strings.SplitN(line, " ", 2))
+			fds[3] = strings.Replace(line, " ", ":", 1)
 
 		case 'B':
-			copy(fds[7:9], strings.SplitN(strings.TrimLeft(line, "B  "),
-				" ", 2))
-
-			fds[7] = "B" + fds[7]
+			fds[4] = strings.Replace (strings.Replace(line, "  ", "", 1),
+				" ", ":", 1)
 
 		case 'C':
 			tmp := strings.SplitN(strings.TrimLeft(line, "C    "), " ", 2)
-			fds[0], fds[1] = "C"+tmp[0], ""
-			fds[2] = strings.TrimRight(tmp[1], "]")
+			fds[0], fds[1] = "C" + tmp[0], ""
+			fds[2] = strings.TrimRight (tmp[1], "]")
 
 			if strings.Contains(fds[2], " [") {
 				copy(fds[1:3], strings.SplitN(fds[2], " [", 2))
 				fds[1], fds[2] = fds[2], fds[1]
 			}
 
-			fds[3], fds[4], fds[9], fds[10] = "", "", "", ""
-			TSV.Write([]byte(strings.Join(fds[0:], "\t") + "\n"))
+			TSV.Write([]byte("#" + strings.Join (fds[0:], "\t") + "\n"))
 
 		case 'D':
 			sep := "\t"
@@ -347,23 +343,21 @@ func ToTSV(keg, tsv string) {
 			}
 
 			if strings.Contains(tmp[0], " ") {
-				copy(fds[3:5], strings.SplitN(tmp[0], " ", 2))
+				copy(fds[1:3], strings.SplitN(tmp[0], " ", 2))
 			} else {
-				fds[3], fds[4] = tmp[0], "" // for KAAS output keg
+				fds[1], fds[2] = tmp[0], "" // for KAAS output keg
 			}
 
 			tmp[1] = strings.Replace(tmp[1], "  ", " ", 1) // for KAAS output keg
 
 			if strings.Contains(tmp[1], " [EC:") {
-				copy(fds[9:11], strings.SplitN(
+				copy(fds[3:5], strings.SplitN(
 					strings.Replace(tmp[1], " [EC:", "\t[EC:", 1), "\t", 2))
 			} else {
-				fds[9], fds[10] = tmp[1], ""
+				fds[3], fds[4] = tmp[1], ""
 			}
 
-			TSV.Write([]byte(strings.Join([]string{
-				fds[0], "-", "-", fds[3], fds[4], "-", "-", "-", "-",
-				fds[9], fds[10]}, "\t") + "\n"))
+			TSV.Write([]byte(strings.Join (fds[0:], "\t") + "\n"))
 
 		default:
 			continue
