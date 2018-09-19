@@ -49,8 +49,8 @@ KEGG pathway process, usage:
     Note: existing html files will be overwritten
 
 author: d2jvkpn
-version: 0.8.4
-release: 2018-09-18
+version: 0.8.5
+release: 2018-09-20
 project: https://github.com/d2jvkpn/BioinformaticsAnalysis
 lisense: GPLv3 (https://www.gnu.org/licenses/gpl-3.0.en.html)
 `
