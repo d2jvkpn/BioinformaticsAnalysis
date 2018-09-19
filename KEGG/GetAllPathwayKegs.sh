@@ -13,6 +13,18 @@ xargs -i -n 100 Pathway Get &> get_pathway.log
 
 awk '/Failed/{print $NF}' get_pathway.log > get_pathway.failed
 
-mkdir Pathway_kegs && mv *.keg.gz Pathway_kegs/
+for i in $(ls *.keg.gz); do
+    gunzip -c $i | grep -w -o "PATH:.*" |
+    awk -v i=$(basename $i | sed 's/[0-9]*.keg.gz//') 'BEGIN{FS=OFS="\t"}
+    {sub("PATH:", "", $1); sub("[]]", "", $1); sub(i, "ko", $1); print i, $1}'
+done |
+awk 'BEGIN{FS=OFS="\t"; print "Lineage", "PATH"} NR==FNR{if(NR>1) a[$2]=$4; next}
+a[$1]{if(++x[a[$1]"\t"$2]) print a[$1], $2}' KEGG_organism.tsv - |
+sort | gzip -c > Lineage_PATH.tsv.gz
+
+tar -cf Pathway_keg.tar *.keg.gz
+rm *.keg.gz
+
+# tar -xf Pathway_keg.tar hsa00001.keg.gz
 
 cd $wd
