@@ -26,8 +26,8 @@ KEGG pathway process, usage:
 
 3. get keg file of an organism from local:
     $ Pathway  get  hsa
-    Note: make sure you have download organisms' keg files to 
-    $EXECUTINGPATH/KEGG_data/Pathway_keg
+    Note: make sure you have download organisms' keg files and achieve to 
+    $EXECUTINGPATH/KEGG_data/Pathway_keg.tar
 
 4. find match species name or code in local data table:
     $ Pathway  match  "Rhinopithecus roxellana"
@@ -75,7 +75,9 @@ func main() {
 		Get(os.Args[2:])
 
 	case cmd == "get" && nargs == 2:
-		ok := Get_local(os.Args[2], filepath.Dir(ep)+"/KEGG_data/Pathway_keg")
+		ok := Get_local(os.Args[2] + "00001.keg.gz", 
+			filepath.Dir(ep)+"/KEGG_data/Pathway_keg.tar")
+
 		if !ok {
 			os.Exit(1)
 		}
@@ -90,7 +92,7 @@ func main() {
 			fmt.Printf("Entry: %s\nCode: %s\nSpecies: %s\nLineage: %s\n",
 				record[0], record[1], record[2], record[3])
 		} else {
-			fmt.Println("NotFound")
+			fmt.Fprintln(os.Stderr, "NotFound")
 		}
 
 	case cmd == "tsv" && (nargs == 3 || nargs == 2):
@@ -118,7 +120,7 @@ func main() {
 
 			DownloadHTML(record[1]+"00001.keg.gz", record[1]+"00001", true)
 		} else {
-			fmt.Println("NotFound")
+			fmt.Fprintln(os.Stderr, "NotFound")
 		}
 
 	default:
@@ -427,12 +429,12 @@ func Update(saveto string) {
 	fwt.Write(body)
 }
 
-func Get_local(code, path string) (ok bool) {
-	Cmd := exec.Command("cp", path+"/"+code+"00001.keg.gz", "./")
+func Get_local(keg, path string) (ok bool) {
+	Cmd := exec.Command("tar", "-xf", path, keg)
 	err := Cmd.Run()
 
 	if err != nil {
-		log.Printf("Failed to get %s from %s\n", code, path)
+		log.Printf("Failed to get %s from %s\n", keg, path)
 	} else {
 		ok = true
 	}
