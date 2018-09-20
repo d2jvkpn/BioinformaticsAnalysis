@@ -305,6 +305,7 @@ func ToTSV(keg, tsv string) {
 	var fds [5]string
 
 	TSV.Write([]byte("C_id\tid\tgene\tKO\tEC\n"))
+	A, B := "", ""
 
 	for scanner.Scan() {
 		line = scanner.Text()
@@ -314,13 +315,15 @@ func ToTSV(keg, tsv string) {
 
 		switch line[0] {
 		case 'A':
-			fds[3] = strings.Replace(line, " ", ":", 1)
+			A = strings.Replace(line, " ", ":", 1)
 
 		case 'B':
-			fds[4] = strings.Replace (strings.Replace(line, "  ", "", 1),
+			B = strings.Replace (strings.Replace(line, "  ", "", 1),
 				" ", ":", 1)
 
 		case 'C':
+			fds[3], fds[4] = A, B
+
 			tmp := strings.SplitN(strings.TrimLeft(line, "C    "), " ", 2)
 			fds[0], fds[1] = "C" + tmp[0], ""
 			fds[2] = strings.TrimRight (tmp[1], "]")
