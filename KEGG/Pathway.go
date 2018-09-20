@@ -75,7 +75,7 @@ func main() {
 		Get(os.Args[2:])
 
 	case cmd == "get" && nargs == 2:
-		ok := Get_local(os.Args[2] + "00001.keg.gz", 
+		ok := Get_local(os.Args[2]+"00001.keg.gz",
 			filepath.Dir(ep)+"/KEGG_data/Pathway_keg.tar")
 
 		if !ok {
@@ -324,22 +324,22 @@ func ToTSV(keg, tsv string) {
 			A = strings.Replace(line, " ", ":", 1)
 
 		case 'B':
-			B = strings.Replace (strings.Replace(line, "  ", "", 1),
+			B = strings.Replace(strings.Replace(line, "  ", "", 1),
 				" ", ":", 1)
 
 		case 'C':
 			fds[3], fds[4] = A, B
 
 			tmp := strings.SplitN(strings.TrimLeft(line, "C    "), " ", 2)
-			fds[0], fds[1] = "C" + tmp[0], ""
-			fds[2] = strings.TrimRight (tmp[1], "]")
+			fds[0], fds[1] = "C"+tmp[0], ""
+			fds[2] = strings.TrimRight(tmp[1], "]")
 
 			if strings.Contains(fds[2], " [") {
 				copy(fds[1:3], strings.SplitN(fds[2], " [", 2))
 				fds[1], fds[2] = fds[2], fds[1]
 			}
 
-			TSV.Write([]byte("#" + strings.Join (fds[0:], "\t") + "\n"))
+			TSV.Write([]byte("#" + strings.Join(fds[0:], "\t") + "\n"))
 
 		case 'D':
 			sep := "\t"
@@ -368,7 +368,7 @@ func ToTSV(keg, tsv string) {
 				fds[3], fds[4] = tmp[1], ""
 			}
 
-			TSV.Write([]byte(strings.Join (fds[0:], "\t") + "\n"))
+			TSV.Write([]byte(strings.Join(fds[0:], "\t") + "\n"))
 
 		default:
 			continue
@@ -463,7 +463,6 @@ func Get(codes []string) {
 		go func(p string, ch <-chan struct{}, wg *sync.WaitGroup) {
 			defer wg.Done()
 			defer func() { <-ch }()
-
 			getkeg(p)
 		}(v+"00001.keg", ch, &wg)
 	}
