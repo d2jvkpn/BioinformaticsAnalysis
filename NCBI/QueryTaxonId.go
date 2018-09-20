@@ -41,8 +41,9 @@ func main() {
 		ch <- struct{}{}
 		wg.Add(1)
 		go func(p string, ch <-chan struct{}, wg *sync.WaitGroup) {
-			defer func() { <-ch }()
 			defer wg.Done()
+			defer func() { <-ch }()
+
 			QueryTaxonId(p)
 		}(formatSpeciesName(v), ch, &wg)
 	}
