@@ -234,11 +234,17 @@ func gethtml(p, outdir string, overwrite bool, ch <-chan struct{},
 	re, _ = regexp.Compile("\\<style[\\S\\s]+?\\</style\\>")
 	text = re.ReplaceAllString(text, "")
 
-	re, _ = regexp.Compile("\\<link[\\S\\s]+?\\</link\\>")
-	text = re.ReplaceAllString(text, "")
+	re, _ = regexp.Compile("\\<link[\\S\\s]+?\\/\\>[ \n]+")
+	text = re.ReplaceAllString(text, "\n")
 
 	re, _ = regexp.Compile("\\<table[\\S\\s]+?\\</table\\>")
 	text = re.ReplaceAllString(text, "")
+
+	re, _ = regexp.Compile("\\<div[\\S\\s]+?\\</form>")
+	text = re.ReplaceAllString(text, "</div>")
+
+	re, _ = regexp.Compile("\\<body\\>[ \n]+")
+	text = re.ReplaceAllString(text, "<body>\n<div align=\"center\">\n")
 
 	text = strings.Replace(text, fmt.Sprintf("/kegg/pathway/%s/", code), "", 1)
 
