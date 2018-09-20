@@ -192,8 +192,8 @@ func DownloadHTML(keg, outdir string, overwrite bool) {
 func gethtml(p, outdir string, overwrite bool, ch <-chan struct{},
 	wg *sync.WaitGroup) {
 
-	defer func() { <-ch }()
 	defer wg.Done()
+	defer func() { <-ch }()
 
 	html := outdir + "/" + p + ".html"
 	png := outdir + "/" + p + ".png"
@@ -461,8 +461,9 @@ func Get(codes []string) {
 		ch <- struct{}{}
 		wg.Add(1)
 		go func(p string, ch <-chan struct{}, wg *sync.WaitGroup) {
-			defer func() { <-ch }()
 			defer wg.Done()
+			defer func() { <-ch }()
+
 			getkeg(p)
 		}(v+"00001.keg", ch, &wg)
 	}
