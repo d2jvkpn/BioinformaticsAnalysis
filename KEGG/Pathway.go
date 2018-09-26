@@ -18,10 +18,10 @@ import (
 const HELP = `
 KEGG pathway process, usage:
 
-1. update local data table ($EXECUTINGPATH/KEGG_data/KEGG_organism.tsv):
+1. update local data table  ($EXECUTINGPATH/KEGG_data/KEGG_organism.tsv):
     $ Pathway  Update
 
-2. download organisms keg file(s):
+2. download organisms keg file (s):
     $ Pathway  Get  hsa mmu ath
 
 3. get keg file of an organism from local:
@@ -38,21 +38,21 @@ KEGG pathway process, usage:
     $ Pathway  HTML  hsa00001.keg.gz  ./hsa00001
     Note: existing html files will not be overwritten
 
-6. convert keg format to tsv (file or stdout):
+6. convert keg format to tsv  (file or stdout):
     $ Pathway  tsv  hsa00001.keg.gz  hsa00001.keg.tsv
 
-    output tsv header:
-    C_id  id  gene  KO  EC
+    output tsv header (gene and EC may be empty string):
+    C_id id gene_name gene_description KO KO_description EC
 
 7. download species keg, convert to tsv and download html files:
     $ Pathway  species  Rhinopithecus+roxellana
     Note: existing html files will be overwritten
 
 author: d2jvkpn
-version: 0.8.5
-release: 2018-09-20
+version: 0.8.6
+release: 2018-09-26
 project: https://github.com/d2jvkpn/BioinformaticsAnalysis
-lisense: GPLv3 (https://www.gnu.org/licenses/gpl-3.0.en.html)
+lisense: GPLv3  (https://www.gnu.org/licenses/gpl-3.0.en.html)
 `
 
 func main() {
@@ -284,11 +284,9 @@ func ToTSV(keg, tsv string) {
 	}
 	defer frd.Close()
 
-	type Write interface {
+	var TSV interface {
 		Write(p []byte) (n int, err error)
 	}
-
-	var TSV Write
 
 	if tsv != "" {
 		err = os.MkdirAll(filepath.Dir(tsv), 0755)
@@ -308,10 +306,14 @@ func ToTSV(keg, tsv string) {
 	}
 
 	var line string
-	var fds [5]string
+	var fds [7]string
 
-	TSV.Write([]byte("C_id\tid\tgene\tKO\tEC\n"))
-	A, B := "", ""
+	TSV.Write([]byte("C_id\tid\tgene_name\tgene_description" +
+		"\tKO\tKO_description\tEC\n"))
+
+	A := make([]string, 0, 2)
+	B := make([]string, 0, 2)
+	sep := "\t"
 
 	for scanner.Scan() {
 		line = scanner.Text()
@@ -321,14 +323,14 @@ func ToTSV(keg, tsv string) {
 
 		switch line[0] {
 		case 'A':
-			A = strings.Replace(line, " ", ":", 1)
+			A = strings.SplitN(line, " ", 2)
 
 		case 'B':
-			B = strings.Replace(strings.Replace(line, "  ", "", 1),
-				" ", ":", 1)
+			B = strings.SplitN(strings.Replace(line, "B  ", "B", 1), " ", 2)
 
 		case 'C':
-			fds[3], fds[4] = A, B
+			copy(fds[3:5], A)
+			copy(fds[5:7], B)
 
 			tmp := strings.SplitN(strings.TrimLeft(line, "C    "), " ", 2)
 			fds[0], fds[1] = "C"+tmp[0], ""
@@ -341,8 +343,14 @@ func ToTSV(keg, tsv string) {
 
 			TSV.Write([]byte("#" + strings.Join(fds[0:], "\t") + "\n"))
 
+			if fds[1] != "" {
+				fds[0] = fds[1]
+			}
+
 		case 'D':
-			sep := "\t"
+			for i := 1; i <= 6; i++ {
+				fds[i] = ""
+			}
 
 			if !strings.Contains(line, "\t") {
 				sep = "; " // for KAAS output keg
@@ -353,19 +361,41 @@ func ToTSV(keg, tsv string) {
 				continue
 			}
 
-			if strings.Contains(tmp[0], " ") {
-				copy(fds[1:3], strings.SplitN(tmp[0], " ", 2))
-			} else {
-				fds[1], fds[2] = tmp[0], "" // for KAAS output keg
+			/*
+				var re *regexp.Regexp
+
+				if strings.Contains(tmp[0], "; ") {
+					re, _ = regexp.Compile("([^ ]+) ([^;]+); (.*)")
+					copy(fds[1:4], re.FindAllStringSubmatch(tmp[0], 1)[0][1:])
+				} else {
+					copy(fds[1:3], strings.SplitN(tmp[0], " ", 2))
+					fds[2], fds[3] = fds[3], fds[2]
+				}
+
+				if strings.Contains(tmp[1], " [EC:") {
+					re, _ = regexp.Compile("(K[^ ]+) {1,2}(.*) (\\[EC:.*\\])")
+					copy(fds[4:7], re.FindAllStringSubmatch(tmp[1], 1)[0][1:])
+					fds[6] = strings.Replace(fds[6], "[EC:", "", 1)
+					fds[6] = strings.Replace(fds[6], "]", "", 1)
+				} else {
+					copy(fds[4:7], strings.SplitN(tmp[1], " ", 2))
+				}
+			*/
+
+			copy(fds[1:3], strings.SplitN(tmp[0], " ", 2))
+
+			if strings.Contains(fds[2], "; ") {
+				copy(fds[2:4], strings.SplitN(fds[2], "; ", 2))
+			} else if fds[2] != "" {
+				fds[2], fds[3] = fds[3], fds[2]
 			}
 
-			tmp[1] = strings.Replace(tmp[1], "  ", " ", 1) // for KAAS output keg
+			copy(fds[4:6],
+				strings.SplitN(strings.Replace(tmp[1], "  ", " ", 1), " ", 2))
 
-			if strings.Contains(tmp[1], " [EC:") {
-				copy(fds[3:5], strings.SplitN(
-					strings.Replace(tmp[1], " [EC:", "\t[EC:", 1), "\t", 2))
-			} else {
-				fds[3], fds[4] = tmp[1], ""
+			if strings.Contains(fds[5], " [EC:") {
+				copy(fds[5:7], strings.SplitN(fds[5], "[EC:", 2))
+				fds[6] = strings.Replace(fds[6], "]", "", 1)
 			}
 
 			TSV.Write([]byte(strings.Join(fds[0:], "\t") + "\n"))
@@ -396,7 +426,7 @@ func Match(name, datatsv string) (record []string, ok bool) {
 		record = strings.Split(scanner.Text(), "\t")
 
 		ok = (name == record[1] ||
-			species == strings.Split(record[2], " (")[0])
+			species == strings.Split(record[2], "  (")[0])
 
 		if ok {
 			return
@@ -455,7 +485,7 @@ func Get(codes []string) {
 	ch := make(chan struct{}, 10)
 	var wg sync.WaitGroup
 
-	log.Printf("Request organism code(s): %s\n", strings.Join(codes, " "))
+	log.Printf("Request organism code (s): %s\n", strings.Join(codes, " "))
 
 	for _, v := range codes {
 		ch <- struct{}{}
