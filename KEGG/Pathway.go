@@ -322,31 +322,6 @@ func ToTSV(keg, tsv string) {
 		}
 
 		switch line[0] {
-		case 'A':
-			A = strings.SplitN(line, " ", 2)
-
-		case 'B':
-			B = strings.SplitN(strings.Replace(line, "B  ", "B", 1), " ", 2)
-
-		case 'C':
-			copy(fds[3:5], A)
-			copy(fds[5:7], B)
-
-			tmp := strings.SplitN(strings.TrimLeft(line, "C    "), " ", 2)
-			fds[0], fds[1] = "C"+tmp[0], ""
-			fds[2] = strings.TrimRight(tmp[1], "]")
-
-			if strings.Contains(fds[2], " [") {
-				copy(fds[1:3], strings.SplitN(fds[2], " [", 2))
-				fds[1], fds[2] = fds[2], fds[1]
-			}
-
-			TSV.Write([]byte("#" + strings.Join(fds[0:], "\t") + "\n"))
-
-			if fds[1] != "" {
-				fds[0] = fds[1]
-			}
-
 		case 'D':
 			for i := 1; i <= 6; i++ {
 				fds[i] = ""
@@ -399,6 +374,31 @@ func ToTSV(keg, tsv string) {
 			}
 
 			TSV.Write([]byte(strings.Join(fds[0:], "\t") + "\n"))
+
+		case 'A':
+			A = strings.SplitN(line, " ", 2)
+
+		case 'B':
+			B = strings.SplitN(strings.Replace(line, "B  ", "B", 1), " ", 2)
+
+		case 'C':
+			copy(fds[3:5], A)
+			copy(fds[5:7], B)
+
+			tmp := strings.SplitN(strings.TrimLeft(line, "C    "), " ", 2)
+			fds[0], fds[1] = "C"+tmp[0], ""
+			fds[2] = strings.TrimRight(tmp[1], "]")
+
+			if strings.Contains(fds[2], " [") {
+				copy(fds[1:3], strings.SplitN(fds[2], " [", 2))
+				fds[1], fds[2] = fds[2], fds[1]
+			}
+
+			TSV.Write([]byte("#" + strings.Join(fds[0:], "\t") + "\n"))
+
+			if fds[1] != "" {
+				fds[0] = fds[1]
+			}
 
 		default:
 			continue
