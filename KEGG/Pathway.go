@@ -86,7 +86,7 @@ func main() {
 		DownloadHTML(os.Args[2], os.Args[3], false)
 
 	case cmd == "match" && nargs == 2:
-		record, found := Match(os.Args[2], datatsv)
+		record, found := Match( strings.ToLower (os.Args[2]), datatsv)
 
 		if found {
 			fmt.Printf("Entry: %s\nCode: %s\nSpecies: %s\nLineage: %s\n",
@@ -418,7 +418,7 @@ func Match(name, datatsv string) (record []string, ok bool) {
 	}
 	defer file.Close()
 
-	species := formatSpeciesName(name)
+	species := strings.ToLower (formatSpeciesName(name))
 	scanner := bufio.NewScanner(file)
 	scanner.Scan() // skip header
 
@@ -426,7 +426,7 @@ func Match(name, datatsv string) (record []string, ok bool) {
 		record = strings.Split(scanner.Text(), "\t")
 
 		ok = (name == record[1] ||
-			species == strings.Split(record[2], "  (")[0])
+			species == strings.ToLower (strings.Split(record[2], " (")[0] ))
 
 		if ok {
 			return
