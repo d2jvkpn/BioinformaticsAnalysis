@@ -106,6 +106,7 @@ func main() {
 	fmt.Fprintf (wt, "%d\t%d\t%d\t%d\t%d\t%d\n", Rc, Bc, Nc, Q20, Q30, GC)
 }
 
+
 func ReadInput(s string) (scanner *bufio.Scanner, file *os.File, err error) {
 	if s == "-" { scanner = bufio.NewScanner(os.Stdin); return }
 
