@@ -7,7 +7,6 @@ import (
 	"os"
 	"flag"
 	"path/filepath"
-	"runtime"
 	"strings"
 	gzip "github.com/klauspost/pgzip" //"compress/gzip"
 )
@@ -46,7 +45,6 @@ func main() {
 	var wt Writer
 	ch := make(chan [2]string, 10000)
 	var Rc, Bc, Q20, Q30, GC, Nc int = 0, 0, 0, 0, 0, 0
-	runtime.GOMAXPROCS (4)
 
 	go func() {
 		for _, s := range inputs {
@@ -105,7 +103,6 @@ func main() {
 
 	fmt.Fprintf (wt, "%d\t%d\t%d\t%d\t%d\t%d\n", Rc, Bc, Nc, Q20, Q30, GC)
 }
-
 
 func ReadInput(s string) (scanner *bufio.Scanner, file *os.File, err error) {
 	if s == "-" { scanner = bufio.NewScanner(os.Stdin); return }
