@@ -12,9 +12,11 @@ import (
 )
 
 const USAGE = `
-Usage: FastqCount  [-phred value]  [-o tsv]  < - input1.fastq input2.fastq.gz >
+Usage: FastqCount  [-phred value]  [-o tsv]  <input1.fastq input2.fastq.gz>
   output (tsv) header: Total reads  Total bases  N bases  Q20  Q30  GC
-  note: "pigz -dc *.fastq.gz | FastqCount -" is recommended for gzipped file(s).
+  note:
+    1. When input is -, read standard input; 
+    2. "pigz -dc *.fastq.gz | FastqCount -" is recommended for gzipped file(s).
 `
 
 
