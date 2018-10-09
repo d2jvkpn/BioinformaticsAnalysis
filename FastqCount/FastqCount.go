@@ -15,7 +15,7 @@ const USAGE = `
 Usage: FastqCount  [-phred value]  [-o tsv]  <input1.fastq input2.fastq.gz>
   output (tsv) header: Total reads  Total bases  N bases  Q20  Q30  GC
   note:
-    1. When input is -, read standard input; 
+    1. When input is -, read standard input (treated as gff input format);
     2. "pigz -dc *.fastq.gz | FastqCount -" is recommended for gzipped file(s).
 `
 
