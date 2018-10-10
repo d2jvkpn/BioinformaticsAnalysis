@@ -3,40 +3,42 @@ package main
 import (
 	"bufio"
 	"fmt"
-	gzip "github.com/klauspost/pgzip"
 	"log"
 	"net/url"
 	"os"
+	"errors"
 	"reflect"
 	"sort"
 	"strconv"
 	"strings"
 	"text/tabwriter"
+	gzip "github.com/klauspost/pgzip"
 )
 
 const HELP = `
-Summary gff/gtf (.gz) and extract attributions, usage: 
+Summary gff/gtf (.gz) and extract attributions, usage:
     summary sequences, sources, types
     $ Gffinfor  <gff>
+    note: stdin ("-") will be treated as gff format
 
     summary types' attributions
     $ Gffinfor  <gff>  <type1,type2...>
 
-    extract attributions and "Dbxref" (tsv format)
+    extract attributions and Dbxref (tsv format)
     $ Gffinfor  <gff>  <type1,type2...>  <attr1,attr2,dbxref1,dbxref2...>
 
 author: d2jvkpn
-version: 0.6
-release: 2018-09-30
+version: 0.7
+release: 2018-10-10
 project: https://github.com/d2jvkpn/BioinformaticsAnalysis
 lisense: GPLv3 (https://www.gnu.org/licenses/gpl-3.0.en.html)
 `
 
-var parseAttr func(string, map[string]string)
+var parseAttr func(string, map[string]string) error
 
 func main() {
 	if len(os.Args) == 1 || HasElem([]string{"-h", "--help"}, os.Args[1]) {
-		fmt.Println(HELP)
+		fmt.Println (HELP)
 		return
 	}
 
@@ -48,9 +50,7 @@ func main() {
 	}
 
 	scanner, frd, err := ReadInput(os.Args[1])
-	if err != nil {
-		log.Fatal(err)
-	}
+	if err != nil { log.Fatal(err) }
 	defer frd.Close()
 
 	switch len(os.Args) - 1 {
@@ -76,16 +76,12 @@ func ReadInput(s string) (scanner *bufio.Scanner, file *os.File, err error) {
 	}
 
 	file, err = os.Open(s)
-	if err != nil {
-		return
-	}
+	if err != nil { return }
 
 	if strings.HasSuffix(s, ".gz") {
 		var gz *gzip.Reader
 		gz, err = gzip.NewReader(file)
-		if err != nil {
-			return
-		}
+		if err != nil { return }
 
 		scanner = bufio.NewScanner(gz)
 	} else {
@@ -123,26 +119,44 @@ func HasElem(s interface{}, elem interface{}) bool {
 }
 
 //
-func gtfattr(s string, kv map[string]string) {
+func gtfattr(s string, kv map[string]string) (err error) {
+	tmp := make (map[string]string)
+
 	for _, i := range strings.Split(strings.TrimRight(s, ";"), "; ") {
-		if i == "" {
-			continue
-		}
+		if i == "" { continue }
 		ii := strings.SplitN(i, " ", 2)
 		ii[1], _ = url.QueryUnescape(ii[1])
-		kv[ii[0]] = strings.Trim(ii[1], "\"")
+		if len(ii) != 2 {
+			err = errors.New(fmt.Sprintf ("failed to split %s", i))
+			return
+		}
+
+		tmp[ii[0]] = strings.Trim(ii[1], "\"")
 	}
+
+	for k, v := range tmp { kv[k] = v }
+
+	return
 }
 
-func gffattr(s string, kv map[string]string) {
+func gffattr(s string, kv map[string]string) (err error) {
+	tmp := make (map[string]string)
+
 	for _, i := range strings.Split(s, ";") {
-		if i == "" {
-			continue
-		}
+		if i == "" { continue }
 		ii := strings.SplitN(i, "=", 2)
 		ii[1], _ = url.QueryUnescape(ii[1])
-		kv[ii[0]] = ii[1]
+		if len(ii) != 2 {
+			err = errors.New (fmt.Sprintf ("failed to split %s", i))
+			return
+		}
+
+		tmp[ii[0]] = ii[1]
 	}
+
+	for k, v := range tmp { kv[k] = v }
+
+	return
 }
 
 //
@@ -154,10 +168,9 @@ func P1(scanner *bufio.Scanner) {
 
 	for scanner.Scan() {
 		line := scanner.Text()
-		if strings.HasPrefix(line, "#") {
-			continue
-		}
+		if strings.HasPrefix(line, "#") { continue }
 		fds = strings.SplitN(line, "\t", 9)
+		if fds[0] == "" { continue }
 		Sequences[fds[0]]++
 		Sources[fds[1]]++
 		Types[fds[2]]++
@@ -199,19 +212,26 @@ func P1(scanner *bufio.Scanner) {
 func P2(scanner *bufio.Scanner, types []string) {
 	TypeAttrs := make(map[string]map[string]int)
 	var fds []string
+	var err error
+	var i int
 
 	for scanner.Scan() {
+		i ++
 		line := scanner.Text()
-		if strings.HasPrefix(line, "#") {
-			continue
-		}
+		if strings.HasPrefix(line, "#") { continue }
 		fds = strings.SplitN(line, "\t", 9)
-		if types[0] != "" && !HasElem(types, fds[2]) {
-			continue
-		}
+		if fds[0] == "" { continue }
+		if types[0] != "" && !HasElem(types, fds[2]) { continue }
 
 		kv := make(map[string]string)
-		parseAttr(fds[8], kv)
+		err = parseAttr(fds[8], kv)
+
+		if err != nil {
+			log.Printf ("failed to parse attributions at line %d:" +
+				"\n    %s\n    %s\n\n",  i, err, fds[8])
+
+			continue
+		}
 
 		for k, v := range kv {
 			nk := fds[2] + "\t" + k
@@ -251,24 +271,30 @@ func P2(scanner *bufio.Scanner, types []string) {
 func P3(scanner *bufio.Scanner, types, attrs []string) {
 	var fds []string
 	fmt.Println(strings.Join(attrs, "\t"))
+	var err error
+	var i int
 
 	for scanner.Scan() {
+		i ++
 		line := scanner.Text()
-		if strings.HasPrefix(line, "#") {
-			continue
-		}
+		if strings.HasPrefix(line, "#") { continue }
 		fds = strings.SplitN(line, "\t", 9)
-		if types[0] != "" && !HasElem(types, fds[2]) {
-			continue
-		}
+		if fds[0] == "" { continue }
+		if types[0] != "" && !HasElem(types, fds[2]) { continue }
 
 		kv := make(map[string]string)
-		parseAttr(fds[8], kv)
+		err = parseAttr(fds[8], kv)
+
+		if err != nil {
+			log.Printf ("failed to parse attributions at line %d:" +
+				"\n    %s\n    %s\n\n",  i, err, fds[8])
+
+			continue
+		}
+
 
 		for _, d := range strings.Split(kv["Dbxref"], ",") {
-			if d == "" {
-				continue
-			}
+			if d == "" { continue }
 			x := strings.SplitN(d, ":", 2)
 			kv[x[0]] = x[1]
 		}
