@@ -1,20 +1,22 @@
 package main
 
 import (
-	"bufio"
-	"flag"
 	"fmt"
-	gzip "github.com/klauspost/pgzip"
 	"log"
 	"os"
-	"path/filepath"
+	"bufio"
+	"flag"
 	"strings"
+	"path/filepath"
+	gzip "github.com/klauspost/pgzip"
 )
 
 const USEAGE = `
 Concatenate stdin, text files, gzipped files to one gzipped file.
 Usage:
-  $ cat2gz  <-o output.gz>  [-p cpu_max]  <input1.fastq input2.fastq.gz>
+  $ cat2gz  <-o output.gz>  [-p cpu_max] [-level compress_level] \
+  <input1.fastq input2.fastq.gz>
+
   note: when input is -, read standard input.`
 
 const LISENSE = `
