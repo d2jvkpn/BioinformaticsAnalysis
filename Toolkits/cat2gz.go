@@ -14,15 +14,15 @@ import (
 const USEAGE = `
 Concatenate stdin, text files, gzipped files to one gzipped file.
 Usage:
-  $ cat2gz  <-o output.gz>  [-p cpu_max] [-level compress_level] \
-  <input1.fastq input2.fastq.gz>
+  $ cat2gz  <-o output.gz>  [-p cpu_max] [-level compress_level]
+    <input1.fastq input2.fastq.gz>
 
   note: when input is -, read standard input.`
 
 const LISENSE = `
 author: d2jvkpn
-version: 0.5
-release: 2018-10-09
+version: 0.6
+release: 2018-10-16
 project: https://github.com/d2jvkpn/BioinformaticsAnalysis
 lisense: GPLv3 (https://www.gnu.org/licenses/gpl-3.0.en.html)
 `
@@ -67,6 +67,7 @@ func main() {
 	defer gznw.Close()
 
 	for _, s := range inputs {
+		log.Printf ("Concatenate \"%s\" to \"%s\"\n", s, *outgz)
 		scanner, frd, err := ReadInput(s)
 		if err != nil { log.Fatal(err) }
 		defer frd.Close()
@@ -76,6 +77,8 @@ func main() {
 			if err != nil { log.Fatal(err) }
 		}
 	}
+
+	log.Printf ("Saved \"%s\"\n", *outgz)
 }
 
 func ReadInput(s string) (scanner *bufio.Scanner, file *os.File, err error) {
