@@ -22,8 +22,8 @@ Usage: FastqCount  [-phred value]  [-o tsv]  <input1.fastq input2.fastq.gz>
 
 const LISENSE = `
 author: d2jvkpn
-version: 0.9
-release: 2018-09-27
+version: 0.9.1
+release: 2018-10-16
 project: https://github.com/d2jvkpn/BioinformaticsAnalysis
 lisense: GPLv3 (https://www.gnu.org/licenses/gpl-3.0.en.html)
 `
@@ -50,6 +50,8 @@ func main() {
 
 	go func() {
 		for _, s := range inputs {
+			log.Printf("Read sequeces from %s\n", s)
+
 			scanner, frd, err := ReadInput(s)
 			if err != nil { log.Fatal(err) }
 			defer frd.Close()
@@ -104,6 +106,10 @@ func main() {
 		float64(GC*100) / float64(Bc))
 
 	fmt.Fprintf (wt, "%d\t%d\t%d\t%d\t%d\t%d\n", Rc, Bc, Nc, Q20, Q30, GC)
+
+	if *output != "" {
+		log.Printf("Saved FastqCount result to %s\n", *output)
+	}
 }
 
 func ReadInput(s string) (scanner *bufio.Scanner, file *os.File, err error) {
