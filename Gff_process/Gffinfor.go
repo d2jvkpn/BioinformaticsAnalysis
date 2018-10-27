@@ -7,12 +7,9 @@ import (
 	"net/url"
 	"os"
 	"errors"
-	"reflect"
-	"sort"
 	"strconv"
 	"strings"
-	"text/tabwriter"
-	gzip "github.com/klauspost/pgzip"
+	"github.com/d2jvkpn/gopkgs/cmdplus"
 )
 
 const HELP = `
@@ -28,8 +25,8 @@ Summary gff/gtf (.gz) and extract attributions, usage:
     $ Gffinfor  <gff>  <type1,type2...>  <attr1,attr2,dbxref1,dbxref2...>
 
 author: d2jvkpn
-version: 0.7
-release: 2018-10-10
+version: 0.8
+release: 2018-10-27
 project: https://github.com/d2jvkpn/BioinformaticsAnalysis
 lisense: GPLv3 (https://www.gnu.org/licenses/gpl-3.0.en.html)
 `
@@ -37,9 +34,9 @@ lisense: GPLv3 (https://www.gnu.org/licenses/gpl-3.0.en.html)
 var parseAttr func(string, map[string]string) error
 
 func main() {
-	if len(os.Args) == 1 || HasElem([]string{"-h", "--help"}, os.Args[1]) {
+	if len(os.Args) == 1 || os.Args[1] == "-h" || os.Args[1] ==  "--help" {
 		fmt.Println (HELP)
-		return
+		os.Exit (2)
 	}
 
 	if strings.HasSuffix(os.Args[1], ".gtf") ||
@@ -49,7 +46,7 @@ func main() {
 		parseAttr = gffattr
 	}
 
-	scanner, frd, err := ReadInput(os.Args[1])
+	scanner, frd, err := cmdplus.ReadCmdInput(os.Args[1])
 	if err != nil { log.Fatal(err) }
 	defer frd.Close()
 
@@ -66,56 +63,6 @@ func main() {
 		return
 	}
 
-}
-
-//
-func ReadInput(s string) (scanner *bufio.Scanner, file *os.File, err error) {
-	if s == "-" {
-		scanner = bufio.NewScanner(os.Stdin)
-		return
-	}
-
-	file, err = os.Open(s)
-	if err != nil { return }
-
-	if strings.HasSuffix(s, ".gz") {
-		var gz *gzip.Reader
-		gz, err = gzip.NewReader(file)
-		if err != nil { return }
-
-		scanner = bufio.NewScanner(gz)
-	} else {
-		scanner = bufio.NewScanner(file)
-	}
-
-	return
-}
-
-//
-func TabPrint(array [][]string, leading string) {
-	w := tabwriter.NewWriter(os.Stdout, 2, 0, 4, ' ', tabwriter.StripEscape)
-
-	for _, r := range array {
-		fmt.Fprintln(w, leading+strings.Join(r, "\t"))
-	}
-
-	w.Flush()
-}
-
-func HasElem(s interface{}, elem interface{}) bool {
-	arrV := reflect.ValueOf(s)
-
-	if arrV.Kind() == reflect.Slice {
-		for i := 0; i < arrV.Len(); i++ {
-			// XXX - panics if slice element points to an unexported struct field
-			// see https://golang.org/pkg/reflect/#Value.Interface
-			if arrV.Index(i).Interface() == elem {
-				return true
-			}
-		}
-	}
-
-	return false
 }
 
 //
@@ -183,11 +130,9 @@ func P1(scanner *bufio.Scanner) {
 		[]string{"Sequences", strconv.Itoa(len(Sequences))})
 
 	var sKeys []string
-	for k, _ := range Sources {
-		sKeys = append(sKeys, k)
-	}
+	for k, _ := range Sources { sKeys = append(sKeys, k) }
 
-	SortStringSlice(sKeys)
+	cmdplus.SortStringSlice(sKeys)
 
 	for _, k := range sKeys {
 		x := []string{"source: " + k, strconv.Itoa(Sources[k])}
@@ -195,17 +140,15 @@ func P1(scanner *bufio.Scanner) {
 	}
 
 	var tKeys []string
-	for k, _ := range Types {
-		tKeys = append(tKeys, k)
-	}
-	SortStringSlice(tKeys)
+	for k, _ := range Types { tKeys = append(tKeys, k) }
+	cmdplus.SortStringSlice(tKeys)
 
 	for _, k := range tKeys {
 		x := []string{"type: " + k, strconv.Itoa(Types[k])}
 		array = append(array, x)
 	}
 
-	TabPrint(array, "	")
+	cmdplus.PrintStringArray(array)
 }
 
 //
@@ -221,7 +164,7 @@ func P2(scanner *bufio.Scanner, types []string) {
 		if strings.HasPrefix(line, "#") { continue }
 		fds = strings.SplitN(line, "\t", 9)
 		if fds[0] == "" { continue }
-		if types[0] != "" && !HasElem(types, fds[2]) { continue }
+		if types[0] != "" && !cmdplus.HasElem(types, fds[2]) { continue }
 
 		kv := make(map[string]string)
 		err = parseAttr(fds[8], kv)
@@ -248,22 +191,18 @@ func P2(scanner *bufio.Scanner, types []string) {
 	array = append(array, []string{"TYPE\tATTRIBUTION", "TOTAL", "UNIQUE"})
 
 	var keys []string
-	for k, _ := range TypeAttrs {
-		keys = append(keys, k)
-	}
-	SortStringSlice(keys)
+	for k, _ := range TypeAttrs { keys = append(keys, k) }
+	cmdplus.SortStringSlice(keys)
 
 	for _, v := range keys {
 		u := 0
-		for _, c := range TypeAttrs[v] {
-			u += c
-		}
+		for _, c := range TypeAttrs[v] { u += c }
 
 		array = append(array,
 			[]string{v, strconv.Itoa(u), strconv.Itoa(len(TypeAttrs[v]))})
 	}
 
-	TabPrint(array, "	")
+	cmdplus.PrintStringArray(array)
 }
 
 
@@ -280,7 +219,7 @@ func P3(scanner *bufio.Scanner, types, attrs []string) {
 		if strings.HasPrefix(line, "#") { continue }
 		fds = strings.SplitN(line, "\t", 9)
 		if fds[0] == "" { continue }
-		if types[0] != "" && !HasElem(types, fds[2]) { continue }
+		if types[0] != "" && !cmdplus.HasElem(types, fds[2]) { continue }
 
 		kv := make(map[string]string)
 		err = parseAttr(fds[8], kv)
@@ -292,7 +231,6 @@ func P3(scanner *bufio.Scanner, types, attrs []string) {
 			continue
 		}
 
-
 		for _, d := range strings.Split(kv["Dbxref"], ",") {
 			if d == "" { continue }
 			x := strings.SplitN(d, ":", 2)
@@ -300,17 +238,8 @@ func P3(scanner *bufio.Scanner, types, attrs []string) {
 		}
 
 		values := []string{}
-		for _, k := range attrs {
-			values = append(values, kv[k])
-		}
+		for _, k := range attrs { values = append(values, kv[k]) }
 
 		fmt.Println(strings.Join(values, "\t"))
 	}
-}
-
-//
-func SortStringSlice(s []string) {
-	sort.Slice(s, func(i, j int) bool {
-		return strings.ToLower(s[i]) < strings.ToLower(s[j])
-	})
 }
