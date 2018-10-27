@@ -13,6 +13,7 @@ import (
 	"regexp"
 	"strings"
 	"sync"
+	"github.com/d2jvkpn/gopkgs/cmdplus"
 )
 
 const HELP = `
@@ -26,7 +27,7 @@ KEGG pathway process, usage:
 
 3. get keg file of an organism from local:
     $ Pathway  get  hsa
-    Note: make sure you have download organisms' keg files and achieve to 
+    Note: make sure you have download organisms' keg files and achieve to
     $EXECUTINGPATH/KEGG_data/Pathway_keg.tar
 
 4. find match species name or code in local data table:
@@ -49,8 +50,8 @@ KEGG pathway process, usage:
     Note: existing html files will be overwritten
 
 author: d2jvkpn
-version: 0.8.6
-release: 2018-09-26
+version: 0.8.7
+release: 2018-10-27
 project: https://github.com/d2jvkpn/BioinformaticsAnalysis
 lisense: GPLv3  (https://www.gnu.org/licenses/gpl-3.0.en.html)
 `
@@ -60,7 +61,7 @@ func main() {
 
 	if nargs == 0 || os.Args[1] == "-h" || os.Args[1] == "--help" {
 		fmt.Println(HELP)
-		return
+		os.Exit(2)
 	}
 
 	cmd := os.Args[1]
@@ -278,7 +279,7 @@ func gethtml(p, outdir string, overwrite bool, ch <-chan struct{},
 }
 
 func ToTSV(keg, tsv string) {
-	scanner, frd, err := ReadInput(keg)
+	scanner, frd, err := cmdplus.ReadCmdInput(keg)
 	if err != nil {
 		log.Fatal(err)
 	}
@@ -536,26 +537,5 @@ func getkeg(p string) (ok bool) {
 	log.Printf("Saved %s.gz\n", p)
 
 	ok = true
-	return
-}
-
-func ReadInput(s string) (scanner *bufio.Scanner, file *os.File, err error) {
-	file, err = os.Open(s)
-	if err != nil {
-		return
-	}
-
-	if strings.HasSuffix(s, ".gz") {
-		var gz *gzip.Reader
-		gz, err = gzip.NewReader(file)
-		if err != nil {
-			return
-		}
-
-		scanner = bufio.NewScanner(gz)
-	} else {
-		scanner = bufio.NewScanner(file)
-	}
-
 	return
 }
