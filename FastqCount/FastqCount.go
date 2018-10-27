@@ -1,14 +1,13 @@
 package main
 
 import (
-	"bufio"
 	"fmt"
 	"log"
 	"os"
 	"flag"
 	"path/filepath"
 	"strings"
-	gzip "github.com/klauspost/pgzip" //"compress/gzip"
+	"github.com/d2jvkpn/gopkgs/cmdplus"
 )
 
 const USAGE = `
@@ -19,20 +18,17 @@ Usage: FastqCount  [-phred value]  [-o tsv]  <input1.fastq input2.fastq.gz>
     2. "pigz -dc *.fastq.gz | FastqCount -" is recommended for gzipped file(s).
 `
 
-
 const LISENSE = `
 author: d2jvkpn
-version: 0.9.1
-release: 2018-10-16
+version: 0.9.2
+release: 2018-10-27
 project: https://github.com/d2jvkpn/BioinformaticsAnalysis
 lisense: GPLv3 (https://www.gnu.org/licenses/gpl-3.0.en.html)
 `
 
 func main() {
-	output := flag.String("o", "", "output summary to a tsv file")
+	output := flag.String("o", "", "output summary to a tsv file, default: stdout")
 	phred := flag.Int("phred", 33, "set phred value")
-	flag.Parse()
-	inputs := flag.Args()
 
 	flag.Usage = func() {
 		fmt.Println (USAGE)
@@ -40,7 +36,13 @@ func main() {
 		fmt.Println (LISENSE)
 	}
 
-	if len (inputs) == 0 { flag.Usage(); os.Exit(0) }
+	flag.Parse()
+	inputs := flag.Args()
+
+	if len (os.Args) == 1 {
+		flag.Usage()
+		os.Exit(2)
+	}
 
 	type Writer interface { Write(p []byte) (n int, err error) }
 	var err error
@@ -50,9 +52,9 @@ func main() {
 
 	go func() {
 		for _, s := range inputs {
-			log.Printf("Read sequeces from %s\n", s)
+			log.Printf("FastqCount read sequeces from %s\n", s)
 
-			scanner, frd, err := ReadInput(s)
+			scanner, frd, err := cmdplus.ReadCmdInput(s)
 			if err != nil { log.Fatal(err) }
 			defer frd.Close()
 
@@ -110,22 +112,4 @@ func main() {
 	if *output != "" {
 		log.Printf("Saved FastqCount result to %s\n", *output)
 	}
-}
-
-func ReadInput(s string) (scanner *bufio.Scanner, file *os.File, err error) {
-	if s == "-" { scanner = bufio.NewScanner(os.Stdin); return }
-
-	file, err = os.Open(s)
-	if err != nil { return }
-
-	if strings.HasSuffix(s, ".gz") {
-		var gz *gzip.Reader
-		gz, err = gzip.NewReader(file)
-		if err != nil { return }
-		scanner = bufio.NewScanner(gz)
-	} else {
-		scanner = bufio.NewScanner(file)
-	}
-
-	return
 }
