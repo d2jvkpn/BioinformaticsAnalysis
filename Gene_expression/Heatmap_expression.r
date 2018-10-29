@@ -8,7 +8,7 @@ if (length (Args) < 2 || length (Args) > 4 ) {
 	print ("release: 2018-10-28")
 	print ("project: https://github.com/d2jvkpn/BioinformaticsAnalysis")
 	print ("lisense: GPLv3 (https://www.gnu.org/licenses/gpl-3.0.en.html")
-	q ()
+	q ("no", 2, FALSE)
 }
 
 
