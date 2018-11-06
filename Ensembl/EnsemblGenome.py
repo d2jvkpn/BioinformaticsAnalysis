@@ -1,7 +1,7 @@
 #! /usr/bin/python3
 
 __author__ = 'd2jvkpn'
-__version__ = '0.8'
+__version__ = '0.9'
 __release__ = '2018-09-11'
 __project__ = 'https://github.com/d2jvkpn/BioinformaticsAnalysis'
 __license__ = 'GPLv3 (https://www.gnu.org/licenses/gpl-3.0.en.html)'
@@ -212,7 +212,7 @@ def biomart_anno(url, loca):
 
         print('Saved gene2kegg.tsv to %s/' % loca)
     except:
-        gene2kegg = None
+        gene2kegg = pd.DataFrame()
         print ("kegg_enzyme is not available")
 
     ####
@@ -227,7 +227,7 @@ def biomart_anno(url, loca):
     g = gene2go.groupby('gene')['GO_id'].apply(lambda x: ', '.join(x))
     gene_infor['GO_id'] = [ g[i] if i in g else '' for i in gene_infor['gene']]
 
-    if gene2kegg != None:
+    if gene2kegg.shape[0] > 0:
         k = gene2kegg.groupby('gene')['kegg_enzyme'].apply(lambda x: ', '.join(x))
         gene_infor['kegg_enzyme'] = [ k[i] if i in k else '' for i in gene_infor['gene']]
 
