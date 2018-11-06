@@ -13,7 +13,7 @@ import (
 
 const HELP = `
 Query specices taxonomy ID, usage:
-    QueryTaxonId <species1> <species2> ...
+    QueryTaxonID <species1> <species2> ...
 
     $ QueryTaxonId Homo+sapiens "Rattus norvegicus" "Mus musculus"
     Outputs:
