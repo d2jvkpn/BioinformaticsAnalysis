@@ -334,7 +334,7 @@ func ToTSV(keg, tsv string) {
 
 			copy(fds[1:3], strings.SplitN(tmp[0], " ", 2))
 
-			if matched, _ := regexp.MatchString("[\\S]+;.*", fds[2]); matched {
+			if matched, _ := regexp.MatchString("^[\\S]+;.*$", fds[2]); matched {
 				copy(fds[2:4], strings.SplitN(fds[2], "; ", 2))
 			} else if fds[2] != "" {
 				fds[2], fds[3] = fds[3], fds[2]
