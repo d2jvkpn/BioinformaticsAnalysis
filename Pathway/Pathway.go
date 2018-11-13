@@ -110,7 +110,7 @@ func main() {
 			fmt.Printf("Entry: %s\nCode: %s\nSpecies: %s\nLineage: %s\n",
 				record[0], record[1], record[2], record[3])
 
-			log.Printf("Querying %s\n", record[1]+"00001.keg")
+			log.Printf("querying %s\n", record[1]+"00001.keg")
 
 			ok := getkeg(record[1] + "00001.keg")
 			if !ok {
@@ -158,7 +158,7 @@ func DownloadHTML(keg, outdir string, overwrite bool) {
 		log.Fatal(err)
 	}
 
-	log.Printf("Save html files to %s\n", outdir)
+	log.Printf("save html files to %s\n", outdir)
 
 	if strings.HasSuffix(keg, ".gz") {
 		var gz *gzip.Reader
@@ -334,7 +334,7 @@ func ToTSV(keg, tsv string) {
 
 			copy(fds[1:3], strings.SplitN(tmp[0], " ", 2))
 
-			if strings.Contains(fds[2], "; ") {
+			if matched, _ := regexp.MatchString("[\\S]+;.*", fds[2]); matched {
 				copy(fds[2:4], strings.SplitN(fds[2], "; ", 2))
 			} else if fds[2] != "" {
 				fds[2], fds[3] = fds[3], fds[2]
@@ -344,7 +344,7 @@ func ToTSV(keg, tsv string) {
 			fds[4] = KOEC[0]
 
 			if strings.Contains(KOEC[len(KOEC)-1], "[EC:") {
-				fds[6] = strings.Replace(KOEC[len(KOEC)-1], "[EC:", "", 1)
+				fds[6] = strings.Replace(KOEC[len(KOEC)-1], "[", "", 1)
 				fds[6] = strings.Replace(fds[6], "]", "", 1)
 				fds[5] = strings.Join(KOEC[1:(len(KOEC)-1)], " ")
 			} else {
@@ -385,7 +385,7 @@ func ToTSV(keg, tsv string) {
 	}
 
 	if tsv != "" {
-		log.Printf("Converted %s to %s\n", keg, tsv)
+		log.Printf("converted %s to %s\n", keg, tsv)
 	}
 }
 
@@ -451,7 +451,7 @@ func Get_local(keg, path string) (ok bool) {
 	err := Cmd.Run()
 
 	if err != nil {
-		log.Printf("Failed to get %s from %s\n", keg, path)
+		log.Printf("failed to get %s from %s\n", keg, path)
 	} else {
 		ok = true
 	}
@@ -463,7 +463,7 @@ func Get(codes []string) {
 	ch := make(chan struct{}, 10)
 	var wg sync.WaitGroup
 
-	log.Printf("Request organism code (s): %s\n", strings.Join(codes, " "))
+	log.Printf("request organism code (s): %s\n", strings.Join(codes, " "))
 
 	for _, v := range codes {
 		ch <- struct{}{}
@@ -497,7 +497,7 @@ func getkeg(p string) (ok bool) {
 	lines := strings.Split(string(body), "\n")
 
 	if !strings.HasPrefix(lines[len(lines)-2], "#Last updated:") {
-		log.Printf("Failed to get %s\n", p)
+		log.Printf("failed to get %s\n", p)
 		return
 	}
 
@@ -511,7 +511,7 @@ func getkeg(p string) (ok bool) {
 	gw := gzip.NewWriter(file)
 	gw.Write(body)
 	gw.Close()
-	log.Printf("Saved %s.gz\n", p)
+	log.Printf("saved %s.gz\n", p)
 
 	ok = true
 	return
