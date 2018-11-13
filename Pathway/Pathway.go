@@ -310,7 +310,7 @@ func ToTSV(keg, tsv string) {
 	var fds [7]string
 
 	TSV.Write([]byte("C_id\tgene_id\tgene_name\tgene_description" +
-		"\tKO\tKO_description\tEC\n"))
+		"\tKO_id\tKO_description\tEC\n"))
 
 	A := make([]string, 0, 2)
 	B := make([]string, 0, 2)
@@ -343,8 +343,9 @@ func ToTSV(keg, tsv string) {
 			KOEC := strings.Fields(tmp[1])
 			fds[4] = KOEC[0]
 
-			if strings.Contains(KOEC[len(KOEC)-1], " [EC:") {
-				fds[6] = KOEC[len(KOEC)-1]
+			if strings.Contains(KOEC[len(KOEC)-1], "[EC:") {
+				fds[6] = strings.Replace(KOEC[len(KOEC)-1], "[EC:", "", 1)
+				fds[6] = strings.Replace(fds[6], "]", "", 1)
 				fds[5] = strings.Join(KOEC[1:(len(KOEC)-1)], " ")
 			} else {
 				fds[5] = strings.Join(KOEC[1:], " ")
