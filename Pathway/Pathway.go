@@ -4,6 +4,7 @@ import (
 	"bufio"
 	"compress/gzip"
 	"fmt"
+	"github.com/d2jvkpn/gopkgs/cmdplus"
 	"io/ioutil"
 	"log"
 	"net/http"
@@ -13,7 +14,6 @@ import (
 	"regexp"
 	"strings"
 	"sync"
-	"github.com/d2jvkpn/gopkgs/cmdplus"
 )
 
 const HELP = `
@@ -43,15 +43,15 @@ KEGG pathway process, usage:
     $ Pathway  tsv  hsa00001.keg.gz  hsa00001.keg.tsv
 
     output tsv header (gene and EC may be empty string):
-    C_id id gene_name gene_description KO KO_description EC
+    C_id gene_id gene_name gene_description KO KO_description EC
 
 7. download species keg, convert to tsv and download html files:
     $ Pathway  species  Rhinopithecus+roxellana
     Note: existing html files will be overwritten
 
 author: d2jvkpn
-version: 0.8.7
-release: 2018-10-27
+version: 0.8.8
+release: 2018-11-13
 project: https://github.com/d2jvkpn/BioinformaticsAnalysis
 lisense: GPLv3  (https://www.gnu.org/licenses/gpl-3.0.en.html)
 `
@@ -87,7 +87,7 @@ func main() {
 		DownloadHTML(os.Args[2], os.Args[3], false)
 
 	case cmd == "match" && nargs == 2:
-		record, found := Match( strings.ToLower (os.Args[2]), datatsv)
+		record, found := Match(strings.ToLower(os.Args[2]), datatsv)
 
 		if found {
 			fmt.Printf("Entry: %s\nCode: %s\nSpecies: %s\nLineage: %s\n",
@@ -309,12 +309,11 @@ func ToTSV(keg, tsv string) {
 	var line string
 	var fds [7]string
 
-	TSV.Write([]byte("C_id\tid\tgene_name\tgene_description" +
+	TSV.Write([]byte("C_id\tgene_id\tgene_name\tgene_description" +
 		"\tKO\tKO_description\tEC\n"))
 
 	A := make([]string, 0, 2)
 	B := make([]string, 0, 2)
-	sep := "\t"
 
 	for scanner.Scan() {
 		line = scanner.Text()
@@ -328,35 +327,10 @@ func ToTSV(keg, tsv string) {
 				fds[i] = ""
 			}
 
-			if !strings.Contains(line, "\t") {
-				sep = "; " // for KAAS output keg
-			}
-
-			tmp := strings.SplitN(strings.TrimLeft(line, "D      "), sep, 2)
+			tmp := strings.SplitN(strings.TrimLeft(line, "D      "), "\t", 2)
 			if len(tmp) != 2 {
 				continue
 			}
-
-			/*
-				var re *regexp.Regexp
-
-				if strings.Contains(tmp[0], "; ") {
-					re, _ = regexp.Compile("([^ ]+) ([^;]+); (.*)")
-					copy(fds[1:4], re.FindAllStringSubmatch(tmp[0], 1)[0][1:])
-				} else {
-					copy(fds[1:3], strings.SplitN(tmp[0], " ", 2))
-					fds[2], fds[3] = fds[3], fds[2]
-				}
-
-				if strings.Contains(tmp[1], " [EC:") {
-					re, _ = regexp.Compile("(K[^ ]+) {1,2}(.*) (\\[EC:.*\\])")
-					copy(fds[4:7], re.FindAllStringSubmatch(tmp[1], 1)[0][1:])
-					fds[6] = strings.Replace(fds[6], "[EC:", "", 1)
-					fds[6] = strings.Replace(fds[6], "]", "", 1)
-				} else {
-					copy(fds[4:7], strings.SplitN(tmp[1], " ", 2))
-				}
-			*/
 
 			copy(fds[1:3], strings.SplitN(tmp[0], " ", 2))
 
@@ -366,12 +340,14 @@ func ToTSV(keg, tsv string) {
 				fds[2], fds[3] = fds[3], fds[2]
 			}
 
-			copy(fds[4:6],
-				strings.SplitN(strings.Replace(tmp[1], "  ", " ", 1), " ", 2))
+			KOEC := strings.Fields(tmp[1])
+			fds[4] = KOEC[0]
 
-			if strings.Contains(fds[5], " [EC:") {
-				copy(fds[5:7], strings.SplitN(fds[5], "[EC:", 2))
-				fds[6] = strings.Replace(fds[6], "]", "", 1)
+			if strings.Contains(KOEC[len(KOEC)-1], " [EC:") {
+				fds[6] = KOEC[len(KOEC)-1]
+				fds[5] = strings.Join(KOEC[1:(len(KOEC)-1)], " ")
+			} else {
+				fds[5] = strings.Join(KOEC[1:], " ")
 			}
 
 			TSV.Write([]byte(strings.Join(fds[0:], "\t") + "\n"))
@@ -419,7 +395,7 @@ func Match(name, datatsv string) (record []string, ok bool) {
 	}
 	defer file.Close()
 
-	species := strings.ToLower (formatSpeciesName(name))
+	species := strings.ToLower(formatSpeciesName(name))
 	scanner := bufio.NewScanner(file)
 	scanner.Scan() // skip header
 
@@ -427,7 +403,7 @@ func Match(name, datatsv string) (record []string, ok bool) {
 		record = strings.Split(scanner.Text(), "\t")
 
 		ok = (name == record[1] ||
-			species == strings.ToLower (strings.Split(record[2], " (")[0] ))
+			species == strings.ToLower(strings.Split(record[2], " (")[0]))
 
 		if ok {
 			return
