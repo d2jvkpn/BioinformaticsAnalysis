@@ -42,8 +42,7 @@ KEGG pathway process, usage:
 6. convert keg format to tsv  (file or stdout):
     $ Pathway  tsv  hsa00001.keg.gz  hsa00001.keg.tsv
 
-    output tsv header (gene and EC may be empty string):
-    C_id gene_id gene_name gene_description KO KO_description EC
+    output tsv header: C_id gene_id gene_information KO KO_description EC
 
 7. download species keg, convert to tsv and download html files:
     $ Pathway  species  Rhinopithecus+roxellana
@@ -51,7 +50,7 @@ KEGG pathway process, usage:
 
 author: d2jvkpn
 version: 0.8.8
-release: 2018-11-13
+release: 2018-11-14
 project: https://github.com/d2jvkpn/BioinformaticsAnalysis
 lisense: GPLv3  (https://www.gnu.org/licenses/gpl-3.0.en.html)
 `
@@ -307,10 +306,10 @@ func ToTSV(keg, tsv string) {
 	}
 
 	var line string
-	var fds [7]string
+	var fds [6]string
 
-	TSV.Write([]byte("C_id\tgene_id\tgene_name\tgene_description" +
-		"\tKO_id\tKO_description\tEC\n"))
+	TSV.Write([]byte("C_id\tgene_id\tgene_information" +
+		"\tKO_id\tKO_description\tEC_ids\n"))
 
 	A := make([]string, 0, 2)
 	B := make([]string, 0, 2)
@@ -323,7 +322,7 @@ func ToTSV(keg, tsv string) {
 
 		switch line[0] {
 		case 'D':
-			for i := 1; i <= 6; i++ {
+			for i := 1; i <= 5; i++ {
 				fds[i] = ""
 			}
 
@@ -333,22 +332,16 @@ func ToTSV(keg, tsv string) {
 			}
 
 			copy(fds[1:3], strings.SplitN(tmp[0], " ", 2))
+			// can't find correct regular expression seperate gene name and gene description 
+			// matched, _ := regexp.MatchString("^[\\S]+; [\\S]+ [\\S]+.*$", fds[2])
 
-			if matched, _ := regexp.MatchString("^[\\S]+;.*$", fds[2]); matched {
-				copy(fds[2:4], strings.SplitN(fds[2], "; ", 2))
-			} else if fds[2] != "" {
-				fds[2], fds[3] = fds[3], fds[2]
-			}
+			KOEC := strings.SplitN(tmp[1], " ", 2)
+			fds[3], fds[4] = KOEC[0], KOEC[1]
 
-			KOEC := strings.Fields(tmp[1])
-			fds[4] = KOEC[0]
-
-			if strings.Contains(KOEC[len(KOEC)-1], "[EC:") {
-				fds[6] = strings.Replace(KOEC[len(KOEC)-1], "[", "", 1)
-				fds[6] = strings.Replace(fds[6], "]", "", 1)
-				fds[5] = strings.Join(KOEC[1:(len(KOEC)-1)], " ")
-			} else {
-				fds[5] = strings.Join(KOEC[1:], " ")
+			if strings.Contains(fds[4], " [EC:") {
+				x := strings.SplitN(fds[4], " [EC:", 2)
+				fds[4] = x[0]
+				fds[5] = strings.Replace(x[1], "]", "", 1)
 			}
 
 			TSV.Write([]byte(strings.Join(fds[0:], "\t") + "\n"))
@@ -360,22 +353,23 @@ func ToTSV(keg, tsv string) {
 			B = strings.SplitN(strings.Replace(line, "B  ", "B", 1), " ", 2)
 
 		case 'C':
-			copy(fds[3:5], A)
-			copy(fds[5:7], B)
+			copy(fds[2:4], A)
+			copy(fds[4:6], B)
 
 			tmp := strings.SplitN(strings.TrimLeft(line, "C    "), " ", 2)
-			fds[0], fds[1] = "C"+tmp[0], ""
-			fds[2] = strings.TrimRight(tmp[1], "]")
+			fds[0], fds[1] = "C"+tmp[0], tmp[1]
 
-			if strings.Contains(fds[2], " [") {
-				copy(fds[1:3], strings.SplitN(fds[2], " [", 2))
-				fds[1], fds[2] = fds[2], fds[1]
+			P := make([]string, 2)
+			if strings.Contains(fds[1], " [") {
+				P = strings.SplitN(fds[1], " [", 2)
+				fds[1] = P[0]
+				P[1] = strings.TrimRight(P[1], "]")
 			}
 
 			TSV.Write([]byte("#" + strings.Join(fds[0:], "\t") + "\n"))
 
-			if fds[1] != "" {
-				fds[0] = fds[1]
+			if P[1] != "" {
+				fds[0] = P[1]
 			}
 
 		default:
