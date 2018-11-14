@@ -42,7 +42,7 @@ KEGG pathway process, usage:
 6. convert keg format to tsv  (file or stdout):
     $ Pathway  tsv  hsa00001.keg.gz  hsa00001.keg.tsv
 
-    output tsv header: C_id gene_id gene_information KO KO_description EC
+    output tsv header: C_id gene_id gene_information KO_id KO_information EC_ids
 
 7. download species keg, convert to tsv and download html files:
     $ Pathway  species  Rhinopithecus+roxellana
@@ -309,7 +309,7 @@ func ToTSV(keg, tsv string) {
 	var fds [6]string
 
 	TSV.Write([]byte("C_id\tgene_id\tgene_information" +
-		"\tKO_id\tKO_description\tEC_ids\n"))
+		"\tKO_id\tKO_information\tEC_ids\n"))
 
 	A := make([]string, 0, 2)
 	B := make([]string, 0, 2)
