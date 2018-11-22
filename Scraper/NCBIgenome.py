@@ -55,7 +55,7 @@ def getftp(url):
     html_soup = BeautifulSoup(r.text, 'html.parser')
     Lineage = html_soup.find('span', class_='GenomeLineage').find_all('a')
     ln = [i.text  for i in Lineage[0::2]]
-    txid = [i.get('href').split('/')[-1] for i in Lineage[0::2]]
+    taxon_id = [i.get('href').split('/')[-1] for i in Lineage[0::2]]
     
     RGS = html_soup.find('div', class_='refgenome_sensor')
     _ = RGS.find_all ('span', class_='shifted')
@@ -84,7 +84,7 @@ def getftp(url):
         F.write('\n')
     
     F.write('Lineage name:\n    %s\n\n' % ', '.join(ln))
-    F.write('Lineage txid:\n    %s\n\n' % ', '.join(txid))
+    F.write('Lineage taxon_id:\n    %s\n\n' % ', '.join(taxon_id))
     
     prefix = list(ftp.values())[0].rsplit('/', 1)[0]
     SH.write('#! /bin/bash\n\n## URL: %s\n' % url)
