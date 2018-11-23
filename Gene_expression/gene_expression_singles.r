@@ -3,8 +3,8 @@ Args <- commandArgs(T)
 if (length(Args) == 0 || Args[1] == "-h" || Args[1] == "--help") {
 	print("Arguments:  <expression.tsv>  <outputPrefix>  <threshold>  <title>")
 	print("author: d2jvkpn")
-	print("version: 0.3")
-	print("release: 2018-09-10")
+	print("version: 0.4")
+	print("release: 2018-11-23")
 	print("project: https://github.com/d2jvkpn/BioinformaticsAnalysis")
 	print("lisense: GPLv3 (https://www.gnu.org/licenses/gpl-3.0.en.html")
 	q()
@@ -29,9 +29,10 @@ dis <- function (x, threshold) {
 	s["mean"] <- mean(x)
 	s["std"] <- sd(x)
 	s["threshold"] <- threshold
+	s["IQR"] <- IQR(x)
 
 	s <- s[c ("threshold", "count", "mean", "std", "0%", "25%", "50%", "75%", 
-	"100%")]
+	"100%", "IQR")]
 
 	names (s)[5:9] <- c("min", "Q1", "median", "Q3", "max")
 
