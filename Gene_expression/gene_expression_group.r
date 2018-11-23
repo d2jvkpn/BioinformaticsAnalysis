@@ -3,8 +3,8 @@ Args <- commandArgs(T)
 if (length(Args) == 0 || Args[1] == "-h" || Args[1] == "--help") {
 	print("Arguments:  <expression.tsv>  <outputPrefix>  <threshold>  <title>  <group.tsv>")
 	print("author: d2jvkpn")
-	print("version: 0.3")
-	print("release: 2018-09-10")
+	print("version: 0.5")
+	print("release: 2018-11-23")
 	print("project: https://github.com/d2jvkpn/BioinformaticsAnalysis")
 	print("lisense: GPLv3 (https://www.gnu.org/licenses/gpl-3.0.en.html")
 	q()
@@ -24,6 +24,11 @@ if (FALSE %in% c(sort(colnames(d)) == sort(rownames(gp))) ) {
 	q ()
 }
 
+if (nrow(gp) == length(unique(gp[,1])) ) {
+	print (sprintf ("Error: incorrect group file %s.", group))
+	q ()
+}
+
 library(ggplot2)
 library(reshape2)
 library (pheatmap)
@@ -39,9 +44,10 @@ dis <- function (x, threshold) {
 	s["mean"] <- mean(x)
 	s["std"] <- sd(x)
 	s["threshold"] <- threshold
+	s["IQR"] <- IQR(x)
 
 	s <- s[c ("threshold", "count", "mean", "std", "0%", "25%", "50%", "75%", 
-	"100%")]
+	"100%", "IQR")]
 
 	names (s)[5:9] <- c("min", "Q1", "median", "Q3", "max")
 
@@ -255,7 +261,7 @@ for (g in unique(gp[,1])) {
 	s <- colnames(d) [g == gp[,1]]
 	if(length(s) ==1) { next }
 
-	pdf (paste0 (dirname(prefix), "/CorScatter_", g, ".pdf"), onefile = TRUE)
+	pdf (paste0 (prefix, ".corscatter_", g, ".pdf"), onefile = TRUE)
 
 	for (p in as.data.frame(combn(s,2))) {
 		print (CorScatter(d, as.character(p), threshold, title))
