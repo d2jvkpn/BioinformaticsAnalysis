@@ -29,7 +29,9 @@ if (nrow(hd) <= 50 & ShowRownames == "") {
 	ShowRownames == "TRUE"
 }
 
-ShowRownames = as.logical(ShowRownames)
+if (ShowRownames == "") {
+    ShowRownames = "FALSE"
+}
 
 hd <- hd [apply(hd,1,var) > 0,]
 
@@ -39,5 +41,5 @@ print (PDF)
 pheatmap (log (hd + 1, 10),
     scale = ifelse (ncol(hd) > 2, "row", "column"),
     breaks = NA, color = palette, cluster_rows = TRUE,
-    cluster_cols = ncol(hd) > 2, show_rownames = ShowRownames,
+    cluster_cols = ncol(hd) > 2, show_rownames = as.logical(ShowRownames),
     border_color = NA, filename = PDF, heigh = PDFheigh, width = PDFwidth)
