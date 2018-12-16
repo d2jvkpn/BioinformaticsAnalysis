@@ -22,7 +22,7 @@ PDFheigh <- as.numeric(Sys.getenv(x="PDFheigh", unset="8"))
 PDFwidth <- as.numeric(Sys.getenv(x="PDFwidth", unset="6"))
 COLOR1 <- Sys.getenv(x="COLOR1", unset="blue")
 COLOR2 <- Sys.getenv(x="COLOR2", unset="white")
-COLOR3 <- Sys.getenv(x="COLOR3", unset="white")
+COLOR3 <- Sys.getenv(x="COLOR3", unset="red")
 ShowRownames <- Sys.getenv(x="ShowRownames", unset="")
 
 if (nrow(hd) <= 50 & ShowRownames == "") {
