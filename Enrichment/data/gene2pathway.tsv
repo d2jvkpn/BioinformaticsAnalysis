@@ -1,0 +1,1001 @@
+gene	gene_id	pathway	C_name	B_name	A_name
+HK3	3101	hsa00010	Glycolysis / Gluconeogenesis	Carbohydrate metabolism	Metabolism
+HK1	3098	hsa00010	Glycolysis / Gluconeogenesis	Carbohydrate metabolism	Metabolism
+HK2	3099	hsa00010	Glycolysis / Gluconeogenesis	Carbohydrate metabolism	Metabolism
+HKDC1	80201	hsa00010	Glycolysis / Gluconeogenesis	Carbohydrate metabolism	Metabolism
+GCK	2645	hsa00010	Glycolysis / Gluconeogenesis	Carbohydrate metabolism	Metabolism
+GPI	2821	hsa00010	Glycolysis / Gluconeogenesis	Carbohydrate metabolism	Metabolism
+PFKM	5213	hsa00010	Glycolysis / Gluconeogenesis	Carbohydrate metabolism	Metabolism
+PFKP	5214	hsa00010	Glycolysis / Gluconeogenesis	Carbohydrate metabolism	Metabolism
+PFKL	5211	hsa00010	Glycolysis / Gluconeogenesis	Carbohydrate metabolism	Metabolism
+FBP1	2203	hsa00010	Glycolysis / Gluconeogenesis	Carbohydrate metabolism	Metabolism
+FBP2	8789	hsa00010	Glycolysis / Gluconeogenesis	Carbohydrate metabolism	Metabolism
+ALDOC	230	hsa00010	Glycolysis / Gluconeogenesis	Carbohydrate metabolism	Metabolism
+ALDOA	226	hsa00010	Glycolysis / Gluconeogenesis	Carbohydrate metabolism	Metabolism
+ALDOB	229	hsa00010	Glycolysis / Gluconeogenesis	Carbohydrate metabolism	Metabolism
+TPI1	7167	hsa00010	Glycolysis / Gluconeogenesis	Carbohydrate metabolism	Metabolism
+GAPDH	2597	hsa00010	Glycolysis / Gluconeogenesis	Carbohydrate metabolism	Metabolism
+GAPDHS	26330	hsa00010	Glycolysis / Gluconeogenesis	Carbohydrate metabolism	Metabolism
+PGK2	5232	hsa00010	Glycolysis / Gluconeogenesis	Carbohydrate metabolism	Metabolism
+PGK1	5230	hsa00010	Glycolysis / Gluconeogenesis	Carbohydrate metabolism	Metabolism
+PGAM1	5223	hsa00010	Glycolysis / Gluconeogenesis	Carbohydrate metabolism	Metabolism
+PGAM2	5224	hsa00010	Glycolysis / Gluconeogenesis	Carbohydrate metabolism	Metabolism
+PGAM4	441531	hsa00010	Glycolysis / Gluconeogenesis	Carbohydrate metabolism	Metabolism
+ENO3	2027	hsa00010	Glycolysis / Gluconeogenesis	Carbohydrate metabolism	Metabolism
+ENO2	2026	hsa00010	Glycolysis / Gluconeogenesis	Carbohydrate metabolism	Metabolism
+ENO1	2023	hsa00010	Glycolysis / Gluconeogenesis	Carbohydrate metabolism	Metabolism
+ENO4	387712	hsa00010	Glycolysis / Gluconeogenesis	Carbohydrate metabolism	Metabolism
+PKM	5315	hsa00010	Glycolysis / Gluconeogenesis	Carbohydrate metabolism	Metabolism
+PKLR	5313	hsa00010	Glycolysis / Gluconeogenesis	Carbohydrate metabolism	Metabolism
+PDHA2	5161	hsa00010	Glycolysis / Gluconeogenesis	Carbohydrate metabolism	Metabolism
+PDHA1	5160	hsa00010	Glycolysis / Gluconeogenesis	Carbohydrate metabolism	Metabolism
+PDHB	5162	hsa00010	Glycolysis / Gluconeogenesis	Carbohydrate metabolism	Metabolism
+DLAT	1737	hsa00010	Glycolysis / Gluconeogenesis	Carbohydrate metabolism	Metabolism
+DLD	1738	hsa00010	Glycolysis / Gluconeogenesis	Carbohydrate metabolism	Metabolism
+PDHX	8050	hsa00010	Glycolysis / Gluconeogenesis	Carbohydrate metabolism	Metabolism
+LDHAL6A	160287	hsa00010	Glycolysis / Gluconeogenesis	Carbohydrate metabolism	Metabolism
+LDHAL6B	92483	hsa00010	Glycolysis / Gluconeogenesis	Carbohydrate metabolism	Metabolism
+LDHA	3939	hsa00010	Glycolysis / Gluconeogenesis	Carbohydrate metabolism	Metabolism
+LDHB	3945	hsa00010	Glycolysis / Gluconeogenesis	Carbohydrate metabolism	Metabolism
+LDHC	3948	hsa00010	Glycolysis / Gluconeogenesis	Carbohydrate metabolism	Metabolism
+ADH1A	124	hsa00010	Glycolysis / Gluconeogenesis	Carbohydrate metabolism	Metabolism
+ADH1B	125	hsa00010	Glycolysis / Gluconeogenesis	Carbohydrate metabolism	Metabolism
+ADH1C	126	hsa00010	Glycolysis / Gluconeogenesis	Carbohydrate metabolism	Metabolism
+ADH7	131	hsa00010	Glycolysis / Gluconeogenesis	Carbohydrate metabolism	Metabolism
+ADH4	127	hsa00010	Glycolysis / Gluconeogenesis	Carbohydrate metabolism	Metabolism
+ADH5	128	hsa00010	Glycolysis / Gluconeogenesis	Carbohydrate metabolism	Metabolism
+ADH6	130	hsa00010	Glycolysis / Gluconeogenesis	Carbohydrate metabolism	Metabolism
+AKR1A1	10327	hsa00010	Glycolysis / Gluconeogenesis	Carbohydrate metabolism	Metabolism
+ALDH2	217	hsa00010	Glycolysis / Gluconeogenesis	Carbohydrate metabolism	Metabolism
+ALDH3A2	224	hsa00010	Glycolysis / Gluconeogenesis	Carbohydrate metabolism	Metabolism
+ALDH1B1	219	hsa00010	Glycolysis / Gluconeogenesis	Carbohydrate metabolism	Metabolism
+ALDH7A1	501	hsa00010	Glycolysis / Gluconeogenesis	Carbohydrate metabolism	Metabolism
+ALDH9A1	223	hsa00010	Glycolysis / Gluconeogenesis	Carbohydrate metabolism	Metabolism
+ALDH3B1	221	hsa00010	Glycolysis / Gluconeogenesis	Carbohydrate metabolism	Metabolism
+ALDH3B2	222	hsa00010	Glycolysis / Gluconeogenesis	Carbohydrate metabolism	Metabolism
+ALDH1A3	220	hsa00010	Glycolysis / Gluconeogenesis	Carbohydrate metabolism	Metabolism
+ALDH3A1	218	hsa00010	Glycolysis / Gluconeogenesis	Carbohydrate metabolism	Metabolism
+ACSS1	84532	hsa00010	Glycolysis / Gluconeogenesis	Carbohydrate metabolism	Metabolism
+ACSS2	55902	hsa00010	Glycolysis / Gluconeogenesis	Carbohydrate metabolism	Metabolism
+GALM	130589	hsa00010	Glycolysis / Gluconeogenesis	Carbohydrate metabolism	Metabolism
+PGM1	5236	hsa00010	Glycolysis / Gluconeogenesis	Carbohydrate metabolism	Metabolism
+PGM2	55276	hsa00010	Glycolysis / Gluconeogenesis	Carbohydrate metabolism	Metabolism
+G6PC	2538	hsa00010	Glycolysis / Gluconeogenesis	Carbohydrate metabolism	Metabolism
+G6PC2	57818	hsa00010	Glycolysis / Gluconeogenesis	Carbohydrate metabolism	Metabolism
+G6PC3	92579	hsa00010	Glycolysis / Gluconeogenesis	Carbohydrate metabolism	Metabolism
+ADPGK	83440	hsa00010	Glycolysis / Gluconeogenesis	Carbohydrate metabolism	Metabolism
+BPGM	669	hsa00010	Glycolysis / Gluconeogenesis	Carbohydrate metabolism	Metabolism
+MINPP1	9562	hsa00010	Glycolysis / Gluconeogenesis	Carbohydrate metabolism	Metabolism
+PCK1	5105	hsa00010	Glycolysis / Gluconeogenesis	Carbohydrate metabolism	Metabolism
+PCK2	5106	hsa00010	Glycolysis / Gluconeogenesis	Carbohydrate metabolism	Metabolism
+CS	1431	hsa00020	Citrate cycle (TCA cycle)	Carbohydrate metabolism	Metabolism
+ACLY	47	hsa00020	Citrate cycle (TCA cycle)	Carbohydrate metabolism	Metabolism
+ACO2	50	hsa00020	Citrate cycle (TCA cycle)	Carbohydrate metabolism	Metabolism
+ACO1	48	hsa00020	Citrate cycle (TCA cycle)	Carbohydrate metabolism	Metabolism
+IDH1	3417	hsa00020	Citrate cycle (TCA cycle)	Carbohydrate metabolism	Metabolism
+IDH2	3418	hsa00020	Citrate cycle (TCA cycle)	Carbohydrate metabolism	Metabolism
+IDH3B	3420	hsa00020	Citrate cycle (TCA cycle)	Carbohydrate metabolism	Metabolism
+IDH3G	3421	hsa00020	Citrate cycle (TCA cycle)	Carbohydrate metabolism	Metabolism
+IDH3A	3419	hsa00020	Citrate cycle (TCA cycle)	Carbohydrate metabolism	Metabolism
+OGDHL	55753	hsa00020	Citrate cycle (TCA cycle)	Carbohydrate metabolism	Metabolism
+OGDH	4967	hsa00020	Citrate cycle (TCA cycle)	Carbohydrate metabolism	Metabolism
+DLST	1743	hsa00020	Citrate cycle (TCA cycle)	Carbohydrate metabolism	Metabolism
+DLD	1738	hsa00020	Citrate cycle (TCA cycle)	Carbohydrate metabolism	Metabolism
+SUCLG1	8802	hsa00020	Citrate cycle (TCA cycle)	Carbohydrate metabolism	Metabolism
+SUCLG2	8801	hsa00020	Citrate cycle (TCA cycle)	Carbohydrate metabolism	Metabolism
+SUCLA2	8803	hsa00020	Citrate cycle (TCA cycle)	Carbohydrate metabolism	Metabolism
+SDHA	6389	hsa00020	Citrate cycle (TCA cycle)	Carbohydrate metabolism	Metabolism
+SDHB	6390	hsa00020	Citrate cycle (TCA cycle)	Carbohydrate metabolism	Metabolism
+SDHC	6391	hsa00020	Citrate cycle (TCA cycle)	Carbohydrate metabolism	Metabolism
+SDHD	6392	hsa00020	Citrate cycle (TCA cycle)	Carbohydrate metabolism	Metabolism
+FH	2271	hsa00020	Citrate cycle (TCA cycle)	Carbohydrate metabolism	Metabolism
+MDH1	4190	hsa00020	Citrate cycle (TCA cycle)	Carbohydrate metabolism	Metabolism
+MDH2	4191	hsa00020	Citrate cycle (TCA cycle)	Carbohydrate metabolism	Metabolism
+PC	5091	hsa00020	Citrate cycle (TCA cycle)	Carbohydrate metabolism	Metabolism
+PCK1	5105	hsa00020	Citrate cycle (TCA cycle)	Carbohydrate metabolism	Metabolism
+PCK2	5106	hsa00020	Citrate cycle (TCA cycle)	Carbohydrate metabolism	Metabolism
+PDHA2	5161	hsa00020	Citrate cycle (TCA cycle)	Carbohydrate metabolism	Metabolism
+PDHA1	5160	hsa00020	Citrate cycle (TCA cycle)	Carbohydrate metabolism	Metabolism
+PDHB	5162	hsa00020	Citrate cycle (TCA cycle)	Carbohydrate metabolism	Metabolism
+DLAT	1737	hsa00020	Citrate cycle (TCA cycle)	Carbohydrate metabolism	Metabolism
+PDHX	8050	hsa00020	Citrate cycle (TCA cycle)	Carbohydrate metabolism	Metabolism
+GPI	2821	hsa00030	Pentose phosphate pathway	Carbohydrate metabolism	Metabolism
+G6PD	2539	hsa00030	Pentose phosphate pathway	Carbohydrate metabolism	Metabolism
+PGLS	25796	hsa00030	Pentose phosphate pathway	Carbohydrate metabolism	Metabolism
+H6PD	9563	hsa00030	Pentose phosphate pathway	Carbohydrate metabolism	Metabolism
+PGD	5226	hsa00030	Pentose phosphate pathway	Carbohydrate metabolism	Metabolism
+RPE	6120	hsa00030	Pentose phosphate pathway	Carbohydrate metabolism	Metabolism
+RPEL1	729020	hsa00030	Pentose phosphate pathway	Carbohydrate metabolism	Metabolism
+TKT	7086	hsa00030	Pentose phosphate pathway	Carbohydrate metabolism	Metabolism
+TKTL2	84076	hsa00030	Pentose phosphate pathway	Carbohydrate metabolism	Metabolism
+TKTL1	8277	hsa00030	Pentose phosphate pathway	Carbohydrate metabolism	Metabolism
+TALDO1	6888	hsa00030	Pentose phosphate pathway	Carbohydrate metabolism	Metabolism
+RPIA	22934	hsa00030	Pentose phosphate pathway	Carbohydrate metabolism	Metabolism
+DERA	51071	hsa00030	Pentose phosphate pathway	Carbohydrate metabolism	Metabolism
+RBKS	64080	hsa00030	Pentose phosphate pathway	Carbohydrate metabolism	Metabolism
+PGM1	5236	hsa00030	Pentose phosphate pathway	Carbohydrate metabolism	Metabolism
+PGM2	55276	hsa00030	Pentose phosphate pathway	Carbohydrate metabolism	Metabolism
+PRPS1L1	221823	hsa00030	Pentose phosphate pathway	Carbohydrate metabolism	Metabolism
+PRPS2	5634	hsa00030	Pentose phosphate pathway	Carbohydrate metabolism	Metabolism
+PRPS1	5631	hsa00030	Pentose phosphate pathway	Carbohydrate metabolism	Metabolism
+RGN	9104	hsa00030	Pentose phosphate pathway	Carbohydrate metabolism	Metabolism
+IDNK	414328	hsa00030	Pentose phosphate pathway	Carbohydrate metabolism	Metabolism
+GLYCTK	132158	hsa00030	Pentose phosphate pathway	Carbohydrate metabolism	Metabolism
+ALDOC	230	hsa00030	Pentose phosphate pathway	Carbohydrate metabolism	Metabolism
+ALDOA	226	hsa00030	Pentose phosphate pathway	Carbohydrate metabolism	Metabolism
+ALDOB	229	hsa00030	Pentose phosphate pathway	Carbohydrate metabolism	Metabolism
+FBP1	2203	hsa00030	Pentose phosphate pathway	Carbohydrate metabolism	Metabolism
+FBP2	8789	hsa00030	Pentose phosphate pathway	Carbohydrate metabolism	Metabolism
+PFKM	5213	hsa00030	Pentose phosphate pathway	Carbohydrate metabolism	Metabolism
+PFKP	5214	hsa00030	Pentose phosphate pathway	Carbohydrate metabolism	Metabolism
+PFKL	5211	hsa00030	Pentose phosphate pathway	Carbohydrate metabolism	Metabolism
+GUSB	2990	hsa00040	Pentose and glucuronate interconversions	Carbohydrate metabolism	Metabolism
+KL	9365	hsa00040	Pentose and glucuronate interconversions	Carbohydrate metabolism	Metabolism
+UGT2A1	10941	hsa00040	Pentose and glucuronate interconversions	Carbohydrate metabolism	Metabolism
+UGT2A3	79799	hsa00040	Pentose and glucuronate interconversions	Carbohydrate metabolism	Metabolism
+UGT2B17	7367	hsa00040	Pentose and glucuronate interconversions	Carbohydrate metabolism	Metabolism
+UGT2B11	10720	hsa00040	Pentose and glucuronate interconversions	Carbohydrate metabolism	Metabolism
+UGT2B28	54490	hsa00040	Pentose and glucuronate interconversions	Carbohydrate metabolism	Metabolism
+UGT1A6	54578	hsa00040	Pentose and glucuronate interconversions	Carbohydrate metabolism	Metabolism
+UGT1A4	54657	hsa00040	Pentose and glucuronate interconversions	Carbohydrate metabolism	Metabolism
+UGT1A1	54658	hsa00040	Pentose and glucuronate interconversions	Carbohydrate metabolism	Metabolism
+UGT1A3	54659	hsa00040	Pentose and glucuronate interconversions	Carbohydrate metabolism	Metabolism
+UGT2B10	7365	hsa00040	Pentose and glucuronate interconversions	Carbohydrate metabolism	Metabolism
+UGT1A9	54600	hsa00040	Pentose and glucuronate interconversions	Carbohydrate metabolism	Metabolism
+UGT2B7	7364	hsa00040	Pentose and glucuronate interconversions	Carbohydrate metabolism	Metabolism
+UGT1A10	54575	hsa00040	Pentose and glucuronate interconversions	Carbohydrate metabolism	Metabolism
+UGT1A8	54576	hsa00040	Pentose and glucuronate interconversions	Carbohydrate metabolism	Metabolism
+UGT1A5	54579	hsa00040	Pentose and glucuronate interconversions	Carbohydrate metabolism	Metabolism
+UGT2B15	7366	hsa00040	Pentose and glucuronate interconversions	Carbohydrate metabolism	Metabolism
+UGT1A7	54577	hsa00040	Pentose and glucuronate interconversions	Carbohydrate metabolism	Metabolism
+UGT2B4	7363	hsa00040	Pentose and glucuronate interconversions	Carbohydrate metabolism	Metabolism
+UGT2A2	574537	hsa00040	Pentose and glucuronate interconversions	Carbohydrate metabolism	Metabolism
+UGDH	7358	hsa00040	Pentose and glucuronate interconversions	Carbohydrate metabolism	Metabolism
+UGP2	7360	hsa00040	Pentose and glucuronate interconversions	Carbohydrate metabolism	Metabolism
+AKR1A1	10327	hsa00040	Pentose and glucuronate interconversions	Carbohydrate metabolism	Metabolism
+CRYL1	51084	hsa00040	Pentose and glucuronate interconversions	Carbohydrate metabolism	Metabolism
+RPE	6120	hsa00040	Pentose and glucuronate interconversions	Carbohydrate metabolism	Metabolism
+RPEL1	729020	hsa00040	Pentose and glucuronate interconversions	Carbohydrate metabolism	Metabolism
+XYLB	9942	hsa00040	Pentose and glucuronate interconversions	Carbohydrate metabolism	Metabolism
+AKR1B1	231	hsa00040	Pentose and glucuronate interconversions	Carbohydrate metabolism	Metabolism
+AKR1B10	57016	hsa00040	Pentose and glucuronate interconversions	Carbohydrate metabolism	Metabolism
+DCXR	51181	hsa00040	Pentose and glucuronate interconversions	Carbohydrate metabolism	Metabolism
+SORD	6652	hsa00040	Pentose and glucuronate interconversions	Carbohydrate metabolism	Metabolism
+DHDH	27294	hsa00040	Pentose and glucuronate interconversions	Carbohydrate metabolism	Metabolism
+ISPD	729920	hsa00040	Pentose and glucuronate interconversions	Carbohydrate metabolism	Metabolism
+MPI	4351	hsa00051	Fructose and mannose metabolism	Carbohydrate metabolism	Metabolism
+PMM2	5373	hsa00051	Fructose and mannose metabolism	Carbohydrate metabolism	Metabolism
+PMM1	5372	hsa00051	Fructose and mannose metabolism	Carbohydrate metabolism	Metabolism
+GMPPB	29925	hsa00051	Fructose and mannose metabolism	Carbohydrate metabolism	Metabolism
+GMPPA	29926	hsa00051	Fructose and mannose metabolism	Carbohydrate metabolism	Metabolism
+GMDS	2762	hsa00051	Fructose and mannose metabolism	Carbohydrate metabolism	Metabolism
+TSTA3	7264	hsa00051	Fructose and mannose metabolism	Carbohydrate metabolism	Metabolism
+FPGT	8790	hsa00051	Fructose and mannose metabolism	Carbohydrate metabolism	Metabolism
+FUK	197258	hsa00051	Fructose and mannose metabolism	Carbohydrate metabolism	Metabolism
+ENOSF1	55556	hsa00051	Fructose and mannose metabolism	Carbohydrate metabolism	Metabolism
+HK3	3101	hsa00051	Fructose and mannose metabolism	Carbohydrate metabolism	Metabolism
+HK1	3098	hsa00051	Fructose and mannose metabolism	Carbohydrate metabolism	Metabolism
+HK2	3099	hsa00051	Fructose and mannose metabolism	Carbohydrate metabolism	Metabolism
+HKDC1	80201	hsa00051	Fructose and mannose metabolism	Carbohydrate metabolism	Metabolism
+PFKM	5213	hsa00051	Fructose and mannose metabolism	Carbohydrate metabolism	Metabolism
+PFKP	5214	hsa00051	Fructose and mannose metabolism	Carbohydrate metabolism	Metabolism
+PFKL	5211	hsa00051	Fructose and mannose metabolism	Carbohydrate metabolism	Metabolism
+FBP1	2203	hsa00051	Fructose and mannose metabolism	Carbohydrate metabolism	Metabolism
+FBP2	8789	hsa00051	Fructose and mannose metabolism	Carbohydrate metabolism	Metabolism
+PFKFB1	5207	hsa00051	Fructose and mannose metabolism	Carbohydrate metabolism	Metabolism
+PFKFB2	5208	hsa00051	Fructose and mannose metabolism	Carbohydrate metabolism	Metabolism
+PFKFB3	5209	hsa00051	Fructose and mannose metabolism	Carbohydrate metabolism	Metabolism
+PFKFB4	5210	hsa00051	Fructose and mannose metabolism	Carbohydrate metabolism	Metabolism
+TIGAR	57103	hsa00051	Fructose and mannose metabolism	Carbohydrate metabolism	Metabolism
+KHK	3795	hsa00051	Fructose and mannose metabolism	Carbohydrate metabolism	Metabolism
+SORD	6652	hsa00051	Fructose and mannose metabolism	Carbohydrate metabolism	Metabolism
+AKR1B1	231	hsa00051	Fructose and mannose metabolism	Carbohydrate metabolism	Metabolism
+AKR1B10	57016	hsa00051	Fructose and mannose metabolism	Carbohydrate metabolism	Metabolism
+ALDOC	230	hsa00051	Fructose and mannose metabolism	Carbohydrate metabolism	Metabolism
+ALDOA	226	hsa00051	Fructose and mannose metabolism	Carbohydrate metabolism	Metabolism
+ALDOB	229	hsa00051	Fructose and mannose metabolism	Carbohydrate metabolism	Metabolism
+TPI1	7167	hsa00051	Fructose and mannose metabolism	Carbohydrate metabolism	Metabolism
+TKFC	26007	hsa00051	Fructose and mannose metabolism	Carbohydrate metabolism	Metabolism
+GALM	130589	hsa00052	Galactose metabolism	Carbohydrate metabolism	Metabolism
+GALK1	2584	hsa00052	Galactose metabolism	Carbohydrate metabolism	Metabolism
+GALT	2592	hsa00052	Galactose metabolism	Carbohydrate metabolism	Metabolism
+GALE	2582	hsa00052	Galactose metabolism	Carbohydrate metabolism	Metabolism
+UGP2	7360	hsa00052	Galactose metabolism	Carbohydrate metabolism	Metabolism
+PGM1	5236	hsa00052	Galactose metabolism	Carbohydrate metabolism	Metabolism
+PGM2	55276	hsa00052	Galactose metabolism	Carbohydrate metabolism	Metabolism
+HK3	3101	hsa00052	Galactose metabolism	Carbohydrate metabolism	Metabolism
+HK1	3098	hsa00052	Galactose metabolism	Carbohydrate metabolism	Metabolism
+HK2	3099	hsa00052	Galactose metabolism	Carbohydrate metabolism	Metabolism
+HKDC1	80201	hsa00052	Galactose metabolism	Carbohydrate metabolism	Metabolism
+GCK	2645	hsa00052	Galactose metabolism	Carbohydrate metabolism	Metabolism
+G6PC	2538	hsa00052	Galactose metabolism	Carbohydrate metabolism	Metabolism
+G6PC2	57818	hsa00052	Galactose metabolism	Carbohydrate metabolism	Metabolism
+G6PC3	92579	hsa00052	Galactose metabolism	Carbohydrate metabolism	Metabolism
+GLB1	2720	hsa00052	Galactose metabolism	Carbohydrate metabolism	Metabolism
+LCT	3938	hsa00052	Galactose metabolism	Carbohydrate metabolism	Metabolism
+LALBA	3906	hsa00052	Galactose metabolism	Carbohydrate metabolism	Metabolism
+B4GALT1	2683	hsa00052	Galactose metabolism	Carbohydrate metabolism	Metabolism
+B4GALT2	8704	hsa00052	Galactose metabolism	Carbohydrate metabolism	Metabolism
+GLA	2717	hsa00052	Galactose metabolism	Carbohydrate metabolism	Metabolism
+AKR1B1	231	hsa00052	Galactose metabolism	Carbohydrate metabolism	Metabolism
+AKR1B10	57016	hsa00052	Galactose metabolism	Carbohydrate metabolism	Metabolism
+PFKM	5213	hsa00052	Galactose metabolism	Carbohydrate metabolism	Metabolism
+PFKP	5214	hsa00052	Galactose metabolism	Carbohydrate metabolism	Metabolism
+PFKL	5211	hsa00052	Galactose metabolism	Carbohydrate metabolism	Metabolism
+MGAM	8972	hsa00052	Galactose metabolism	Carbohydrate metabolism	Metabolism
+MGAM2	93432	hsa00052	Galactose metabolism	Carbohydrate metabolism	Metabolism
+GAA	2548	hsa00052	Galactose metabolism	Carbohydrate metabolism	Metabolism
+GANC	2595	hsa00052	Galactose metabolism	Carbohydrate metabolism	Metabolism
+SI	6476	hsa00052	Galactose metabolism	Carbohydrate metabolism	Metabolism
+UGDH	7358	hsa00053	Ascorbate and aldarate metabolism	Carbohydrate metabolism	Metabolism
+UGT2A1	10941	hsa00053	Ascorbate and aldarate metabolism	Carbohydrate metabolism	Metabolism
+UGT2A3	79799	hsa00053	Ascorbate and aldarate metabolism	Carbohydrate metabolism	Metabolism
+UGT2B17	7367	hsa00053	Ascorbate and aldarate metabolism	Carbohydrate metabolism	Metabolism
+UGT2B11	10720	hsa00053	Ascorbate and aldarate metabolism	Carbohydrate metabolism	Metabolism
+UGT2B28	54490	hsa00053	Ascorbate and aldarate metabolism	Carbohydrate metabolism	Metabolism
+UGT1A6	54578	hsa00053	Ascorbate and aldarate metabolism	Carbohydrate metabolism	Metabolism
+UGT1A4	54657	hsa00053	Ascorbate and aldarate metabolism	Carbohydrate metabolism	Metabolism
+UGT1A1	54658	hsa00053	Ascorbate and aldarate metabolism	Carbohydrate metabolism	Metabolism
+UGT1A3	54659	hsa00053	Ascorbate and aldarate metabolism	Carbohydrate metabolism	Metabolism
+UGT2B10	7365	hsa00053	Ascorbate and aldarate metabolism	Carbohydrate metabolism	Metabolism
+UGT1A9	54600	hsa00053	Ascorbate and aldarate metabolism	Carbohydrate metabolism	Metabolism
+UGT2B7	7364	hsa00053	Ascorbate and aldarate metabolism	Carbohydrate metabolism	Metabolism
+UGT1A10	54575	hsa00053	Ascorbate and aldarate metabolism	Carbohydrate metabolism	Metabolism
+UGT1A8	54576	hsa00053	Ascorbate and aldarate metabolism	Carbohydrate metabolism	Metabolism
+UGT1A5	54579	hsa00053	Ascorbate and aldarate metabolism	Carbohydrate metabolism	Metabolism
+UGT2B15	7366	hsa00053	Ascorbate and aldarate metabolism	Carbohydrate metabolism	Metabolism
+UGT1A7	54577	hsa00053	Ascorbate and aldarate metabolism	Carbohydrate metabolism	Metabolism
+UGT2B4	7363	hsa00053	Ascorbate and aldarate metabolism	Carbohydrate metabolism	Metabolism
+UGT2A2	574537	hsa00053	Ascorbate and aldarate metabolism	Carbohydrate metabolism	Metabolism
+MIOX	55586	hsa00053	Ascorbate and aldarate metabolism	Carbohydrate metabolism	Metabolism
+RGN	9104	hsa00053	Ascorbate and aldarate metabolism	Carbohydrate metabolism	Metabolism
+ALDH2	217	hsa00053	Ascorbate and aldarate metabolism	Carbohydrate metabolism	Metabolism
+ALDH3A2	224	hsa00053	Ascorbate and aldarate metabolism	Carbohydrate metabolism	Metabolism
+ALDH1B1	219	hsa00053	Ascorbate and aldarate metabolism	Carbohydrate metabolism	Metabolism
+ALDH7A1	501	hsa00053	Ascorbate and aldarate metabolism	Carbohydrate metabolism	Metabolism
+ALDH9A1	223	hsa00053	Ascorbate and aldarate metabolism	Carbohydrate metabolism	Metabolism
+MGAM	8972	hsa00500	Starch and sucrose metabolism	Carbohydrate metabolism	Metabolism
+MGAM2	93432	hsa00500	Starch and sucrose metabolism	Carbohydrate metabolism	Metabolism
+GAA	2548	hsa00500	Starch and sucrose metabolism	Carbohydrate metabolism	Metabolism
+GANC	2595	hsa00500	Starch and sucrose metabolism	Carbohydrate metabolism	Metabolism
+SI	6476	hsa00500	Starch and sucrose metabolism	Carbohydrate metabolism	Metabolism
+UGP2	7360	hsa00500	Starch and sucrose metabolism	Carbohydrate metabolism	Metabolism
+ENPP1	5167	hsa00500	Starch and sucrose metabolism	Carbohydrate metabolism	Metabolism
+ENPP3	5169	hsa00500	Starch and sucrose metabolism	Carbohydrate metabolism	Metabolism
+GBA3	57733	hsa00500	Starch and sucrose metabolism	Carbohydrate metabolism	Metabolism
+GYS2	2998	hsa00500	Starch and sucrose metabolism	Carbohydrate metabolism	Metabolism
+GYS1	2997	hsa00500	Starch and sucrose metabolism	Carbohydrate metabolism	Metabolism
+GYG1	2992	hsa00500	Starch and sucrose metabolism	Carbohydrate metabolism	Metabolism
+GYG2	8908	hsa00500	Starch and sucrose metabolism	Carbohydrate metabolism	Metabolism
+GBE1	2632	hsa00500	Starch and sucrose metabolism	Carbohydrate metabolism	Metabolism
+PYGL	5836	hsa00500	Starch and sucrose metabolism	Carbohydrate metabolism	Metabolism
+PYGM	5837	hsa00500	Starch and sucrose metabolism	Carbohydrate metabolism	Metabolism
+PYGB	5834	hsa00500	Starch and sucrose metabolism	Carbohydrate metabolism	Metabolism
+AGL	178	hsa00500	Starch and sucrose metabolism	Carbohydrate metabolism	Metabolism
+AMY1C	278	hsa00500	Starch and sucrose metabolism	Carbohydrate metabolism	Metabolism
+AMY2A	279	hsa00500	Starch and sucrose metabolism	Carbohydrate metabolism	Metabolism
+AMY1A	276	hsa00500	Starch and sucrose metabolism	Carbohydrate metabolism	Metabolism
+AMY2B	280	hsa00500	Starch and sucrose metabolism	Carbohydrate metabolism	Metabolism
+AMY1B	277	hsa00500	Starch and sucrose metabolism	Carbohydrate metabolism	Metabolism
+TREH	11181	hsa00500	Starch and sucrose metabolism	Carbohydrate metabolism	Metabolism
+PGM1	5236	hsa00500	Starch and sucrose metabolism	Carbohydrate metabolism	Metabolism
+PGM2	55276	hsa00500	Starch and sucrose metabolism	Carbohydrate metabolism	Metabolism
+HK3	3101	hsa00500	Starch and sucrose metabolism	Carbohydrate metabolism	Metabolism
+HK1	3098	hsa00500	Starch and sucrose metabolism	Carbohydrate metabolism	Metabolism
+HK2	3099	hsa00500	Starch and sucrose metabolism	Carbohydrate metabolism	Metabolism
+HKDC1	80201	hsa00500	Starch and sucrose metabolism	Carbohydrate metabolism	Metabolism
+GCK	2645	hsa00500	Starch and sucrose metabolism	Carbohydrate metabolism	Metabolism
+G6PC	2538	hsa00500	Starch and sucrose metabolism	Carbohydrate metabolism	Metabolism
+G6PC2	57818	hsa00500	Starch and sucrose metabolism	Carbohydrate metabolism	Metabolism
+G6PC3	92579	hsa00500	Starch and sucrose metabolism	Carbohydrate metabolism	Metabolism
+PGM2L1	283209	hsa00500	Starch and sucrose metabolism	Carbohydrate metabolism	Metabolism
+GPI	2821	hsa00500	Starch and sucrose metabolism	Carbohydrate metabolism	Metabolism
+CHIA	27159	hsa00520	Amino sugar and nucleotide sugar metabolism	Carbohydrate metabolism	Metabolism
+CHIT1	1118	hsa00520	Amino sugar and nucleotide sugar metabolism	Carbohydrate metabolism	Metabolism
+HEXA	3073	hsa00520	Amino sugar and nucleotide sugar metabolism	Carbohydrate metabolism	Metabolism
+HEXB	3074	hsa00520	Amino sugar and nucleotide sugar metabolism	Carbohydrate metabolism	Metabolism
+NAGK	55577	hsa00520	Amino sugar and nucleotide sugar metabolism	Carbohydrate metabolism	Metabolism
+PGM3	5238	hsa00520	Amino sugar and nucleotide sugar metabolism	Carbohydrate metabolism	Metabolism
+UAP1	6675	hsa00520	Amino sugar and nucleotide sugar metabolism	Carbohydrate metabolism	Metabolism
+UAP1L1	91373	hsa00520	Amino sugar and nucleotide sugar metabolism	Carbohydrate metabolism	Metabolism
+GNE	10020	hsa00520	Amino sugar and nucleotide sugar metabolism	Carbohydrate metabolism	Metabolism
+RENBP	5973	hsa00520	Amino sugar and nucleotide sugar metabolism	Carbohydrate metabolism	Metabolism
+NANS	54187	hsa00520	Amino sugar and nucleotide sugar metabolism	Carbohydrate metabolism	Metabolism
+NANP	140838	hsa00520	Amino sugar and nucleotide sugar metabolism	Carbohydrate metabolism	Metabolism
+NPL	80896	hsa00520	Amino sugar and nucleotide sugar metabolism	Carbohydrate metabolism	Metabolism
+CMAS	55907	hsa00520	Amino sugar and nucleotide sugar metabolism	Carbohydrate metabolism	Metabolism
+CYB5R1	51706	hsa00520	Amino sugar and nucleotide sugar metabolism	Carbohydrate metabolism	Metabolism
+CYB5R3	1727	hsa00520	Amino sugar and nucleotide sugar metabolism	Carbohydrate metabolism	Metabolism
+CYB5R2	51700	hsa00520	Amino sugar and nucleotide sugar metabolism	Carbohydrate metabolism	Metabolism
+CYB5RL	606495	hsa00520	Amino sugar and nucleotide sugar metabolism	Carbohydrate metabolism	Metabolism
+CYB5R4	51167	hsa00520	Amino sugar and nucleotide sugar metabolism	Carbohydrate metabolism	Metabolism
+HK3	3101	hsa00520	Amino sugar and nucleotide sugar metabolism	Carbohydrate metabolism	Metabolism
+HK1	3098	hsa00520	Amino sugar and nucleotide sugar metabolism	Carbohydrate metabolism	Metabolism
+HK2	3099	hsa00520	Amino sugar and nucleotide sugar metabolism	Carbohydrate metabolism	Metabolism
+HKDC1	80201	hsa00520	Amino sugar and nucleotide sugar metabolism	Carbohydrate metabolism	Metabolism
+AMDHD2	51005	hsa00520	Amino sugar and nucleotide sugar metabolism	Carbohydrate metabolism	Metabolism
+GNPNAT1	64841	hsa00520	Amino sugar and nucleotide sugar metabolism	Carbohydrate metabolism	Metabolism
+GNPDA1	10007	hsa00520	Amino sugar and nucleotide sugar metabolism	Carbohydrate metabolism	Metabolism
+GNPDA2	132789	hsa00520	Amino sugar and nucleotide sugar metabolism	Carbohydrate metabolism	Metabolism
+GFPT2	9945	hsa00520	Amino sugar and nucleotide sugar metabolism	Carbohydrate metabolism	Metabolism
+GFPT1	2673	hsa00520	Amino sugar and nucleotide sugar metabolism	Carbohydrate metabolism	Metabolism
+UXS1	80146	hsa00520	Amino sugar and nucleotide sugar metabolism	Carbohydrate metabolism	Metabolism
+GCK	2645	hsa00520	Amino sugar and nucleotide sugar metabolism	Carbohydrate metabolism	Metabolism
+GPI	2821	hsa00520	Amino sugar and nucleotide sugar metabolism	Carbohydrate metabolism	Metabolism
+PGM1	5236	hsa00520	Amino sugar and nucleotide sugar metabolism	Carbohydrate metabolism	Metabolism
+PGM2	55276	hsa00520	Amino sugar and nucleotide sugar metabolism	Carbohydrate metabolism	Metabolism
+UGP2	7360	hsa00520	Amino sugar and nucleotide sugar metabolism	Carbohydrate metabolism	Metabolism
+UGDH	7358	hsa00520	Amino sugar and nucleotide sugar metabolism	Carbohydrate metabolism	Metabolism
+GALK1	2584	hsa00520	Amino sugar and nucleotide sugar metabolism	Carbohydrate metabolism	Metabolism
+GALT	2592	hsa00520	Amino sugar and nucleotide sugar metabolism	Carbohydrate metabolism	Metabolism
+GALE	2582	hsa00520	Amino sugar and nucleotide sugar metabolism	Carbohydrate metabolism	Metabolism
+PMM2	5373	hsa00520	Amino sugar and nucleotide sugar metabolism	Carbohydrate metabolism	Metabolism
+PMM1	5372	hsa00520	Amino sugar and nucleotide sugar metabolism	Carbohydrate metabolism	Metabolism
+GMPPB	29925	hsa00520	Amino sugar and nucleotide sugar metabolism	Carbohydrate metabolism	Metabolism
+GMPPA	29926	hsa00520	Amino sugar and nucleotide sugar metabolism	Carbohydrate metabolism	Metabolism
+GMDS	2762	hsa00520	Amino sugar and nucleotide sugar metabolism	Carbohydrate metabolism	Metabolism
+MPI	4351	hsa00520	Amino sugar and nucleotide sugar metabolism	Carbohydrate metabolism	Metabolism
+FUK	197258	hsa00520	Amino sugar and nucleotide sugar metabolism	Carbohydrate metabolism	Metabolism
+FPGT	8790	hsa00520	Amino sugar and nucleotide sugar metabolism	Carbohydrate metabolism	Metabolism
+TSTA3	7264	hsa00520	Amino sugar and nucleotide sugar metabolism	Carbohydrate metabolism	Metabolism
+ACSS1	84532	hsa00620	Pyruvate metabolism	Carbohydrate metabolism	Metabolism
+ACSS2	55902	hsa00620	Pyruvate metabolism	Carbohydrate metabolism	Metabolism
+PDHA2	5161	hsa00620	Pyruvate metabolism	Carbohydrate metabolism	Metabolism
+PDHA1	5160	hsa00620	Pyruvate metabolism	Carbohydrate metabolism	Metabolism
+PDHB	5162	hsa00620	Pyruvate metabolism	Carbohydrate metabolism	Metabolism
+DLAT	1737	hsa00620	Pyruvate metabolism	Carbohydrate metabolism	Metabolism
+DLD	1738	hsa00620	Pyruvate metabolism	Carbohydrate metabolism	Metabolism
+PDHX	8050	hsa00620	Pyruvate metabolism	Carbohydrate metabolism	Metabolism
+PKM	5315	hsa00620	Pyruvate metabolism	Carbohydrate metabolism	Metabolism
+PKLR	5313	hsa00620	Pyruvate metabolism	Carbohydrate metabolism	Metabolism
+ACACA	31	hsa00620	Pyruvate metabolism	Carbohydrate metabolism	Metabolism
+ACACB	32	hsa00620	Pyruvate metabolism	Carbohydrate metabolism	Metabolism
+ACYP2	98	hsa00620	Pyruvate metabolism	Carbohydrate metabolism	Metabolism
+ACYP1	97	hsa00620	Pyruvate metabolism	Carbohydrate metabolism	Metabolism
+ALDH2	217	hsa00620	Pyruvate metabolism	Carbohydrate metabolism	Metabolism
+ALDH3A2	224	hsa00620	Pyruvate metabolism	Carbohydrate metabolism	Metabolism
+ALDH1B1	219	hsa00620	Pyruvate metabolism	Carbohydrate metabolism	Metabolism
+ALDH7A1	501	hsa00620	Pyruvate metabolism	Carbohydrate metabolism	Metabolism
+ALDH9A1	223	hsa00620	Pyruvate metabolism	Carbohydrate metabolism	Metabolism
+ACOT12	134526	hsa00620	Pyruvate metabolism	Carbohydrate metabolism	Metabolism
+LDHAL6A	160287	hsa00620	Pyruvate metabolism	Carbohydrate metabolism	Metabolism
+LDHAL6B	92483	hsa00620	Pyruvate metabolism	Carbohydrate metabolism	Metabolism
+LDHA	3939	hsa00620	Pyruvate metabolism	Carbohydrate metabolism	Metabolism
+LDHB	3945	hsa00620	Pyruvate metabolism	Carbohydrate metabolism	Metabolism
+LDHC	3948	hsa00620	Pyruvate metabolism	Carbohydrate metabolism	Metabolism
+LDHD	197257	hsa00620	Pyruvate metabolism	Carbohydrate metabolism	Metabolism
+GLO1	2739	hsa00620	Pyruvate metabolism	Carbohydrate metabolism	Metabolism
+HAGH	3029	hsa00620	Pyruvate metabolism	Carbohydrate metabolism	Metabolism
+GRHPR	9380	hsa00620	Pyruvate metabolism	Carbohydrate metabolism	Metabolism
+ME2	4200	hsa00620	Pyruvate metabolism	Carbohydrate metabolism	Metabolism
+ME3	10873	hsa00620	Pyruvate metabolism	Carbohydrate metabolism	Metabolism
+ME1	4199	hsa00620	Pyruvate metabolism	Carbohydrate metabolism	Metabolism
+PC	5091	hsa00620	Pyruvate metabolism	Carbohydrate metabolism	Metabolism
+MDH1	4190	hsa00620	Pyruvate metabolism	Carbohydrate metabolism	Metabolism
+MDH2	4191	hsa00620	Pyruvate metabolism	Carbohydrate metabolism	Metabolism
+FH	2271	hsa00620	Pyruvate metabolism	Carbohydrate metabolism	Metabolism
+PCK1	5105	hsa00620	Pyruvate metabolism	Carbohydrate metabolism	Metabolism
+PCK2	5106	hsa00620	Pyruvate metabolism	Carbohydrate metabolism	Metabolism
+ACAT2	39	hsa00620	Pyruvate metabolism	Carbohydrate metabolism	Metabolism
+ACAT1	38	hsa00620	Pyruvate metabolism	Carbohydrate metabolism	Metabolism
+ACSS1	84532	hsa00630	Glyoxylate and dicarboxylate metabolism	Carbohydrate metabolism	Metabolism
+ACSS2	55902	hsa00630	Glyoxylate and dicarboxylate metabolism	Carbohydrate metabolism	Metabolism
+MDH1	4190	hsa00630	Glyoxylate and dicarboxylate metabolism	Carbohydrate metabolism	Metabolism
+MDH2	4191	hsa00630	Glyoxylate and dicarboxylate metabolism	Carbohydrate metabolism	Metabolism
+CS	1431	hsa00630	Glyoxylate and dicarboxylate metabolism	Carbohydrate metabolism	Metabolism
+ACO2	50	hsa00630	Glyoxylate and dicarboxylate metabolism	Carbohydrate metabolism	Metabolism
+ACO1	48	hsa00630	Glyoxylate and dicarboxylate metabolism	Carbohydrate metabolism	Metabolism
+ACAT2	39	hsa00630	Glyoxylate and dicarboxylate metabolism	Carbohydrate metabolism	Metabolism
+ACAT1	38	hsa00630	Glyoxylate and dicarboxylate metabolism	Carbohydrate metabolism	Metabolism
+MCEE	84693	hsa00630	Glyoxylate and dicarboxylate metabolism	Carbohydrate metabolism	Metabolism
+PCCA	5095	hsa00630	Glyoxylate and dicarboxylate metabolism	Carbohydrate metabolism	Metabolism
+PCCB	5096	hsa00630	Glyoxylate and dicarboxylate metabolism	Carbohydrate metabolism	Metabolism
+MUT	4594	hsa00630	Glyoxylate and dicarboxylate metabolism	Carbohydrate metabolism	Metabolism
+HAO2	51179	hsa00630	Glyoxylate and dicarboxylate metabolism	Carbohydrate metabolism	Metabolism
+HAO1	54363	hsa00630	Glyoxylate and dicarboxylate metabolism	Carbohydrate metabolism	Metabolism
+CAT	847	hsa00630	Glyoxylate and dicarboxylate metabolism	Carbohydrate metabolism	Metabolism
+GRHPR	9380	hsa00630	Glyoxylate and dicarboxylate metabolism	Carbohydrate metabolism	Metabolism
+PGP	283871	hsa00630	Glyoxylate and dicarboxylate metabolism	Carbohydrate metabolism	Metabolism
+AGXT	189	hsa00630	Glyoxylate and dicarboxylate metabolism	Carbohydrate metabolism	Metabolism
+GLUL	2752	hsa00630	Glyoxylate and dicarboxylate metabolism	Carbohydrate metabolism	Metabolism
+SHMT2	6472	hsa00630	Glyoxylate and dicarboxylate metabolism	Carbohydrate metabolism	Metabolism
+SHMT1	6470	hsa00630	Glyoxylate and dicarboxylate metabolism	Carbohydrate metabolism	Metabolism
+GLDC	2731	hsa00630	Glyoxylate and dicarboxylate metabolism	Carbohydrate metabolism	Metabolism
+AMT	275	hsa00630	Glyoxylate and dicarboxylate metabolism	Carbohydrate metabolism	Metabolism
+DLD	1738	hsa00630	Glyoxylate and dicarboxylate metabolism	Carbohydrate metabolism	Metabolism
+GCSH	2653	hsa00630	Glyoxylate and dicarboxylate metabolism	Carbohydrate metabolism	Metabolism
+HYI	81888	hsa00630	Glyoxylate and dicarboxylate metabolism	Carbohydrate metabolism	Metabolism
+GLYCTK	132158	hsa00630	Glyoxylate and dicarboxylate metabolism	Carbohydrate metabolism	Metabolism
+HOGA1	112817	hsa00630	Glyoxylate and dicarboxylate metabolism	Carbohydrate metabolism	Metabolism
+AFMID	125061	hsa00630	Glyoxylate and dicarboxylate metabolism	Carbohydrate metabolism	Metabolism
+ACSS1	84532	hsa00640	Propanoate metabolism	Carbohydrate metabolism	Metabolism
+ACSS2	55902	hsa00640	Propanoate metabolism	Carbohydrate metabolism	Metabolism
+ACSS3	79611	hsa00640	Propanoate metabolism	Carbohydrate metabolism	Metabolism
+BCKDHA	593	hsa00640	Propanoate metabolism	Carbohydrate metabolism	Metabolism
+BCKDHB	594	hsa00640	Propanoate metabolism	Carbohydrate metabolism	Metabolism
+DBT	1629	hsa00640	Propanoate metabolism	Carbohydrate metabolism	Metabolism
+DLD	1738	hsa00640	Propanoate metabolism	Carbohydrate metabolism	Metabolism
+ACADM	34	hsa00640	Propanoate metabolism	Carbohydrate metabolism	Metabolism
+HADHA	3030	hsa00640	Propanoate metabolism	Carbohydrate metabolism	Metabolism
+EHHADH	1962	hsa00640	Propanoate metabolism	Carbohydrate metabolism	Metabolism
+ECHS1	1892	hsa00640	Propanoate metabolism	Carbohydrate metabolism	Metabolism
+HIBCH	26275	hsa00640	Propanoate metabolism	Carbohydrate metabolism	Metabolism
+ACACA	31	hsa00640	Propanoate metabolism	Carbohydrate metabolism	Metabolism
+ACACB	32	hsa00640	Propanoate metabolism	Carbohydrate metabolism	Metabolism
+MLYCD	23417	hsa00640	Propanoate metabolism	Carbohydrate metabolism	Metabolism
+ABAT	18	hsa00640	Propanoate metabolism	Carbohydrate metabolism	Metabolism
+PCCA	5095	hsa00640	Propanoate metabolism	Carbohydrate metabolism	Metabolism
+PCCB	5096	hsa00640	Propanoate metabolism	Carbohydrate metabolism	Metabolism
+ECHDC1	55862	hsa00640	Propanoate metabolism	Carbohydrate metabolism	Metabolism
+MCEE	84693	hsa00640	Propanoate metabolism	Carbohydrate metabolism	Metabolism
+MUT	4594	hsa00640	Propanoate metabolism	Carbohydrate metabolism	Metabolism
+SUCLG1	8802	hsa00640	Propanoate metabolism	Carbohydrate metabolism	Metabolism
+SUCLG2	8801	hsa00640	Propanoate metabolism	Carbohydrate metabolism	Metabolism
+SUCLA2	8803	hsa00640	Propanoate metabolism	Carbohydrate metabolism	Metabolism
+ALDH6A1	4329	hsa00640	Propanoate metabolism	Carbohydrate metabolism	Metabolism
+LDHAL6A	160287	hsa00640	Propanoate metabolism	Carbohydrate metabolism	Metabolism
+LDHAL6B	92483	hsa00640	Propanoate metabolism	Carbohydrate metabolism	Metabolism
+LDHA	3939	hsa00640	Propanoate metabolism	Carbohydrate metabolism	Metabolism
+LDHB	3945	hsa00640	Propanoate metabolism	Carbohydrate metabolism	Metabolism
+LDHC	3948	hsa00640	Propanoate metabolism	Carbohydrate metabolism	Metabolism
+ACAT2	39	hsa00640	Propanoate metabolism	Carbohydrate metabolism	Metabolism
+ACAT1	38	hsa00640	Propanoate metabolism	Carbohydrate metabolism	Metabolism
+ACAT2	39	hsa00650	Butanoate metabolism	Carbohydrate metabolism	Metabolism
+ACAT1	38	hsa00650	Butanoate metabolism	Carbohydrate metabolism	Metabolism
+HADH	3033	hsa00650	Butanoate metabolism	Carbohydrate metabolism	Metabolism
+HADHA	3030	hsa00650	Butanoate metabolism	Carbohydrate metabolism	Metabolism
+EHHADH	1962	hsa00650	Butanoate metabolism	Carbohydrate metabolism	Metabolism
+ECHS1	1892	hsa00650	Butanoate metabolism	Carbohydrate metabolism	Metabolism
+ACADS	35	hsa00650	Butanoate metabolism	Carbohydrate metabolism	Metabolism
+ACSM1	116285	hsa00650	Butanoate metabolism	Carbohydrate metabolism	Metabolism
+ACSM2A	123876	hsa00650	Butanoate metabolism	Carbohydrate metabolism	Metabolism
+ACSM4	341392	hsa00650	Butanoate metabolism	Carbohydrate metabolism	Metabolism
+ACSM5	54988	hsa00650	Butanoate metabolism	Carbohydrate metabolism	Metabolism
+ACSM3	6296	hsa00650	Butanoate metabolism	Carbohydrate metabolism	Metabolism
+ACSM2B	348158	hsa00650	Butanoate metabolism	Carbohydrate metabolism	Metabolism
+ACSM6	142827	hsa00650	Butanoate metabolism	Carbohydrate metabolism	Metabolism
+L2HGDH	79944	hsa00650	Butanoate metabolism	Carbohydrate metabolism	Metabolism
+GAD1	2571	hsa00650	Butanoate metabolism	Carbohydrate metabolism	Metabolism
+GAD2	2572	hsa00650	Butanoate metabolism	Carbohydrate metabolism	Metabolism
+ABAT	18	hsa00650	Butanoate metabolism	Carbohydrate metabolism	Metabolism
+ALDH5A1	7915	hsa00650	Butanoate metabolism	Carbohydrate metabolism	Metabolism
+HMGCS1	3157	hsa00650	Butanoate metabolism	Carbohydrate metabolism	Metabolism
+HMGCS2	3158	hsa00650	Butanoate metabolism	Carbohydrate metabolism	Metabolism
+HMGCL	3155	hsa00650	Butanoate metabolism	Carbohydrate metabolism	Metabolism
+HMGCLL1	54511	hsa00650	Butanoate metabolism	Carbohydrate metabolism	Metabolism
+OXCT1	5019	hsa00650	Butanoate metabolism	Carbohydrate metabolism	Metabolism
+OXCT2	64064	hsa00650	Butanoate metabolism	Carbohydrate metabolism	Metabolism
+AACS	65985	hsa00650	Butanoate metabolism	Carbohydrate metabolism	Metabolism
+BDH1	622	hsa00650	Butanoate metabolism	Carbohydrate metabolism	Metabolism
+BDH2	56898	hsa00650	Butanoate metabolism	Carbohydrate metabolism	Metabolism
+PIK3C3	5289	hsa00562	Inositol phosphate metabolism	Carbohydrate metabolism	Metabolism
+MTM1	4534	hsa00562	Inositol phosphate metabolism	Carbohydrate metabolism	Metabolism
+MTMR1	8776	hsa00562	Inositol phosphate metabolism	Carbohydrate metabolism	Metabolism
+MTMR2	8898	hsa00562	Inositol phosphate metabolism	Carbohydrate metabolism	Metabolism
+MTMR3	8897	hsa00562	Inositol phosphate metabolism	Carbohydrate metabolism	Metabolism
+MTMR4	9110	hsa00562	Inositol phosphate metabolism	Carbohydrate metabolism	Metabolism
+MTMR8	55613	hsa00562	Inositol phosphate metabolism	Carbohydrate metabolism	Metabolism
+MTMR6	9107	hsa00562	Inositol phosphate metabolism	Carbohydrate metabolism	Metabolism
+MTMR7	9108	hsa00562	Inositol phosphate metabolism	Carbohydrate metabolism	Metabolism
+MTMR14	64419	hsa00562	Inositol phosphate metabolism	Carbohydrate metabolism	Metabolism
+PI4KA	5297	hsa00562	Inositol phosphate metabolism	Carbohydrate metabolism	Metabolism
+PI4KB	5298	hsa00562	Inositol phosphate metabolism	Carbohydrate metabolism	Metabolism
+PI4K2A	55361	hsa00562	Inositol phosphate metabolism	Carbohydrate metabolism	Metabolism
+PI4K2B	55300	hsa00562	Inositol phosphate metabolism	Carbohydrate metabolism	Metabolism
+SACM1L	22908	hsa00562	Inositol phosphate metabolism	Carbohydrate metabolism	Metabolism
+INPP5F	22876	hsa00562	Inositol phosphate metabolism	Carbohydrate metabolism	Metabolism
+PIP5K1C	23396	hsa00562	Inositol phosphate metabolism	Carbohydrate metabolism	Metabolism
+PIP5K1A	8394	hsa00562	Inositol phosphate metabolism	Carbohydrate metabolism	Metabolism
+PIP5K1B	8395	hsa00562	Inositol phosphate metabolism	Carbohydrate metabolism	Metabolism
+PIP5KL1	138429	hsa00562	Inositol phosphate metabolism	Carbohydrate metabolism	Metabolism
+OCRL	4952	hsa00562	Inositol phosphate metabolism	Carbohydrate metabolism	Metabolism
+INPP5B	3633	hsa00562	Inositol phosphate metabolism	Carbohydrate metabolism	Metabolism
+INPP5E	56623	hsa00562	Inositol phosphate metabolism	Carbohydrate metabolism	Metabolism
+SYNJ1	8867	hsa00562	Inositol phosphate metabolism	Carbohydrate metabolism	Metabolism
+SYNJ2	8871	hsa00562	Inositol phosphate metabolism	Carbohydrate metabolism	Metabolism
+PIK3CA	5290	hsa00562	Inositol phosphate metabolism	Carbohydrate metabolism	Metabolism
+PIK3CD	5293	hsa00562	Inositol phosphate metabolism	Carbohydrate metabolism	Metabolism
+PIK3CB	5291	hsa00562	Inositol phosphate metabolism	Carbohydrate metabolism	Metabolism
+PIK3CG	5294	hsa00562	Inositol phosphate metabolism	Carbohydrate metabolism	Metabolism
+PTEN	5728	hsa00562	Inositol phosphate metabolism	Carbohydrate metabolism	Metabolism
+INPP5D	3635	hsa00562	Inositol phosphate metabolism	Carbohydrate metabolism	Metabolism
+INPPL1	3636	hsa00562	Inositol phosphate metabolism	Carbohydrate metabolism	Metabolism
+PIK3C2G	5288	hsa00562	Inositol phosphate metabolism	Carbohydrate metabolism	Metabolism
+PIK3C2A	5286	hsa00562	Inositol phosphate metabolism	Carbohydrate metabolism	Metabolism
+PIK3C2B	5287	hsa00562	Inositol phosphate metabolism	Carbohydrate metabolism	Metabolism
+INPP4A	3631	hsa00562	Inositol phosphate metabolism	Carbohydrate metabolism	Metabolism
+INPP4B	8821	hsa00562	Inositol phosphate metabolism	Carbohydrate metabolism	Metabolism
+PIKFYVE	200576	hsa00562	Inositol phosphate metabolism	Carbohydrate metabolism	Metabolism
+FIG4	9896	hsa00562	Inositol phosphate metabolism	Carbohydrate metabolism	Metabolism
+PIP4K2C	79837	hsa00562	Inositol phosphate metabolism	Carbohydrate metabolism	Metabolism
+PIP4K2A	5305	hsa00562	Inositol phosphate metabolism	Carbohydrate metabolism	Metabolism
+PIP4K2B	8396	hsa00562	Inositol phosphate metabolism	Carbohydrate metabolism	Metabolism
+PLCB1	23236	hsa00562	Inositol phosphate metabolism	Carbohydrate metabolism	Metabolism
+PLCB2	5330	hsa00562	Inositol phosphate metabolism	Carbohydrate metabolism	Metabolism
+PLCB3	5331	hsa00562	Inositol phosphate metabolism	Carbohydrate metabolism	Metabolism
+PLCB4	5332	hsa00562	Inositol phosphate metabolism	Carbohydrate metabolism	Metabolism
+PLCD1	5333	hsa00562	Inositol phosphate metabolism	Carbohydrate metabolism	Metabolism
+PLCD3	113026	hsa00562	Inositol phosphate metabolism	Carbohydrate metabolism	Metabolism
+PLCD4	84812	hsa00562	Inositol phosphate metabolism	Carbohydrate metabolism	Metabolism
+PLCE1	51196	hsa00562	Inositol phosphate metabolism	Carbohydrate metabolism	Metabolism
+PLCG1	5335	hsa00562	Inositol phosphate metabolism	Carbohydrate metabolism	Metabolism
+PLCG2	5336	hsa00562	Inositol phosphate metabolism	Carbohydrate metabolism	Metabolism
+PLCZ1	89869	hsa00562	Inositol phosphate metabolism	Carbohydrate metabolism	Metabolism
+PLCH1	23007	hsa00562	Inositol phosphate metabolism	Carbohydrate metabolism	Metabolism
+PLCH2	9651	hsa00562	Inositol phosphate metabolism	Carbohydrate metabolism	Metabolism
+IMPA2	3613	hsa00562	Inositol phosphate metabolism	Carbohydrate metabolism	Metabolism
+IMPA1	3612	hsa00562	Inositol phosphate metabolism	Carbohydrate metabolism	Metabolism
+IMPAD1	54928	hsa00562	Inositol phosphate metabolism	Carbohydrate metabolism	Metabolism
+CDIPT	10423	hsa00562	Inositol phosphate metabolism	Carbohydrate metabolism	Metabolism
+ISYNA1	51477	hsa00562	Inositol phosphate metabolism	Carbohydrate metabolism	Metabolism
+INPP1	3628	hsa00562	Inositol phosphate metabolism	Carbohydrate metabolism	Metabolism
+INPP5K	51763	hsa00562	Inositol phosphate metabolism	Carbohydrate metabolism	Metabolism
+INPP5J	27124	hsa00562	Inositol phosphate metabolism	Carbohydrate metabolism	Metabolism
+INPP5A	3632	hsa00562	Inositol phosphate metabolism	Carbohydrate metabolism	Metabolism
+MINPP1	9562	hsa00562	Inositol phosphate metabolism	Carbohydrate metabolism	Metabolism
+ITPKB	3707	hsa00562	Inositol phosphate metabolism	Carbohydrate metabolism	Metabolism
+ITPKA	3706	hsa00562	Inositol phosphate metabolism	Carbohydrate metabolism	Metabolism
+ITPKC	80271	hsa00562	Inositol phosphate metabolism	Carbohydrate metabolism	Metabolism
+ITPK1	3705	hsa00562	Inositol phosphate metabolism	Carbohydrate metabolism	Metabolism
+IPMK	253430	hsa00562	Inositol phosphate metabolism	Carbohydrate metabolism	Metabolism
+IPPK	64768	hsa00562	Inositol phosphate metabolism	Carbohydrate metabolism	Metabolism
+MIOX	55586	hsa00562	Inositol phosphate metabolism	Carbohydrate metabolism	Metabolism
+ALDH6A1	4329	hsa00562	Inositol phosphate metabolism	Carbohydrate metabolism	Metabolism
+TPI1	7167	hsa00562	Inositol phosphate metabolism	Carbohydrate metabolism	Metabolism
+NDUFS1	4719	hsa00190	Oxidative phosphorylation	Energy metabolism	Metabolism
+NDUFS2	4720	hsa00190	Oxidative phosphorylation	Energy metabolism	Metabolism
+NDUFS3	4722	hsa00190	Oxidative phosphorylation	Energy metabolism	Metabolism
+NDUFS4	4724	hsa00190	Oxidative phosphorylation	Energy metabolism	Metabolism
+NDUFS5	4725	hsa00190	Oxidative phosphorylation	Energy metabolism	Metabolism
+NDUFS6	4726	hsa00190	Oxidative phosphorylation	Energy metabolism	Metabolism
+NDUFS7	374291	hsa00190	Oxidative phosphorylation	Energy metabolism	Metabolism
+NDUFS8	4728	hsa00190	Oxidative phosphorylation	Energy metabolism	Metabolism
+NDUFV1	4723	hsa00190	Oxidative phosphorylation	Energy metabolism	Metabolism
+NDUFV2	4729	hsa00190	Oxidative phosphorylation	Energy metabolism	Metabolism
+NDUFV3	4731	hsa00190	Oxidative phosphorylation	Energy metabolism	Metabolism
+NDUFA1	4694	hsa00190	Oxidative phosphorylation	Energy metabolism	Metabolism
+NDUFA2	4695	hsa00190	Oxidative phosphorylation	Energy metabolism	Metabolism
+NDUFA3	4696	hsa00190	Oxidative phosphorylation	Energy metabolism	Metabolism
+NDUFA4	4697	hsa00190	Oxidative phosphorylation	Energy metabolism	Metabolism
+NDUFA4L2	56901	hsa00190	Oxidative phosphorylation	Energy metabolism	Metabolism
+NDUFA5	4698	hsa00190	Oxidative phosphorylation	Energy metabolism	Metabolism
+NDUFA6	4700	hsa00190	Oxidative phosphorylation	Energy metabolism	Metabolism
+NDUFA7	4701	hsa00190	Oxidative phosphorylation	Energy metabolism	Metabolism
+NDUFA8	4702	hsa00190	Oxidative phosphorylation	Energy metabolism	Metabolism
+NDUFA9	4704	hsa00190	Oxidative phosphorylation	Energy metabolism	Metabolism
+NDUFA10	4705	hsa00190	Oxidative phosphorylation	Energy metabolism	Metabolism
+NDUFAB1	4706	hsa00190	Oxidative phosphorylation	Energy metabolism	Metabolism
+NDUFA11	126328	hsa00190	Oxidative phosphorylation	Energy metabolism	Metabolism
+NDUFA12	55967	hsa00190	Oxidative phosphorylation	Energy metabolism	Metabolism
+NDUFA13	51079	hsa00190	Oxidative phosphorylation	Energy metabolism	Metabolism
+NDUFB1	4707	hsa00190	Oxidative phosphorylation	Energy metabolism	Metabolism
+NDUFB2	4708	hsa00190	Oxidative phosphorylation	Energy metabolism	Metabolism
+NDUFB3	4709	hsa00190	Oxidative phosphorylation	Energy metabolism	Metabolism
+NDUFB4	4710	hsa00190	Oxidative phosphorylation	Energy metabolism	Metabolism
+NDUFB5	4711	hsa00190	Oxidative phosphorylation	Energy metabolism	Metabolism
+NDUFB6	4712	hsa00190	Oxidative phosphorylation	Energy metabolism	Metabolism
+NDUFB7	4713	hsa00190	Oxidative phosphorylation	Energy metabolism	Metabolism
+NDUFB8	4714	hsa00190	Oxidative phosphorylation	Energy metabolism	Metabolism
+NDUFB9	4715	hsa00190	Oxidative phosphorylation	Energy metabolism	Metabolism
+NDUFB10	4716	hsa00190	Oxidative phosphorylation	Energy metabolism	Metabolism
+NDUFB11	54539	hsa00190	Oxidative phosphorylation	Energy metabolism	Metabolism
+NDUFC1	4717	hsa00190	Oxidative phosphorylation	Energy metabolism	Metabolism
+NDUFC2	4718	hsa00190	Oxidative phosphorylation	Energy metabolism	Metabolism
+NDUFC2-KCTD14	100532726	hsa00190	Oxidative phosphorylation	Energy metabolism	Metabolism
+SDHA	6389	hsa00190	Oxidative phosphorylation	Energy metabolism	Metabolism
+SDHB	6390	hsa00190	Oxidative phosphorylation	Energy metabolism	Metabolism
+SDHC	6391	hsa00190	Oxidative phosphorylation	Energy metabolism	Metabolism
+SDHD	6392	hsa00190	Oxidative phosphorylation	Energy metabolism	Metabolism
+UQCRFS1	7386	hsa00190	Oxidative phosphorylation	Energy metabolism	Metabolism
+CYC1	1537	hsa00190	Oxidative phosphorylation	Energy metabolism	Metabolism
+UQCRC1	7384	hsa00190	Oxidative phosphorylation	Energy metabolism	Metabolism
+UQCRC2	7385	hsa00190	Oxidative phosphorylation	Energy metabolism	Metabolism
+UQCRH	7388	hsa00190	Oxidative phosphorylation	Energy metabolism	Metabolism
+UQCRHL	440567	hsa00190	Oxidative phosphorylation	Energy metabolism	Metabolism
+UQCRB	7381	hsa00190	Oxidative phosphorylation	Energy metabolism	Metabolism
+UQCRQ	27089	hsa00190	Oxidative phosphorylation	Energy metabolism	Metabolism
+UQCR10	29796	hsa00190	Oxidative phosphorylation	Energy metabolism	Metabolism
+UQCR11	10975	hsa00190	Oxidative phosphorylation	Energy metabolism	Metabolism
+COX10	1352	hsa00190	Oxidative phosphorylation	Energy metabolism	Metabolism
+COX4I2	84701	hsa00190	Oxidative phosphorylation	Energy metabolism	Metabolism
+COX4I1	1327	hsa00190	Oxidative phosphorylation	Energy metabolism	Metabolism
+COX5A	9377	hsa00190	Oxidative phosphorylation	Energy metabolism	Metabolism
+COX5B	1329	hsa00190	Oxidative phosphorylation	Energy metabolism	Metabolism
+COX6A1	1337	hsa00190	Oxidative phosphorylation	Energy metabolism	Metabolism
+COX6A2	1339	hsa00190	Oxidative phosphorylation	Energy metabolism	Metabolism
+COX6B1	1340	hsa00190	Oxidative phosphorylation	Energy metabolism	Metabolism
+COX6B2	125965	hsa00190	Oxidative phosphorylation	Energy metabolism	Metabolism
+COX6C	1345	hsa00190	Oxidative phosphorylation	Energy metabolism	Metabolism
+COX7A1	1346	hsa00190	Oxidative phosphorylation	Energy metabolism	Metabolism
+COX7A2	1347	hsa00190	Oxidative phosphorylation	Energy metabolism	Metabolism
+COX7A2L	9167	hsa00190	Oxidative phosphorylation	Energy metabolism	Metabolism
+COX7B	1349	hsa00190	Oxidative phosphorylation	Energy metabolism	Metabolism
+COX7B2	170712	hsa00190	Oxidative phosphorylation	Energy metabolism	Metabolism
+COX7C	1350	hsa00190	Oxidative phosphorylation	Energy metabolism	Metabolism
+COX8C	341947	hsa00190	Oxidative phosphorylation	Energy metabolism	Metabolism
+COX8A	1351	hsa00190	Oxidative phosphorylation	Energy metabolism	Metabolism
+COX11	1353	hsa00190	Oxidative phosphorylation	Energy metabolism	Metabolism
+COX15	1355	hsa00190	Oxidative phosphorylation	Energy metabolism	Metabolism
+COX17	10063	hsa00190	Oxidative phosphorylation	Energy metabolism	Metabolism
+ATP6V1A	523	hsa00190	Oxidative phosphorylation	Energy metabolism	Metabolism
+ATP6V1B1	525	hsa00190	Oxidative phosphorylation	Energy metabolism	Metabolism
+ATP6V1B2	526	hsa00190	Oxidative phosphorylation	Energy metabolism	Metabolism
+ATP6V1C2	245973	hsa00190	Oxidative phosphorylation	Energy metabolism	Metabolism
+ATP6V1C1	528	hsa00190	Oxidative phosphorylation	Energy metabolism	Metabolism
+ATP6V1D	51382	hsa00190	Oxidative phosphorylation	Energy metabolism	Metabolism
+ATP6V1E2	90423	hsa00190	Oxidative phosphorylation	Energy metabolism	Metabolism
+ATP6V1E1	529	hsa00190	Oxidative phosphorylation	Energy metabolism	Metabolism
+ATP6V1F	9296	hsa00190	Oxidative phosphorylation	Energy metabolism	Metabolism
+ATP6V1G1	9550	hsa00190	Oxidative phosphorylation	Energy metabolism	Metabolism
+ATP6V1G3	127124	hsa00190	Oxidative phosphorylation	Energy metabolism	Metabolism
+ATP6V1G2	534	hsa00190	Oxidative phosphorylation	Energy metabolism	Metabolism
+ATP6V1H	51606	hsa00190	Oxidative phosphorylation	Energy metabolism	Metabolism
+TCIRG1	10312	hsa00190	Oxidative phosphorylation	Energy metabolism	Metabolism
+ATP6V0A2	23545	hsa00190	Oxidative phosphorylation	Energy metabolism	Metabolism
+ATP6V0A4	50617	hsa00190	Oxidative phosphorylation	Energy metabolism	Metabolism
+ATP6V0A1	535	hsa00190	Oxidative phosphorylation	Energy metabolism	Metabolism
+ATP6V0C	527	hsa00190	Oxidative phosphorylation	Energy metabolism	Metabolism
+ATP6V0B	533	hsa00190	Oxidative phosphorylation	Energy metabolism	Metabolism
+ATP6V0D1	9114	hsa00190	Oxidative phosphorylation	Energy metabolism	Metabolism
+ATP6V0D2	245972	hsa00190	Oxidative phosphorylation	Energy metabolism	Metabolism
+ATP6V0E1	8992	hsa00190	Oxidative phosphorylation	Energy metabolism	Metabolism
+ATP6V0E2	155066	hsa00190	Oxidative phosphorylation	Energy metabolism	Metabolism
+ATP6AP1	537	hsa00190	Oxidative phosphorylation	Energy metabolism	Metabolism
+ATP4A	495	hsa00190	Oxidative phosphorylation	Energy metabolism	Metabolism
+ATP4B	496	hsa00190	Oxidative phosphorylation	Energy metabolism	Metabolism
+ATP12A	479	hsa00190	Oxidative phosphorylation	Energy metabolism	Metabolism
+PPA2	27068	hsa00190	Oxidative phosphorylation	Energy metabolism	Metabolism
+PPA1	5464	hsa00190	Oxidative phosphorylation	Energy metabolism	Metabolism
+LHPP	64077	hsa00190	Oxidative phosphorylation	Energy metabolism	Metabolism
+GLUD2	2747	hsa00910	Nitrogen metabolism	Energy metabolism	Metabolism
+GLUD1	2746	hsa00910	Nitrogen metabolism	Energy metabolism	Metabolism
+GLUL	2752	hsa00910	Nitrogen metabolism	Energy metabolism	Metabolism
+CPS1	1373	hsa00910	Nitrogen metabolism	Energy metabolism	Metabolism
+CA13	377677	hsa00910	Nitrogen metabolism	Energy metabolism	Metabolism
+CA1	759	hsa00910	Nitrogen metabolism	Energy metabolism	Metabolism
+CA6	765	hsa00910	Nitrogen metabolism	Energy metabolism	Metabolism
+CA7	766	hsa00910	Nitrogen metabolism	Energy metabolism	Metabolism
+CA12	771	hsa00910	Nitrogen metabolism	Energy metabolism	Metabolism
+CA5B	11238	hsa00910	Nitrogen metabolism	Energy metabolism	Metabolism
+CA14	23632	hsa00910	Nitrogen metabolism	Energy metabolism	Metabolism
+CA9	768	hsa00910	Nitrogen metabolism	Energy metabolism	Metabolism
+CA3	761	hsa00910	Nitrogen metabolism	Energy metabolism	Metabolism
+CA5A	763	hsa00910	Nitrogen metabolism	Energy metabolism	Metabolism
+CA8	767	hsa00910	Nitrogen metabolism	Energy metabolism	Metabolism
+CA2	760	hsa00910	Nitrogen metabolism	Energy metabolism	Metabolism
+CA4	762	hsa00910	Nitrogen metabolism	Energy metabolism	Metabolism
+PAPSS2	9060	hsa00920	Sulfur metabolism	Energy metabolism	Metabolism
+PAPSS1	9061	hsa00920	Sulfur metabolism	Energy metabolism	Metabolism
+BPNT1	10380	hsa00920	Sulfur metabolism	Energy metabolism	Metabolism
+IMPAD1	54928	hsa00920	Sulfur metabolism	Energy metabolism	Metabolism
+SUOX	6821	hsa00920	Sulfur metabolism	Energy metabolism	Metabolism
+ETHE1	23474	hsa00920	Sulfur metabolism	Energy metabolism	Metabolism
+MPST	4357	hsa00920	Sulfur metabolism	Energy metabolism	Metabolism
+TST	7263	hsa00920	Sulfur metabolism	Energy metabolism	Metabolism
+ACACA	31	hsa00061	Fatty acid biosynthesis	Lipid metabolism	Metabolism
+ACACB	32	hsa00061	Fatty acid biosynthesis	Lipid metabolism	Metabolism
+MCAT	27349	hsa00061	Fatty acid biosynthesis	Lipid metabolism	Metabolism
+FASN	2194	hsa00061	Fatty acid biosynthesis	Lipid metabolism	Metabolism
+OXSM	54995	hsa00061	Fatty acid biosynthesis	Lipid metabolism	Metabolism
+OLAH	55301	hsa00061	Fatty acid biosynthesis	Lipid metabolism	Metabolism
+ACSL6	23305	hsa00061	Fatty acid biosynthesis	Lipid metabolism	Metabolism
+ACSL4	2182	hsa00061	Fatty acid biosynthesis	Lipid metabolism	Metabolism
+ACSL1	2180	hsa00061	Fatty acid biosynthesis	Lipid metabolism	Metabolism
+ACSL5	51703	hsa00061	Fatty acid biosynthesis	Lipid metabolism	Metabolism
+ACSL3	2181	hsa00061	Fatty acid biosynthesis	Lipid metabolism	Metabolism
+ACSBG1	23205	hsa00061	Fatty acid biosynthesis	Lipid metabolism	Metabolism
+ACSBG2	81616	hsa00061	Fatty acid biosynthesis	Lipid metabolism	Metabolism
+ACAA2	10449	hsa00062	Fatty acid elongation	Lipid metabolism	Metabolism
+HADHB	3032	hsa00062	Fatty acid elongation	Lipid metabolism	Metabolism
+HADH	3033	hsa00062	Fatty acid elongation	Lipid metabolism	Metabolism
+HADHA	3030	hsa00062	Fatty acid elongation	Lipid metabolism	Metabolism
+ECHS1	1892	hsa00062	Fatty acid elongation	Lipid metabolism	Metabolism
+MECR	51102	hsa00062	Fatty acid elongation	Lipid metabolism	Metabolism
+PPT1	5538	hsa00062	Fatty acid elongation	Lipid metabolism	Metabolism
+PPT2	9374	hsa00062	Fatty acid elongation	Lipid metabolism	Metabolism
+ABHD17A	81926	hsa00062	Fatty acid elongation	Lipid metabolism	Metabolism
+ABHD17B	51104	hsa00062	Fatty acid elongation	Lipid metabolism	Metabolism
+ABHD17C	58489	hsa00062	Fatty acid elongation	Lipid metabolism	Metabolism
+ELOVL1	64834	hsa00062	Fatty acid elongation	Lipid metabolism	Metabolism
+ELOVL2	54898	hsa00062	Fatty acid elongation	Lipid metabolism	Metabolism
+ELOVL3	83401	hsa00062	Fatty acid elongation	Lipid metabolism	Metabolism
+ELOVL4	6785	hsa00062	Fatty acid elongation	Lipid metabolism	Metabolism
+ELOVL5	60481	hsa00062	Fatty acid elongation	Lipid metabolism	Metabolism
+ELOVL6	79071	hsa00062	Fatty acid elongation	Lipid metabolism	Metabolism
+ELOVL7	79993	hsa00062	Fatty acid elongation	Lipid metabolism	Metabolism
+HSD17B12	51144	hsa00062	Fatty acid elongation	Lipid metabolism	Metabolism
+HACD2	201562	hsa00062	Fatty acid elongation	Lipid metabolism	Metabolism
+HACD1	9200	hsa00062	Fatty acid elongation	Lipid metabolism	Metabolism
+HACD4	401494	hsa00062	Fatty acid elongation	Lipid metabolism	Metabolism
+HACD3	51495	hsa00062	Fatty acid elongation	Lipid metabolism	Metabolism
+TECR	9524	hsa00062	Fatty acid elongation	Lipid metabolism	Metabolism
+ACOT4	122970	hsa00062	Fatty acid elongation	Lipid metabolism	Metabolism
+ACOT2	10965	hsa00062	Fatty acid elongation	Lipid metabolism	Metabolism
+ACOT1	641371	hsa00062	Fatty acid elongation	Lipid metabolism	Metabolism
+ACOT7	11332	hsa00062	Fatty acid elongation	Lipid metabolism	Metabolism
+THEM4	117145	hsa00062	Fatty acid elongation	Lipid metabolism	Metabolism
+THEM5	284486	hsa00062	Fatty acid elongation	Lipid metabolism	Metabolism
+ACAT2	39	hsa00071	Fatty acid degradation	Lipid metabolism	Metabolism
+ACAT1	38	hsa00071	Fatty acid degradation	Lipid metabolism	Metabolism
+ACAA1	30	hsa00071	Fatty acid degradation	Lipid metabolism	Metabolism
+ACAA2	10449	hsa00071	Fatty acid degradation	Lipid metabolism	Metabolism
+HADHB	3032	hsa00071	Fatty acid degradation	Lipid metabolism	Metabolism
+HADH	3033	hsa00071	Fatty acid degradation	Lipid metabolism	Metabolism
+HADHA	3030	hsa00071	Fatty acid degradation	Lipid metabolism	Metabolism
+EHHADH	1962	hsa00071	Fatty acid degradation	Lipid metabolism	Metabolism
+ECHS1	1892	hsa00071	Fatty acid degradation	Lipid metabolism	Metabolism
+ACOX3	8310	hsa00071	Fatty acid degradation	Lipid metabolism	Metabolism
+ACOX1	51	hsa00071	Fatty acid degradation	Lipid metabolism	Metabolism
+ACADS	35	hsa00071	Fatty acid degradation	Lipid metabolism	Metabolism
+ACADM	34	hsa00071	Fatty acid degradation	Lipid metabolism	Metabolism
+ACADL	33	hsa00071	Fatty acid degradation	Lipid metabolism	Metabolism
+ACADSB	36	hsa00071	Fatty acid degradation	Lipid metabolism	Metabolism
+ACADVL	37	hsa00071	Fatty acid degradation	Lipid metabolism	Metabolism
+GCDH	2639	hsa00071	Fatty acid degradation	Lipid metabolism	Metabolism
+ACSL6	23305	hsa00071	Fatty acid degradation	Lipid metabolism	Metabolism
+ACSL4	2182	hsa00071	Fatty acid degradation	Lipid metabolism	Metabolism
+ACSL1	2180	hsa00071	Fatty acid degradation	Lipid metabolism	Metabolism
+ACSL5	51703	hsa00071	Fatty acid degradation	Lipid metabolism	Metabolism
+ACSL3	2181	hsa00071	Fatty acid degradation	Lipid metabolism	Metabolism
+ACSBG1	23205	hsa00071	Fatty acid degradation	Lipid metabolism	Metabolism
+ACSBG2	81616	hsa00071	Fatty acid degradation	Lipid metabolism	Metabolism
+CPT1A	1374	hsa00071	Fatty acid degradation	Lipid metabolism	Metabolism
+CPT1B	1375	hsa00071	Fatty acid degradation	Lipid metabolism	Metabolism
+CPT1C	126129	hsa00071	Fatty acid degradation	Lipid metabolism	Metabolism
+CPT2	1376	hsa00071	Fatty acid degradation	Lipid metabolism	Metabolism
+ECI1	1632	hsa00071	Fatty acid degradation	Lipid metabolism	Metabolism
+ECI2	10455	hsa00071	Fatty acid degradation	Lipid metabolism	Metabolism
+CYP4A11	1579	hsa00071	Fatty acid degradation	Lipid metabolism	Metabolism
+CYP4A22	284541	hsa00071	Fatty acid degradation	Lipid metabolism	Metabolism
+ADH1A	124	hsa00071	Fatty acid degradation	Lipid metabolism	Metabolism
+ADH1B	125	hsa00071	Fatty acid degradation	Lipid metabolism	Metabolism
+ADH1C	126	hsa00071	Fatty acid degradation	Lipid metabolism	Metabolism
+ADH7	131	hsa00071	Fatty acid degradation	Lipid metabolism	Metabolism
+ADH4	127	hsa00071	Fatty acid degradation	Lipid metabolism	Metabolism
+ADH5	128	hsa00071	Fatty acid degradation	Lipid metabolism	Metabolism
+ADH6	130	hsa00071	Fatty acid degradation	Lipid metabolism	Metabolism
+ALDH2	217	hsa00071	Fatty acid degradation	Lipid metabolism	Metabolism
+ALDH3A2	224	hsa00071	Fatty acid degradation	Lipid metabolism	Metabolism
+ALDH1B1	219	hsa00071	Fatty acid degradation	Lipid metabolism	Metabolism
+ALDH7A1	501	hsa00071	Fatty acid degradation	Lipid metabolism	Metabolism
+ALDH9A1	223	hsa00071	Fatty acid degradation	Lipid metabolism	Metabolism
+HMGCS1	3157	hsa00072	Synthesis and degradation of ketone bodies	Lipid metabolism	Metabolism
+HMGCS2	3158	hsa00072	Synthesis and degradation of ketone bodies	Lipid metabolism	Metabolism
+HMGCL	3155	hsa00072	Synthesis and degradation of ketone bodies	Lipid metabolism	Metabolism
+HMGCLL1	54511	hsa00072	Synthesis and degradation of ketone bodies	Lipid metabolism	Metabolism
+OXCT1	5019	hsa00072	Synthesis and degradation of ketone bodies	Lipid metabolism	Metabolism
+OXCT2	64064	hsa00072	Synthesis and degradation of ketone bodies	Lipid metabolism	Metabolism
+ACAT2	39	hsa00072	Synthesis and degradation of ketone bodies	Lipid metabolism	Metabolism
+ACAT1	38	hsa00072	Synthesis and degradation of ketone bodies	Lipid metabolism	Metabolism
+BDH1	622	hsa00072	Synthesis and degradation of ketone bodies	Lipid metabolism	Metabolism
+BDH2	56898	hsa00072	Synthesis and degradation of ketone bodies	Lipid metabolism	Metabolism
+FDFT1	2222	hsa00100	Steroid biosynthesis	Lipid metabolism	Metabolism
+SQLE	6713	hsa00100	Steroid biosynthesis	Lipid metabolism	Metabolism
+LSS	4047	hsa00100	Steroid biosynthesis	Lipid metabolism	Metabolism
+CYP51A1	1595	hsa00100	Steroid biosynthesis	Lipid metabolism	Metabolism
+TM7SF2	7108	hsa00100	Steroid biosynthesis	Lipid metabolism	Metabolism
+MSMO1	6307	hsa00100	Steroid biosynthesis	Lipid metabolism	Metabolism
+NSDHL	50814	hsa00100	Steroid biosynthesis	Lipid metabolism	Metabolism
+HSD17B7	51478	hsa00100	Steroid biosynthesis	Lipid metabolism	Metabolism
+EBP	10682	hsa00100	Steroid biosynthesis	Lipid metabolism	Metabolism
+DHCR24	1718	hsa00100	Steroid biosynthesis	Lipid metabolism	Metabolism
+SC5D	6309	hsa00100	Steroid biosynthesis	Lipid metabolism	Metabolism
+DHCR7	1717	hsa00100	Steroid biosynthesis	Lipid metabolism	Metabolism
+LIPA	3988	hsa00100	Steroid biosynthesis	Lipid metabolism	Metabolism
+CEL	1056	hsa00100	Steroid biosynthesis	Lipid metabolism	Metabolism
+SOAT2	8435	hsa00100	Steroid biosynthesis	Lipid metabolism	Metabolism
+SOAT1	6646	hsa00100	Steroid biosynthesis	Lipid metabolism	Metabolism
+CYP2R1	120227	hsa00100	Steroid biosynthesis	Lipid metabolism	Metabolism
+CYP27B1	1594	hsa00100	Steroid biosynthesis	Lipid metabolism	Metabolism
+CYP24A1	1591	hsa00100	Steroid biosynthesis	Lipid metabolism	Metabolism
+CYP46A1	10858	hsa00120	Primary bile acid biosynthesis	Lipid metabolism	Metabolism
+CYP39A1	51302	hsa00120	Primary bile acid biosynthesis	Lipid metabolism	Metabolism
+HSD3B7	80270	hsa00120	Primary bile acid biosynthesis	Lipid metabolism	Metabolism
+CH25H	9023	hsa00120	Primary bile acid biosynthesis	Lipid metabolism	Metabolism
+CYP7B1	9420	hsa00120	Primary bile acid biosynthesis	Lipid metabolism	Metabolism
+CYP7A1	1581	hsa00120	Primary bile acid biosynthesis	Lipid metabolism	Metabolism
+CYP27A1	1593	hsa00120	Primary bile acid biosynthesis	Lipid metabolism	Metabolism
+CYP8B1	1582	hsa00120	Primary bile acid biosynthesis	Lipid metabolism	Metabolism
+AKR1D1	6718	hsa00120	Primary bile acid biosynthesis	Lipid metabolism	Metabolism
+AKR1C4	1109	hsa00120	Primary bile acid biosynthesis	Lipid metabolism	Metabolism
+SLC27A5	10998	hsa00120	Primary bile acid biosynthesis	Lipid metabolism	Metabolism
+AMACR	23600	hsa00120	Primary bile acid biosynthesis	Lipid metabolism	Metabolism
+ACOX2	8309	hsa00120	Primary bile acid biosynthesis	Lipid metabolism	Metabolism
+HSD17B4	3295	hsa00120	Primary bile acid biosynthesis	Lipid metabolism	Metabolism
+SCP2	6342	hsa00120	Primary bile acid biosynthesis	Lipid metabolism	Metabolism
+ACOT8	10005	hsa00120	Primary bile acid biosynthesis	Lipid metabolism	Metabolism
+BAAT	570	hsa00120	Primary bile acid biosynthesis	Lipid metabolism	Metabolism
+CYP11A1	1583	hsa00140	Steroid hormone biosynthesis	Lipid metabolism	Metabolism
+CYP17A1	1586	hsa00140	Steroid hormone biosynthesis	Lipid metabolism	Metabolism
+STS	412	hsa00140	Steroid hormone biosynthesis	Lipid metabolism	Metabolism
+SULT2B1	6820	hsa00140	Steroid hormone biosynthesis	Lipid metabolism	Metabolism
+CYP21A2	1589	hsa00140	Steroid hormone biosynthesis	Lipid metabolism	Metabolism
+HSD3B1	3283	hsa00140	Steroid hormone biosynthesis	Lipid metabolism	Metabolism
+HSD3B2	3284	hsa00140	Steroid hormone biosynthesis	Lipid metabolism	Metabolism
+SRD5A1	6715	hsa00140	Steroid hormone biosynthesis	Lipid metabolism	Metabolism
+SRD5A2	6716	hsa00140	Steroid hormone biosynthesis	Lipid metabolism	Metabolism
+SRD5A3	79644	hsa00140	Steroid hormone biosynthesis	Lipid metabolism	Metabolism
+AKR1C2	1646	hsa00140	Steroid hormone biosynthesis	Lipid metabolism	Metabolism
+AKR1C3	8644	hsa00140	Steroid hormone biosynthesis	Lipid metabolism	Metabolism
+CYP11B1	1584	hsa00140	Steroid hormone biosynthesis	Lipid metabolism	Metabolism
+CYP11B2	1585	hsa00140	Steroid hormone biosynthesis	Lipid metabolism	Metabolism
+AKR1D1	6718	hsa00140	Steroid hormone biosynthesis	Lipid metabolism	Metabolism
+AKR1C4	1109	hsa00140	Steroid hormone biosynthesis	Lipid metabolism	Metabolism
+HSD11B1	3290	hsa00140	Steroid hormone biosynthesis	Lipid metabolism	Metabolism
+HSD11B2	3291	hsa00140	Steroid hormone biosynthesis	Lipid metabolism	Metabolism
+AKR1C1	1645	hsa00140	Steroid hormone biosynthesis	Lipid metabolism	Metabolism
+CYP7B1	9420	hsa00140	Steroid hormone biosynthesis	Lipid metabolism	Metabolism
+SULT1E1	6783	hsa00140	Steroid hormone biosynthesis	Lipid metabolism	Metabolism
+HSD17B1	3292	hsa00140	Steroid hormone biosynthesis	Lipid metabolism	Metabolism
+HSD17B2	3294	hsa00140	Steroid hormone biosynthesis	Lipid metabolism	Metabolism
+HSD17B6	8630	hsa00140	Steroid hormone biosynthesis	Lipid metabolism	Metabolism
+HSD17B7	51478	hsa00140	Steroid hormone biosynthesis	Lipid metabolism	Metabolism
+HSD17B8	7923	hsa00140	Steroid hormone biosynthesis	Lipid metabolism	Metabolism
+HSD17B12	51144	hsa00140	Steroid hormone biosynthesis	Lipid metabolism	Metabolism
+CYP1A1	1543	hsa00140	Steroid hormone biosynthesis	Lipid metabolism	Metabolism
+CYP1A2	1544	hsa00140	Steroid hormone biosynthesis	Lipid metabolism	Metabolism
+CYP3A5	1577	hsa00140	Steroid hormone biosynthesis	Lipid metabolism	Metabolism
+CYP3A7	1551	hsa00140	Steroid hormone biosynthesis	Lipid metabolism	Metabolism
+CYP3A7-CYP3A51P	100861540	hsa00140	Steroid hormone biosynthesis	Lipid metabolism	Metabolism
+CYP2E1	1571	hsa00140	Steroid hormone biosynthesis	Lipid metabolism	Metabolism
+CYP3A4	1576	hsa00140	Steroid hormone biosynthesis	Lipid metabolism	Metabolism
+CYP1B1	1545	hsa00140	Steroid hormone biosynthesis	Lipid metabolism	Metabolism
+CYP19A1	1588	hsa00140	Steroid hormone biosynthesis	Lipid metabolism	Metabolism
+CYP7A1	1581	hsa00140	Steroid hormone biosynthesis	Lipid metabolism	Metabolism
+UGT2A1	10941	hsa00140	Steroid hormone biosynthesis	Lipid metabolism	Metabolism
+UGT2A3	79799	hsa00140	Steroid hormone biosynthesis	Lipid metabolism	Metabolism
+UGT2B17	7367	hsa00140	Steroid hormone biosynthesis	Lipid metabolism	Metabolism
+UGT2B11	10720	hsa00140	Steroid hormone biosynthesis	Lipid metabolism	Metabolism
+UGT2B28	54490	hsa00140	Steroid hormone biosynthesis	Lipid metabolism	Metabolism
+UGT1A6	54578	hsa00140	Steroid hormone biosynthesis	Lipid metabolism	Metabolism
+UGT1A4	54657	hsa00140	Steroid hormone biosynthesis	Lipid metabolism	Metabolism
+UGT1A1	54658	hsa00140	Steroid hormone biosynthesis	Lipid metabolism	Metabolism
+UGT1A3	54659	hsa00140	Steroid hormone biosynthesis	Lipid metabolism	Metabolism
+UGT2B10	7365	hsa00140	Steroid hormone biosynthesis	Lipid metabolism	Metabolism
+UGT1A9	54600	hsa00140	Steroid hormone biosynthesis	Lipid metabolism	Metabolism
+UGT2B7	7364	hsa00140	Steroid hormone biosynthesis	Lipid metabolism	Metabolism
+UGT1A10	54575	hsa00140	Steroid hormone biosynthesis	Lipid metabolism	Metabolism
+UGT1A8	54576	hsa00140	Steroid hormone biosynthesis	Lipid metabolism	Metabolism
+UGT1A5	54579	hsa00140	Steroid hormone biosynthesis	Lipid metabolism	Metabolism
+UGT2B15	7366	hsa00140	Steroid hormone biosynthesis	Lipid metabolism	Metabolism
+UGT1A7	54577	hsa00140	Steroid hormone biosynthesis	Lipid metabolism	Metabolism
+UGT2B4	7363	hsa00140	Steroid hormone biosynthesis	Lipid metabolism	Metabolism
+UGT2A2	574537	hsa00140	Steroid hormone biosynthesis	Lipid metabolism	Metabolism
+COMT	1312	hsa00140	Steroid hormone biosynthesis	Lipid metabolism	Metabolism
+LRTOMT	220074	hsa00140	Steroid hormone biosynthesis	Lipid metabolism	Metabolism
+HSD17B3	3293	hsa00140	Steroid hormone biosynthesis	Lipid metabolism	Metabolism
+GLYCTK	132158	hsa00561	Glycerolipid metabolism	Lipid metabolism	Metabolism
+ALDH2	217	hsa00561	Glycerolipid metabolism	Lipid metabolism	Metabolism
+ALDH3A2	224	hsa00561	Glycerolipid metabolism	Lipid metabolism	Metabolism
+ALDH1B1	219	hsa00561	Glycerolipid metabolism	Lipid metabolism	Metabolism
+ALDH7A1	501	hsa00561	Glycerolipid metabolism	Lipid metabolism	Metabolism
+ALDH9A1	223	hsa00561	Glycerolipid metabolism	Lipid metabolism	Metabolism
+AKR1B1	231	hsa00561	Glycerolipid metabolism	Lipid metabolism	Metabolism
+AKR1B10	57016	hsa00561	Glycerolipid metabolism	Lipid metabolism	Metabolism
+AKR1A1	10327	hsa00561	Glycerolipid metabolism	Lipid metabolism	Metabolism
+TKFC	26007	hsa00561	Glycerolipid metabolism	Lipid metabolism	Metabolism
+GK2	2712	hsa00561	Glycerolipid metabolism	Lipid metabolism	Metabolism
+GK	2710	hsa00561	Glycerolipid metabolism	Lipid metabolism	Metabolism
+GPAM	57678	hsa00561	Glycerolipid metabolism	Lipid metabolism	Metabolism
+GPAT2	150763	hsa00561	Glycerolipid metabolism	Lipid metabolism	Metabolism
+AGPAT1	10554	hsa00561	Glycerolipid metabolism	Lipid metabolism	Metabolism
+AGPAT2	10555	hsa00561	Glycerolipid metabolism	Lipid metabolism	Metabolism
+AGPAT3	56894	hsa00561	Glycerolipid metabolism	Lipid metabolism	Metabolism
+AGPAT4	56895	hsa00561	Glycerolipid metabolism	Lipid metabolism	Metabolism
+AGPAT5	55326	hsa00561	Glycerolipid metabolism	Lipid metabolism	Metabolism
+LCLAT1	253558	hsa00561	Glycerolipid metabolism	Lipid metabolism	Metabolism
+MBOAT1	154141	hsa00561	Glycerolipid metabolism	Lipid metabolism	Metabolism
+MBOAT2	129642	hsa00561	Glycerolipid metabolism	Lipid metabolism	Metabolism
+LPIN1	23175	hsa00561	Glycerolipid metabolism	Lipid metabolism	Metabolism
+LPIN3	64900	hsa00561	Glycerolipid metabolism	Lipid metabolism	Metabolism
+LPIN2	9663	hsa00561	Glycerolipid metabolism	Lipid metabolism	Metabolism
+DGKZ	8525	hsa00561	Glycerolipid metabolism	Lipid metabolism	Metabolism
+DGKD	8527	hsa00561	Glycerolipid metabolism	Lipid metabolism	Metabolism
+DGKI	9162	hsa00561	Glycerolipid metabolism	Lipid metabolism	Metabolism
+DGKA	1606	hsa00561	Glycerolipid metabolism	Lipid metabolism	Metabolism
+DGKE	8526	hsa00561	Glycerolipid metabolism	Lipid metabolism	Metabolism
+DGKB	1607	hsa00561	Glycerolipid metabolism	Lipid metabolism	Metabolism
+DGKH	160851	hsa00561	Glycerolipid metabolism	Lipid metabolism	Metabolism
+DGKG	1608	hsa00561	Glycerolipid metabolism	Lipid metabolism	Metabolism
+DGKQ	1609	hsa00561	Glycerolipid metabolism	Lipid metabolism	Metabolism
+DGKK	139189	hsa00561	Glycerolipid metabolism	Lipid metabolism	Metabolism
+DGAT1	8694	hsa00561	Glycerolipid metabolism	Lipid metabolism	Metabolism
+DGAT2	84649	hsa00561	Glycerolipid metabolism	Lipid metabolism	Metabolism
+MOGAT3	346606	hsa00561	Glycerolipid metabolism	Lipid metabolism	Metabolism
+CEL	1056	hsa00561	Glycerolipid metabolism	Lipid metabolism	Metabolism
+PNPLA2	57104	hsa00561	Glycerolipid metabolism	Lipid metabolism	Metabolism
+PNPLA3	80339	hsa00561	Glycerolipid metabolism	Lipid metabolism	Metabolism
+PNLIP	5406	hsa00561	Glycerolipid metabolism	Lipid metabolism	Metabolism
+PNLIPRP1	5407	hsa00561	Glycerolipid metabolism	Lipid metabolism	Metabolism
+PNLIPRP2	5408	hsa00561	Glycerolipid metabolism	Lipid metabolism	Metabolism
+PNLIPRP3	119548	hsa00561	Glycerolipid metabolism	Lipid metabolism	Metabolism
+LIPC	3990	hsa00561	Glycerolipid metabolism	Lipid metabolism	Metabolism
+LIPF	8513	hsa00561	Glycerolipid metabolism	Lipid metabolism	Metabolism
+LIPG	9388	hsa00561	Glycerolipid metabolism	Lipid metabolism	Metabolism
+LPL	4023	hsa00561	Glycerolipid metabolism	Lipid metabolism	Metabolism
+AGK	55750	hsa00561	Glycerolipid metabolism	Lipid metabolism	Metabolism
+MGLL	11343	hsa00561	Glycerolipid metabolism	Lipid metabolism	Metabolism
+MOGAT1	116255	hsa00561	Glycerolipid metabolism	Lipid metabolism	Metabolism
+MOGAT2	80168	hsa00561	Glycerolipid metabolism	Lipid metabolism	Metabolism
+GLA	2717	hsa00561	Glycerolipid metabolism	Lipid metabolism	Metabolism
+GPD1L	23171	hsa00564	Glycerophospholipid metabolism	Lipid metabolism	Metabolism
+GPD1	2819	hsa00564	Glycerophospholipid metabolism	Lipid metabolism	Metabolism
+GPD2	2820	hsa00564	Glycerophospholipid metabolism	Lipid metabolism	Metabolism
+GPAM	57678	hsa00564	Glycerophospholipid metabolism	Lipid metabolism	Metabolism
+GPAT2	150763	hsa00564	Glycerophospholipid metabolism	Lipid metabolism	Metabolism
+AGPAT1	10554	hsa00564	Glycerophospholipid metabolism	Lipid metabolism	Metabolism
+AGPAT2	10555	hsa00564	Glycerophospholipid metabolism	Lipid metabolism	Metabolism
+AGPAT3	56894	hsa00564	Glycerophospholipid metabolism	Lipid metabolism	Metabolism
+AGPAT4	56895	hsa00564	Glycerophospholipid metabolism	Lipid metabolism	Metabolism
+AGPAT5	55326	hsa00564	Glycerophospholipid metabolism	Lipid metabolism	Metabolism
+LCLAT1	253558	hsa00564	Glycerophospholipid metabolism	Lipid metabolism	Metabolism
+MBOAT1	154141	hsa00564	Glycerophospholipid metabolism	Lipid metabolism	Metabolism
+MBOAT2	129642	hsa00564	Glycerophospholipid metabolism	Lipid metabolism	Metabolism
+GNPAT	8443	hsa00564	Glycerophospholipid metabolism	Lipid metabolism	Metabolism
+ADPRM	56985	hsa00564	Glycerophospholipid metabolism	Lipid metabolism	Metabolism
+LPIN1	23175	hsa00564	Glycerophospholipid metabolism	Lipid metabolism	Metabolism
+LPIN3	64900	hsa00564	Glycerophospholipid metabolism	Lipid metabolism	Metabolism
+LPIN2	9663	hsa00564	Glycerophospholipid metabolism	Lipid metabolism	Metabolism
+DGKZ	8525	hsa00564	Glycerophospholipid metabolism	Lipid metabolism	Metabolism
+DGKD	8527	hsa00564	Glycerophospholipid metabolism	Lipid metabolism	Metabolism
+DGKI	9162	hsa00564	Glycerophospholipid metabolism	Lipid metabolism	Metabolism
+DGKA	1606	hsa00564	Glycerophospholipid metabolism	Lipid metabolism	Metabolism
+DGKE	8526	hsa00564	Glycerophospholipid metabolism	Lipid metabolism	Metabolism
+DGKB	1607	hsa00564	Glycerophospholipid metabolism	Lipid metabolism	Metabolism
+DGKH	160851	hsa00564	Glycerophospholipid metabolism	Lipid metabolism	Metabolism
+DGKG	1608	hsa00564	Glycerophospholipid metabolism	Lipid metabolism	Metabolism
+DGKQ	1609	hsa00564	Glycerophospholipid metabolism	Lipid metabolism	Metabolism
+DGKK	139189	hsa00564	Glycerophospholipid metabolism	Lipid metabolism	Metabolism
+CHPT1	56994	hsa00564	Glycerophospholipid metabolism	Lipid metabolism	Metabolism
+CEPT1	10390	hsa00564	Glycerophospholipid metabolism	Lipid metabolism	Metabolism
+PLD1	5337	hsa00564	Glycerophospholipid metabolism	Lipid metabolism	Metabolism
+PLD2	5338	hsa00564	Glycerophospholipid metabolism	Lipid metabolism	Metabolism
+PLD3	23646	hsa00564	Glycerophospholipid metabolism	Lipid metabolism	Metabolism
+PLD4	122618	hsa00564	Glycerophospholipid metabolism	Lipid metabolism	Metabolism
+LCAT	3931	hsa00564	Glycerophospholipid metabolism	Lipid metabolism	Metabolism
+PLA2G10	8399	hsa00564	Glycerophospholipid metabolism	Lipid metabolism	Metabolism
+PLA2G2D	26279	hsa00564	Glycerophospholipid metabolism	Lipid metabolism	Metabolism
+PLA2G2E	30814	hsa00564	Glycerophospholipid metabolism	Lipid metabolism	Metabolism
+PLA2G3	50487	hsa00564	Glycerophospholipid metabolism	Lipid metabolism	Metabolism
+PLA2G2F	64600	hsa00564	Glycerophospholipid metabolism	Lipid metabolism	Metabolism
+PLA2G12A	81579	hsa00564	Glycerophospholipid metabolism	Lipid metabolism	Metabolism
+PLA2G12B	84647	hsa00564	Glycerophospholipid metabolism	Lipid metabolism	Metabolism
+PLA2G1B	5319	hsa00564	Glycerophospholipid metabolism	Lipid metabolism	Metabolism
+PLA2G5	5322	hsa00564	Glycerophospholipid metabolism	Lipid metabolism	Metabolism
+PLA2G2A	5320	hsa00564	Glycerophospholipid metabolism	Lipid metabolism	Metabolism
+PLA2G2C	391013	hsa00564	Glycerophospholipid metabolism	Lipid metabolism	Metabolism
+PLA2G4E	123745	hsa00564	Glycerophospholipid metabolism	Lipid metabolism	Metabolism
+PLA2G4A	5321	hsa00564	Glycerophospholipid metabolism	Lipid metabolism	Metabolism
+JMJD7-PLA2G4B	8681	hsa00564	Glycerophospholipid metabolism	Lipid metabolism	Metabolism
+PLA2G4B	100137049	hsa00564	Glycerophospholipid metabolism	Lipid metabolism	Metabolism
+PLA2G4C	8605	hsa00564	Glycerophospholipid metabolism	Lipid metabolism	Metabolism
+PLA2G4D	283748	hsa00564	Glycerophospholipid metabolism	Lipid metabolism	Metabolism
+PLA2G4F	255189	hsa00564	Glycerophospholipid metabolism	Lipid metabolism	Metabolism
+PLA2G6	8398	hsa00564	Glycerophospholipid metabolism	Lipid metabolism	Metabolism
+PLB1	151056	hsa00564	Glycerophospholipid metabolism	Lipid metabolism	Metabolism
+PLA2G16	11145	hsa00564	Glycerophospholipid metabolism	Lipid metabolism	Metabolism
+LPCAT2	54947	hsa00564	Glycerophospholipid metabolism	Lipid metabolism	Metabolism
+LPCAT1	79888	hsa00564	Glycerophospholipid metabolism	Lipid metabolism	Metabolism
+LPCAT4	254531	hsa00564	Glycerophospholipid metabolism	Lipid metabolism	Metabolism
+LPCAT3	10162	hsa00564	Glycerophospholipid metabolism	Lipid metabolism	Metabolism
+LYPLA1	10434	hsa00564	Glycerophospholipid metabolism	Lipid metabolism	Metabolism
+PLA2G15	23659	hsa00564	Glycerophospholipid metabolism	Lipid metabolism	Metabolism
+LYPLA2	11313	hsa00564	Glycerophospholipid metabolism	Lipid metabolism	Metabolism
+PNPLA6	10908	hsa00564	Glycerophospholipid metabolism	Lipid metabolism	Metabolism
+PNPLA7	375775	hsa00564	Glycerophospholipid metabolism	Lipid metabolism	Metabolism
+GPCPD1	56261	hsa00564	Glycerophospholipid metabolism	Lipid metabolism	Metabolism
+CHAT	1103	hsa00564	Glycerophospholipid metabolism	Lipid metabolism	Metabolism
+ACHE	43	hsa00564	Glycerophospholipid metabolism	Lipid metabolism	Metabolism
+CHKA	1119	hsa00564	Glycerophospholipid metabolism	Lipid metabolism	Metabolism
+CHKB	1120	hsa00564	Glycerophospholipid metabolism	Lipid metabolism	Metabolism
+PHOSPHO1	162466	hsa00564	Glycerophospholipid metabolism	Lipid metabolism	Metabolism
+PCYT1B	9468	hsa00564	Glycerophospholipid metabolism	Lipid metabolism	Metabolism
+PCYT1A	5130	hsa00564	Glycerophospholipid metabolism	Lipid metabolism	Metabolism
+ETNK1	55500	hsa00564	Glycerophospholipid metabolism	Lipid metabolism	Metabolism
+ETNK2	55224	hsa00564	Glycerophospholipid metabolism	Lipid metabolism	Metabolism
+PCYT2	5833	hsa00564	Glycerophospholipid metabolism	Lipid metabolism	Metabolism
+ETNPPL	64850	hsa00564	Glycerophospholipid metabolism	Lipid metabolism	Metabolism
+PEMT	10400	hsa00564	Glycerophospholipid metabolism	Lipid metabolism	Metabolism
+CDS1	1040	hsa00564	Glycerophospholipid metabolism	Lipid metabolism	Metabolism
+CDS2	8760	hsa00564	Glycerophospholipid metabolism	Lipid metabolism	Metabolism
+PTDSS1	9791	hsa00564	Glycerophospholipid metabolism	Lipid metabolism	Metabolism
