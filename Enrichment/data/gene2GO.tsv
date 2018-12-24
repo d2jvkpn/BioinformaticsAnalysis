@@ -1,0 +1,1001 @@
+gene	GO_id	name	namespace
+HTR1A	GO:0001662	behavioral fear response	biological_process
+ADCYAP1	GO:0001662	behavioral fear response	biological_process
+ALS2	GO:0001662	behavioral fear response	biological_process
+ASIC1	GO:0001662	behavioral fear response	biological_process
+ASIC4	GO:0001662	behavioral fear response	biological_process
+BCL2	GO:0001662	behavioral fear response	biological_process
+BRINP1	GO:0001662	behavioral fear response	biological_process
+DEAF1	GO:0001662	behavioral fear response	biological_process
+SPN	GO:0001662	behavioral fear response	biological_process
+DPP4	GO:0001662	behavioral fear response	biological_process
+DRD1	GO:0001662	behavioral fear response	biological_process
+DRD4	GO:0001662	behavioral fear response	biological_process
+EIF4E	GO:0001662	behavioral fear response	biological_process
+EIF4G1	GO:0001662	behavioral fear response	biological_process
+FBXL20	GO:0001662	behavioral fear response	biological_process
+GABRA5	GO:0001662	behavioral fear response	biological_process
+GRIK2	GO:0001662	behavioral fear response	biological_process
+GRM7	GO:0001662	behavioral fear response	biological_process
+HTR2C	GO:0001662	behavioral fear response	biological_process
+KALRN	GO:0001662	behavioral fear response	biological_process
+LYPD1	GO:0001662	behavioral fear response	biological_process
+MAPK8IP2	GO:0001662	behavioral fear response	biological_process
+MDK	GO:0001662	behavioral fear response	biological_process
+MECP2	GO:0001662	behavioral fear response	biological_process
+MORC1	GO:0001662	behavioral fear response	biological_process
+NEUROD2	GO:0001662	behavioral fear response	biological_process
+NPY2R	GO:0001662	behavioral fear response	biological_process
+NR2E1	GO:0001662	behavioral fear response	biological_process
+PENK	GO:0001662	behavioral fear response	biological_process
+RPS6KB1	GO:0001662	behavioral fear response	biological_process
+USP46	GO:0001662	behavioral fear response	biological_process
+VDAC1	GO:0001662	behavioral fear response	biological_process
+VDAC3	GO:0001662	behavioral fear response	biological_process
+HTR1A	GO:0004930	G protein-coupled receptor activity	molecular_function
+ACKR1	GO:0004930	G protein-coupled receptor activity	molecular_function
+ACKR2	GO:0004930	G protein-coupled receptor activity	molecular_function
+CCR10	GO:0004930	G protein-coupled receptor activity	molecular_function
+ACKR3	GO:0004930	G protein-coupled receptor activity	molecular_function
+ACKR4	GO:0004930	G protein-coupled receptor activity	molecular_function
+ADCYAP1R1	GO:0004930	G protein-coupled receptor activity	molecular_function
+ADGRA1	GO:0004930	G protein-coupled receptor activity	molecular_function
+ADGRA2	GO:0004930	G protein-coupled receptor activity	molecular_function
+ADGRA3	GO:0004930	G protein-coupled receptor activity	molecular_function
+ADGRB1	GO:0004930	G protein-coupled receptor activity	molecular_function
+ADGRB2	GO:0004930	G protein-coupled receptor activity	molecular_function
+ADGRB3	GO:0004930	G protein-coupled receptor activity	molecular_function
+ADGRD1	GO:0004930	G protein-coupled receptor activity	molecular_function
+ADGRD2	GO:0004930	G protein-coupled receptor activity	molecular_function
+ADGRE1	GO:0004930	G protein-coupled receptor activity	molecular_function
+ADGRE2	GO:0004930	G protein-coupled receptor activity	molecular_function
+ADGRE3	GO:0004930	G protein-coupled receptor activity	molecular_function
+ADGRE4P	GO:0004930	G protein-coupled receptor activity	molecular_function
+ADGRE5	GO:0004930	G protein-coupled receptor activity	molecular_function
+ADGRF1	GO:0004930	G protein-coupled receptor activity	molecular_function
+ADGRF2	GO:0004930	G protein-coupled receptor activity	molecular_function
+ADGRF3	GO:0004930	G protein-coupled receptor activity	molecular_function
+ADGRF4	GO:0004930	G protein-coupled receptor activity	molecular_function
+ADGRF5	GO:0004930	G protein-coupled receptor activity	molecular_function
+ADGRG1	GO:0004930	G protein-coupled receptor activity	molecular_function
+ADGRG2	GO:0004930	G protein-coupled receptor activity	molecular_function
+ADGRG3	GO:0004930	G protein-coupled receptor activity	molecular_function
+ADGRG4	GO:0004930	G protein-coupled receptor activity	molecular_function
+ADGRG5	GO:0004930	G protein-coupled receptor activity	molecular_function
+ADGRG6	GO:0004930	G protein-coupled receptor activity	molecular_function
+ADGRG7	GO:0004930	G protein-coupled receptor activity	molecular_function
+ADGRL1	GO:0004930	G protein-coupled receptor activity	molecular_function
+ADGRL2	GO:0004930	G protein-coupled receptor activity	molecular_function
+ADGRL3	GO:0004930	G protein-coupled receptor activity	molecular_function
+ADGRL4	GO:0004930	G protein-coupled receptor activity	molecular_function
+ADGRV1	GO:0004930	G protein-coupled receptor activity	molecular_function
+ADORA1	GO:0004930	G protein-coupled receptor activity	molecular_function
+ADORA2A	GO:0004930	G protein-coupled receptor activity	molecular_function
+ADORA2B	GO:0004930	G protein-coupled receptor activity	molecular_function
+ADORA3	GO:0004930	G protein-coupled receptor activity	molecular_function
+ADRA1A	GO:0004930	G protein-coupled receptor activity	molecular_function
+ADRA1B	GO:0004930	G protein-coupled receptor activity	molecular_function
+ADRA1D	GO:0004930	G protein-coupled receptor activity	molecular_function
+ADRA2A	GO:0004930	G protein-coupled receptor activity	molecular_function
+ADRA2B	GO:0004930	G protein-coupled receptor activity	molecular_function
+ADRA2C	GO:0004930	G protein-coupled receptor activity	molecular_function
+ADRB1	GO:0004930	G protein-coupled receptor activity	molecular_function
+ADRB2	GO:0004930	G protein-coupled receptor activity	molecular_function
+ADRB3	GO:0004930	G protein-coupled receptor activity	molecular_function
+AGTR1	GO:0004930	G protein-coupled receptor activity	molecular_function
+AGTR2	GO:0004930	G protein-coupled receptor activity	molecular_function
+APLNR	GO:0004930	G protein-coupled receptor activity	molecular_function
+AVPR1A	GO:0004930	G protein-coupled receptor activity	molecular_function
+AVPR1B	GO:0004930	G protein-coupled receptor activity	molecular_function
+AVPR2	GO:0004930	G protein-coupled receptor activity	molecular_function
+BDKRB1	GO:0004930	G protein-coupled receptor activity	molecular_function
+BDKRB2	GO:0004930	G protein-coupled receptor activity	molecular_function
+BRS3	GO:0004930	G protein-coupled receptor activity	molecular_function
+C3AR1	GO:0004930	G protein-coupled receptor activity	molecular_function
+C5AR1	GO:0004930	G protein-coupled receptor activity	molecular_function
+C5AR2	GO:0004930	G protein-coupled receptor activity	molecular_function
+CALCR	GO:0004930	G protein-coupled receptor activity	molecular_function
+CALCRL	GO:0004930	G protein-coupled receptor activity	molecular_function
+CASR	GO:0004930	G protein-coupled receptor activity	molecular_function
+CCKAR	GO:0004930	G protein-coupled receptor activity	molecular_function
+CCKBR	GO:0004930	G protein-coupled receptor activity	molecular_function
+CCR1	GO:0004930	G protein-coupled receptor activity	molecular_function
+CCR2	GO:0004930	G protein-coupled receptor activity	molecular_function
+CCR3	GO:0004930	G protein-coupled receptor activity	molecular_function
+CCR4	GO:0004930	G protein-coupled receptor activity	molecular_function
+CCR5	GO:0004930	G protein-coupled receptor activity	molecular_function
+CCR6	GO:0004930	G protein-coupled receptor activity	molecular_function
+CCR7	GO:0004930	G protein-coupled receptor activity	molecular_function
+CCR8	GO:0004930	G protein-coupled receptor activity	molecular_function
+CCR9	GO:0004930	G protein-coupled receptor activity	molecular_function
+CCRL2	GO:0004930	G protein-coupled receptor activity	molecular_function
+CELSR1	GO:0004930	G protein-coupled receptor activity	molecular_function
+CELSR2	GO:0004930	G protein-coupled receptor activity	molecular_function
+CELSR3	GO:0004930	G protein-coupled receptor activity	molecular_function
+CHML	GO:0004930	G protein-coupled receptor activity	molecular_function
+CHRM1	GO:0004930	G protein-coupled receptor activity	molecular_function
+CHRM2	GO:0004930	G protein-coupled receptor activity	molecular_function
+CHRM3	GO:0004930	G protein-coupled receptor activity	molecular_function
+CHRM4	GO:0004930	G protein-coupled receptor activity	molecular_function
+CHRM5	GO:0004930	G protein-coupled receptor activity	molecular_function
+CMKLR1	GO:0004930	G protein-coupled receptor activity	molecular_function
+CNR1	GO:0004930	G protein-coupled receptor activity	molecular_function
+CNR2	GO:0004930	G protein-coupled receptor activity	molecular_function
+CRHR1	GO:0004930	G protein-coupled receptor activity	molecular_function
+CRHR2	GO:0004930	G protein-coupled receptor activity	molecular_function
+CX3CR1	GO:0004930	G protein-coupled receptor activity	molecular_function
+CXCR1	GO:0004930	G protein-coupled receptor activity	molecular_function
+CXCR2	GO:0004930	G protein-coupled receptor activity	molecular_function
+CXCR3	GO:0004930	G protein-coupled receptor activity	molecular_function
+CXCR4	GO:0004930	G protein-coupled receptor activity	molecular_function
+CXCR5	GO:0004930	G protein-coupled receptor activity	molecular_function
+CXCR6	GO:0004930	G protein-coupled receptor activity	molecular_function
+CYSLTR1	GO:0004930	G protein-coupled receptor activity	molecular_function
+CYSLTR2	GO:0004930	G protein-coupled receptor activity	molecular_function
+DRD1	GO:0004930	G protein-coupled receptor activity	molecular_function
+DRD2	GO:0004930	G protein-coupled receptor activity	molecular_function
+DRD3	GO:0004930	G protein-coupled receptor activity	molecular_function
+DRD4	GO:0004930	G protein-coupled receptor activity	molecular_function
+DRD5	GO:0004930	G protein-coupled receptor activity	molecular_function
+EDNRA	GO:0004930	G protein-coupled receptor activity	molecular_function
+EDNRB	GO:0004930	G protein-coupled receptor activity	molecular_function
+PTGER3	GO:0004930	G protein-coupled receptor activity	molecular_function
+F2R	GO:0004930	G protein-coupled receptor activity	molecular_function
+F2RL1	GO:0004930	G protein-coupled receptor activity	molecular_function
+F2RL2	GO:0004930	G protein-coupled receptor activity	molecular_function
+F2RL3	GO:0004930	G protein-coupled receptor activity	molecular_function
+FFAR1	GO:0004930	G protein-coupled receptor activity	molecular_function
+FFAR2	GO:0004930	G protein-coupled receptor activity	molecular_function
+FFAR3	GO:0004930	G protein-coupled receptor activity	molecular_function
+FFAR4	GO:0004930	G protein-coupled receptor activity	molecular_function
+FPR1	GO:0004930	G protein-coupled receptor activity	molecular_function
+FPR2	GO:0004930	G protein-coupled receptor activity	molecular_function
+FPR3	GO:0004930	G protein-coupled receptor activity	molecular_function
+FRZB	GO:0004930	G protein-coupled receptor activity	molecular_function
+FSHR	GO:0004930	G protein-coupled receptor activity	molecular_function
+FZD10	GO:0004930	G protein-coupled receptor activity	molecular_function
+FZD1	GO:0004930	G protein-coupled receptor activity	molecular_function
+FZD2	GO:0004930	G protein-coupled receptor activity	molecular_function
+FZD3	GO:0004930	G protein-coupled receptor activity	molecular_function
+FZD4	GO:0004930	G protein-coupled receptor activity	molecular_function
+FZD5	GO:0004930	G protein-coupled receptor activity	molecular_function
+FZD6	GO:0004930	G protein-coupled receptor activity	molecular_function
+FZD7	GO:0004930	G protein-coupled receptor activity	molecular_function
+FZD8	GO:0004930	G protein-coupled receptor activity	molecular_function
+FZD9	GO:0004930	G protein-coupled receptor activity	molecular_function
+GABBR1	GO:0004930	G protein-coupled receptor activity	molecular_function
+GABBR2	GO:0004930	G protein-coupled receptor activity	molecular_function
+GALR1	GO:0004930	G protein-coupled receptor activity	molecular_function
+GALR2	GO:0004930	G protein-coupled receptor activity	molecular_function
+GALR3	GO:0004930	G protein-coupled receptor activity	molecular_function
+GCGR	GO:0004930	G protein-coupled receptor activity	molecular_function
+GHRHR	GO:0004930	G protein-coupled receptor activity	molecular_function
+GHSR	GO:0004930	G protein-coupled receptor activity	molecular_function
+GIPR	GO:0004930	G protein-coupled receptor activity	molecular_function
+GLP1R	GO:0004930	G protein-coupled receptor activity	molecular_function
+GLP2R	GO:0004930	G protein-coupled receptor activity	molecular_function
+GNRHR2	GO:0004930	G protein-coupled receptor activity	molecular_function
+GNRHR	GO:0004930	G protein-coupled receptor activity	molecular_function
+GPBAR1	GO:0004930	G protein-coupled receptor activity	molecular_function
+GPER1	GO:0004930	G protein-coupled receptor activity	molecular_function
+GPR101	GO:0004930	G protein-coupled receptor activity	molecular_function
+GPR119	GO:0004930	G protein-coupled receptor activity	molecular_function
+GPR12	GO:0004930	G protein-coupled receptor activity	molecular_function
+GPR132	GO:0004930	G protein-coupled receptor activity	molecular_function
+GPR135	GO:0004930	G protein-coupled receptor activity	molecular_function
+GPR139	GO:0004930	G protein-coupled receptor activity	molecular_function
+GPR141	GO:0004930	G protein-coupled receptor activity	molecular_function
+GPR142	GO:0004930	G protein-coupled receptor activity	molecular_function
+GPR143	GO:0004930	G protein-coupled receptor activity	molecular_function
+GPR146	GO:0004930	G protein-coupled receptor activity	molecular_function
+GPR148	GO:0004930	G protein-coupled receptor activity	molecular_function
+GPR149	GO:0004930	G protein-coupled receptor activity	molecular_function
+GPR150	GO:0004930	G protein-coupled receptor activity	molecular_function
+GPR151	GO:0004930	G protein-coupled receptor activity	molecular_function
+GPR152	GO:0004930	G protein-coupled receptor activity	molecular_function
+GPR153	GO:0004930	G protein-coupled receptor activity	molecular_function
+GPR156	GO:0004930	G protein-coupled receptor activity	molecular_function
+GPR157	GO:0004930	G protein-coupled receptor activity	molecular_function
+GPR158	GO:0004930	G protein-coupled receptor activity	molecular_function
+GPR15	GO:0004930	G protein-coupled receptor activity	molecular_function
+GPR160	GO:0004930	G protein-coupled receptor activity	molecular_function
+GPR161	GO:0004930	G protein-coupled receptor activity	molecular_function
+GPR162	GO:0004930	G protein-coupled receptor activity	molecular_function
+GPR171	GO:0004930	G protein-coupled receptor activity	molecular_function
+GPR173	GO:0004930	G protein-coupled receptor activity	molecular_function
+GPR174	GO:0004930	G protein-coupled receptor activity	molecular_function
+GPR176	GO:0004930	G protein-coupled receptor activity	molecular_function
+GPR179	GO:0004930	G protein-coupled receptor activity	molecular_function
+GPR17	GO:0004930	G protein-coupled receptor activity	molecular_function
+GPR182	GO:0004930	G protein-coupled receptor activity	molecular_function
+GPR183	GO:0004930	G protein-coupled receptor activity	molecular_function
+GPR18	GO:0004930	G protein-coupled receptor activity	molecular_function
+GPR19	GO:0004930	G protein-coupled receptor activity	molecular_function
+GPR1	GO:0004930	G protein-coupled receptor activity	molecular_function
+GPR20	GO:0004930	G protein-coupled receptor activity	molecular_function
+GPR21	GO:0004930	G protein-coupled receptor activity	molecular_function
+GPR22	GO:0004930	G protein-coupled receptor activity	molecular_function
+GPR25	GO:0004930	G protein-coupled receptor activity	molecular_function
+GPR26	GO:0004930	G protein-coupled receptor activity	molecular_function
+GPR27	GO:0004930	G protein-coupled receptor activity	molecular_function
+GPR31	GO:0004930	G protein-coupled receptor activity	molecular_function
+GPR32	GO:0004930	G protein-coupled receptor activity	molecular_function
+GPR32P1	GO:0004930	G protein-coupled receptor activity	molecular_function
+GPR33	GO:0004930	G protein-coupled receptor activity	molecular_function
+GPR34	GO:0004930	G protein-coupled receptor activity	molecular_function
+GPR35	GO:0004930	G protein-coupled receptor activity	molecular_function
+GPR37	GO:0004930	G protein-coupled receptor activity	molecular_function
+GPR37L1	GO:0004930	G protein-coupled receptor activity	molecular_function
+GPR39	GO:0004930	G protein-coupled receptor activity	molecular_function
+GPR3	GO:0004930	G protein-coupled receptor activity	molecular_function
+GPR42	GO:0004930	G protein-coupled receptor activity	molecular_function
+GPR45	GO:0004930	G protein-coupled receptor activity	molecular_function
+LGR5	GO:0004930	G protein-coupled receptor activity	molecular_function
+GPR4	GO:0004930	G protein-coupled receptor activity	molecular_function
+GPR50	GO:0004930	G protein-coupled receptor activity	molecular_function
+GPR52	GO:0004930	G protein-coupled receptor activity	molecular_function
+GPR55	GO:0004930	G protein-coupled receptor activity	molecular_function
+GPR61	GO:0004930	G protein-coupled receptor activity	molecular_function
+GPR62	GO:0004930	G protein-coupled receptor activity	molecular_function
+GPR63	GO:0004930	G protein-coupled receptor activity	molecular_function
+GPR65	GO:0004930	G protein-coupled receptor activity	molecular_function
+GPR68	GO:0004930	G protein-coupled receptor activity	molecular_function
+GPR6	GO:0004930	G protein-coupled receptor activity	molecular_function
+GPR75	GO:0004930	G protein-coupled receptor activity	molecular_function
+GPR78	GO:0004930	G protein-coupled receptor activity	molecular_function
+GPR82	GO:0004930	G protein-coupled receptor activity	molecular_function
+GPR83	GO:0004930	G protein-coupled receptor activity	molecular_function
+GPR84	GO:0004930	G protein-coupled receptor activity	molecular_function
+GPR85	GO:0004930	G protein-coupled receptor activity	molecular_function
+GPR87	GO:0004930	G protein-coupled receptor activity	molecular_function
+GPR88	GO:0004930	G protein-coupled receptor activity	molecular_function
+GPRC5A	GO:0004930	G protein-coupled receptor activity	molecular_function
+GPRC5B	GO:0004930	G protein-coupled receptor activity	molecular_function
+GPRC5C	GO:0004930	G protein-coupled receptor activity	molecular_function
+GPRC5D	GO:0004930	G protein-coupled receptor activity	molecular_function
+GPRC6A	GO:0004930	G protein-coupled receptor activity	molecular_function
+GRM1	GO:0004930	G protein-coupled receptor activity	molecular_function
+GRM2	GO:0004930	G protein-coupled receptor activity	molecular_function
+GRM3	GO:0004930	G protein-coupled receptor activity	molecular_function
+GRM4	GO:0004930	G protein-coupled receptor activity	molecular_function
+GRM5	GO:0004930	G protein-coupled receptor activity	molecular_function
+GRM6	GO:0004930	G protein-coupled receptor activity	molecular_function
+GRM7	GO:0004930	G protein-coupled receptor activity	molecular_function
+GRM8	GO:0004930	G protein-coupled receptor activity	molecular_function
+GRPR	GO:0004930	G protein-coupled receptor activity	molecular_function
+HCAR1	GO:0004930	G protein-coupled receptor activity	molecular_function
+HCAR2	GO:0004930	G protein-coupled receptor activity	molecular_function
+HCAR3	GO:0004930	G protein-coupled receptor activity	molecular_function
+HCRTR1	GO:0004930	G protein-coupled receptor activity	molecular_function
+HCRTR2	GO:0004930	G protein-coupled receptor activity	molecular_function
+HRH1	GO:0004930	G protein-coupled receptor activity	molecular_function
+HRH2	GO:0004930	G protein-coupled receptor activity	molecular_function
+HRH3	GO:0004930	G protein-coupled receptor activity	molecular_function
+HRH4	GO:0004930	G protein-coupled receptor activity	molecular_function
+HTR1B	GO:0004930	G protein-coupled receptor activity	molecular_function
+HTR1D	GO:0004930	G protein-coupled receptor activity	molecular_function
+HTR1E	GO:0004930	G protein-coupled receptor activity	molecular_function
+HTR1F	GO:0004930	G protein-coupled receptor activity	molecular_function
+HTR2A	GO:0004930	G protein-coupled receptor activity	molecular_function
+HTR2B	GO:0004930	G protein-coupled receptor activity	molecular_function
+HTR2C	GO:0004930	G protein-coupled receptor activity	molecular_function
+HTR4	GO:0004930	G protein-coupled receptor activity	molecular_function
+HTR5A	GO:0004930	G protein-coupled receptor activity	molecular_function
+HTR6	GO:0004930	G protein-coupled receptor activity	molecular_function
+HTR7	GO:0004930	G protein-coupled receptor activity	molecular_function
+KISS1R	GO:0004930	G protein-coupled receptor activity	molecular_function
+LPAR5	GO:0004930	G protein-coupled receptor activity	molecular_function
+LANCL1	GO:0004930	G protein-coupled receptor activity	molecular_function
+LGR4	GO:0004930	G protein-coupled receptor activity	molecular_function
+LGR6	GO:0004930	G protein-coupled receptor activity	molecular_function
+LHCGR	GO:0004930	G protein-coupled receptor activity	molecular_function
+LPAR1	GO:0004930	G protein-coupled receptor activity	molecular_function
+LPAR2	GO:0004930	G protein-coupled receptor activity	molecular_function
+LPAR3	GO:0004930	G protein-coupled receptor activity	molecular_function
+LPAR4	GO:0004930	G protein-coupled receptor activity	molecular_function
+LPAR6	GO:0004930	G protein-coupled receptor activity	molecular_function
+LTB4R2	GO:0004930	G protein-coupled receptor activity	molecular_function
+LTB4R	GO:0004930	G protein-coupled receptor activity	molecular_function
+MAS1L	GO:0004930	G protein-coupled receptor activity	molecular_function
+MAS1	GO:0004930	G protein-coupled receptor activity	molecular_function
+MC1R	GO:0004930	G protein-coupled receptor activity	molecular_function
+MC2R	GO:0004930	G protein-coupled receptor activity	molecular_function
+MC3R	GO:0004930	G protein-coupled receptor activity	molecular_function
+MC4R	GO:0004930	G protein-coupled receptor activity	molecular_function
+MC5R	GO:0004930	G protein-coupled receptor activity	molecular_function
+MCHR1	GO:0004930	G protein-coupled receptor activity	molecular_function
+MCHR2	GO:0004930	G protein-coupled receptor activity	molecular_function
+MRGPRX1	GO:0004930	G protein-coupled receptor activity	molecular_function
+MLNR	GO:0004930	G protein-coupled receptor activity	molecular_function
+MRGPRD	GO:0004930	G protein-coupled receptor activity	molecular_function
+MRGPRE	GO:0004930	G protein-coupled receptor activity	molecular_function
+MRGPRF	GO:0004930	G protein-coupled receptor activity	molecular_function
+MRGPRG	GO:0004930	G protein-coupled receptor activity	molecular_function
+MRGPRX2	GO:0004930	G protein-coupled receptor activity	molecular_function
+MRGPRX3	GO:0004930	G protein-coupled receptor activity	molecular_function
+MRGPRX4	GO:0004930	G protein-coupled receptor activity	molecular_function
+MTNR1A	GO:0004930	G protein-coupled receptor activity	molecular_function
+MTNR1B	GO:0004930	G protein-coupled receptor activity	molecular_function
+NMBR	GO:0004930	G protein-coupled receptor activity	molecular_function
+NMUR1	GO:0004930	G protein-coupled receptor activity	molecular_function
+NMUR2	GO:0004930	G protein-coupled receptor activity	molecular_function
+NPBWR1	GO:0004930	G protein-coupled receptor activity	molecular_function
+NPBWR2	GO:0004930	G protein-coupled receptor activity	molecular_function
+NPFFR1	GO:0004930	G protein-coupled receptor activity	molecular_function
+NPFFR2	GO:0004930	G protein-coupled receptor activity	molecular_function
+NPSR1	GO:0004930	G protein-coupled receptor activity	molecular_function
+NPY1R	GO:0004930	G protein-coupled receptor activity	molecular_function
+NPY2R	GO:0004930	G protein-coupled receptor activity	molecular_function
+NPY4R	GO:0004930	G protein-coupled receptor activity	molecular_function
+NPY5R	GO:0004930	G protein-coupled receptor activity	molecular_function
+NPY	GO:0004930	G protein-coupled receptor activity	molecular_function
+NTSR1	GO:0004930	G protein-coupled receptor activity	molecular_function
+NTSR2	GO:0004930	G protein-coupled receptor activity	molecular_function
+OPN1LW	GO:0004930	G protein-coupled receptor activity	molecular_function
+OPN1MW2	GO:0004930	G protein-coupled receptor activity	molecular_function
+OPN1MW	GO:0004930	G protein-coupled receptor activity	molecular_function
+OPN1SW	GO:0004930	G protein-coupled receptor activity	molecular_function
+OPN3	GO:0004930	G protein-coupled receptor activity	molecular_function
+OPN4	GO:0004930	G protein-coupled receptor activity	molecular_function
+OPN5	GO:0004930	G protein-coupled receptor activity	molecular_function
+OPRD1	GO:0004930	G protein-coupled receptor activity	molecular_function
+OPRK1	GO:0004930	G protein-coupled receptor activity	molecular_function
+OPRL1	GO:0004930	G protein-coupled receptor activity	molecular_function
+OPRM1	GO:0004930	G protein-coupled receptor activity	molecular_function
+OR10A2	GO:0004930	G protein-coupled receptor activity	molecular_function
+OR10A3	GO:0004930	G protein-coupled receptor activity	molecular_function
+OR10A4	GO:0004930	G protein-coupled receptor activity	molecular_function
+OR10A5	GO:0004930	G protein-coupled receptor activity	molecular_function
+OR10A6	GO:0004930	G protein-coupled receptor activity	molecular_function
+OR10A7	GO:0004930	G protein-coupled receptor activity	molecular_function
+OR10AC1	GO:0004930	G protein-coupled receptor activity	molecular_function
+OR10AD1	GO:0004930	G protein-coupled receptor activity	molecular_function
+OR10AG1	GO:0004930	G protein-coupled receptor activity	molecular_function
+OR10C1	GO:0004930	G protein-coupled receptor activity	molecular_function
+OR10D3	GO:0004930	G protein-coupled receptor activity	molecular_function
+OR10D4P	GO:0004930	G protein-coupled receptor activity	molecular_function
+OR10G2	GO:0004930	G protein-coupled receptor activity	molecular_function
+OR10G3	GO:0004930	G protein-coupled receptor activity	molecular_function
+OR10G4	GO:0004930	G protein-coupled receptor activity	molecular_function
+OR10G6	GO:0004930	G protein-coupled receptor activity	molecular_function
+OR10G7	GO:0004930	G protein-coupled receptor activity	molecular_function
+OR10G8	GO:0004930	G protein-coupled receptor activity	molecular_function
+OR10G9	GO:0004930	G protein-coupled receptor activity	molecular_function
+OR10H1	GO:0004930	G protein-coupled receptor activity	molecular_function
+OR10H2	GO:0004930	G protein-coupled receptor activity	molecular_function
+OR10H3	GO:0004930	G protein-coupled receptor activity	molecular_function
+OR10H4	GO:0004930	G protein-coupled receptor activity	molecular_function
+OR10H5	GO:0004930	G protein-coupled receptor activity	molecular_function
+OR10J1	GO:0004930	G protein-coupled receptor activity	molecular_function
+OR10J3	GO:0004930	G protein-coupled receptor activity	molecular_function
+OR10J4	GO:0004930	G protein-coupled receptor activity	molecular_function
+OR10J5	GO:0004930	G protein-coupled receptor activity	molecular_function
+OR10J6P	GO:0004930	G protein-coupled receptor activity	molecular_function
+OR10K1	GO:0004930	G protein-coupled receptor activity	molecular_function
+OR10K2	GO:0004930	G protein-coupled receptor activity	molecular_function
+OR10P1	GO:0004930	G protein-coupled receptor activity	molecular_function
+OR10Q1	GO:0004930	G protein-coupled receptor activity	molecular_function
+OR10R2	GO:0004930	G protein-coupled receptor activity	molecular_function
+OR10S1	GO:0004930	G protein-coupled receptor activity	molecular_function
+OR10T2	GO:0004930	G protein-coupled receptor activity	molecular_function
+OR10V1	GO:0004930	G protein-coupled receptor activity	molecular_function
+OR10W1	GO:0004930	G protein-coupled receptor activity	molecular_function
+OR10X1	GO:0004930	G protein-coupled receptor activity	molecular_function
+OR10Z1	GO:0004930	G protein-coupled receptor activity	molecular_function
+OR11A1	GO:0004930	G protein-coupled receptor activity	molecular_function
+OR11G2	GO:0004930	G protein-coupled receptor activity	molecular_function
+OR11H12	GO:0004930	G protein-coupled receptor activity	molecular_function
+OR11H1	GO:0004930	G protein-coupled receptor activity	molecular_function
+OR11H2	GO:0004930	G protein-coupled receptor activity	molecular_function
+OR11H4	GO:0004930	G protein-coupled receptor activity	molecular_function
+OR11H6	GO:0004930	G protein-coupled receptor activity	molecular_function
+OR11H7	GO:0004930	G protein-coupled receptor activity	molecular_function
+OR11L1	GO:0004930	G protein-coupled receptor activity	molecular_function
+OR12D1	GO:0004930	G protein-coupled receptor activity	molecular_function
+OR12D2	GO:0004930	G protein-coupled receptor activity	molecular_function
+OR12D3	GO:0004930	G protein-coupled receptor activity	molecular_function
+OR13A1	GO:0004930	G protein-coupled receptor activity	molecular_function
+OR13C2	GO:0004930	G protein-coupled receptor activity	molecular_function
+OR13C3	GO:0004930	G protein-coupled receptor activity	molecular_function
+OR13C4	GO:0004930	G protein-coupled receptor activity	molecular_function
+OR13C5	GO:0004930	G protein-coupled receptor activity	molecular_function
+OR13C6P	GO:0004930	G protein-coupled receptor activity	molecular_function
+OR13C7	GO:0004930	G protein-coupled receptor activity	molecular_function
+OR13C8	GO:0004930	G protein-coupled receptor activity	molecular_function
+OR13C9	GO:0004930	G protein-coupled receptor activity	molecular_function
+OR13D1	GO:0004930	G protein-coupled receptor activity	molecular_function
+OR13F1	GO:0004930	G protein-coupled receptor activity	molecular_function
+OR13G1	GO:0004930	G protein-coupled receptor activity	molecular_function
+OR13H1	GO:0004930	G protein-coupled receptor activity	molecular_function
+OR13J1	GO:0004930	G protein-coupled receptor activity	molecular_function
+OR14A16	GO:0004930	G protein-coupled receptor activity	molecular_function
+OR14A2	GO:0004930	G protein-coupled receptor activity	molecular_function
+OR14C36	GO:0004930	G protein-coupled receptor activity	molecular_function
+OR14I1	GO:0004930	G protein-coupled receptor activity	molecular_function
+OR14J1	GO:0004930	G protein-coupled receptor activity	molecular_function
+OR14K1	GO:0004930	G protein-coupled receptor activity	molecular_function
+OR14L1P	GO:0004930	G protein-coupled receptor activity	molecular_function
+OR1A1	GO:0004930	G protein-coupled receptor activity	molecular_function
+OR1A2	GO:0004930	G protein-coupled receptor activity	molecular_function
+OR1B1	GO:0004930	G protein-coupled receptor activity	molecular_function
+OR1C1	GO:0004930	G protein-coupled receptor activity	molecular_function
+OR1D2	GO:0004930	G protein-coupled receptor activity	molecular_function
+OR1D4	GO:0004930	G protein-coupled receptor activity	molecular_function
+OR1D5	GO:0004930	G protein-coupled receptor activity	molecular_function
+OR1E1	GO:0004930	G protein-coupled receptor activity	molecular_function
+OR1E2	GO:0004930	G protein-coupled receptor activity	molecular_function
+OR1E3	GO:0004930	G protein-coupled receptor activity	molecular_function
+OR1F12	GO:0004930	G protein-coupled receptor activity	molecular_function
+OR1F1	GO:0004930	G protein-coupled receptor activity	molecular_function
+OR1F2P	GO:0004930	G protein-coupled receptor activity	molecular_function
+OR1G1	GO:0004930	G protein-coupled receptor activity	molecular_function
+OR1I1	GO:0004930	G protein-coupled receptor activity	molecular_function
+OR1J1	GO:0004930	G protein-coupled receptor activity	molecular_function
+OR1J2	GO:0004930	G protein-coupled receptor activity	molecular_function
+OR1J4	GO:0004930	G protein-coupled receptor activity	molecular_function
+OR1K1	GO:0004930	G protein-coupled receptor activity	molecular_function
+OR1L1	GO:0004930	G protein-coupled receptor activity	molecular_function
+OR1L3	GO:0004930	G protein-coupled receptor activity	molecular_function
+OR1L4	GO:0004930	G protein-coupled receptor activity	molecular_function
+OR1L6	GO:0004930	G protein-coupled receptor activity	molecular_function
+OR1L8	GO:0004930	G protein-coupled receptor activity	molecular_function
+OR1M1	GO:0004930	G protein-coupled receptor activity	molecular_function
+OR1N1	GO:0004930	G protein-coupled receptor activity	molecular_function
+OR1N2	GO:0004930	G protein-coupled receptor activity	molecular_function
+OR1P1	GO:0004930	G protein-coupled receptor activity	molecular_function
+OR1Q1	GO:0004930	G protein-coupled receptor activity	molecular_function
+OR1S1	GO:0004930	G protein-coupled receptor activity	molecular_function
+OR1S2	GO:0004930	G protein-coupled receptor activity	molecular_function
+OR2A12	GO:0004930	G protein-coupled receptor activity	molecular_function
+OR2A14	GO:0004930	G protein-coupled receptor activity	molecular_function
+OR2A1	GO:0004930	G protein-coupled receptor activity	molecular_function
+OR2A42	GO:0004930	G protein-coupled receptor activity	molecular_function
+OR2A25	GO:0004930	G protein-coupled receptor activity	molecular_function
+OR2A2	GO:0004930	G protein-coupled receptor activity	molecular_function
+OR2A4	GO:0004930	G protein-coupled receptor activity	molecular_function
+OR2A5	GO:0004930	G protein-coupled receptor activity	molecular_function
+OR2A7	GO:0004930	G protein-coupled receptor activity	molecular_function
+OR2AE1	GO:0004930	G protein-coupled receptor activity	molecular_function
+OR2AG1	GO:0004930	G protein-coupled receptor activity	molecular_function
+OR2AG2	GO:0004930	G protein-coupled receptor activity	molecular_function
+OR2AJ1	GO:0004930	G protein-coupled receptor activity	molecular_function
+OR2AK2	GO:0004930	G protein-coupled receptor activity	molecular_function
+OR2AP1	GO:0004930	G protein-coupled receptor activity	molecular_function
+OR2AT4	GO:0004930	G protein-coupled receptor activity	molecular_function
+OR2B11	GO:0004930	G protein-coupled receptor activity	molecular_function
+OR2B2	GO:0004930	G protein-coupled receptor activity	molecular_function
+OR2B3	GO:0004930	G protein-coupled receptor activity	molecular_function
+OR2B6	GO:0004930	G protein-coupled receptor activity	molecular_function
+OR2B8P	GO:0004930	G protein-coupled receptor activity	molecular_function
+OR2C1	GO:0004930	G protein-coupled receptor activity	molecular_function
+OR2C3	GO:0004930	G protein-coupled receptor activity	molecular_function
+OR2D2	GO:0004930	G protein-coupled receptor activity	molecular_function
+OR2D3	GO:0004930	G protein-coupled receptor activity	molecular_function
+OR2F1	GO:0004930	G protein-coupled receptor activity	molecular_function
+OR2F2	GO:0004930	G protein-coupled receptor activity	molecular_function
+OR2G2	GO:0004930	G protein-coupled receptor activity	molecular_function
+OR2G3	GO:0004930	G protein-coupled receptor activity	molecular_function
+OR2G6	GO:0004930	G protein-coupled receptor activity	molecular_function
+OR2H1	GO:0004930	G protein-coupled receptor activity	molecular_function
+OR2H2	GO:0004930	G protein-coupled receptor activity	molecular_function
+OR2I1P	GO:0004930	G protein-coupled receptor activity	molecular_function
+OR2J1	GO:0004930	G protein-coupled receptor activity	molecular_function
+OR2J2	GO:0004930	G protein-coupled receptor activity	molecular_function
+OR2J3	GO:0004930	G protein-coupled receptor activity	molecular_function
+OR2K2	GO:0004930	G protein-coupled receptor activity	molecular_function
+OR2L13	GO:0004930	G protein-coupled receptor activity	molecular_function
+OR2L2	GO:0004930	G protein-coupled receptor activity	molecular_function
+OR2L3	GO:0004930	G protein-coupled receptor activity	molecular_function
+OR2L5	GO:0004930	G protein-coupled receptor activity	molecular_function
+OR2L8	GO:0004930	G protein-coupled receptor activity	molecular_function
+OR2M2	GO:0004930	G protein-coupled receptor activity	molecular_function
+OR2M3	GO:0004930	G protein-coupled receptor activity	molecular_function
+OR2M4	GO:0004930	G protein-coupled receptor activity	molecular_function
+OR2M5	GO:0004930	G protein-coupled receptor activity	molecular_function
+OR2M7	GO:0004930	G protein-coupled receptor activity	molecular_function
+OR2S2	GO:0004930	G protein-coupled receptor activity	molecular_function
+OR2T10	GO:0004930	G protein-coupled receptor activity	molecular_function
+OR2T11	GO:0004930	G protein-coupled receptor activity	molecular_function
+OR2T12	GO:0004930	G protein-coupled receptor activity	molecular_function
+OR2T1	GO:0004930	G protein-coupled receptor activity	molecular_function
+OR2T27	GO:0004930	G protein-coupled receptor activity	molecular_function
+OR2T29	GO:0004930	G protein-coupled receptor activity	molecular_function
+OR2T2	GO:0004930	G protein-coupled receptor activity	molecular_function
+OR2T33	GO:0004930	G protein-coupled receptor activity	molecular_function
+OR2T34	GO:0004930	G protein-coupled receptor activity	molecular_function
+OR2T35	GO:0004930	G protein-coupled receptor activity	molecular_function
+OR2T3	GO:0004930	G protein-coupled receptor activity	molecular_function
+OR2T4	GO:0004930	G protein-coupled receptor activity	molecular_function
+OR2T5	GO:0004930	G protein-coupled receptor activity	molecular_function
+OR2T6	GO:0004930	G protein-coupled receptor activity	molecular_function
+OR2T7	GO:0004930	G protein-coupled receptor activity	molecular_function
+OR2T8	GO:0004930	G protein-coupled receptor activity	molecular_function
+OR2V1	GO:0004930	G protein-coupled receptor activity	molecular_function
+OR2V2	GO:0004930	G protein-coupled receptor activity	molecular_function
+OR2W1	GO:0004930	G protein-coupled receptor activity	molecular_function
+OR2W3	GO:0004930	G protein-coupled receptor activity	molecular_function
+OR2W5	GO:0004930	G protein-coupled receptor activity	molecular_function
+OR2W6P	GO:0004930	G protein-coupled receptor activity	molecular_function
+OR2Y1	GO:0004930	G protein-coupled receptor activity	molecular_function
+OR2Z1	GO:0004930	G protein-coupled receptor activity	molecular_function
+OR3A1	GO:0004930	G protein-coupled receptor activity	molecular_function
+OR3A2	GO:0004930	G protein-coupled receptor activity	molecular_function
+OR3A3	GO:0004930	G protein-coupled receptor activity	molecular_function
+OR3A4P	GO:0004930	G protein-coupled receptor activity	molecular_function
+OR3A5P	GO:0004930	G protein-coupled receptor activity	molecular_function
+OR4A15	GO:0004930	G protein-coupled receptor activity	molecular_function
+OR4A16	GO:0004930	G protein-coupled receptor activity	molecular_function
+OR4A47	GO:0004930	G protein-coupled receptor activity	molecular_function
+OR4A4P	GO:0004930	G protein-coupled receptor activity	molecular_function
+OR4A5	GO:0004930	G protein-coupled receptor activity	molecular_function
+OR4A8	GO:0004930	G protein-coupled receptor activity	molecular_function
+OR4B1	GO:0004930	G protein-coupled receptor activity	molecular_function
+OR4C11	GO:0004930	G protein-coupled receptor activity	molecular_function
+OR4C12	GO:0004930	G protein-coupled receptor activity	molecular_function
+OR4C13	GO:0004930	G protein-coupled receptor activity	molecular_function
+OR4C15	GO:0004930	G protein-coupled receptor activity	molecular_function
+OR4C16	GO:0004930	G protein-coupled receptor activity	molecular_function
+OR4C3	GO:0004930	G protein-coupled receptor activity	molecular_function
+OR4C46	GO:0004930	G protein-coupled receptor activity	molecular_function
+OR4C5	GO:0004930	G protein-coupled receptor activity	molecular_function
+OR4C6	GO:0004930	G protein-coupled receptor activity	molecular_function
+OR4D10	GO:0004930	G protein-coupled receptor activity	molecular_function
+OR4D11	GO:0004930	G protein-coupled receptor activity	molecular_function
+OR4D1	GO:0004930	G protein-coupled receptor activity	molecular_function
+OR4D2	GO:0004930	G protein-coupled receptor activity	molecular_function
+OR4D5	GO:0004930	G protein-coupled receptor activity	molecular_function
+OR4D6	GO:0004930	G protein-coupled receptor activity	molecular_function
+OR4D9	GO:0004930	G protein-coupled receptor activity	molecular_function
+OR4E1	GO:0004930	G protein-coupled receptor activity	molecular_function
+OR4E2	GO:0004930	G protein-coupled receptor activity	molecular_function
+OR4F15	GO:0004930	G protein-coupled receptor activity	molecular_function
+OR4F16	GO:0004930	G protein-coupled receptor activity	molecular_function
+OR4F29	GO:0004930	G protein-coupled receptor activity	molecular_function
+OR4F3	GO:0004930	G protein-coupled receptor activity	molecular_function
+OR4F17	GO:0004930	G protein-coupled receptor activity	molecular_function
+OR4F21	GO:0004930	G protein-coupled receptor activity	molecular_function
+OR4F4	GO:0004930	G protein-coupled receptor activity	molecular_function
+OR4F5	GO:0004930	G protein-coupled receptor activity	molecular_function
+OR4F6	GO:0004930	G protein-coupled receptor activity	molecular_function
+OR4K13	GO:0004930	G protein-coupled receptor activity	molecular_function
+OR4K14	GO:0004930	G protein-coupled receptor activity	molecular_function
+OR4K15	GO:0004930	G protein-coupled receptor activity	molecular_function
+OR4K17	GO:0004930	G protein-coupled receptor activity	molecular_function
+OR4K1	GO:0004930	G protein-coupled receptor activity	molecular_function
+OR4K2	GO:0004930	G protein-coupled receptor activity	molecular_function
+OR4K3	GO:0004930	G protein-coupled receptor activity	molecular_function
+OR4K5	GO:0004930	G protein-coupled receptor activity	molecular_function
+OR4L1	GO:0004930	G protein-coupled receptor activity	molecular_function
+OR4M1	GO:0004930	G protein-coupled receptor activity	molecular_function
+OR4M2	GO:0004930	G protein-coupled receptor activity	molecular_function
+OR4N2	GO:0004930	G protein-coupled receptor activity	molecular_function
+OR4N4	GO:0004930	G protein-coupled receptor activity	molecular_function
+OR4N5	GO:0004930	G protein-coupled receptor activity	molecular_function
+OR4P4	GO:0004930	G protein-coupled receptor activity	molecular_function
+OR4Q2	GO:0004930	G protein-coupled receptor activity	molecular_function
+OR4Q3	GO:0004930	G protein-coupled receptor activity	molecular_function
+OR4S1	GO:0004930	G protein-coupled receptor activity	molecular_function
+OR4S2	GO:0004930	G protein-coupled receptor activity	molecular_function
+OR4X1	GO:0004930	G protein-coupled receptor activity	molecular_function
+OR4X2	GO:0004930	G protein-coupled receptor activity	molecular_function
+OR51A2	GO:0004930	G protein-coupled receptor activity	molecular_function
+OR51A4	GO:0004930	G protein-coupled receptor activity	molecular_function
+OR51A7	GO:0004930	G protein-coupled receptor activity	molecular_function
+OR51B2	GO:0004930	G protein-coupled receptor activity	molecular_function
+OR51B4	GO:0004930	G protein-coupled receptor activity	molecular_function
+OR51B5	GO:0004930	G protein-coupled receptor activity	molecular_function
+OR51B6	GO:0004930	G protein-coupled receptor activity	molecular_function
+OR51D1	GO:0004930	G protein-coupled receptor activity	molecular_function
+OR51E1	GO:0004930	G protein-coupled receptor activity	molecular_function
+OR51E2	GO:0004930	G protein-coupled receptor activity	molecular_function
+OR51F1	GO:0004930	G protein-coupled receptor activity	molecular_function
+OR51F2	GO:0004930	G protein-coupled receptor activity	molecular_function
+OR51G1	GO:0004930	G protein-coupled receptor activity	molecular_function
+OR51G2	GO:0004930	G protein-coupled receptor activity	molecular_function
+OR51H1	GO:0004930	G protein-coupled receptor activity	molecular_function
+OR51I1	GO:0004930	G protein-coupled receptor activity	molecular_function
+OR51I2	GO:0004930	G protein-coupled receptor activity	molecular_function
+OR51J1	GO:0004930	G protein-coupled receptor activity	molecular_function
+OR51L1	GO:0004930	G protein-coupled receptor activity	molecular_function
+OR51M1	GO:0004930	G protein-coupled receptor activity	molecular_function
+OR51Q1	GO:0004930	G protein-coupled receptor activity	molecular_function
+OR51S1	GO:0004930	G protein-coupled receptor activity	molecular_function
+OR51T1	GO:0004930	G protein-coupled receptor activity	molecular_function
+OR51V1	GO:0004930	G protein-coupled receptor activity	molecular_function
+OR52A1	GO:0004930	G protein-coupled receptor activity	molecular_function
+OR52A4P	GO:0004930	G protein-coupled receptor activity	molecular_function
+OR52A5	GO:0004930	G protein-coupled receptor activity	molecular_function
+OR52B2	GO:0004930	G protein-coupled receptor activity	molecular_function
+OR52B4	GO:0004930	G protein-coupled receptor activity	molecular_function
+OR52B6	GO:0004930	G protein-coupled receptor activity	molecular_function
+OR52D1	GO:0004930	G protein-coupled receptor activity	molecular_function
+OR52E1	GO:0004930	G protein-coupled receptor activity	molecular_function
+OR52E2	GO:0004930	G protein-coupled receptor activity	molecular_function
+OR52E4	GO:0004930	G protein-coupled receptor activity	molecular_function
+OR52E5	GO:0004930	G protein-coupled receptor activity	molecular_function
+OR52E6	GO:0004930	G protein-coupled receptor activity	molecular_function
+OR52E8	GO:0004930	G protein-coupled receptor activity	molecular_function
+OR52H1	GO:0004930	G protein-coupled receptor activity	molecular_function
+OR52I1	GO:0004930	G protein-coupled receptor activity	molecular_function
+OR52I2	GO:0004930	G protein-coupled receptor activity	molecular_function
+OR52J3	GO:0004930	G protein-coupled receptor activity	molecular_function
+OR52K1	GO:0004930	G protein-coupled receptor activity	molecular_function
+OR52K2	GO:0004930	G protein-coupled receptor activity	molecular_function
+OR52L1	GO:0004930	G protein-coupled receptor activity	molecular_function
+OR52L2P	GO:0004930	G protein-coupled receptor activity	molecular_function
+OR52M1	GO:0004930	G protein-coupled receptor activity	molecular_function
+OR52N1	GO:0004930	G protein-coupled receptor activity	molecular_function
+OR52N2	GO:0004930	G protein-coupled receptor activity	molecular_function
+OR52N4	GO:0004930	G protein-coupled receptor activity	molecular_function
+OR52N5	GO:0004930	G protein-coupled receptor activity	molecular_function
+OR52P1P	GO:0004930	G protein-coupled receptor activity	molecular_function
+OR52R1	GO:0004930	G protein-coupled receptor activity	molecular_function
+OR52W1	GO:0004930	G protein-coupled receptor activity	molecular_function
+OR52Z1	GO:0004930	G protein-coupled receptor activity	molecular_function
+OR56A1	GO:0004930	G protein-coupled receptor activity	molecular_function
+OR56A3	GO:0004930	G protein-coupled receptor activity	molecular_function
+OR56A4	GO:0004930	G protein-coupled receptor activity	molecular_function
+OR56A5	GO:0004930	G protein-coupled receptor activity	molecular_function
+OR56B1	GO:0004930	G protein-coupled receptor activity	molecular_function
+OR56B2P	GO:0004930	G protein-coupled receptor activity	molecular_function
+OR56B4	GO:0004930	G protein-coupled receptor activity	molecular_function
+OR5A1	GO:0004930	G protein-coupled receptor activity	molecular_function
+OR5A2	GO:0004930	G protein-coupled receptor activity	molecular_function
+OR5AC1	GO:0004930	G protein-coupled receptor activity	molecular_function
+OR5AC2	GO:0004930	G protein-coupled receptor activity	molecular_function
+OR5AK2	GO:0004930	G protein-coupled receptor activity	molecular_function
+OR5AK3P	GO:0004930	G protein-coupled receptor activity	molecular_function
+OR5AL1	GO:0004930	G protein-coupled receptor activity	molecular_function
+OR5AN1	GO:0004930	G protein-coupled receptor activity	molecular_function
+OR5AP2	GO:0004930	G protein-coupled receptor activity	molecular_function
+OR5AR1	GO:0004930	G protein-coupled receptor activity	molecular_function
+OR5AS1	GO:0004930	G protein-coupled receptor activity	molecular_function
+OR5AU1	GO:0004930	G protein-coupled receptor activity	molecular_function
+OR5B12	GO:0004930	G protein-coupled receptor activity	molecular_function
+OR5B17	GO:0004930	G protein-coupled receptor activity	molecular_function
+OR5B21	GO:0004930	G protein-coupled receptor activity	molecular_function
+OR5B2	GO:0004930	G protein-coupled receptor activity	molecular_function
+OR5B3	GO:0004930	G protein-coupled receptor activity	molecular_function
+OR5BS1P	GO:0004930	G protein-coupled receptor activity	molecular_function
+OR5C1	GO:0004930	G protein-coupled receptor activity	molecular_function
+OR5D13	GO:0004930	G protein-coupled receptor activity	molecular_function
+OR5D14	GO:0004930	G protein-coupled receptor activity	molecular_function
+OR5D16	GO:0004930	G protein-coupled receptor activity	molecular_function
+OR5D18	GO:0004930	G protein-coupled receptor activity	molecular_function
+OR5F1	GO:0004930	G protein-coupled receptor activity	molecular_function
+OR5G3	GO:0004930	G protein-coupled receptor activity	molecular_function
+OR5H14	GO:0004930	G protein-coupled receptor activity	molecular_function
+OR5H15	GO:0004930	G protein-coupled receptor activity	molecular_function
+OR5H1	GO:0004930	G protein-coupled receptor activity	molecular_function
+OR5H2	GO:0004930	G protein-coupled receptor activity	molecular_function
+OR5H6	GO:0004930	G protein-coupled receptor activity	molecular_function
+OR5H8	GO:0004930	G protein-coupled receptor activity	molecular_function
+OR5I1	GO:0004930	G protein-coupled receptor activity	molecular_function
+OR5J2	GO:0004930	G protein-coupled receptor activity	molecular_function
+OR5K1	GO:0004930	G protein-coupled receptor activity	molecular_function
+OR5K2	GO:0004930	G protein-coupled receptor activity	molecular_function
+OR5K3	GO:0004930	G protein-coupled receptor activity	molecular_function
+OR5K4	GO:0004930	G protein-coupled receptor activity	molecular_function
+OR5L1	GO:0004930	G protein-coupled receptor activity	molecular_function
+OR5L2	GO:0004930	G protein-coupled receptor activity	molecular_function
+OR5M10	GO:0004930	G protein-coupled receptor activity	molecular_function
+OR5M11	GO:0004930	G protein-coupled receptor activity	molecular_function
+OR5M1	GO:0004930	G protein-coupled receptor activity	molecular_function
+OR5M3	GO:0004930	G protein-coupled receptor activity	molecular_function
+OR5M8	GO:0004930	G protein-coupled receptor activity	molecular_function
+OR5M9	GO:0004930	G protein-coupled receptor activity	molecular_function
+OR5P2	GO:0004930	G protein-coupled receptor activity	molecular_function
+OR5P3	GO:0004930	G protein-coupled receptor activity	molecular_function
+OR5R1	GO:0004930	G protein-coupled receptor activity	molecular_function
+OR5T1	GO:0004930	G protein-coupled receptor activity	molecular_function
+OR5T2	GO:0004930	G protein-coupled receptor activity	molecular_function
+OR5T3	GO:0004930	G protein-coupled receptor activity	molecular_function
+OR5V1	GO:0004930	G protein-coupled receptor activity	molecular_function
+OR5W2	GO:0004930	G protein-coupled receptor activity	molecular_function
+OR6A2	GO:0004930	G protein-coupled receptor activity	molecular_function
+OR6B1	GO:0004930	G protein-coupled receptor activity	molecular_function
+OR6B2	GO:0004930	G protein-coupled receptor activity	molecular_function
+OR6B3	GO:0004930	G protein-coupled receptor activity	molecular_function
+OR6C1	GO:0004930	G protein-coupled receptor activity	molecular_function
+OR6C2	GO:0004930	G protein-coupled receptor activity	molecular_function
+OR6C3	GO:0004930	G protein-coupled receptor activity	molecular_function
+OR6C4	GO:0004930	G protein-coupled receptor activity	molecular_function
+OR6C65	GO:0004930	G protein-coupled receptor activity	molecular_function
+OR6C68	GO:0004930	G protein-coupled receptor activity	molecular_function
+OR6C6	GO:0004930	G protein-coupled receptor activity	molecular_function
+OR6C70	GO:0004930	G protein-coupled receptor activity	molecular_function
+OR6C74	GO:0004930	G protein-coupled receptor activity	molecular_function
+OR6C75	GO:0004930	G protein-coupled receptor activity	molecular_function
+OR6C76	GO:0004930	G protein-coupled receptor activity	molecular_function
+OR6F1	GO:0004930	G protein-coupled receptor activity	molecular_function
+OR6J1	GO:0004930	G protein-coupled receptor activity	molecular_function
+OR6K2	GO:0004930	G protein-coupled receptor activity	molecular_function
+OR6K3	GO:0004930	G protein-coupled receptor activity	molecular_function
+OR6K6	GO:0004930	G protein-coupled receptor activity	molecular_function
+OR6M1	GO:0004930	G protein-coupled receptor activity	molecular_function
+OR6N1	GO:0004930	G protein-coupled receptor activity	molecular_function
+OR6N2	GO:0004930	G protein-coupled receptor activity	molecular_function
+OR6P1	GO:0004930	G protein-coupled receptor activity	molecular_function
+OR6Q1	GO:0004930	G protein-coupled receptor activity	molecular_function
+OR6S1	GO:0004930	G protein-coupled receptor activity	molecular_function
+OR6T1	GO:0004930	G protein-coupled receptor activity	molecular_function
+OR6V1	GO:0004930	G protein-coupled receptor activity	molecular_function
+OR6X1	GO:0004930	G protein-coupled receptor activity	molecular_function
+OR6Y1	GO:0004930	G protein-coupled receptor activity	molecular_function
+OR7A10	GO:0004930	G protein-coupled receptor activity	molecular_function
+OR7A17	GO:0004930	G protein-coupled receptor activity	molecular_function
+OR7A5	GO:0004930	G protein-coupled receptor activity	molecular_function
+OR7C1	GO:0004930	G protein-coupled receptor activity	molecular_function
+OR7C2	GO:0004930	G protein-coupled receptor activity	molecular_function
+OR7D2	GO:0004930	G protein-coupled receptor activity	molecular_function
+OR7D4	GO:0004930	G protein-coupled receptor activity	molecular_function
+OR7E24	GO:0004930	G protein-coupled receptor activity	molecular_function
+OR7G1	GO:0004930	G protein-coupled receptor activity	molecular_function
+OR7G2	GO:0004930	G protein-coupled receptor activity	molecular_function
+OR7G3	GO:0004930	G protein-coupled receptor activity	molecular_function
+OR8A1	GO:0004930	G protein-coupled receptor activity	molecular_function
+OR8B12	GO:0004930	G protein-coupled receptor activity	molecular_function
+OR8B2	GO:0004930	G protein-coupled receptor activity	molecular_function
+OR8B3	GO:0004930	G protein-coupled receptor activity	molecular_function
+OR8B4	GO:0004930	G protein-coupled receptor activity	molecular_function
+OR8B8	GO:0004930	G protein-coupled receptor activity	molecular_function
+OR8D1	GO:0004930	G protein-coupled receptor activity	molecular_function
+OR8D2	GO:0004930	G protein-coupled receptor activity	molecular_function
+OR8D4	GO:0004930	G protein-coupled receptor activity	molecular_function
+OR8G1	GO:0004930	G protein-coupled receptor activity	molecular_function
+OR8G2P	GO:0004930	G protein-coupled receptor activity	molecular_function
+OR8G3P	GO:0004930	G protein-coupled receptor activity	molecular_function
+OR8G5	GO:0004930	G protein-coupled receptor activity	molecular_function
+OR8H1	GO:0004930	G protein-coupled receptor activity	molecular_function
+OR8H2	GO:0004930	G protein-coupled receptor activity	molecular_function
+OR8H3	GO:0004930	G protein-coupled receptor activity	molecular_function
+OR8I2	GO:0004930	G protein-coupled receptor activity	molecular_function
+OR8J1	GO:0004930	G protein-coupled receptor activity	molecular_function
+OR8J2	GO:0004930	G protein-coupled receptor activity	molecular_function
+OR8J3	GO:0004930	G protein-coupled receptor activity	molecular_function
+OR8K1	GO:0004930	G protein-coupled receptor activity	molecular_function
+OR8K3	GO:0004930	G protein-coupled receptor activity	molecular_function
+OR8K5	GO:0004930	G protein-coupled receptor activity	molecular_function
+OR8S1	GO:0004930	G protein-coupled receptor activity	molecular_function
+OR8U1	GO:0004930	G protein-coupled receptor activity	molecular_function
+OR9A1P	GO:0004930	G protein-coupled receptor activity	molecular_function
+OR9A2	GO:0004930	G protein-coupled receptor activity	molecular_function
+OR9A4	GO:0004930	G protein-coupled receptor activity	molecular_function
+OR9G1	GO:0004930	G protein-coupled receptor activity	molecular_function
+OR9G4	GO:0004930	G protein-coupled receptor activity	molecular_function
+OR9I1	GO:0004930	G protein-coupled receptor activity	molecular_function
+OR9K2	GO:0004930	G protein-coupled receptor activity	molecular_function
+OR9Q1	GO:0004930	G protein-coupled receptor activity	molecular_function
+OR9Q2	GO:0004930	G protein-coupled receptor activity	molecular_function
+OXER1	GO:0004930	G protein-coupled receptor activity	molecular_function
+OXGR1	GO:0004930	G protein-coupled receptor activity	molecular_function
+OXTR	GO:0004930	G protein-coupled receptor activity	molecular_function
+P2RY10	GO:0004930	G protein-coupled receptor activity	molecular_function
+P2RY11	GO:0004930	G protein-coupled receptor activity	molecular_function
+P2RY12	GO:0004930	G protein-coupled receptor activity	molecular_function
+P2RY13	GO:0004930	G protein-coupled receptor activity	molecular_function
+P2RY14	GO:0004930	G protein-coupled receptor activity	molecular_function
+P2RY1	GO:0004930	G protein-coupled receptor activity	molecular_function
+P2RY2	GO:0004930	G protein-coupled receptor activity	molecular_function
+P2RY4	GO:0004930	G protein-coupled receptor activity	molecular_function
+P2RY6	GO:0004930	G protein-coupled receptor activity	molecular_function
+P2RY8	GO:0004930	G protein-coupled receptor activity	molecular_function
+PPAN-P2RY11	GO:0004930	G protein-coupled receptor activity	molecular_function
+PRLHR	GO:0004930	G protein-coupled receptor activity	molecular_function
+PROKR1	GO:0004930	G protein-coupled receptor activity	molecular_function
+PROKR2	GO:0004930	G protein-coupled receptor activity	molecular_function
+PTAFR	GO:0004930	G protein-coupled receptor activity	molecular_function
+PTGDR2	GO:0004930	G protein-coupled receptor activity	molecular_function
+PTGDR	GO:0004930	G protein-coupled receptor activity	molecular_function
+PTGER1	GO:0004930	G protein-coupled receptor activity	molecular_function
+PTGER2	GO:0004930	G protein-coupled receptor activity	molecular_function
+PTGER4	GO:0004930	G protein-coupled receptor activity	molecular_function
+PTGFR	GO:0004930	G protein-coupled receptor activity	molecular_function
+PTGIR	GO:0004930	G protein-coupled receptor activity	molecular_function
+PTH1R	GO:0004930	G protein-coupled receptor activity	molecular_function
+PTH2R	GO:0004930	G protein-coupled receptor activity	molecular_function
+QRFPR	GO:0004930	G protein-coupled receptor activity	molecular_function
+RABGAP1	GO:0004930	G protein-coupled receptor activity	molecular_function
+RGR	GO:0004930	G protein-coupled receptor activity	molecular_function
+RHO	GO:0004930	G protein-coupled receptor activity	molecular_function
+RRH	GO:0004930	G protein-coupled receptor activity	molecular_function
+RXFP1	GO:0004930	G protein-coupled receptor activity	molecular_function
+RXFP2	GO:0004930	G protein-coupled receptor activity	molecular_function
+RXFP3	GO:0004930	G protein-coupled receptor activity	molecular_function
+RXFP4	GO:0004930	G protein-coupled receptor activity	molecular_function
+S1PR1	GO:0004930	G protein-coupled receptor activity	molecular_function
+S1PR2	GO:0004930	G protein-coupled receptor activity	molecular_function
+S1PR3	GO:0004930	G protein-coupled receptor activity	molecular_function
+S1PR4	GO:0004930	G protein-coupled receptor activity	molecular_function
+S1PR5	GO:0004930	G protein-coupled receptor activity	molecular_function
+SCTR	GO:0004930	G protein-coupled receptor activity	molecular_function
+SENP7	GO:0004930	G protein-coupled receptor activity	molecular_function
+SFRP1	GO:0004930	G protein-coupled receptor activity	molecular_function
+SFRP2	GO:0004930	G protein-coupled receptor activity	molecular_function
+SFRP4	GO:0004930	G protein-coupled receptor activity	molecular_function
+SFRP5	GO:0004930	G protein-coupled receptor activity	molecular_function
+SMO	GO:0004930	G protein-coupled receptor activity	molecular_function
+SSTR1	GO:0004930	G protein-coupled receptor activity	molecular_function
+SSTR2	GO:0004930	G protein-coupled receptor activity	molecular_function
+SSTR3	GO:0004930	G protein-coupled receptor activity	molecular_function
+SSTR4	GO:0004930	G protein-coupled receptor activity	molecular_function
+SSTR5	GO:0004930	G protein-coupled receptor activity	molecular_function
+SUCNR1	GO:0004930	G protein-coupled receptor activity	molecular_function
+TAAR1	GO:0004930	G protein-coupled receptor activity	molecular_function
+TAAR2	GO:0004930	G protein-coupled receptor activity	molecular_function
+TAAR3	GO:0004930	G protein-coupled receptor activity	molecular_function
+TAAR5	GO:0004930	G protein-coupled receptor activity	molecular_function
+TAAR6	GO:0004930	G protein-coupled receptor activity	molecular_function
+TAAR8	GO:0004930	G protein-coupled receptor activity	molecular_function
+TAAR9	GO:0004930	G protein-coupled receptor activity	molecular_function
+TACR1	GO:0004930	G protein-coupled receptor activity	molecular_function
+TACR2	GO:0004930	G protein-coupled receptor activity	molecular_function
+TACR3	GO:0004930	G protein-coupled receptor activity	molecular_function
+TAS1R1	GO:0004930	G protein-coupled receptor activity	molecular_function
+TAS1R2	GO:0004930	G protein-coupled receptor activity	molecular_function
+TAS1R3	GO:0004930	G protein-coupled receptor activity	molecular_function
+TAS2R10	GO:0004930	G protein-coupled receptor activity	molecular_function
+TAS2R13	GO:0004930	G protein-coupled receptor activity	molecular_function
+TAS2R14	GO:0004930	G protein-coupled receptor activity	molecular_function
+TAS2R16	GO:0004930	G protein-coupled receptor activity	molecular_function
+TAS2R19	GO:0004930	G protein-coupled receptor activity	molecular_function
+TAS2R1	GO:0004930	G protein-coupled receptor activity	molecular_function
+TAS2R20	GO:0004930	G protein-coupled receptor activity	molecular_function
+TAS2R30	GO:0004930	G protein-coupled receptor activity	molecular_function
+TAS2R31	GO:0004930	G protein-coupled receptor activity	molecular_function
+TAS2R38	GO:0004930	G protein-coupled receptor activity	molecular_function
+TAS2R39	GO:0004930	G protein-coupled receptor activity	molecular_function
+TAS2R3	GO:0004930	G protein-coupled receptor activity	molecular_function
+TAS2R40	GO:0004930	G protein-coupled receptor activity	molecular_function
+TAS2R41	GO:0004930	G protein-coupled receptor activity	molecular_function
+TAS2R42	GO:0004930	G protein-coupled receptor activity	molecular_function
+TAS2R43	GO:0004930	G protein-coupled receptor activity	molecular_function
+TAS2R46	GO:0004930	G protein-coupled receptor activity	molecular_function
+TAS2R4	GO:0004930	G protein-coupled receptor activity	molecular_function
+TAS2R50	GO:0004930	G protein-coupled receptor activity	molecular_function
+TAS2R5	GO:0004930	G protein-coupled receptor activity	molecular_function
+TAS2R60	GO:0004930	G protein-coupled receptor activity	molecular_function
+TAS2R7	GO:0004930	G protein-coupled receptor activity	molecular_function
+TAS2R8	GO:0004930	G protein-coupled receptor activity	molecular_function
+TAS2R9	GO:0004930	G protein-coupled receptor activity	molecular_function
+TBXA2R	GO:0004930	G protein-coupled receptor activity	molecular_function
+TM2D1	GO:0004930	G protein-coupled receptor activity	molecular_function
+TPRA1	GO:0004930	G protein-coupled receptor activity	molecular_function
+TRHR	GO:0004930	G protein-coupled receptor activity	molecular_function
+TSHR	GO:0004930	G protein-coupled receptor activity	molecular_function
+TSKU	GO:0004930	G protein-coupled receptor activity	molecular_function
+UTS2R	GO:0004930	G protein-coupled receptor activity	molecular_function
+VIPR1	GO:0004930	G protein-coupled receptor activity	molecular_function
+VIPR2	GO:0004930	G protein-coupled receptor activity	molecular_function
+VN1R17P	GO:0004930	G protein-coupled receptor activity	molecular_function
+VN1R1	GO:0004930	G protein-coupled receptor activity	molecular_function
+VN1R2	GO:0004930	G protein-coupled receptor activity	molecular_function
+VN1R3	GO:0004930	G protein-coupled receptor activity	molecular_function
+VN1R4	GO:0004930	G protein-coupled receptor activity	molecular_function
+VN1R5	GO:0004930	G protein-coupled receptor activity	molecular_function
+XCR1	GO:0004930	G protein-coupled receptor activity	molecular_function
+XPR1	GO:0004930	G protein-coupled receptor activity	molecular_function
+HTR1A	GO:0004993	G protein-coupled serotonin receptor activity	molecular_function
+HTR1B	GO:0004993	G protein-coupled serotonin receptor activity	molecular_function
+HTR1D	GO:0004993	G protein-coupled serotonin receptor activity	molecular_function
+HTR1E	GO:0004993	G protein-coupled serotonin receptor activity	molecular_function
+HTR1F	GO:0004993	G protein-coupled serotonin receptor activity	molecular_function
+HTR2A	GO:0004993	G protein-coupled serotonin receptor activity	molecular_function
+HTR2B	GO:0004993	G protein-coupled serotonin receptor activity	molecular_function
+HTR2C	GO:0004993	G protein-coupled serotonin receptor activity	molecular_function
+HTR4	GO:0004993	G protein-coupled serotonin receptor activity	molecular_function
+HTR5A	GO:0004993	G protein-coupled serotonin receptor activity	molecular_function
+HTR6	GO:0004993	G protein-coupled serotonin receptor activity	molecular_function
+HTR7	GO:0004993	G protein-coupled serotonin receptor activity	molecular_function
+OR10H1	GO:0004993	G protein-coupled serotonin receptor activity	molecular_function
+OR10H2	GO:0004993	G protein-coupled serotonin receptor activity	molecular_function
+OR10H3	GO:0004993	G protein-coupled serotonin receptor activity	molecular_function
+OR10H4	GO:0004993	G protein-coupled serotonin receptor activity	molecular_function
+OR10H5	GO:0004993	G protein-coupled serotonin receptor activity	molecular_function
+OR10J5	GO:0004993	G protein-coupled serotonin receptor activity	molecular_function
+OR10J6P	GO:0004993	G protein-coupled serotonin receptor activity	molecular_function
+OR11H4	GO:0004993	G protein-coupled serotonin receptor activity	molecular_function
+OR11H7	GO:0004993	G protein-coupled serotonin receptor activity	molecular_function
+OR5T2	GO:0004993	G protein-coupled serotonin receptor activity	molecular_function
+OR5T3	GO:0004993	G protein-coupled serotonin receptor activity	molecular_function
+OR6T1	GO:0004993	G protein-coupled serotonin receptor activity	molecular_function
+HTR1A	GO:0005886	plasma membrane	cellular_component
+AAK1	GO:0005886	plasma membrane	cellular_component
+AAMP	GO:0005886	plasma membrane	cellular_component
+ABCA12	GO:0005886	plasma membrane	cellular_component
+ABCA13	GO:0005886	plasma membrane	cellular_component
+ABCA1	GO:0005886	plasma membrane	cellular_component
+ABCA3	GO:0005886	plasma membrane	cellular_component
+ABCA7	GO:0005886	plasma membrane	cellular_component
+ABCA8	GO:0005886	plasma membrane	cellular_component
+ABCB11	GO:0005886	plasma membrane	cellular_component
+ABCB1	GO:0005886	plasma membrane	cellular_component
+ABCB4	GO:0005886	plasma membrane	cellular_component
+ABCB5	GO:0005886	plasma membrane	cellular_component
+ABCB6	GO:0005886	plasma membrane	cellular_component
+ABCC10	GO:0005886	plasma membrane	cellular_component
+ABCC11	GO:0005886	plasma membrane	cellular_component
+ABCC1	GO:0005886	plasma membrane	cellular_component
+ABCC2	GO:0005886	plasma membrane	cellular_component
+ABCC3	GO:0005886	plasma membrane	cellular_component
+ABCC4	GO:0005886	plasma membrane	cellular_component
+ABCC5	GO:0005886	plasma membrane	cellular_component
+ABCC6	GO:0005886	plasma membrane	cellular_component
+ABCC8	GO:0005886	plasma membrane	cellular_component
+ABCC9	GO:0005886	plasma membrane	cellular_component
+ABCG1	GO:0005886	plasma membrane	cellular_component
+ABCG2	GO:0005886	plasma membrane	cellular_component
+BCRP1	GO:0005886	plasma membrane	cellular_component
+ABCG4	GO:0005886	plasma membrane	cellular_component
+ABCG5	GO:0005886	plasma membrane	cellular_component
+ABCG8	GO:0005886	plasma membrane	cellular_component
+ABHD12	GO:0005886	plasma membrane	cellular_component
+ABHD17A	GO:0005886	plasma membrane	cellular_component
+ABHD17B	GO:0005886	plasma membrane	cellular_component
+ABHD17C	GO:0005886	plasma membrane	cellular_component
+ABHD2	GO:0005886	plasma membrane	cellular_component
+ABHD3	GO:0005886	plasma membrane	cellular_component
+ABHD6	GO:0005886	plasma membrane	cellular_component
+ABI1	GO:0005886	plasma membrane	cellular_component
+ABRA	GO:0005886	plasma membrane	cellular_component
+ABR	GO:0005886	plasma membrane	cellular_component
+ABTB1	GO:0005886	plasma membrane	cellular_component
+ACE2	GO:0005886	plasma membrane	cellular_component
+ACE	GO:0005886	plasma membrane	cellular_component
+ACHE	GO:0005886	plasma membrane	cellular_component
+ACIN1	GO:0005886	plasma membrane	cellular_component
+ACKR1	GO:0005886	plasma membrane	cellular_component
+ACKR2	GO:0005886	plasma membrane	cellular_component
+CCR10	GO:0005886	plasma membrane	cellular_component
+ACKR3	GO:0005886	plasma membrane	cellular_component
+ACKR4	GO:0005886	plasma membrane	cellular_component
+ACLY	GO:0005886	plasma membrane	cellular_component
+ACOX1	GO:0005886	plasma membrane	cellular_component
+ACPP	GO:0005886	plasma membrane	cellular_component
+ACSL1	GO:0005886	plasma membrane	cellular_component
+ACSL6	GO:0005886	plasma membrane	cellular_component
+ACTB	GO:0005886	plasma membrane	cellular_component
+ACTG1	GO:0005886	plasma membrane	cellular_component
+ACTL6A	GO:0005886	plasma membrane	cellular_component
+ACTN1	GO:0005886	plasma membrane	cellular_component
+ACTN2	GO:0005886	plasma membrane	cellular_component
+ACVR1B	GO:0005886	plasma membrane	cellular_component
+ACVR1C	GO:0005886	plasma membrane	cellular_component
+ACVR2A	GO:0005886	plasma membrane	cellular_component
+ACVR2B	GO:0005886	plasma membrane	cellular_component
+ACVRL1	GO:0005886	plasma membrane	cellular_component
+ACY3	GO:0005886	plasma membrane	cellular_component
+ADA	GO:0005886	plasma membrane	cellular_component
+ADAM10	GO:0005886	plasma membrane	cellular_component
+ADAM11	GO:0005886	plasma membrane	cellular_component
+ADAM12	GO:0005886	plasma membrane	cellular_component
+ADAM15	GO:0005886	plasma membrane	cellular_component
+ADAM17	GO:0005886	plasma membrane	cellular_component
+ADAM19	GO:0005886	plasma membrane	cellular_component
+ADAM20	GO:0005886	plasma membrane	cellular_component
+ADAM21	GO:0005886	plasma membrane	cellular_component
+ADAM22	GO:0005886	plasma membrane	cellular_component
+ADAM23	GO:0005886	plasma membrane	cellular_component
+ADAM28	GO:0005886	plasma membrane	cellular_component
+ADAM2	GO:0005886	plasma membrane	cellular_component
+ADAM30	GO:0005886	plasma membrane	cellular_component
+ADAM7	GO:0005886	plasma membrane	cellular_component
+ADAM8	GO:0005886	plasma membrane	cellular_component
+ADAM9	GO:0005886	plasma membrane	cellular_component
+ADAP1	GO:0005886	plasma membrane	cellular_component
+ADAP2	GO:0005886	plasma membrane	cellular_component
+ADCY10	GO:0005886	plasma membrane	cellular_component
+ADCY1	GO:0005886	plasma membrane	cellular_component
+ADCY2	GO:0005886	plasma membrane	cellular_component
+ADCY3	GO:0005886	plasma membrane	cellular_component
+ADCY4	GO:0005886	plasma membrane	cellular_component
+ADCY5	GO:0005886	plasma membrane	cellular_component
+ADCY6	GO:0005886	plasma membrane	cellular_component
+ADCY7	GO:0005886	plasma membrane	cellular_component
+ADCY8	GO:0005886	plasma membrane	cellular_component
+ADCY9	GO:0005886	plasma membrane	cellular_component
+ADCYAP1R1	GO:0005886	plasma membrane	cellular_component
+ADD1	GO:0005886	plasma membrane	cellular_component
+ADD2	GO:0005886	plasma membrane	cellular_component
+ADD3	GO:0005886	plasma membrane	cellular_component
+ADGRA2	GO:0005886	plasma membrane	cellular_component
