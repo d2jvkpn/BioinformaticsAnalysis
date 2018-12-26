@@ -36,10 +36,10 @@ adjust.method="fdr", sort.by="none", resort.by=NULL, p.value=1, lfc=0,
 confint=FALSE)
 
 de <- cbind(d[,1], de0, d[, 2:ncol(d)])
-
 colnames(de)[c(1,5,6)] <- c(colnames(d)[1], "Pvalue", "FDR")
-
 ds <- de[abs(de$logFC) > LOG2FCMIN & de[, DESIG] < DESIGMIN, ]
+
+dir.create(dirname(prefix), showWarnings = FALSE, recursive = TRUE)
 
 write.table(de, paste0(prefix, ".DE.tsv"), sep='\t', quote=FALSE,
 row.names=FALSE)
