@@ -1,4 +1,6 @@
 #! /bin/bash
+# Project: https://github.com/d2jvkpn/BioinformaticsAnalysis
+
 set -eu -o pipefail
 
 bowtie2-build -f target.fa target
