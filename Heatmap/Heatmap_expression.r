@@ -26,7 +26,7 @@ COLOR3 <- Sys.getenv(x="COLOR3", unset="red")
 ShowRownames <- Sys.getenv(x="ShowRownames", unset="")
 
 if (nrow(hd) <= 50 & ShowRownames == "") {
-	ShowRownames == "TRUE"
+	ShowRownames = "TRUE"
 }
 
 if (ShowRownames == "") {
