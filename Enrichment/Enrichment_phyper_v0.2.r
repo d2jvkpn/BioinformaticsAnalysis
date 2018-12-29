@@ -51,7 +51,7 @@ d1 <- merge(td[td$term %in% d$term, ],
 d1 <- d1 [order(d1$Pvalue), ]
 colnames(d1)[1] <- colnames(map2)[n]
 
-dir.create(dirname(d1), showWarnings = FALSE, recursive = TRUE)
+dir.create(dirname(out), showWarnings = FALSE, recursive = TRUE)
 
 write.table(d1, out, sep="\t", quote=FALSE, row.names=FALSE)
 print(sprintf("saved %s", out))
