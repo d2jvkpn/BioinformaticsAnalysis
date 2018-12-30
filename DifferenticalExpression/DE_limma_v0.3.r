@@ -41,8 +41,11 @@ ds <- de[abs(de$logFC) > LOG2FCMIN & de[, DESIG] < DESIGMIN, ]
 
 dir.create(dirname(prefix), showWarnings = FALSE, recursive = TRUE)
 
-write.table(de, paste0(prefix, ".DE.tsv"), sep='\t', quote=FALSE,
-row.names=FALSE)
 
-write.table(ds, paste0(prefix, '.DEsig.tsv'), sep='\t', quote=FALSE,
-row.names=FALSE)
+tsv <- paste0(prefix, ".DE.tsv")
+write.table(de, tsv, sep='\t', quote=FALSE, row.names=FALSE)
+print(sprintf("Saved %s", tsv))
+
+tsv <- paste0(prefix, '.DEsig.tsv')
+write.table(ds, tsv, sep='\t', quote=FALSE,row.names=FALSE)
+print(sprintf("Saved %s", tsv))
