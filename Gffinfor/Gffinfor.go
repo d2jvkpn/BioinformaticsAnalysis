@@ -2,14 +2,14 @@ package main
 
 import (
 	"bufio"
+	"errors"
 	"fmt"
+	"github.com/d2jvkpn/gopkgs/cmdplus"
 	"log"
 	"net/url"
 	"os"
-	"errors"
 	"strconv"
 	"strings"
-	"github.com/d2jvkpn/gopkgs/cmdplus"
 )
 
 const HELP = `
@@ -23,10 +23,12 @@ Summary gff/gtf (.gz) and extract attributions, usage:
 
     extract attributions and Dbxref (tsv format)
     $ Gffinfor  <gff>  <type1,type2...>  <attr1,attr2,dbxref1,dbxref2...>
+	note: "position" for "chrom:start:end:strand:type:score"
+
 
 author: d2jvkpn
-version: 0.8
-release: 2018-10-27
+version: 0.9
+release: 2019-01-03
 project: https://github.com/d2jvkpn/BioinformaticsAnalysis
 lisense: GPLv3 (https://www.gnu.org/licenses/gpl-3.0.en.html)
 `
@@ -34,9 +36,9 @@ lisense: GPLv3 (https://www.gnu.org/licenses/gpl-3.0.en.html)
 var parseAttr func(string, map[string]string) error
 
 func main() {
-	if len(os.Args) == 1 || os.Args[1] == "-h" || os.Args[1] ==  "--help" {
-		fmt.Println (HELP)
-		os.Exit (2)
+	if len(os.Args) == 1 || os.Args[1] == "-h" || os.Args[1] == "--help" {
+		fmt.Println(HELP)
+		os.Exit(2)
 	}
 
 	if strings.HasSuffix(os.Args[1], ".gtf") ||
@@ -47,7 +49,9 @@ func main() {
 	}
 
 	scanner, frd, err := cmdplus.ReadCmdInput(os.Args[1])
-	if err != nil { log.Fatal(err) }
+	if err != nil {
+		log.Fatal(err)
+	}
 	defer frd.Close()
 
 	switch len(os.Args) - 1 {
@@ -67,41 +71,49 @@ func main() {
 
 //
 func gtfattr(s string, kv map[string]string) (err error) {
-	tmp := make (map[string]string)
+	tmp := make(map[string]string)
 
 	for _, i := range strings.Split(strings.TrimRight(s, ";"), "; ") {
-		if i == "" { continue }
+		if i == "" {
+			continue
+		}
 		ii := strings.SplitN(i, " ", 2)
 		ii[1], _ = url.QueryUnescape(ii[1])
 		if len(ii) != 2 {
-			err = errors.New(fmt.Sprintf ("failed to split %s", i))
+			err = errors.New(fmt.Sprintf("failed to split %s", i))
 			return
 		}
 
 		tmp[ii[0]] = strings.Trim(ii[1], "\"")
 	}
 
-	for k, v := range tmp { kv[k] = v }
+	for k, v := range tmp {
+		kv[k] = v
+	}
 
 	return
 }
 
 func gffattr(s string, kv map[string]string) (err error) {
-	tmp := make (map[string]string)
+	tmp := make(map[string]string)
 
 	for _, i := range strings.Split(s, ";") {
-		if i == "" { continue }
+		if i == "" {
+			continue
+		}
 		ii := strings.SplitN(i, "=", 2)
 		ii[1], _ = url.QueryUnescape(ii[1])
 		if len(ii) != 2 {
-			err = errors.New (fmt.Sprintf ("failed to split %s", i))
+			err = errors.New(fmt.Sprintf("failed to split %s", i))
 			return
 		}
 
 		tmp[ii[0]] = ii[1]
 	}
 
-	for k, v := range tmp { kv[k] = v }
+	for k, v := range tmp {
+		kv[k] = v
+	}
 
 	return
 }
@@ -115,9 +127,13 @@ func P1(scanner *bufio.Scanner) {
 
 	for scanner.Scan() {
 		line := scanner.Text()
-		if strings.HasPrefix(line, "#") { continue }
+		if strings.HasPrefix(line, "#") {
+			continue
+		}
 		fds = strings.SplitN(line, "\t", 9)
-		if fds[0] == "" { continue }
+		if fds[0] == "" {
+			continue
+		}
 		Sequences[fds[0]]++
 		Sources[fds[1]]++
 		Types[fds[2]]++
@@ -130,7 +146,9 @@ func P1(scanner *bufio.Scanner) {
 		[]string{"Sequences", strconv.Itoa(len(Sequences))})
 
 	var sKeys []string
-	for k, _ := range Sources { sKeys = append(sKeys, k) }
+	for k, _ := range Sources {
+		sKeys = append(sKeys, k)
+	}
 
 	cmdplus.SortStringSlice(sKeys)
 
@@ -140,7 +158,9 @@ func P1(scanner *bufio.Scanner) {
 	}
 
 	var tKeys []string
-	for k, _ := range Types { tKeys = append(tKeys, k) }
+	for k, _ := range Types {
+		tKeys = append(tKeys, k)
+	}
 	cmdplus.SortStringSlice(tKeys)
 
 	for _, k := range tKeys {
@@ -159,19 +179,25 @@ func P2(scanner *bufio.Scanner, types []string) {
 	var i int
 
 	for scanner.Scan() {
-		i ++
+		i++
 		line := scanner.Text()
-		if strings.HasPrefix(line, "#") { continue }
+		if strings.HasPrefix(line, "#") {
+			continue
+		}
 		fds = strings.SplitN(line, "\t", 9)
-		if fds[0] == "" { continue }
-		if types[0] != "" && !cmdplus.HasElem(types, fds[2]) { continue }
+		if fds[0] == "" {
+			continue
+		}
+		if types[0] != "" && !cmdplus.HasElem(types, fds[2]) {
+			continue
+		}
 
 		kv := make(map[string]string)
 		err = parseAttr(fds[8], kv)
 
 		if err != nil {
-			log.Printf ("failed to parse attributions at line %d:" +
-				"\n    %s\n    %s\n\n",  i, err, fds[8])
+			log.Printf("failed to parse attributions at line %d:"+
+				"\n    %s\n    %s\n\n", i, err, fds[8])
 
 			continue
 		}
@@ -191,12 +217,16 @@ func P2(scanner *bufio.Scanner, types []string) {
 	array = append(array, []string{"TYPE\tATTRIBUTION", "TOTAL", "UNIQUE"})
 
 	var keys []string
-	for k, _ := range TypeAttrs { keys = append(keys, k) }
+	for k, _ := range TypeAttrs {
+		keys = append(keys, k)
+	}
 	cmdplus.SortStringSlice(keys)
 
 	for _, v := range keys {
 		u := 0
-		for _, c := range TypeAttrs[v] { u += c }
+		for _, c := range TypeAttrs[v] {
+			u += c
+		}
 
 		array = append(array,
 			[]string{v, strconv.Itoa(u), strconv.Itoa(len(TypeAttrs[v]))})
@@ -204,7 +234,6 @@ func P2(scanner *bufio.Scanner, types []string) {
 
 	cmdplus.PrintStringArray(array)
 }
-
 
 //
 func P3(scanner *bufio.Scanner, types, attrs []string) {
@@ -214,31 +243,45 @@ func P3(scanner *bufio.Scanner, types, attrs []string) {
 	var i int
 
 	for scanner.Scan() {
-		i ++
+		i++
 		line := scanner.Text()
-		if strings.HasPrefix(line, "#") { continue }
+		if strings.HasPrefix(line, "#") {
+			continue
+		}
 		fds = strings.SplitN(line, "\t", 9)
-		if fds[0] == "" { continue }
-		if types[0] != "" && !cmdplus.HasElem(types, fds[2]) { continue }
+		if fds[0] == "" {
+			continue
+		}
+		if types[0] != "" && !cmdplus.HasElem(types, fds[2]) {
+			continue
+		}
 
 		kv := make(map[string]string)
 		err = parseAttr(fds[8], kv)
 
 		if err != nil {
-			log.Printf ("failed to parse attributions at line %d:" +
-				"\n    %s\n    %s\n\n",  i, err, fds[8])
+			log.Printf("failed to parse attributions at line %d:"+
+				"\n    %s\n    %s\n\n", i, err, fds[8])
 
 			continue
 		}
 
 		for _, d := range strings.Split(kv["Dbxref"], ",") {
-			if d == "" { continue }
+			if d == "" {
+				continue
+			}
 			x := strings.SplitN(d, ":", 2)
 			kv[x[0]] = x[1]
 		}
 
+		kv["position"] = strings.Join([]string{
+			fds[0], fds[3], fds[4], fds[6], fds[2], fds[5],
+		}, ":")
+
 		values := []string{}
-		for _, k := range attrs { values = append(values, kv[k]) }
+		for _, k := range attrs {
+			values = append(values, kv[k])
+		}
 
 		fmt.Println(strings.Join(values, "\t"))
 	}
