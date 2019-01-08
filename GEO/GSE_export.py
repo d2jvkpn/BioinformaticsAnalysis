@@ -1,14 +1,13 @@
 # pip3 install GEOparse
 
 __author__ = 'd2jvkpn'
-__version__ = '0.1'
-__release__ = '2018-12-16'
+__version__ = '0.2'
+__release__ = '2019-01-08'
 __project__ = 'https://github.com/d2jvkpn/BioinformaticsAnalysis'
 __license__ = 'GPLv3 (https://www.gnu.org/licenses/gpl-3.0.en.html)'
 
-import GEOparse
+import GEOparse, os
 import pandas as pd
-import os
 
 USAGE = '''Extract GSE(GEO) table, usage:
   python3 GSE_export.py  <gse_id | gse_file>  <output_dir>'''
@@ -39,7 +38,7 @@ gse, outdir = os.sys.argv[1], os.sys.argv[2]
 if not os.path.isdir(outdir):
     os.makedirs(outdir)
 
-if len(gse) == 8:    
+if gse.startswith("GSE"):    
     GSE = GEOparse.get_GEO(geo=gse, destdir=outdir)
 else:
     GSE = GEOparse.get_GEO(filepath= gse)
