@@ -19,11 +19,15 @@ if len(os.sys.argv) != 3 or os.sys.argv[1] in ['-h', '--help']:
     __ = [__author__,  __version__, __release__, __project__, __license__]
 
     print (_.format (*__))
-
     os.sys.exit(2)
 
 def ExprTable (gsms, samples):
-    d = gsms[samples[0]].table.iloc[:, [0, 1]]
+    d = gsms[samples[0]].table
+
+    if d.shape[0] == 0:
+        return None
+
+    d = d.iloc[:, [0, 1]]
     idxn = d.columns[0]
 
     for i in samples[1:]:
@@ -38,13 +42,18 @@ gse, outdir = os.sys.argv[1], os.sys.argv[2]
 if not os.path.isdir(outdir):
     os.makedirs(outdir)
 
-if gse.startswith("GSE"):    
-    GSE = GEOparse.get_GEO(geo=gse, destdir=outdir)
+if gse.endswith(".gz"):
+    GSE = GEOparse.get_GEO(filepath = gse)
 else:
-    GSE = GEOparse.get_GEO(filepath= gse)
+    GSE = GEOparse.get_GEO(geo=gse, destdir=outdir)
+
+d = ExprTable(GSE.gsms, list(GSE.gsms))
+
+if not isinstance(d, pd.DataFrame):
+    os.sys.exit("Not GSMS available in " + gse)
 
 gsms = outdir + "/gsms.tsv"
-ExprTable(GSE.gsms, list(GSE.gsms)).to_csv(gsms, sep="\t", index=False)
+d.to_csv(gsms, sep="\t", index=False)
 print("Saved", gsms)
 
 for i in list(GSE.gpls):
