@@ -4,8 +4,6 @@ __release__ = '2019-01-08'
 __project__ = 'https://github.com/d2jvkpn/BioinformaticsAnalysis'
 __license__ = 'GPLv3 (https://www.gnu.org/licenses/gpl-3.0.en.html)'
 
-import GEOparse, os
-import pandas as pd
 
 USAGE = '''Scrap GSE(GEO) family.soft.gz ftp link, usage:
   python3  GSE_getftp.py  <gse_id...>'''
