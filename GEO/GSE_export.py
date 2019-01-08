@@ -23,9 +23,7 @@ if len(os.sys.argv) != 3 or os.sys.argv[1] in ['-h', '--help']:
 
 def ExprTable (gsms, samples):
     d = gsms[samples[0]].table
-
-    if d.shape[0] == 0:
-        return None
+    if d.shape[0] == 0: return None
 
     d = d.iloc[:, [0, 1]]
     idxn = d.columns[0]
@@ -38,9 +36,7 @@ def ExprTable (gsms, samples):
     return d
 
 gse, outdir = os.sys.argv[1], os.sys.argv[2]
-
-if not os.path.isdir(outdir):
-    os.makedirs(outdir)
+if not os.path.isdir(outdir): os.makedirs(outdir)
 
 if gse.endswith(".gz"):
     GSE = GEOparse.get_GEO(filepath = gse)
