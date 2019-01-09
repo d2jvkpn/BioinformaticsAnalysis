@@ -2,7 +2,7 @@
 
 __author__ = 'd2jvkpn'
 __version__ = '0.2'
-__release__ = '2019-01-08'
+__release__ = '2019-01-09'
 __project__ = 'https://github.com/d2jvkpn/BioinformaticsAnalysis'
 __license__ = 'GPLv3 (https://www.gnu.org/licenses/gpl-3.0.en.html)'
 
@@ -23,13 +23,14 @@ if len(os.sys.argv) != 3 or os.sys.argv[1] in ['-h', '--help']:
 
 def ExprTable (gsms, samples):
     d = gsms[samples[0]].table
-    if d.shape[0] == 0: return None
+    if d.shape[0] == 0: return d
 
     d = d.iloc[:, [0, 1]]
     idxn = d.columns[0]
 
     for i in samples[1:]:
         t = GSE.gsms[i].table.iloc[:, [0, 1]]
+        t.iloc[:, [0]] = t.iloc[:, 0].astype(str)
         h = list(t.columns); h = [idxn, i]; t.columns = h
         d = pd.merge(d, t, how="left", left_on=idxn, right_on=idxn)
 
@@ -43,16 +44,27 @@ if gse.endswith(".gz"):
 else:
     GSE = GEOparse.get_GEO(geo=gse, destdir=outdir)
 
-d = ExprTable(GSE.gsms, list(GSE.gsms))
+tsv = outdir + "/{}.phenotype.tsv".format(GSE.name)
+pt = GSE.phenotype_data
+pt.to_csv(tsv, sep="\t")
+print("Saved", tsv)
 
-if not isinstance(d, pd.DataFrame):
+ED = ExprTable(GSE.gsms, list(GSE.gsms))
+
+if ED.shape[0] == 0:
     os.sys.exit("Not GSMS available in " + gse)
 
-gsms = outdir + "/gsms.tsv"
-d.to_csv(gsms, sep="\t", index=False)
-print("Saved", gsms)
+ptd, gp = pt["platform_id"].to_dict(), {}
 
-for i in list(GSE.gpls):
-    gpls = "{}/gpls.{}.tsv".format(outdir, i)
-    GSE.gpls[i].table.to_csv(gpls, sep="\t", index=False)
-    print("Saved", gpls)
+for k in ptd:
+    v = ptd[k]
+    gp[v] = (gp[v] + [k]) if v in gp else []
+
+for k in gp:
+    tsv = "{}/{}.{}.infor.tsv".format(outdir, GSE.name, k)
+    GSE.gpls[k].table.to_csv(tsv, sep="\t", index=False)
+    print("Saved", tsv)
+
+    tsv = "{}/{}.{}.gsms.tsv".format(outdir, GSE.name, k)
+    ED.loc[:, [ED.columns[0]] + gp[k]].to_csv(tsv, sep="\t", index=False)
+    print("Saved", tsv)
