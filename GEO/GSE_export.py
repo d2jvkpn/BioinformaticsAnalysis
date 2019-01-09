@@ -72,5 +72,5 @@ for k in gp:
     how="left", left_on=x.columns[0], right_on=y.columns[0]), dfs)
 
     tsv = "{}/{}.{}.gsms.tsv".format(outdir, GSE.name, k)
-    DF.to_csv(tsv, sep="\t", index=False)
+    DF.to_csv(tsv, sep="\t", index=False, na_rep="0")
     print("Saved", tsv)
