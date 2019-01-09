@@ -8,6 +8,7 @@ __license__ = 'GPLv3 (https://www.gnu.org/licenses/gpl-3.0.en.html)'
 
 import GEOparse, os
 import pandas as pd
+from functools import reduce
 
 USAGE = '''Extract GSE(GEO) table, usage:
   python3 GSE_export.py  <gse_id | gse_file>  <output_dir>'''
@@ -21,21 +22,7 @@ if len(os.sys.argv) != 3 or os.sys.argv[1] in ['-h', '--help']:
     print (_.format (*__))
     os.sys.exit(2)
 
-def ExprTable (gsms, samples):
-    d = gsms[samples[0]].table
-    if d.shape[0] == 0: return d
-
-    d = d.iloc[:, [0, 1]]
-    idxn = d.columns[0]
-
-    for i in samples[1:]:
-        t = GSE.gsms[i].table.iloc[:, [0, 1]]
-        t.iloc[:, [0]] = t.iloc[:, 0].astype(str)
-        h = list(t.columns); h = [idxn, i]; t.columns = h
-        d = pd.merge(d, t, how="left", left_on=idxn, right_on=idxn)
-
-    return d
-
+####
 gse, outdir = os.sys.argv[1], os.sys.argv[2]
 if not os.path.isdir(outdir): os.makedirs(outdir)
 
@@ -44,15 +31,11 @@ if gse.endswith(".gz"):
 else:
     GSE = GEOparse.get_GEO(geo=gse, destdir=outdir)
 
+####
 tsv = outdir + "/{}.phenotype.tsv".format(GSE.name)
 pt = GSE.phenotype_data
 pt.to_csv(tsv, sep="\t")
 print("Saved", tsv)
-
-ED = ExprTable(GSE.gsms, list(GSE.gsms))
-
-if ED.shape[0] == 0:
-    os.sys.exit("Not GSMS available in " + gse)
 
 ptd, gp = pt["platform_id"].to_dict(), {}
 
@@ -60,11 +43,34 @@ for k in ptd:
     v = ptd[k]
     gp[v] = (gp[v] + [k]) if v in gp else []
 
+####
 for k in gp:
     tsv = "{}/{}.{}.infor.tsv".format(outdir, GSE.name, k)
-    GSE.gpls[k].table.to_csv(tsv, sep="\t", index=False)
-    print("Saved", tsv)
+    td = GSE.gpls[k].table
+
+    if td.shape[0] == 0:
+        print("no gpls in", GSE.name)
+    else:
+        td.to_csv(tsv, sep="\t", index=False)
+        print("Saved", tsv)
+
+    dfs = []
+
+    for s in gp[k]:
+       td = GSE.gsms[s].table
+
+       if td.shape[0] == 0:
+           print("not {} expression in {}".format(s, GSE.name))
+           continue
+
+       td.iloc[:, 0] = td.iloc[:, 0].astype(str)
+       dfs.append(td.iloc[:, [0, 1]])
+
+    if len(dfs) == 0: continue
+
+    DF = reduce(lambda x, y: pd.merge(x, y, 
+    how="left", left_on=x.columns[0], right_on=y.columns[0]), dfs)
 
     tsv = "{}/{}.{}.gsms.tsv".format(outdir, GSE.name, k)
-    ED.loc[:, [ED.columns[0]] + gp[k]].to_csv(tsv, sep="\t", index=False)
+    DF.to_csv(tsv, sep="\t", index=False)
     print("Saved", tsv)
