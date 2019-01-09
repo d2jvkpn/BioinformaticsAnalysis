@@ -8,7 +8,10 @@ __license__ = 'GPLv3 (https://www.gnu.org/licenses/gpl-3.0.en.html)'
 USAGE = '''Scrap GSE(GEO) family.soft.gz ftp link, usage:
   python3  GSE_getftp.py  <gse_id...>'''
 
-if len(os.sys.argv) ==1 or os.sys.argv[1] in ['-h', '--help']:
+import os, requests, sys
+from bs4 import BeautifulSoup
+
+if len(os.sys.argv) == 1 or os.sys.argv[1] in ['-h', '--help']:
     print(USAGE)
 
     _ = '\nauthor: {}\nversion: {}\nrelease: {}\nproject: {}\nlisense: {}\n'
@@ -17,9 +20,6 @@ if len(os.sys.argv) ==1 or os.sys.argv[1] in ['-h', '--help']:
     print (_.format (*__))
 
     os.sys.exit(2)
-
-import os, requests, sys
-from bs4 import BeautifulSoup
 
 def GetLink (gse):
     links = []
