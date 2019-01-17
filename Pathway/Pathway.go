@@ -50,8 +50,8 @@ KEGG pathway process, usage:
     Note: existing html files will be overwritten
 
 author: d2jvkpn
-version: 0.8.8
-release: 2018-11-14
+version: 0.8.9
+release: 2019-01-17
 project: https://github.com/d2jvkpn/BioinformaticsAnalysis
 lisense: GPLv3  (https://www.gnu.org/licenses/gpl-3.0.en.html)
 `
@@ -372,7 +372,7 @@ func ToTSV(keg, tsv string) {
 	}
 
 	if tsv != "" {
-		log.Printf("converted %s to %s\n", keg, tsv)
+		log.Printf("saved %s to %s\n", keg, tsv)
 	}
 }
 
@@ -450,7 +450,7 @@ func Get(codes []string) {
 	ch := make(chan struct{}, 10)
 	var wg sync.WaitGroup
 
-	log.Printf("request organism code (s): %s\n", strings.Join(codes, " "))
+	log.Printf("request organism code(s): %s\n", strings.Join(codes, " "))
 
 	for _, v := range codes {
 		ch <- struct{}{}
@@ -459,6 +459,7 @@ func Get(codes []string) {
 			defer wg.Done()
 			defer func() { <-ch }()
 			getkeg(p)
+			fmt.Printf("saved %s\n", v + "00001.keg.gz")
 		}(v+"00001.keg", ch, &wg)
 	}
 
