@@ -7,8 +7,8 @@ Convert KAAS output keg format to tsv, usage:
   $ sh KAAS_keg2tsv.sh  <input.keg>  [output.tsv]
 
 author: d2jvkpn
-version: 0.2
-release: 2018-12-07
+version: 0.3
+release: 2019-01-17
 project: https://github.com/d2jvkpn/BioinformaticsAnalysis
 lisense: GPLv3  (https://www.gnu.org/licenses/gpl-3.0.en.html)
 '''
@@ -26,8 +26,8 @@ else
 fi
 
 eval cat $keg |
-awk 'BEGIN{OFS="\t"; print "target_id", "KO_id", "KO_information", "C_entry", 
-"C_id", "C_name", "B_id", "B_name", "A_id", "A_name", "BR1", "BR2"}
+awk 'BEGIN{OFS="\t"; print "target_id", "C_id", "C_name", 
+"KO_id", "KO_information", "B_id", "B_name", "A_id", "A_name"}
 $1~"^A"{sub(" ", "\t", $0); split($0,x,"\t"); Ai=x[1]; An=x[2]; next}
 $1=="B" && NR>2{sub("  ", "", $0); sub(" ", "\t", $0); split($0,x,"\t");
   Bi=x[1]; Bn=x[2]}
@@ -37,4 +37,4 @@ $1=="C"{k=0; if($NF!~"BR:" && $NF!~"PATH:") next; k=1; Ci="C"$2;
 $1=="D" && k==1{BR1=""; BR2=""; split($0,fd,"\t");
   if(length(fd)>1) BR1=fs[2]; if(length(fd)==3) BR2=fd[3];
   sub("D      ", "", fd[1]); split(fd[1], x, "  "); split(x[1], y, "; "); 
-  print y[1], y[2], x[2], Pe, Ci, Cn, Bi, Bn, Ai,An, BR1, BR2}' > $tsv
+  print y[1], Pe, Cn, y[2], x[2],  Bi, Bn, Ai, An}' > $tsv
