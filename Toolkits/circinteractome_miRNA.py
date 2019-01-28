@@ -40,7 +40,7 @@ options.set_headless()    # options.add_argument('-headless')
 options.add_argument('--disable-gpu')
 firefox = webdriver.Firefox(firefox_options=options)
 
-def Arich(firefox, URL, c):
+def Query(firefox, URL, c):
     firefox.get(URL)
     firefox.find_element_by_name("gcircrna").send_keys(c)
     firefox.find_element_by_name("submit").click()
@@ -67,7 +67,7 @@ for c in circs:
     print(msg, file=sys.stdout, flush=True)
 
     try:
-        tbl = Arich(firefox, URL, c)
+        tbl = Query(firefox, URL, c)
         tbl.to_csv(tsv, sep="\t", index=False)
         msg = "saved results of {}, {} records".format(c, tbl.shape[0])
         print("    " + msg, file=sys.stdout, flush=True)
