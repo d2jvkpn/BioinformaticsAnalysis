@@ -11,7 +11,7 @@ Usage:
   Note: pandas, selenium, geckodriver and firefox are required 
 '''
 
-if len(os.sys.argv) == 1 or os.sys.argv[1] in ['-h', '--help']:
+if len(os.sys.argv) < 3 or os.sys.argv[1] in ['-h', '--help']:
     print(USAGE)
 
     _ = 'author:  {}\nversion: {}\nrelease: {}\nproject: {}\nlicense: {}'
