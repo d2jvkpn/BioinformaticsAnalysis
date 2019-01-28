@@ -1,15 +1,14 @@
 import os, time
-
 __author__ = 'd2jvkpn'
-__version__ = '0.3'
-__release__ = '2019-01-26'
+__version__ = '0.4'
+__release__ = '2019-01-28'
 __project__ = 'https://github.com/d2jvkpn/BioinformaticsAnalysis'
 __license__ = 'GPLv3 (https://www.gnu.org/licenses/gpl-3.0.en.html)'
 
 USAGE = '''Scraping circRNA-miRNA target from circinteractome and save the result to tsv
 Usage:
-  python3  circinteractome_miRNA.py  <circRNA_list_file>  <outdir>
-  Note: pandas, selenium, firefox and geckodriver are required 
+  $ python3  circinteractome_miRNA.py  <circRNA_list_file>  <outdir>
+  Note: pandas, selenium, geckodriver and firefox are required 
 '''
 
 if len(os.sys.argv) == 1 or os.sys.argv[1] in ['-h', '--help']:
@@ -23,6 +22,9 @@ if len(os.sys.argv) == 1 or os.sys.argv[1] in ['-h', '--help']:
 ####
 import pandas as pd
 from selenium import webdriver
+
+from signal import signal, SIGINT, SIG_DFL
+signal(SIGINT, SIG_DFL)
 
 URL = 'https://circinteractome.nia.nih.gov/miRNA_Target_Sites/mirna_target_sites.html'
 
@@ -38,7 +40,7 @@ options.set_headless()    # options.add_argument('-headless')
 options.add_argument('--disable-gpu')
 firefox = webdriver.Firefox(firefox_options=options)
 
-def Arich(firefox, URL, c, tsv):
+def Arich(firefox, URL, c):
     print("Querying {}, {}".format(c, time.strftime("%Y-%m-%d %H:%M:%S %z")))
     firefox.get(URL)
     firefox.find_element_by_name("gcircrna").send_keys(c)
@@ -47,18 +49,15 @@ def Arich(firefox, URL, c, tsv):
     tbls = pd.read_html(firefox.page_source)
     # <table> block is nesting (not standard)
     nr = [tb.shape[0] for tb in tbls]
-    tbl = tbls[nr.index(max(nr))]
+    tbl = tbls[nr.index(max(nr))].iloc[:, 0:11]
 
-    tbl = tbl.iloc[:, 0:11]
-    tbl = tbl.loc[tbl.iloc[:, 0].dropna().index, :]
-    header = list(tbl.loc[tbl.iloc[:, 0] == "CircRNAMirbase ID", :].iloc[0, :])
-    index = [i.startswith("hsa_circ_") for i in tbl.iloc[:, 0]]
-    tbl = tbl.loc[index, :]
-    tbl.columns = header
+    index = tbl.iloc[:, 0] == "CircRNAMirbase ID"
+    tbl.columns = list(tbl.loc[index, :].iloc[0, :])
+    index = [pd.notnull(i) and i.startswith("hsa_circ_") for i in tbl.iloc[:, 0]]
+    tbl = tbl.loc[index, :].drop_duplicates()
     tbl.iloc[:, 0] = [i.replace(u'\xa0', u' ') for i in tbl.iloc[:, 0]]
+    return tbl
 
-    tbl.to_csv(tsv, sep="\t", index=False)
-    print("    saved {}, {} records".format(tsv, tbl.shape[0]))
 
 for c in circs:
     tsv = "{}/circinteractome_miRNA__{}.tsv".format(outdir, c)
@@ -66,10 +65,13 @@ for c in circs:
         continue
 
     try:
-        Arich(firefox, URL, c, tsv)
+        tbl = Arich(firefox, URL, c)
+        tbl.to_csv(tsv, sep="\t", index=False)
+        msg = "saved results of {}, {} records".format(c, tbl.shape[0])
     except:
-        print("    failed to achive", c)
+        msg = "!!! failed to achive {}".format(c)
 
-    # time.sleep(5)
+    print("    " + msg)
+
 
 firefox.close()
