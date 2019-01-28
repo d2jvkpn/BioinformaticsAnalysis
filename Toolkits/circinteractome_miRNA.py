@@ -1,4 +1,4 @@
-import os, time
+import os, sys, time
 __author__ = 'd2jvkpn'
 __version__ = '0.4'
 __release__ = '2019-01-28'
@@ -41,7 +41,6 @@ options.add_argument('--disable-gpu')
 firefox = webdriver.Firefox(firefox_options=options)
 
 def Arich(firefox, URL, c):
-    print("Querying {}, {}".format(c, time.strftime("%Y-%m-%d %H:%M:%S %z")))
     firefox.get(URL)
     firefox.find_element_by_name("gcircrna").send_keys(c)
     firefox.find_element_by_name("submit").click()
@@ -64,14 +63,16 @@ for c in circs:
     if os.path.isfile(tsv) or not c.startswith("hsa_circ_"):
         continue
 
+    msg = "Querying {}, {}".format(c, time.strftime("%Y-%m-%d %H:%M:%S %z"))
+    print(msg, file=sys.stdout, flush=True)
+
     try:
         tbl = Arich(firefox, URL, c)
         tbl.to_csv(tsv, sep="\t", index=False)
         msg = "saved results of {}, {} records".format(c, tbl.shape[0])
+        print("    " + msg, file=sys.stdout, flush=True)
     except:
         msg = "!!! failed to achive {}".format(c)
-
-    print("    " + msg)
-
+        print("    " + msg, file=sys.stderr, flush=True)
 
 firefox.close()
