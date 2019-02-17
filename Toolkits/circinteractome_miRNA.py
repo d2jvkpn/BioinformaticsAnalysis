@@ -1,7 +1,8 @@
 import os, sys, time
+
 __author__ = 'd2jvkpn'
-__version__ = '0.4'
-__release__ = '2019-01-28'
+__version__ = '0.5'
+__release__ = '2019-02-17'
 __project__ = 'https://github.com/d2jvkpn/BioinformaticsAnalysis'
 __license__ = 'GPLv3 (https://www.gnu.org/licenses/gpl-3.0.en.html)'
 
@@ -22,7 +23,7 @@ if len(os.sys.argv) < 3 or os.sys.argv[1] in ['-h', '--help']:
 ####
 import pandas as pd
 from selenium import webdriver
-
+from bs4 import BeautifulSoup
 from signal import signal, SIGINT, SIG_DFL
 signal(SIGINT, SIG_DFL)
 
@@ -45,15 +46,12 @@ def Query(firefox, URL, c):
     firefox.find_element_by_name("gcircrna").send_keys(c)
     firefox.find_element_by_name("submit").click()
 
-    tbls = pd.read_html(firefox.page_source)
-    # <table> block is nesting (not standard)
-    nr = [tb.shape[0] for tb in tbls]
-    tbl = tbls[nr.index(max(nr))].iloc[:, 0:11]
+    hs = BeautifulSoup(firefox.page_source, 'html.parser')
+    tbl = pd.read_html(str(hs.find('table', width='1200')))[0]
 
-    index = tbl.iloc[:, 0] == "CircRNAMirbase ID"
-    tbl.columns = list(tbl.loc[index, :].iloc[0, :])
-    index = [pd.notnull(i) and i.startswith("hsa_circ_") for i in tbl.iloc[:, 0]]
-    tbl = tbl.loc[index, :].drop_duplicates()
+    n1 = list(tbl.iloc[:, 0] == "CircRNAMirbase ID").index(True)
+    tbl.columns = tbl.iloc[n1, :]
+    tbl = tbl.iloc[(n1+1):, :]
     tbl.iloc[:, 0] = [i.replace(u'\xa0', u' ') for i in tbl.iloc[:, 0]]
     return tbl
 
