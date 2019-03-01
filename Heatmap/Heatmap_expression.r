@@ -3,8 +3,8 @@ library (pheatmap)
 Args <- commandArgs (T)
 if (length (Args) != 3 ) {
 	print ("Arguments:  <expression.tsv>  <output.pdf> <title>")
-    print ("  read environment variables: PDFheigh, PDFwidth, COLOR1, COLOR2,")
-    print ("    COLOR3, PDFwidth, COLOR1, COLOR2, COLOR3, ShowRownames, CLusterRows")
+	print ("  read environment variables: PDFheigh, PDFwidth, COLOR1, COLOR2,")
+	print ("    COLOR3, PDFwidth, COLOR1, COLOR2, COLOR3, ShowRownames, ClusterRows, ClusterCols")
 	print ("author: d2jvkpn")
 	print ("version: 0.4")
 	print ("release: 2019-01-03")
@@ -25,14 +25,27 @@ COLOR2 <- Sys.getenv(x="COLOR2", unset="white")
 COLOR3 <- Sys.getenv(x="COLOR3", unset="red")
 ShowRownames <- Sys.getenv(x="ShowRownames", unset="")
 ClusterRows <- Sys.getenv(x="ClusterRows", unset="TRUE")
+ClusterCols <- Sys.getenv(x="ClusterCols", unset="")
 
-if (nrow(hd) <= 50 & ShowRownames == "") {
+
+
+if (ShowRownames == "" & nrow(hd) <= 50) {
 	ShowRownames = "TRUE"
 }
 
 if (ShowRownames == "") {
-    ShowRownames = "FALSE"
+	ShowRownames = "FALSE"
 }
+
+if (ClusterCols == "" & ncol(hd) > 2) {
+	ClusterCols <- "TRUE"
+}
+
+
+if (ClusterCols == "") {
+	ClusterCols <- "FALSE"
+}
+
 
 hd <- hd [apply(hd,1,var) > 0,]
 
@@ -48,6 +61,9 @@ palette <- colorRampPalette (c (COLOR1, COLOR2, COLOR3))(n=299)
 print (PDF)
 
 pheatmap (nhd, scale = scale,
-    breaks = NA, color = palette, cluster_rows = as.logical(ClusterRows),
-    cluster_cols = ncol(hd) > 2, show_rownames = as.logical(ShowRownames),
-    border_color = NA, filename = PDF, heigh = PDFheigh, width = PDFwidth)
+    breaks = NA, color = palette,
+	cluster_rows = as.logical(ClusterRows),
+    cluster_cols = as.logical(ClusterCols),
+	show_rownames = as.logical(ShowRownames),
+	border_color = NA, 
+	filename = PDF, heigh = PDFheigh, width = PDFwidth)
