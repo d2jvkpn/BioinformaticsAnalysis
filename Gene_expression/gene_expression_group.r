@@ -3,8 +3,8 @@ Args <- commandArgs(T)
 if (length(Args) == 0 || Args[1] == "-h" || Args[1] == "--help") {
 	print("Arguments:  <expression.tsv>  <outputPrefix>  <threshold>  <title>  <group.tsv>")
 	print("author: d2jvkpn")
-	print("version: 0.5")
-	print("release: 2018-11-23")
+	print("version: 0.6")
+	print("release: 2019-03-02")
 	print("project: https://github.com/d2jvkpn/BioinformaticsAnalysis")
 	print("lisense: GPLv3 (https://www.gnu.org/licenses/gpl-3.0.en.html")
 	q()
@@ -99,6 +99,7 @@ L1 <- c("[100, Inf)", "[20, 100)", "[10, 20)", "[1, 10)", "[0.1, 1)",
 md[, "interval"] <- factor (md[, "interval"], levels=L1)
 
 md1 <- md[which(md$log10title >= log(threshold, 10)), ]
+md1$sample <- as.character(md1$sample)
 md1$group <- gp[md1$sample, 1]
 
 
