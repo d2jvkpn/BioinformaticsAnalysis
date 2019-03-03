@@ -126,7 +126,7 @@ ggsave (paste0(prefix, ".interval.pdf"), plot=iplot)
 print("Boxplot...")
 
 bplot <- ggplot(md1, aes(x=sample, y=log10title, fill=group)) + 
-	coord_cartesian (y = c(log(threshold, 10), max(md$log10title))) + 
+	coord_cartesian (y = c(log(threshold, 10), max(md1$log10title))) + 
 	geom_boxplot (notch=FALSE, notchwidth = 0.3, alpha=0.8) +
 	ggtitle (paste (title, "boxplot")) + 
 	xlab ("") +
@@ -171,7 +171,7 @@ print("Densityplot...")
 pdf (paste0(prefix, ".densityplot.pdf"), onefile=TRUE)
 
 for (g in unique(gp[,1])) {
-	s <- colnames(d) [g == gp[,1]]
+	s <- rownames(gp) [g == as.character(gp[,1])]
 	if (length(s) < 2) { next }
 
 	dplot <- ggplot(md1[md1$sample %in% s, ], 
@@ -259,8 +259,9 @@ CorScatter <- function(d, p, threshold, title) {
 }
 
 for (g in unique(gp[,1])) {
-	s <- colnames(d) [g == gp[,1]]
-	if(length(s) ==1) { next }
+	s <- rownames(gp) [g == as.character(gp[,1])]
+
+	if(length(s) < 2) { next }
 
 	pdf (paste0 (prefix, ".corscatter_", g, ".pdf"), onefile = TRUE)
 
