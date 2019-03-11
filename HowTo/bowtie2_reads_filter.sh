@@ -15,5 +15,5 @@ mv ./un-conc.$i.2 un-conc_$i.R2.fastq
 mv ./al-conc-mate.$i.1 al-conc_$i.R1.fastq
 mv ./al-conc-mate.$i.2 al-conc_$i.R2.fastq
 
-pigz un-conc_$i.R1.fastq un-conc_$i.R1.fastq \
+pigz un-conc_$i.R1.fastq un-conc_$i.R2.fastq \
 al-conc_$i.R1.fastq al-conc_$i.R2.fastq
