@@ -5,12 +5,15 @@ set -eu -o pipefail
 
 makeblastdb -in target.fa -input_type fasta -dbtype nucl
 
-blastn -query query.fa -db target.fa \
--perc_identity 80 -gapopen 0 -evalue 1E-5 -strand plus \
--max_target_seqs 5 -num_threads 10 -outfmt 6 |
+evalue=1E-10
+identity=80
+out=blastn_target.tsv
+
+blastn -query query.fa -db target.fa -perc_identity $identity -gapopen 0 \
+-evalue $evalue -strand plus -max_target_seqs 5 -num_threads 10 -outfmt 6 |
 awk 'BEGIN{FS=OFS="\t"; print "qseqid", "sseqid", "pident", "length", \
-"mismatch", "gapopen", "qstart", "qend", "sstart", "send", "evalue", "bitscore"}
-{print}' > blastn_target.tsv
+"mismatch", "gapopen", "qstart", "qend", "sstart", "send", "evalue", \
+"bitscore"} {print}' > $out
 
 # qseqid    Query Seq-id
 # sseqid    Subject Seq-id
