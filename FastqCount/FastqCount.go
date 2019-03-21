@@ -77,7 +77,7 @@ func main() {
 		Rc++
 		Bc += len(k[0])
 		Nc += strings.Count(k[0], "N")
-		GC += strings.Count(k[0], "GC")
+		GC += strings.Count(k[0], "G") + strings.Count(k[0], "C")
 
 		for _, q := range k[1] {
 			if int(q)-*phred >= 20 { Q20++ } else { continue }
