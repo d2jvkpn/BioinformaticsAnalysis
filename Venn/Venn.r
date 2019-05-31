@@ -1,6 +1,6 @@
 Args <- commandArgs (T)
 
-if (length (Args) < 2 || length (Args) > 4 ) {
+if (length (Args) < 2) {
 	print ("Arguments:  <output_prefix>  name1:input1.tsv name2:input2.tsv....")
 	print ("author: d2jvkpn")
 	print ("version: 0.1")
