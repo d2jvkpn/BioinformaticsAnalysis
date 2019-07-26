@@ -17,11 +17,14 @@ if len(os.sys.argv) != 4:
 
 fa, n, prefix = os.sys.argv[1:4]
 n = int(n)
+if n < 1: print("invalid parts number:", n); os.sys.exit(1)
 # fa, n, prefix = "mRNA.fa", 20, "out"
 
-if n < 1: print("invalid parts number:", n); os.sys.exit(1)
 m = 0
-for r in SeqIO.parse(fa, "fasta"): m+=1
+sfa = SeqIO.parse(fa, "fasta") 
+for r in sfa: m+=1
+sfa.close()
+
 n = min(n, m)
 q, r = divmod (m, n)
 qs = [q]*n
