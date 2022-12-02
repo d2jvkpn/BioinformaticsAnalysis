@@ -1,0 +1,12 @@
+wk*/
+main
+
+docker-compose.yaml
+
+target
+*.out
+*.log
+
+logs/
+configs/
+data/
