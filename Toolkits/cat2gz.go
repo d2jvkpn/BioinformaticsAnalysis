@@ -1,14 +1,14 @@
 package main
 
 import (
-	"fmt"
-	"log"
-	"os"
 	"bufio"
 	"flag"
-	"strings"
-	"path/filepath"
+	"fmt"
 	gzip "github.com/klauspost/pgzip"
+	"log"
+	"os"
+	"path/filepath"
+	"strings"
 )
 
 const USEAGE = `
@@ -41,7 +41,10 @@ func main() {
 		fmt.Println(LISENSE)
 	}
 
-	if len(inputs) == 0 || *outgz == "" { flag.Usage(); os.Exit(1) }
+	if len(inputs) == 0 || *outgz == "" {
+		flag.Usage()
+		os.Exit(1)
+	}
 
 	type Writer interface {
 		Write(p []byte) (n int, err error)
@@ -51,34 +54,44 @@ func main() {
 	var err error
 
 	err = os.MkdirAll(filepath.Dir(*outgz), 0755)
-	if err != nil { log.Fatal(err) }
+	if err != nil {
+		log.Fatal(err)
+	}
 
 	var fwt *os.File
 
 	fwt, err = os.Create(*outgz)
-	if err != nil { log.Fatal(err) }
+	if err != nil {
+		log.Fatal(err)
+	}
 	defer fwt.Close()
 
 	gznw, err := gzip.NewWriterLevel(fwt, *level)
-	if err != nil { log.Fatal(err) }
+	if err != nil {
+		log.Fatal(err)
+	}
 	gznw.SetConcurrency(100000, *cpunum)
 
 	wt = gznw
 	defer gznw.Close()
 
 	for _, s := range inputs {
-		log.Printf ("Concatenate \"%s\" to \"%s\"\n", s, *outgz)
+		log.Printf("Concatenate \"%s\" to \"%s\"\n", s, *outgz)
 		scanner, frd, err := ReadInput(s)
-		if err != nil { log.Fatal(err) }
+		if err != nil {
+			log.Fatal(err)
+		}
 		defer frd.Close()
 
 		for scanner.Scan() {
 			_, err = wt.Write([]byte(scanner.Text() + "\n"))
-			if err != nil { log.Fatal(err) }
+			if err != nil {
+				log.Fatal(err)
+			}
 		}
 	}
 
-	log.Printf ("Saved \"%s\"\n", *outgz)
+	log.Printf("Saved \"%s\"\n", *outgz)
 }
 
 func ReadInput(s string) (scanner *bufio.Scanner, file *os.File, err error) {
@@ -88,12 +101,16 @@ func ReadInput(s string) (scanner *bufio.Scanner, file *os.File, err error) {
 	}
 
 	file, err = os.Open(s)
-	if err != nil { return }
+	if err != nil {
+		return
+	}
 
 	if strings.HasSuffix(s, ".gz") {
 		var gz *gzip.Reader
 		gz, err = gzip.NewReader(file)
-		if err != nil { return }
+		if err != nil {
+			return
+		}
 		scanner = bufio.NewScanner(gz)
 	} else {
 		scanner = bufio.NewScanner(file)
